@@ -16,8 +16,7 @@ import (
 type DelegatesService service
 
 // Get all accounts.
-func (s *DelegatesService) List(ctx context.Context) (*Response, error)
-{
+func (s *DelegatesService) List(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("GET", "api/delegates", nil)
 
     if err != nil {
@@ -28,8 +27,7 @@ func (s *DelegatesService) List(ctx context.Context) (*Response, error)
 }
 
 // Get a delegate by the given id.
-func (s *DelegatesService) Get(ctx context.Context) (*Response, error)
-{
+func (s *DelegatesService) Get(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("GET", "api/delegates/get", nil)
 
     if err != nil {
@@ -40,8 +38,7 @@ func (s *DelegatesService) Get(ctx context.Context) (*Response, error)
 }
 
 // Count all delegates.
-func (s *DelegatesService) Count(ctx context.Context) (*Response, error)
-{
+func (s *DelegatesService) Count(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("GET", "api/delegates/count", nil)
 
     if err != nil {
@@ -52,8 +49,7 @@ func (s *DelegatesService) Count(ctx context.Context) (*Response, error)
 }
 
 // Get the delegate registration fee.
-func (s *DelegatesService) Fee(ctx context.Context) (*Response, error)
-{
+func (s *DelegatesService) Fee(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("GET", "api/delegates/fee", nil)
 
     if err != nil {
@@ -64,8 +60,7 @@ func (s *DelegatesService) Fee(ctx context.Context) (*Response, error)
 }
 
 // Get the forged totals by the given public key.
-func (s *DelegatesService) ForgedByAccount(ctx context.Context) (*Response, error)
-{
+func (s *DelegatesService) ForgedByAccount(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("GET", "api/delegates/forging/getForgedByAccount", nil)
 
     if err != nil {
@@ -76,8 +71,7 @@ func (s *DelegatesService) ForgedByAccount(ctx context.Context) (*Response, erro
 }
 
 // Filter all delegates by the given criteria.
-func (s *DelegatesService) Search(ctx context.Context) (*Response, error)
-{
+func (s *DelegatesService) Search(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("GET", "api/delegates/search", nil)
 
     if err != nil {
@@ -88,8 +82,7 @@ func (s *DelegatesService) Search(ctx context.Context) (*Response, error)
 }
 
 // Get all voters by the given public key.
-func (s *DelegatesService) Voters(ctx context.Context) (*Response, error)
-{
+func (s *DelegatesService) Voters(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("GET", "api/delegates/voters", nil)
 
     if err != nil {
@@ -100,8 +93,7 @@ func (s *DelegatesService) Voters(ctx context.Context) (*Response, error)
 }
 
 // Get a list of the next forgers.
-func (s *DelegatesService) NextForgers(ctx context.Context) (*Response, error)
-{
+func (s *DelegatesService) NextForgers(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("GET", "api/delegates/getNextForgers", nil)
 
     if err != nil {

@@ -15,19 +15,16 @@ import (
 )
 
 // Get the node status.
-func TestNodeService_Status(t *testing.T)
-{
+func TestNodeService_Status(t *testing.T) {
     //
 }
 
 // Get the node syncing status.
-func TestNodeService_Syncing(t *testing.T)
-{
+func TestNodeService_Syncing(t *testing.T) {
     //
 }
 
 // Get the node configuration.
-func TestNodeService_Configuration(t *testing.T)
-{
+func TestNodeService_Configuration(t *testing.T) {
     //
 }

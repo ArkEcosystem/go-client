@@ -15,25 +15,21 @@ import (
 )
 
 // Get all blocks.
-func TestBlocksService_List(t *testing.T)
-{
+func TestBlocksService_List(t *testing.T) {
     //
 }
 
 // Get a block by the given id.
-func TestBlocksService_Get(t *testing.T)
-{
+func TestBlocksService_Get(t *testing.T) {
     //
 }
 
 // Get all transactions by the given block.
-func TestBlocksService_Transactions(t *testing.T)
-{
+func TestBlocksService_Transactions(t *testing.T) {
     //
 }
 
 // Filter all blocks by the given criteria.
-func TestBlocksService_Search(t *testing.T)
-{
+func TestBlocksService_Search(t *testing.T) {
     //
 }

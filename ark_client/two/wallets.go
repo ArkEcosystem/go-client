@@ -16,8 +16,7 @@ import (
 type WalletsService service
 
 // Get all wallets.
-func (s *WalletsService) List(ctx context.Context) (*Response, error)
-{
+func (s *WalletsService) List(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("GET", "wallets", nil)
 
     if err != nil {
@@ -28,8 +27,7 @@ func (s *WalletsService) List(ctx context.Context) (*Response, error)
 }
 
 // Get all wallets sorted by balance in descending order.
-func (s *WalletsService) Top(ctx context.Context) (*Response, error)
-{
+func (s *WalletsService) Top(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("GET", "wallets/top", nil)
 
     if err != nil {
@@ -40,8 +38,7 @@ func (s *WalletsService) Top(ctx context.Context) (*Response, error)
 }
 
 // Get a wallet by the given id.
-func (s *WalletsService) Get(ctx context.Context) (*Response, error)
-{
+func (s *WalletsService) Get(ctx context.Context) (*Response, error) {
     uri := fmt.Sprintf("wallets/%v", id)
 
     req, err := s.client.NewRequest("GET", uri, nil)
@@ -54,8 +51,7 @@ func (s *WalletsService) Get(ctx context.Context) (*Response, error)
 }
 
 // Get all transactions for the given wallet.
-func (s *WalletsService) Transactions(ctx context.Context) (*Response, error)
-{
+func (s *WalletsService) Transactions(ctx context.Context) (*Response, error) {
     uri := fmt.Sprintf("wallets/%v/transactions", id)
 
     req, err := s.client.NewRequest("GET", uri, nil)
@@ -68,8 +64,7 @@ func (s *WalletsService) Transactions(ctx context.Context) (*Response, error)
 }
 
 // Get all transactions sent by the given wallet.
-func (s *WalletsService) SentTransactions(ctx context.Context) (*Response, error)
-{
+func (s *WalletsService) SentTransactions(ctx context.Context) (*Response, error) {
     uri := fmt.Sprintf("wallets/%v/transactions/sent", id)
 
     req, err := s.client.NewRequest("GET", uri, nil)
@@ -82,8 +77,7 @@ func (s *WalletsService) SentTransactions(ctx context.Context) (*Response, error
 }
 
 // Get all transactions received by the given wallet.
-func (s *WalletsService) ReceivedTransaction(ctx context.Context) (*Response, error)
-{
+func (s *WalletsService) ReceivedTransaction(ctx context.Context) (*Response, error) {
     uri := fmt.Sprintf("wallets/%v/transactions/received", id)
 
     req, err := s.client.NewRequest("GET", uri, nil)
@@ -96,8 +90,7 @@ func (s *WalletsService) ReceivedTransaction(ctx context.Context) (*Response, er
 }
 
 // Get all votes by the given wallet.
-func (s *WalletsService) Votes(ctx context.Context) (*Response, error)
-{
+func (s *WalletsService) Votes(ctx context.Context) (*Response, error) {
     uri := fmt.Sprintf("wallets/%v/votes", id)
 
     req, err := s.client.NewRequest("GET", uri, nil)
@@ -110,8 +103,7 @@ func (s *WalletsService) Votes(ctx context.Context) (*Response, error)
 }
 
 // Filter all wallets by the given criteria.
-func (s *WalletsService) Search(ctx context.Context) (*Response, error)
-{
+func (s *WalletsService) Search(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("POST", "wallets/search", nil)
 
     if err != nil {

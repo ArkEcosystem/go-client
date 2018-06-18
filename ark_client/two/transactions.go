@@ -16,8 +16,7 @@ import (
 type TransactionsService service
 
 // Get all transactions.
-func (s *TransactionsService) List(ctx context.Context) (*Response, error)
-{
+func (s *TransactionsService) List(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("GET", "transactions", nil)
 
     if err != nil {
@@ -28,8 +27,7 @@ func (s *TransactionsService) List(ctx context.Context) (*Response, error)
 }
 
 // Create a new transaction.
-func (s *TransactionsService) Create(ctx context.Context) (*Response, error)
-{
+func (s *TransactionsService) Create(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("POST", "transactions", nil)
 
     if err != nil {
@@ -40,8 +38,7 @@ func (s *TransactionsService) Create(ctx context.Context) (*Response, error)
 }
 
 // Get a transaction by the given id.
-func (s *TransactionsService) Get(ctx context.Context) (*Response, error)
-{
+func (s *TransactionsService) Get(ctx context.Context) (*Response, error) {
     uri := fmt.Sprintf("transactions/%v", id)
 
     req, err := s.client.NewRequest("GET", uri, nil)
@@ -54,8 +51,7 @@ func (s *TransactionsService) Get(ctx context.Context) (*Response, error)
 }
 
 // Get all unconfirmed transactions.
-func (s *TransactionsService) ListUnconfirmed(ctx context.Context) (*Response, error)
-{
+func (s *TransactionsService) ListUnconfirmed(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("GET", "transactions/unconfirmed", nil)
 
     if err != nil {
@@ -66,8 +62,7 @@ func (s *TransactionsService) ListUnconfirmed(ctx context.Context) (*Response, e
 }
 
 // Get an unconfirmed transaction by the given id.
-func (s *TransactionsService) GetUnconfirmed(ctx context.Context) (*Response, error)
-{
+func (s *TransactionsService) GetUnconfirmed(ctx context.Context) (*Response, error) {
     uri := fmt.Sprintf("transactions/unconfirmed/%v", id)
 
     req, err := s.client.NewRequest("GET", uri, nil)
@@ -80,8 +75,7 @@ func (s *TransactionsService) GetUnconfirmed(ctx context.Context) (*Response, er
 }
 
 // Filter all transactions by the given criteria.
-func (s *TransactionsService) Search(ctx context.Context) (*Response, error)
-{
+func (s *TransactionsService) Search(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("POST", "transactions/search", nil)
 
     if err != nil {
@@ -92,8 +86,7 @@ func (s *TransactionsService) Search(ctx context.Context) (*Response, error)
 }
 
 // Get a list of valid transaction types.
-func (s *TransactionsService) Types(ctx context.Context) (*Response, error)
-{
+func (s *TransactionsService) Types(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("GET", "transactions/types", nil)
 
     if err != nil {

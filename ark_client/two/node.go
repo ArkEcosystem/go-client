@@ -16,8 +16,7 @@ import (
 type NodeService service
 
 // Get the node status.
-func (s *NodeService) Status(ctx context.Context) (*Response, error)
-{
+func (s *NodeService) Status(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("GET", "node/status", nil)
 
     if err != nil {
@@ -28,8 +27,7 @@ func (s *NodeService) Status(ctx context.Context) (*Response, error)
 }
 
 // Get the node syncing status.
-func (s *NodeService) Syncing(ctx context.Context) (*Response, error)
-{
+func (s *NodeService) Syncing(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("GET", "node/syncing", nil)
 
     if err != nil {
@@ -40,8 +38,7 @@ func (s *NodeService) Syncing(ctx context.Context) (*Response, error)
 }
 
 // Get the node configuration.
-func (s *NodeService) Configuration(ctx context.Context) (*Response, error)
-{
+func (s *NodeService) Configuration(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("GET", "node/configuration", nil)
 
     if err != nil {

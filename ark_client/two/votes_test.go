@@ -15,13 +15,11 @@ import (
 )
 
 // Get all votes.
-func TestVotesService_List(t *testing.T)
-{
+func TestVotesService_List(t *testing.T) {
     //
 }
 
 // Get a vote by the given id.
-func TestVotesService_Get(t *testing.T)
-{
+func TestVotesService_Get(t *testing.T) {
     //
 }

@@ -16,8 +16,7 @@ import (
 type DelegatesService service
 
 // Get all accounts.
-func (s *DelegatesService) List(ctx context.Context) (*Response, error)
-{
+func (s *DelegatesService) List(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("GET", "delegates", nil)
 
     if err != nil {
@@ -28,8 +27,7 @@ func (s *DelegatesService) List(ctx context.Context) (*Response, error)
 }
 
 // Get a block by the given id.
-func (s *DelegatesService) Get(ctx context.Context) (*Response, error)
-{
+func (s *DelegatesService) Get(ctx context.Context) (*Response, error) {
     uri := fmt.Sprintf("delegates/%v", id)
 
     req, err := s.client.NewRequest("GET", uri, nil)
@@ -42,8 +40,7 @@ func (s *DelegatesService) Get(ctx context.Context) (*Response, error)
 }
 
 // Get all blocks for the given delegate.
-func (s *DelegatesService) Blocks(ctx context.Context) (*Response, error)
-{
+func (s *DelegatesService) Blocks(ctx context.Context) (*Response, error) {
     uri := fmt.Sprintf("delegates/%v/blocks", id)
 
     req, err := s.client.NewRequest("GET", uri, nil)
@@ -56,8 +53,7 @@ func (s *DelegatesService) Blocks(ctx context.Context) (*Response, error)
 }
 
 // Get all voters for the given delegate.
-func (s *DelegatesService) Voters(ctx context.Context) (*Response, error)
-{
+func (s *DelegatesService) Voters(ctx context.Context) (*Response, error) {
     uri := fmt.Sprintf("delegates/%v/voters", id)
 
     req, err := s.client.NewRequest("GET", uri, nil)

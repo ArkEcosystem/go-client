@@ -15,31 +15,26 @@ import (
 )
 
 // Get all webhooks.
-func TestWebhooksService_List(t *testing.T)
-{
+func TestWebhooksService_List(t *testing.T) {
     //
 }
 
 // Create a new webhook.
-func TestWebhooksService_Create(t *testing.T)
-{
+func TestWebhooksService_Create(t *testing.T) {
     //
 }
 
 // Get the webhook by the given id.
-func TestWebhooksService_Show(t *testing.T)
-{
+func TestWebhooksService_Show(t *testing.T) {
     //
 }
 
 // Update the webhook by the given id.
-func TestWebhooksService_Update(t *testing.T)
-{
+func TestWebhooksService_Update(t *testing.T) {
     //
 }
 
 // Delete the webhook by the given id.
-func TestWebhooksService_Delete(t *testing.T)
-{
+func TestWebhooksService_Delete(t *testing.T) {
     //
 }

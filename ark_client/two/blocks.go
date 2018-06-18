@@ -16,8 +16,7 @@ import (
 type BlocksService service
 
 // Get all blocks.
-func (s *BlocksService) List(ctx context.Context) (*Response, error)
-{
+func (s *BlocksService) List(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("GET", "blocks", nil)
 
     if err != nil {
@@ -28,8 +27,7 @@ func (s *BlocksService) List(ctx context.Context) (*Response, error)
 }
 
 // Get a block by the given id.
-func (s *BlocksService) Get(ctx context.Context) (*Response, error)
-{
+func (s *BlocksService) Get(ctx context.Context) (*Response, error) {
     uri := fmt.Sprintf("blocks/%v", id)
 
     req, err := s.client.NewRequest("GET", uri, nil)
@@ -42,8 +40,7 @@ func (s *BlocksService) Get(ctx context.Context) (*Response, error)
 }
 
 // Get all transactions by the given block.
-func (s *BlocksService) Transactions(ctx context.Context) (*Response, error)
-{
+func (s *BlocksService) Transactions(ctx context.Context) (*Response, error) {
     uri := fmt.Sprintf("blocks/%v/transactions", id)
 
     req, err := s.client.NewRequest("GET", uri, nil)
@@ -56,8 +53,7 @@ func (s *BlocksService) Transactions(ctx context.Context) (*Response, error)
 }
 
 // Filter all blocks by the given criteria.
-func (s *BlocksService) Search(ctx context.Context) (*Response, error)
-{
+func (s *BlocksService) Search(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("POST", "blocks/search", nil)
 
     if err != nil {
