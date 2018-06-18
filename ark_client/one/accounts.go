@@ -7,8 +7,6 @@ package one
 
 import (
     "context"
-    "fmt"
-    "strings"
 )
 
 // AccountsService handles communication with the accounts related

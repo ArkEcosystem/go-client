@@ -8,7 +8,6 @@ package two
 import (
     "context"
     "fmt"
-    "strings"
 )
 
 // WalletsService handles communication with the wallets related

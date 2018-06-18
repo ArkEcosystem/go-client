@@ -7,8 +7,6 @@ package one
 
 import (
     "context"
-    "fmt"
-    "strings"
 )
 
 // PeersService handles communication with the peers related

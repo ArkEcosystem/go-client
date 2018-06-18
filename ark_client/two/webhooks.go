@@ -8,7 +8,6 @@ package two
 import (
     "context"
     "fmt"
-    "strings"
 )
 
 // WebhooksService handles communication with the webhooks related

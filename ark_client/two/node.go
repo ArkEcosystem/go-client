@@ -7,8 +7,6 @@ package two
 
 import (
     "context"
-    "fmt"
-    "strings"
 )
 
 // NodeService handles communication with the node related

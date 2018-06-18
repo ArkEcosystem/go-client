@@ -8,7 +8,6 @@ package two
 import (
     "context"
     "fmt"
-    "strings"
 )
 
 // DelegatesService handles communication with the delegates related
