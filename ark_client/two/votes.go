@@ -8,7 +8,6 @@ package two
 import (
     "context"
     "fmt"
-    "strings"
 )
 
 // VotesService handles communication with the votes related

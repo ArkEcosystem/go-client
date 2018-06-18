@@ -7,8 +7,6 @@ package one
 
 import (
     "context"
-    "fmt"
-    "strings"
 )
 
 // SignaturesService handles communication with the signatures

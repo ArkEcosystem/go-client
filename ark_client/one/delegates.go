@@ -7,8 +7,6 @@ package one
 
 import (
     "context"
-    "fmt"
-    "strings"
 )
 
 // DelegatesService handles communication with the signatures

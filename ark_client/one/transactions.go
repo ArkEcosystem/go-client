@@ -7,8 +7,6 @@ package one
 
 import (
     "context"
-    "fmt"
-    "strings"
 )
 
 // TransactionsService handles communication with the transactions
