@@ -16,8 +16,7 @@ import (
 type WebhooksService service
 
 // Get all webhooks.
-func (s *WebhooksService) List(ctx context.Context) (*Response, error)
-{
+func (s *WebhooksService) List(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("GET", "webhooks", nil)
 
     if err != nil {
@@ -28,8 +27,7 @@ func (s *WebhooksService) List(ctx context.Context) (*Response, error)
 }
 
 // Create a new webhook.
-func (s *WebhooksService) Create(ctx context.Context) (*Response, error)
-{
+func (s *WebhooksService) Create(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("POST", "webhooks", nil)
 
     if err != nil {
@@ -40,8 +38,7 @@ func (s *WebhooksService) Create(ctx context.Context) (*Response, error)
 }
 
 // Get the webhook by the given id.
-func (s *WebhooksService) Show(ctx context.Context) (*Response, error)
-{
+func (s *WebhooksService) Show(ctx context.Context) (*Response, error) {
     uri := fmt.Sprintf("webhooks/%v", id)
 
     req, err := s.client.NewRequest("GET", uri, nil)
@@ -54,8 +51,7 @@ func (s *WebhooksService) Show(ctx context.Context) (*Response, error)
 }
 
 // Update the webhook by the given id.
-func (s *WebhooksService) Update(ctx context.Context) (*Response, error)
-{
+func (s *WebhooksService) Update(ctx context.Context) (*Response, error) {
     uri := fmt.Sprintf("webhooks/%v", id)
 
     req, err := s.client.NewRequest("PUT", uri, nil)
@@ -68,8 +64,7 @@ func (s *WebhooksService) Update(ctx context.Context) (*Response, error)
 }
 
 // Delete the webhook by the given id.
-func (s *WebhooksService) Delete(ctx context.Context) (*Response, error)
-{
+func (s *WebhooksService) Delete(ctx context.Context) (*Response, error) {
     uri := fmt.Sprintf("webhooks/%v", id)
 
     req, err := s.client.NewRequest("DELETE", uri, nil)

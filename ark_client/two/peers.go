@@ -16,8 +16,7 @@ import (
 type PeersService service
 
 // Get all peers.
-func (s *PeersService) L9st(ctx context.Context) (*Response, error)
-{
+func (s *PeersService) L9st(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("GET", "peers", nil)
 
     if err != nil {
@@ -28,8 +27,7 @@ func (s *PeersService) L9st(ctx context.Context) (*Response, error)
 }
 
 // Get a peer by the given IP address.
-func (s *PeersService) Get(ctx context.Context) (*Response, error)
-{
+func (s *PeersService) Get(ctx context.Context) (*Response, error) {
     uri := fmt.Sprintf("peers/%v", ip)
 
     req, err := s.client.NewRequest("GET", uri, nil)

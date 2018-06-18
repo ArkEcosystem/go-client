@@ -16,8 +16,7 @@ import (
 type LoaderService service
 
 // Get the loader status.
-func (s *LoaderService) Status(ctx context.Context) (*Response, error)
-{
+func (s *LoaderService) Status(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("GET", "api/loader/status", nil)
 
     if err != nil {
@@ -28,8 +27,7 @@ func (s *LoaderService) Status(ctx context.Context) (*Response, error)
 }
 
 // Get the loader syncing status.
-func (s *LoaderService) SyncStatus(ctx context.Context) (*Response, error)
-{
+func (s *LoaderService) SyncStatus(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("GET", "api/loader/status/sync", nil)
 
     if err != nil {
@@ -40,8 +38,7 @@ func (s *LoaderService) SyncStatus(ctx context.Context) (*Response, error)
 }
 
 // Get the loader configuration.
-func (s *LoaderService) AutoConfigure(ctx context.Context) (*Response, error)
-{
+func (s *LoaderService) AutoConfigure(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("GET", "api/loader/autoconfigure", nil)
 
     if err != nil {

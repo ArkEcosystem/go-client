@@ -16,8 +16,7 @@ import (
 type PeersService service
 
 // Get all accounts.
-func (s *PeersService) List(ctx context.Context) (*Response, error)
-{
+func (s *PeersService) List(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("GET", "api/peers", nil)
 
     if err != nil {
@@ -28,8 +27,7 @@ func (s *PeersService) List(ctx context.Context) (*Response, error)
 }
 
 // Get a peer by the given IP address and port.
-func (s *PeersService) Get(ctx context.Context) (*Response, error)
-{
+func (s *PeersService) Get(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("GET", "api/peers/get", compact("ip", "port"), nil)
 
     if err != nil {
@@ -40,8 +38,7 @@ func (s *PeersService) Get(ctx context.Context) (*Response, error)
 }
 
 // Get the node version of the given peer.
-func (s *PeersService) Version(ctx context.Context) (*Response, error)
-{
+func (s *PeersService) Version(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("GET", "api/peers/version", nil)
 
     if err != nil {

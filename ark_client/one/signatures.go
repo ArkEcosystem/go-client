@@ -16,8 +16,7 @@ import (
 type SignaturesService service
 
 // Get the second signature registration fee.
-func (s *SignaturesService) Fee(ctx context.Context) (*Response, error)
-{
+func (s *SignaturesService) Fee(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("GET", "api/signatures/fee", nil)
 
     if err != nil {

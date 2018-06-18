@@ -16,8 +16,7 @@ import (
 type VotesService service
 
 // Get all votes.
-func (s *VotesService) List(ctx context.Context) (*Response, error)
-{
+func (s *VotesService) List(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("GET", "votes", nil)
 
     if err != nil {
@@ -28,8 +27,7 @@ func (s *VotesService) List(ctx context.Context) (*Response, error)
 }
 
 // Get a vote by the given id.
-func (s *VotesService) Get(ctx context.Context) (*Response, error)
-{
+func (s *VotesService) Get(ctx context.Context) (*Response, error) {
     uri := fmt.Sprintf("votes/%v", id)
 
     req, err := s.client.NewRequest("GET", uri, nil)

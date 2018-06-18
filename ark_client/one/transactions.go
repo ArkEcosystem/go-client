@@ -16,8 +16,7 @@ import (
 type TransactionsService service
 
 // Get all accounts.
-func (s *TransactionsService) List(ctx context.Context) (*Response, error)
-{
+func (s *TransactionsService) List(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("GET", "api/transactions", nil)
 
     if err != nil {
@@ -28,8 +27,7 @@ func (s *TransactionsService) List(ctx context.Context) (*Response, error)
 }
 
 // Get a transaction by the given id.
-func (s *TransactionsService) Get(ctx context.Context) (*Response, error)
-{
+func (s *TransactionsService) Get(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("GET", "api/transactions/get", nil)
 
     if err != nil {
@@ -40,8 +38,7 @@ func (s *TransactionsService) Get(ctx context.Context) (*Response, error)
 }
 
 // Get all unconfirmed transactions.
-func (s *TransactionsService) ListUnconfirmed(ctx context.Context) (*Response, error)
-{
+func (s *TransactionsService) ListUnconfirmed(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("GET", "api/transactions/unconfirmed", nil)
 
     if err != nil {
@@ -52,8 +49,7 @@ func (s *TransactionsService) ListUnconfirmed(ctx context.Context) (*Response, e
 }
 
 // Get an unconfirmed transaction by the given id.
-func (s *TransactionsService) GetUnconfirmed(ctx context.Context) (*Response, error)
-{
+func (s *TransactionsService) GetUnconfirmed(ctx context.Context) (*Response, error) {
     req, err := s.client.NewRequest("GET", "api/transactions/unconfirmed/get", nil)
 
     if err != nil {
