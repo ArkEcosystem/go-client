@@ -4,6 +4,26 @@
 // license that can be found in the LICENSE file.
 
 package ark_client
+
+import (
+    "bytes"
+    "context"
+    "encoding/json"
+    "errors"
+    "fmt"
+    "io"
+    "io/ioutil"
+    "net/http"
+    "net/url"
+    "reflect"
+    "strconv"
+    "strings"
+    "sync"
+    "time"
+
+    "github.com/google/go-querystring/query"
+)
+
 const (
     defaultBaseURL = "https://api.ark.io/"
     userAgent      = "go-client"
@@ -68,4 +88,36 @@ func NewClient(httpClient *http.Client) *Client {
     c.two.Webhooks (*v2_WebhooksService)(&c.common)
 
     return c
+}
+
+func (c *Client) NewRequest(method, urlStr string, body interface{}) (*http.Request, error) {
+    if !strings.HasSuffix(c.BaseURL.Path, "/") {
+        return nil, fmt.Errorf("BaseURL must have a trailing slash, but %q does not", c.BaseURL)
+    }
+    u, err := c.BaseURL.Parse(urlStr)
+    if err != nil {
+        return nil, err
+    }
+
+    var buf io.ReadWriter
+    if body != nil {
+        buf = new(bytes.Buffer)
+        enc := json.NewEncoder(buf)
+        enc.SetEscapeHTML(false)
+        err := enc.Encode(body)
+        if err != nil {
+            return nil, err
+        }
+    }
+
+    req, err := http.NewRequest(method, u.String(), buf)
+    if err != nil {
+        return nil, err
+    }
+
+    if body != nil {
+        req.Header.Set("Content-Type", "application/json")
+    }
+
+    return req, nil
 }
