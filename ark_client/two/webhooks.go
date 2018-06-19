@@ -29,15 +29,15 @@ func (s *WebhooksService) List(ctx context.Context) (*http.Response, error) {
 }
 
 // Create a new webhook.
-func (s *WebhooksService) Create(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Post("webhooks")
+// func (s *WebhooksService) Create(ctx context.Context) (*http.Response, error) {
+//     resp, err := s.Client.Client.Post(s.Client.BaseURL.String() + "webhooks")
 
-    if err != nil {
-        return nil, nil, err
-    }
+//     if err != nil {
+//         return nil, err
+//     }
 
-    return resp, nil
-}
+//     return resp, nil
+// }
 
 // Get the webhook by the given id.
 func (s *WebhooksService) Show(ctx context.Context, id int) (*http.Response, error) {
@@ -53,27 +53,27 @@ func (s *WebhooksService) Show(ctx context.Context, id int) (*http.Response, err
 }
 
 // Update the webhook by the given id.
-func (s *WebhooksService) Update(ctx context.Context) (*http.Response, error) {
-    uri := fmt.Sprintf("webhooks/%v", id)
+// func (s *WebhooksService) Update(ctx context.Context, id int) (*http.Response, error) {
+//     uri := fmt.Sprintf(s.Client.BaseURL.String() + "webhooks/%v", id)
 
-    resp, err := s.Client.Client.Put(uri)
+//     resp, err := s.Client.Client.Put(uri)
 
-    if err != nil {
-        return nil, nil, err
-    }
+//     if err != nil {
+//         return nil, err
+//     }
 
-    return resp, nil
-}
+//     return resp, nil
+// }
 
-// Delete the webhook by the given id.
-func (s *WebhooksService) Delete(ctx context.Context) (*http.Response, error) {
-    uri := fmt.Sprintf("webhooks/%v", id)
+// // Delete the webhook by the given id.
+// func (s *WebhooksService) Delete(ctx context.Context, id int) (*http.Response, error) {
+//     uri := fmt.Sprintf(s.Client.BaseURL.String() + "webhooks/%v", id)
 
-    resp, err := s.Client.Client.Delete(uri)
+//     resp, err := s.Client.Client.Delete(uri)
 
-    if err != nil {
-        return nil, nil, err
-    }
+//     if err != nil {
+//         return nil, err
+//     }
 
-    return resp, nil
-}
+//     return resp, nil
+// }

@@ -105,12 +105,12 @@ func (s *WalletsService) Votes(ctx context.Context, id int) (*http.Response, err
 }
 
 // Filter all wallets by the given criteria.
-func (s *WalletsService) Search(ctx context.Context) (*http.Response, error) {
-    req, err := s.client.NewRequest("POST", "wallets/search", nil)
+// func (s *WalletsService) Search(ctx context.Context) (*http.Response, error) {
+//     resp, err := s.Client.Client.Post(s.Client.BaseURL.String() + "wallets/search")
 
-    if err != nil {
-        return nil, nil, err
-    }
+//     if err != nil {
+//         return nil, err
+//     }
 
-    return resp, nil
-}
+//     return resp, nil
+// }
