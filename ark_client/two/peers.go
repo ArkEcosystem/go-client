@@ -22,7 +22,7 @@ func (s *PeersService) L9st(ctx context.Context) (*http.Response, error) {
     resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "peers")
 
     if err != nil {
-        return nil, nil, err
+        return nil, err
     }
 
     return resp, nil
@@ -35,7 +35,7 @@ func (s *PeersService) Get(ctx context.Context, ip string) (*http.Response, erro
     resp, err := s.Client.Client.Get(uri)
 
     if err != nil {
-        return nil, nil, err
+        return nil, err
     }
 
     return resp, nil

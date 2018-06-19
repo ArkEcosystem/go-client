@@ -22,7 +22,7 @@ func (s *WalletsService) List(ctx context.Context) (*http.Response, error) {
     resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "wallets")
 
     if err != nil {
-        return nil, nil, err
+        return nil, err
     }
 
     return resp, nil
@@ -33,7 +33,7 @@ func (s *WalletsService) Top(ctx context.Context) (*http.Response, error) {
     resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "wallets/top")
 
     if err != nil {
-        return nil, nil, err
+        return nil, err
     }
 
     return resp, nil
@@ -46,7 +46,7 @@ func (s *WalletsService) Get(ctx context.Context, id int) (*http.Response, error
     resp, err := s.Client.Client.Get(uri)
 
     if err != nil {
-        return nil, nil, err
+        return nil, err
     }
 
     return resp, nil
@@ -59,7 +59,7 @@ func (s *WalletsService) Transactions(ctx context.Context, id int) (*http.Respon
     resp, err := s.Client.Client.Get(uri)
 
     if err != nil {
-        return nil, nil, err
+        return nil, err
     }
 
     return resp, nil
@@ -72,7 +72,7 @@ func (s *WalletsService) SentTransactions(ctx context.Context, id int) (*http.Re
     resp, err := s.Client.Client.Get(uri)
 
     if err != nil {
-        return nil, nil, err
+        return nil, err
     }
 
     return resp, nil
@@ -85,7 +85,7 @@ func (s *WalletsService) ReceivedTransaction(ctx context.Context, id int) (*http
     resp, err := s.Client.Client.Get(uri)
 
     if err != nil {
-        return nil, nil, err
+        return nil, err
     }
 
     return resp, nil
@@ -98,7 +98,7 @@ func (s *WalletsService) Votes(ctx context.Context, id int) (*http.Response, err
     resp, err := s.Client.Client.Get(uri)
 
     if err != nil {
-        return nil, nil, err
+        return nil, err
     }
 
     return resp, nil

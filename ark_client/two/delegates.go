@@ -22,7 +22,7 @@ func (s *DelegatesService) List(ctx context.Context) (*http.Response, error) {
     resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "delegates")
 
     if err != nil {
-        return nil, nil, err
+        return nil, err
     }
 
     return resp, nil
@@ -35,7 +35,7 @@ func (s *DelegatesService) Get(ctx context.Context, id int) (*http.Response, err
     resp, err := s.Client.Client.Get(uri)
 
     if err != nil {
-        return nil, nil, err
+        return nil, err
     }
 
     return resp, nil
@@ -48,7 +48,7 @@ func (s *DelegatesService) Blocks(ctx context.Context, id int) (*http.Response, 
     resp, err := s.Client.Client.Get(uri)
 
     if err != nil {
-        return nil, nil, err
+        return nil, err
     }
 
     return resp, nil
@@ -61,7 +61,7 @@ func (s *DelegatesService) Voters(ctx context.Context, id int) (*http.Response, 
     resp, err := s.Client.Client.Get(uri)
 
     if err != nil {
-        return nil, nil, err
+        return nil, err
     }
 
     return resp, nil

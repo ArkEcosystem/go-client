@@ -22,7 +22,7 @@ func (s *TransactionsService) List(ctx context.Context) (*http.Response, error) 
     resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "transactions")
 
     if err != nil {
-        return nil, nil, err
+        return nil, err
     }
 
     return resp, nil
@@ -46,7 +46,7 @@ func (s *TransactionsService) Get(ctx context.Context, id int) (*http.Response, 
     resp, err := s.Client.Client.Get(uri)
 
     if err != nil {
-        return nil, nil, err
+        return nil, err
     }
 
     return resp, nil
@@ -57,7 +57,7 @@ func (s *TransactionsService) ListUnconfirmed(ctx context.Context) (*http.Respon
     resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "transactions/unconfirmed")
 
     if err != nil {
-        return nil, nil, err
+        return nil, err
     }
 
     return resp, nil
@@ -70,7 +70,7 @@ func (s *TransactionsService) GetUnconfirmed(ctx context.Context, id int) (*http
     resp, err := s.Client.Client.Get(uri)
 
     if err != nil {
-        return nil, nil, err
+        return nil, err
     }
 
     return resp, nil
@@ -92,7 +92,7 @@ func (s *TransactionsService) Types(ctx context.Context) (*http.Response, error)
     resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "transactions/types")
 
     if err != nil {
-        return nil, nil, err
+        return nil, err
     }
 
     return resp, nil

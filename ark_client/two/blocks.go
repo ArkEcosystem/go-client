@@ -22,7 +22,7 @@ func (s *BlocksService) List(ctx context.Context) (*http.Response, error) {
     resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "blocks")
 
     if err != nil {
-        return nil, nil, err
+        return nil, err
     }
 
     return resp, nil
@@ -35,7 +35,7 @@ func (s *BlocksService) Get(ctx context.Context, id int) (*http.Response, error)
     resp, err := s.Client.Client.Get(uri)
 
     if err != nil {
-        return nil, nil, err
+        return nil, err
     }
 
     return resp, nil
@@ -48,7 +48,7 @@ func (s *BlocksService) Transactions(ctx context.Context, id int) (*http.Respons
     resp, err := s.Client.Client.Get(uri)
 
     if err != nil {
-        return nil, nil, err
+        return nil, err
     }
 
     return resp, nil
@@ -59,7 +59,7 @@ func (s *BlocksService) Search(ctx context.Context) (*http.Response, error) {
     resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "blocks/search")
 
     if err != nil {
-        return nil, nil, err
+        return nil, err
     }
 
     return resp, nil

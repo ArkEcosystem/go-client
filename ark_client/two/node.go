@@ -21,7 +21,7 @@ func (s *NodeService) Status(ctx context.Context) (*http.Response, error) {
     resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "node/status")
 
     if err != nil {
-        return nil, nil, err
+        return nil, err
     }
 
     return resp, nil
@@ -32,7 +32,7 @@ func (s *NodeService) Syncing(ctx context.Context) (*http.Response, error) {
     resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "node/syncing")
 
     if err != nil {
-        return nil, nil, err
+        return nil, err
     }
 
     return resp, nil
@@ -43,7 +43,7 @@ func (s *NodeService) Configuration(ctx context.Context) (*http.Response, error)
     resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "node/configuration")
 
     if err != nil {
-        return nil, nil, err
+        return nil, err
     }
 
     return resp, nil
