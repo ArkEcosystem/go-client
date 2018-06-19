@@ -61,25 +61,29 @@ func NewClient(httpClient *http.Client) *Client {
     baseURL, _ := url.Parse(defaultBaseURL)
 
     c := &Client{}
-    c.common = Service{Client: &HttpClient{Client: httpClient, BaseURL: baseURL}}
+    c.common = Service {
+        Client: &HttpClient {
+            Client: httpClient,
+            BaseURL: baseURL,
+        },
+    }
 
-    c.One_Accounts = &one.AccountsService{}
-    // c.one_Accounts (*one.AccountsService)(&c.common)
-    // c.one_Blocks (*one_BlocksService)(&c.common)
-    // c.one_Delegates (*one_DelegatesService)(&c.common)
-    // c.one_Loader (*one_LoaderService)(&c.common)
-    // c.one_Peers (*one_PeersService)(&c.common)
-    // c.one_Signatures (*one_SignaturesService)(&c.common)
-    // c.one_Transactions (*one_TransactionsService)(&c.common)
+    c.One_Accounts = (*one.AccountsService)(&c.common)
+    // c.One_Blocks = (*one_BlocksService)(&c.common)
+    // c.One_Delegates = (*one_DelegatesService)(&c.common)
+    // c.One_Loader = (*one_LoaderService)(&c.common)
+    // c.One_Peers = (*one_PeersService)(&c.common)
+    // c.One_Signatures = (*one_SignaturesService)(&c.common)
+    // c.One_Transactions = (*one_TransactionsService)(&c.common)
 
-    // c.two.Blocks (*two_BlocksService)(&c.common)
-    // c.two.Delegates (*two_DelegatesService)(&c.common)
-    // c.two.Node (*two_NodeService)(&c.common)
-    // c.two.Peers (*two_PeersService)(&c.common)
-    // c.two.Transactions (*two_TransactionsService)(&c.common)
-    // c.two.Votes (*two_VotesService)(&c.common)
-    // c.two.Wallets (*two_WalletsService)(&c.common)
-    // c.two.Webhooks (*two_WebhooksService)(&c.common)
+    // c.Two_Blocks = (*two_BlocksService)(&c.common)
+    // c.Two_Delegates = (*two_DelegatesService)(&c.common)
+    // c.Two_Node = (*two_NodeService)(&c.common)
+    // c.Two_Peers = (*two_PeersService)(&c.common)
+    // c.Two_Transactions = (*two_TransactionsService)(&c.common)
+    // c.Two_Votes = (*two_VotesService)(&c.common)
+    // c.Two_Wallets = (*two_WalletsService)(&c.common)
+    // c.Two_Webhooks = (*two_WebhooksService)(&c.common)
 
     return c
 }
