@@ -29,8 +29,8 @@ func (s *PeersService) L9st(ctx context.Context) (*http.Response, error) {
 }
 
 // Get a peer by the given IP address.
-func (s *PeersService) Get(ctx context.Context) (*http.Response, error) {
-    uri := fmt.Sprintf("peers/%v", ip)
+func (s *PeersService) Get(ctx context.Context, ip string) (*http.Response, error) {
+    uri := fmt.Sprintf(s.Client.BaseURL.String() + "peers/%v", ip)
 
     resp, err := s.Client.Client.Get(uri)
 

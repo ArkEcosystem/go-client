@@ -29,8 +29,8 @@ func (s *VotesService) List(ctx context.Context) (*http.Response, error) {
 }
 
 // Get a vote by the given id.
-func (s *VotesService) Get(ctx context.Context) (*http.Response, error) {
-    uri := fmt.Sprintf("votes/%v", id)
+func (s *VotesService) Get(ctx context.Context, id int) (*http.Response, error) {
+    uri := fmt.Sprintf(s.Client.BaseURL.String() + "votes/%v", id)
 
     resp, err := s.Client.Client.Get(uri)
 

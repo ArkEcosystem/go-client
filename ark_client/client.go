@@ -24,6 +24,7 @@ import (
 
     . "./types"
     "./one"
+    "./two"
 )
 
 const (
@@ -36,22 +37,22 @@ type Client struct {
 
     // Services - Version 1
     One_Accounts *one.AccountsService
-    // one_Blocks *one.BlocksService
-    // one_Delegates *one.DelegatesService
-    // one_Loader *one.LoaderService
-    // one_Peers *one.PeersService
-    // one_Signatures *one.SignaturesService
-    // one_Transactions *one.TransactionsService
+    One_Blocks *one.BlocksService
+    One_Delegates *one.DelegatesService
+    One_Loader *one.LoaderService
+    One_Peers *one.PeersService
+    One_Signatures *one.SignaturesService
+    One_Transactions *one.TransactionsService
 
     // // Services - Version 2
-    // two_Blocks *two.BlocksService
-    // two_Delegates *two.DelegatesService
-    // two_Node *two.NodeService
-    // two_Peers *two.PeersService
-    // two_Transactions *two.TransactionsService
-    // two_Votes *two.VotesService
-    // two_Wallets *two.WalletsService
-    // two_Webhooks *two.WebhooksService
+    Two_Blocks *two.BlocksService
+    Two_Delegates *two.DelegatesService
+    Two_Node *two.NodeService
+    Two_Peers *two.PeersService
+    Two_Transactions *two.TransactionsService
+    Two_Votes *two.VotesService
+    Two_Wallets *two.WalletsService
+    Two_Webhooks *two.WebhooksService
 }
 
 func NewClient(httpClient *http.Client) *Client {
@@ -69,21 +70,21 @@ func NewClient(httpClient *http.Client) *Client {
     }
 
     c.One_Accounts = (*one.AccountsService)(&c.common)
-    // c.One_Blocks = (*one_BlocksService)(&c.common)
-    // c.One_Delegates = (*one_DelegatesService)(&c.common)
-    // c.One_Loader = (*one_LoaderService)(&c.common)
-    // c.One_Peers = (*one_PeersService)(&c.common)
-    // c.One_Signatures = (*one_SignaturesService)(&c.common)
-    // c.One_Transactions = (*one_TransactionsService)(&c.common)
+    c.One_Blocks = (*one.BlocksService)(&c.common)
+    c.One_Delegates = (*one.DelegatesService)(&c.common)
+    c.One_Loader = (*one.LoaderService)(&c.common)
+    c.One_Peers = (*one.PeersService)(&c.common)
+    c.One_Signatures = (*one.SignaturesService)(&c.common)
+    c.One_Transactions = (*one.TransactionsService)(&c.common)
 
-    // c.Two_Blocks = (*two_BlocksService)(&c.common)
-    // c.Two_Delegates = (*two_DelegatesService)(&c.common)
-    // c.Two_Node = (*two_NodeService)(&c.common)
-    // c.Two_Peers = (*two_PeersService)(&c.common)
-    // c.Two_Transactions = (*two_TransactionsService)(&c.common)
-    // c.Two_Votes = (*two_VotesService)(&c.common)
-    // c.Two_Wallets = (*two_WalletsService)(&c.common)
-    // c.Two_Webhooks = (*two_WebhooksService)(&c.common)
+    c.Two_Blocks = (*two.BlocksService)(&c.common)
+    c.Two_Delegates = (*two.DelegatesService)(&c.common)
+    c.Two_Node = (*two.NodeService)(&c.common)
+    c.Two_Peers = (*two.PeersService)(&c.common)
+    c.Two_Transactions = (*two.TransactionsService)(&c.common)
+    c.Two_Votes = (*two.VotesService)(&c.common)
+    c.Two_Wallets = (*two.WalletsService)(&c.common)
+    c.Two_Webhooks = (*two.WebhooksService)(&c.common)
 
     return c
 }

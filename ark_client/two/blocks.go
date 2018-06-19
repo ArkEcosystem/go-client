@@ -29,8 +29,8 @@ func (s *BlocksService) List(ctx context.Context) (*http.Response, error) {
 }
 
 // Get a block by the given id.
-func (s *BlocksService) Get(ctx context.Context) (*http.Response, error) {
-    uri := fmt.Sprintf("blocks/%v", id)
+func (s *BlocksService) Get(ctx context.Context, id int) (*http.Response, error) {
+    uri := fmt.Sprintf(s.Client.BaseURL.String() + "blocks/%v", id)
 
     resp, err := s.Client.Client.Get(uri)
 
@@ -42,8 +42,8 @@ func (s *BlocksService) Get(ctx context.Context) (*http.Response, error) {
 }
 
 // Get all transactions by the given block.
-func (s *BlocksService) Transactions(ctx context.Context) (*http.Response, error) {
-    uri := fmt.Sprintf("blocks/%v/transactions", id)
+func (s *BlocksService) Transactions(ctx context.Context, id int) (*http.Response, error) {
+    uri := fmt.Sprintf(s.Client.BaseURL.String() + "blocks/%v/transactions", id)
 
     resp, err := s.Client.Client.Get(uri)
 

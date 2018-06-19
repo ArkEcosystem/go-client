@@ -29,8 +29,8 @@ func (s *DelegatesService) List(ctx context.Context) (*http.Response, error) {
 }
 
 // Get a block by the given id.
-func (s *DelegatesService) Get(ctx context.Context) (*http.Response, error) {
-    uri := fmt.Sprintf("delegates/%v", id)
+func (s *DelegatesService) Get(ctx context.Context, id int) (*http.Response, error) {
+    uri := fmt.Sprintf(s.Client.BaseURL.String() + "delegates/%v", id)
 
     resp, err := s.Client.Client.Get(uri)
 
@@ -42,8 +42,8 @@ func (s *DelegatesService) Get(ctx context.Context) (*http.Response, error) {
 }
 
 // Get all blocks for the given delegate.
-func (s *DelegatesService) Blocks(ctx context.Context) (*http.Response, error) {
-    uri := fmt.Sprintf("delegates/%v/blocks", id)
+func (s *DelegatesService) Blocks(ctx context.Context, id int) (*http.Response, error) {
+    uri := fmt.Sprintf(s.Client.BaseURL.String() + "delegates/%v/blocks", id)
 
     resp, err := s.Client.Client.Get(uri)
 
@@ -55,8 +55,8 @@ func (s *DelegatesService) Blocks(ctx context.Context) (*http.Response, error) {
 }
 
 // Get all voters for the given delegate.
-func (s *DelegatesService) Voters(ctx context.Context) (*http.Response, error) {
-    uri := fmt.Sprintf("delegates/%v/voters", id)
+func (s *DelegatesService) Voters(ctx context.Context, id int) (*http.Response, error) {
+    uri := fmt.Sprintf(s.Client.BaseURL.String() + "delegates/%v/voters", id)
 
     resp, err := s.Client.Client.Get(uri)
 

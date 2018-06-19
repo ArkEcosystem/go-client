@@ -40,8 +40,8 @@ func (s *TransactionsService) Create(ctx context.Context) (*http.Response, error
 }
 
 // Get a transaction by the given id.
-func (s *TransactionsService) Get(ctx context.Context) (*http.Response, error) {
-    uri := fmt.Sprintf("transactions/%v", id)
+func (s *TransactionsService) Get(ctx context.Context, id int) (*http.Response, error) {
+    uri := fmt.Sprintf(s.Client.BaseURL.String() + "transactions/%v", id)
 
     resp, err := s.Client.Client.Get(uri)
 
@@ -64,8 +64,8 @@ func (s *TransactionsService) ListUnconfirmed(ctx context.Context) (*http.Respon
 }
 
 // Get an unconfirmed transaction by the given id.
-func (s *TransactionsService) GetUnconfirmed(ctx context.Context) (*http.Response, error) {
-    uri := fmt.Sprintf("transactions/unconfirmed/%v", id)
+func (s *TransactionsService) GetUnconfirmed(ctx context.Context, id int) (*http.Response, error) {
+    uri := fmt.Sprintf(s.Client.BaseURL.String() + "transactions/unconfirmed/%v", id)
 
     resp, err := s.Client.Client.Get(uri)
 

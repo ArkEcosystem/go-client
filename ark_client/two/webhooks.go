@@ -40,8 +40,8 @@ func (s *WebhooksService) Create(ctx context.Context) (*http.Response, error) {
 }
 
 // Get the webhook by the given id.
-func (s *WebhooksService) Show(ctx context.Context) (*http.Response, error) {
-    uri := fmt.Sprintf("webhooks/%v", id)
+func (s *WebhooksService) Show(ctx context.Context, id int) (*http.Response, error) {
+    uri := fmt.Sprintf(s.Client.BaseURL.String() + "webhooks/%v", id)
 
     resp, err := s.Client.Client.Get(uri)
 
