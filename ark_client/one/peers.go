@@ -7,15 +7,18 @@ package one
 
 import (
     "context"
+    "net/http"
+
+    . "../types"
 )
 
 // PeersService handles communication with the peers related
 // methods of the Ark Core API - Version 1.
-type PeersService service
+type PeersService Service
 
 // Get all accounts.
-func (s *PeersService) List(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "api/peers", nil)
+func (s *PeersService) List(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("api/peers")
 
     if err != nil {
         return nil, err
@@ -25,19 +28,19 @@ func (s *PeersService) List(ctx context.Context) (*Response, error) {
 }
 
 // Get a peer by the given IP address and port.
-func (s *PeersService) Get(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "api/peers/get", compact("ip", "port"), nil)
+// func (s *PeersService) Get(ctx context.Context) (*http.Response, error) {
+//     resp, err := s.Client.Client.Get("api/peers/get", compact("ip", "port"))
 
-    if err != nil {
-        return nil, err
-    }
+//     if err != nil {
+//         return nil, err
+//     }
 
-    return resp, nil
-}
+//     return resp, nil
+// }
 
 // Get the node version of the given peer.
-func (s *PeersService) Version(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "api/peers/version", nil)
+func (s *PeersService) Version(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("api/peers/version")
 
     if err != nil {
         return nil, err

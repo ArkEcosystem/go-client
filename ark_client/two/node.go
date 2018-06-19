@@ -7,15 +7,18 @@ package two
 
 import (
     "context"
+    "net/http"
+
+    . "../types"
 )
 
 // NodeService handles communication with the node related
 // methods of the Ark Core API - Version 2.
-type NodeService service
+type NodeService Service
 
 // Get the node status.
-func (s *NodeService) Status(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "node/status", nil)
+func (s *NodeService) Status(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("node/status")
 
     if err != nil {
         return nil, nil, err
@@ -25,8 +28,8 @@ func (s *NodeService) Status(ctx context.Context) (*Response, error) {
 }
 
 // Get the node syncing status.
-func (s *NodeService) Syncing(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "node/syncing", nil)
+func (s *NodeService) Syncing(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("node/syncing")
 
     if err != nil {
         return nil, nil, err
@@ -36,8 +39,8 @@ func (s *NodeService) Syncing(ctx context.Context) (*Response, error) {
 }
 
 // Get the node configuration.
-func (s *NodeService) Configuration(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "node/configuration", nil)
+func (s *NodeService) Configuration(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("node/configuration")
 
     if err != nil {
         return nil, nil, err

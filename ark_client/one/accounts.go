@@ -7,15 +7,18 @@ package one
 
 import (
     "context"
+    "net/http"
+
+    . "../types"
 )
 
 // AccountsService handles communication with the accounts related
 // methods of the Ark Core API - Version 1.
-type AccountsService service
+type AccountsService Service
 
 // Get all accounts.
-func (s *AccountsService) List(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "api/accounts/getAllAccounts", nil)
+func (s *AccountsService) List(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("api/accounts/getAllAccounts")
 
     if err != nil {
         return nil, err
@@ -25,8 +28,8 @@ func (s *AccountsService) List(ctx context.Context) (*Response, error) {
 }
 
 // Get a account by the given address.
-func (s *AccountsService) Get(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "api/accounts", nil)
+func (s *AccountsService) Get(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("api/accounts")
 
     if err != nil {
         return nil, err
@@ -36,8 +39,8 @@ func (s *AccountsService) Get(ctx context.Context) (*Response, error) {
 }
 
 // Count all accounts.
-func (s *AccountsService) Count(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "api/accounts/count", nil)
+func (s *AccountsService) Count(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("api/accounts/count")
 
     if err != nil {
         return nil, err
@@ -47,8 +50,8 @@ func (s *AccountsService) Count(ctx context.Context) (*Response, error) {
 }
 
 // Get a delegate by the given address.
-func (s *AccountsService) Delegate(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "api/accounts/delegates", nil)
+func (s *AccountsService) Delegate(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("api/accounts/delegates")
 
     if err != nil {
         return nil, err
@@ -58,8 +61,8 @@ func (s *AccountsService) Delegate(ctx context.Context) (*Response, error) {
 }
 
 // Get the delegate registration fee.
-func (s *AccountsService) DelegateFee(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "api/accounts/delegates/fee", nil)
+func (s *AccountsService) DelegateFee(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("api/accounts/delegates/fee")
 
     if err != nil {
         return nil, err
@@ -69,8 +72,8 @@ func (s *AccountsService) DelegateFee(ctx context.Context) (*Response, error) {
 }
 
 // Get the balance for an account by the given address.
-func (s *AccountsService) Balance(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "api/accounts/getBalance", nil)
+func (s *AccountsService) Balance(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("api/accounts/getBalance")
 
     if err != nil {
         return nil, err
@@ -80,8 +83,8 @@ func (s *AccountsService) Balance(ctx context.Context) (*Response, error) {
 }
 
 // Get the public key for an account by the given address.
-func (s *AccountsService) PublicKey(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "api/accounts/getPublicKey", nil)
+func (s *AccountsService) PublicKey(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("api/accounts/getPublicKey")
 
     if err != nil {
         return nil, err
@@ -91,8 +94,8 @@ func (s *AccountsService) PublicKey(ctx context.Context) (*Response, error) {
 }
 
 // Get all wallets sorted by balance in descending order.
-func (s *AccountsService) Top(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "api/accounts/top", nil)
+func (s *AccountsService) Top(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("api/accounts/top")
 
     if err != nil {
         return nil, err

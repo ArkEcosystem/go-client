@@ -7,15 +7,18 @@ package one
 
 import (
     "context"
+    "net/http"
+
+    . "../types"
 )
 
 // BlocksService handles communication with the blocks related
 // methods of the Ark Core API - Version 1.
-type BlocksService service
+type BlocksService Service
 
 // Get all accounts.
-func (s *BlocksService) List(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "api/blocks", nil)
+func (s *BlocksService) List(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("api/blocks")
 
     if err != nil {
         return nil, err
@@ -25,8 +28,8 @@ func (s *BlocksService) List(ctx context.Context) (*Response, error) {
 }
 
 // Get a block by the given id.
-func (s *BlocksService) Get(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "api/blocks/get", nil)
+func (s *BlocksService) Get(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("api/blocks/get")
 
     if err != nil {
         return nil, err
@@ -36,8 +39,8 @@ func (s *BlocksService) Get(ctx context.Context) (*Response, error) {
 }
 
 // Get the blockchain epoch.
-func (s *BlocksService) Epoch(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "api/blocks/getEpoch", nil)
+func (s *BlocksService) Epoch(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("api/blocks/getEpoch")
 
     if err != nil {
         return nil, err
@@ -47,8 +50,8 @@ func (s *BlocksService) Epoch(ctx context.Context) (*Response, error) {
 }
 
 // Get the transfer transaction fee.
-func (s *BlocksService) Fee(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "api/blocks/getFee", nil)
+func (s *BlocksService) Fee(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("api/blocks/getFee")
 
     if err != nil {
         return nil, err
@@ -58,8 +61,8 @@ func (s *BlocksService) Fee(ctx context.Context) (*Response, error) {
 }
 
 // Get a list of transaction fees.
-func (s *BlocksService) Fees(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "api/blocks/getFees", nil)
+func (s *BlocksService) Fees(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("api/blocks/getFees")
 
     if err != nil {
         return nil, err
@@ -69,8 +72,8 @@ func (s *BlocksService) Fees(ctx context.Context) (*Response, error) {
 }
 
 // Get the blockchain height.
-func (s *BlocksService) Height(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "api/blocks/getHeight", nil)
+func (s *BlocksService) Height(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("api/blocks/getHeight")
 
     if err != nil {
         return nil, err
@@ -80,8 +83,8 @@ func (s *BlocksService) Height(ctx context.Context) (*Response, error) {
 }
 
 // Get the blockchain milestone.
-func (s *BlocksService) Milestone(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "api/blocks/getMilestone", nil)
+func (s *BlocksService) Milestone(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("api/blocks/getMilestone")
 
     if err != nil {
         return nil, err
@@ -91,8 +94,8 @@ func (s *BlocksService) Milestone(ctx context.Context) (*Response, error) {
 }
 
 // Get the blockchain nethash.
-func (s *BlocksService) Nethash(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "api/blocks/getNethash", nil)
+func (s *BlocksService) Nethash(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("api/blocks/getNethash")
 
     if err != nil {
         return nil, err
@@ -102,8 +105,8 @@ func (s *BlocksService) Nethash(ctx context.Context) (*Response, error) {
 }
 
 // Get the blockchain reward.
-func (s *BlocksService) Reward(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "api/blocks/getReward", nil)
+func (s *BlocksService) Reward(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("api/blocks/getReward")
 
     if err != nil {
         return nil, err
@@ -113,8 +116,8 @@ func (s *BlocksService) Reward(ctx context.Context) (*Response, error) {
 }
 
 // Get the blockchain status.
-func (s *BlocksService) Status(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "api/blocks/getStatus", nil)
+func (s *BlocksService) Status(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("api/blocks/getStatus")
 
     if err != nil {
         return nil, err
@@ -124,8 +127,8 @@ func (s *BlocksService) Status(ctx context.Context) (*Response, error) {
 }
 
 // Get the blockchain supply.
-func (s *BlocksService) Supply(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "api/blocks/getSupply", nil)
+func (s *BlocksService) Supply(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("api/blocks/getSupply")
 
     if err != nil {
         return nil, err

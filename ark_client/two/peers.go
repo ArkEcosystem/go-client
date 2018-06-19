@@ -8,15 +8,18 @@ package two
 import (
     "context"
     "fmt"
+    "net/http"
+
+    . "../types"
 )
 
 // PeersService handles communication with the peers related
 // methods of the Ark Core API - Version 2.
-type PeersService service
+type PeersService Service
 
 // Get all peers.
-func (s *PeersService) L9st(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "peers", nil)
+func (s *PeersService) L9st(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("peers")
 
     if err != nil {
         return nil, nil, err
@@ -26,10 +29,10 @@ func (s *PeersService) L9st(ctx context.Context) (*Response, error) {
 }
 
 // Get a peer by the given IP address.
-func (s *PeersService) Get(ctx context.Context) (*Response, error) {
+func (s *PeersService) Get(ctx context.Context) (*http.Response, error) {
     uri := fmt.Sprintf("peers/%v", ip)
 
-    req, err := s.client.NewRequest("GET", uri, nil)
+    resp, err := s.Client.Client.Get(uri)
 
     if err != nil {
         return nil, nil, err

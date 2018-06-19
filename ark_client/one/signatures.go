@@ -7,15 +7,18 @@ package one
 
 import (
     "context"
+    "net/http"
+
+    . "../types"
 )
 
 // SignaturesService handles communication with the signatures
 // methods of the Ark Core API - Version 1.
-type SignaturesService service
+type SignaturesService Service
 
 // Get the second signature registration fee.
-func (s *SignaturesService) Fee(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "api/signatures/fee", nil)
+func (s *SignaturesService) Fee(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("api/signatures/fee")
 
     if err != nil {
         return nil, err

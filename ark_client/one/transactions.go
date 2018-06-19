@@ -7,15 +7,18 @@ package one
 
 import (
     "context"
+    "net/http"
+
+    . "../types"
 )
 
 // TransactionsService handles communication with the transactions
 // methods of the Ark Core API - Version 1.
-type TransactionsService service
+type TransactionsService Service
 
 // Get all accounts.
-func (s *TransactionsService) List(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "api/transactions", nil)
+func (s *TransactionsService) List(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("api/transactions")
 
     if err != nil {
         return nil, err
@@ -25,8 +28,8 @@ func (s *TransactionsService) List(ctx context.Context) (*Response, error) {
 }
 
 // Get a transaction by the given id.
-func (s *TransactionsService) Get(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "api/transactions/get", nil)
+func (s *TransactionsService) Get(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("api/transactions/get")
 
     if err != nil {
         return nil, err
@@ -36,8 +39,8 @@ func (s *TransactionsService) Get(ctx context.Context) (*Response, error) {
 }
 
 // Get all unconfirmed transactions.
-func (s *TransactionsService) ListUnconfirmed(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "api/transactions/unconfirmed", nil)
+func (s *TransactionsService) ListUnconfirmed(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("api/transactions/unconfirmed")
 
     if err != nil {
         return nil, err
@@ -47,8 +50,8 @@ func (s *TransactionsService) ListUnconfirmed(ctx context.Context) (*Response, e
 }
 
 // Get an unconfirmed transaction by the given id.
-func (s *TransactionsService) GetUnconfirmed(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "api/transactions/unconfirmed/get", nil)
+func (s *TransactionsService) GetUnconfirmed(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("api/transactions/unconfirmed/get")
 
     if err != nil {
         return nil, err

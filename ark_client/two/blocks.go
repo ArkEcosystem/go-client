@@ -8,15 +8,18 @@ package two
 import (
     "context"
     "fmt"
+    "net/http"
+
+    . "../types"
 )
 
 // BlocksService handles communication with the blocks related
 // methods of the Ark Core API - Version 2.
-type BlocksService service
+type BlocksService Service
 
 // Get all blocks.
-func (s *BlocksService) List(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "blocks", nil)
+func (s *BlocksService) List(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("blocks")
 
     if err != nil {
         return nil, nil, err
@@ -26,10 +29,10 @@ func (s *BlocksService) List(ctx context.Context) (*Response, error) {
 }
 
 // Get a block by the given id.
-func (s *BlocksService) Get(ctx context.Context) (*Response, error) {
+func (s *BlocksService) Get(ctx context.Context) (*http.Response, error) {
     uri := fmt.Sprintf("blocks/%v", id)
 
-    req, err := s.client.NewRequest("GET", uri, nil)
+    resp, err := s.Client.Client.Get(uri)
 
     if err != nil {
         return nil, nil, err
@@ -39,10 +42,10 @@ func (s *BlocksService) Get(ctx context.Context) (*Response, error) {
 }
 
 // Get all transactions by the given block.
-func (s *BlocksService) Transactions(ctx context.Context) (*Response, error) {
+func (s *BlocksService) Transactions(ctx context.Context) (*http.Response, error) {
     uri := fmt.Sprintf("blocks/%v/transactions", id)
 
-    req, err := s.client.NewRequest("GET", uri, nil)
+    resp, err := s.Client.Client.Get(uri)
 
     if err != nil {
         return nil, nil, err
@@ -52,8 +55,8 @@ func (s *BlocksService) Transactions(ctx context.Context) (*Response, error) {
 }
 
 // Filter all blocks by the given criteria.
-func (s *BlocksService) Search(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("POST", "blocks/search", nil)
+func (s *BlocksService) Search(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("blocks/search")
 
     if err != nil {
         return nil, nil, err

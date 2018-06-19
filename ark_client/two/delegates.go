@@ -8,15 +8,18 @@ package two
 import (
     "context"
     "fmt"
+    "net/http"
+
+    . "../types"
 )
 
 // DelegatesService handles communication with the delegates related
 // methods of the Ark Core API - Version 2.
-type DelegatesService service
+type DelegatesService Service
 
 // Get all accounts.
-func (s *DelegatesService) List(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "delegates", nil)
+func (s *DelegatesService) List(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("delegates")
 
     if err != nil {
         return nil, nil, err
@@ -26,10 +29,10 @@ func (s *DelegatesService) List(ctx context.Context) (*Response, error) {
 }
 
 // Get a block by the given id.
-func (s *DelegatesService) Get(ctx context.Context) (*Response, error) {
+func (s *DelegatesService) Get(ctx context.Context) (*http.Response, error) {
     uri := fmt.Sprintf("delegates/%v", id)
 
-    req, err := s.client.NewRequest("GET", uri, nil)
+    resp, err := s.Client.Client.Get(uri)
 
     if err != nil {
         return nil, nil, err
@@ -39,10 +42,10 @@ func (s *DelegatesService) Get(ctx context.Context) (*Response, error) {
 }
 
 // Get all blocks for the given delegate.
-func (s *DelegatesService) Blocks(ctx context.Context) (*Response, error) {
+func (s *DelegatesService) Blocks(ctx context.Context) (*http.Response, error) {
     uri := fmt.Sprintf("delegates/%v/blocks", id)
 
-    req, err := s.client.NewRequest("GET", uri, nil)
+    resp, err := s.Client.Client.Get(uri)
 
     if err != nil {
         return nil, nil, err
@@ -52,10 +55,10 @@ func (s *DelegatesService) Blocks(ctx context.Context) (*Response, error) {
 }
 
 // Get all voters for the given delegate.
-func (s *DelegatesService) Voters(ctx context.Context) (*Response, error) {
+func (s *DelegatesService) Voters(ctx context.Context) (*http.Response, error) {
     uri := fmt.Sprintf("delegates/%v/voters", id)
 
-    req, err := s.client.NewRequest("GET", uri, nil)
+    resp, err := s.Client.Client.Get(uri)
 
     if err != nil {
         return nil, nil, err

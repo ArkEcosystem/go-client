@@ -7,15 +7,18 @@ package one
 
 import (
     "context"
+    "net/http"
+
+    . "../types"
 )
 
 // LoaderService handles communication with the loader related
 // methods of the Ark Core API - Version 1.
-type LoaderService service
+type LoaderService Service
 
 // Get the loader status.
-func (s *LoaderService) Status(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "api/loader/status", nil)
+func (s *LoaderService) Status(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("api/loader/status")
 
     if err != nil {
         return nil, err
@@ -25,8 +28,8 @@ func (s *LoaderService) Status(ctx context.Context) (*Response, error) {
 }
 
 // Get the loader syncing status.
-func (s *LoaderService) SyncStatus(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "api/loader/status/sync", nil)
+func (s *LoaderService) SyncStatus(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("api/loader/status/sync")
 
     if err != nil {
         return nil, err
@@ -36,8 +39,8 @@ func (s *LoaderService) SyncStatus(ctx context.Context) (*Response, error) {
 }
 
 // Get the loader configuration.
-func (s *LoaderService) AutoConfigure(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "api/loader/autoconfigure", nil)
+func (s *LoaderService) AutoConfigure(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("api/loader/autoconfigure")
 
     if err != nil {
         return nil, err

@@ -8,15 +8,18 @@ package two
 import (
     "context"
     "fmt"
+    "net/http"
+
+    . "../types"
 )
 
 // WebhooksService handles communication with the webhooks related
 // methods of the Ark Core API - Version 2.
-type WebhooksService service
+type WebhooksService Service
 
 // Get all webhooks.
-func (s *WebhooksService) List(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "webhooks", nil)
+func (s *WebhooksService) List(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("webhooks")
 
     if err != nil {
         return nil, nil, err
@@ -26,8 +29,8 @@ func (s *WebhooksService) List(ctx context.Context) (*Response, error) {
 }
 
 // Create a new webhook.
-func (s *WebhooksService) Create(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("POST", "webhooks", nil)
+func (s *WebhooksService) Create(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Post("webhooks")
 
     if err != nil {
         return nil, nil, err
@@ -37,10 +40,10 @@ func (s *WebhooksService) Create(ctx context.Context) (*Response, error) {
 }
 
 // Get the webhook by the given id.
-func (s *WebhooksService) Show(ctx context.Context) (*Response, error) {
+func (s *WebhooksService) Show(ctx context.Context) (*http.Response, error) {
     uri := fmt.Sprintf("webhooks/%v", id)
 
-    req, err := s.client.NewRequest("GET", uri, nil)
+    resp, err := s.Client.Client.Get(uri)
 
     if err != nil {
         return nil, nil, err
@@ -50,10 +53,10 @@ func (s *WebhooksService) Show(ctx context.Context) (*Response, error) {
 }
 
 // Update the webhook by the given id.
-func (s *WebhooksService) Update(ctx context.Context) (*Response, error) {
+func (s *WebhooksService) Update(ctx context.Context) (*http.Response, error) {
     uri := fmt.Sprintf("webhooks/%v", id)
 
-    req, err := s.client.NewRequest("PUT", uri, nil)
+    resp, err := s.Client.Client.Put(uri)
 
     if err != nil {
         return nil, nil, err
@@ -63,10 +66,10 @@ func (s *WebhooksService) Update(ctx context.Context) (*Response, error) {
 }
 
 // Delete the webhook by the given id.
-func (s *WebhooksService) Delete(ctx context.Context) (*Response, error) {
+func (s *WebhooksService) Delete(ctx context.Context) (*http.Response, error) {
     uri := fmt.Sprintf("webhooks/%v", id)
 
-    req, err := s.client.NewRequest("DELETE", uri, nil)
+    resp, err := s.Client.Client.Delete(uri)
 
     if err != nil {
         return nil, nil, err

@@ -8,15 +8,18 @@ package two
 import (
     "context"
     "fmt"
+    "net/http"
+
+    . "../types"
 )
 
 // VotesService handles communication with the votes related
 // methods of the Ark Core API - Version 2.
-type VotesService service
+type VotesService Service
 
 // Get all votes.
-func (s *VotesService) List(ctx context.Context) (*Response, error) {
-    req, err := s.client.NewRequest("GET", "votes", nil)
+func (s *VotesService) List(ctx context.Context) (*http.Response, error) {
+    resp, err := s.Client.Client.Get("votes")
 
     if err != nil {
         return nil, nil, err
@@ -26,10 +29,10 @@ func (s *VotesService) List(ctx context.Context) (*Response, error) {
 }
 
 // Get a vote by the given id.
-func (s *VotesService) Get(ctx context.Context) (*Response, error) {
+func (s *VotesService) Get(ctx context.Context) (*http.Response, error) {
     uri := fmt.Sprintf("votes/%v", id)
 
-    req, err := s.client.NewRequest("GET", uri, nil)
+    resp, err := s.Client.Client.Get(uri)
 
     if err != nil {
         return nil, nil, err

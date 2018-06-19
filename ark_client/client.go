@@ -11,20 +11,19 @@ import (
     "encoding/json"
     // "errors"
     "fmt"
-    // "io"
+    "io"
     // "io/ioutil"
     "net/http"
     "net/url"
     // "reflect"
     // "strconv"
     "strings"
-    "sync"
     // "time"
 
     // "github.com/google/go-querystring/query"
 
+    . "./types"
     "./one"
-    "./two"
 )
 
 const (
@@ -33,15 +32,10 @@ const (
 )
 
 type Client struct {
-    clientMu sync.Mutex
-    client   *http.Client
-
-    BaseURL *url.URL
-
-    common service
+    common Service
 
     // Services - Version 1
-    one_Accounts *one.AccountsService
+    One_Accounts *one.AccountsService
     // one_Blocks *one.BlocksService
     // one_Delegates *one.DelegatesService
     // one_Loader *one.LoaderService
@@ -60,44 +54,41 @@ type Client struct {
     // two_Webhooks *two.WebhooksService
 }
 
-type service struct {
-    client *Client
-}
-
 func NewClient(httpClient *http.Client) *Client {
     if httpClient == nil {
         httpClient = http.DefaultClient
     }
     baseURL, _ := url.Parse(defaultBaseURL)
 
-    c := &Client{client: httpClient, BaseURL: baseURL}
-    c.common.client = c
+    c := &Client{}
+    c.common = Service{Client: &HttpClient{Client: httpClient, BaseURL: baseURL}}
 
-    c.one.Accounts (*one_AccountsService)(&c.common)
-    c.one.Blocks (*one_BlocksService)(&c.common)
-    c.one.Delegates (*one_DelegatesService)(&c.common)
-    c.one.Loader (*one_LoaderService)(&c.common)
-    c.one.Peers (*one_PeersService)(&c.common)
-    c.one.Signatures (*one_SignaturesService)(&c.common)
-    c.one.Transactions (*one_TransactionsService)(&c.common)
+    c.One_Accounts = &one.AccountsService{}
+    // c.one_Accounts (*one.AccountsService)(&c.common)
+    // c.one_Blocks (*one_BlocksService)(&c.common)
+    // c.one_Delegates (*one_DelegatesService)(&c.common)
+    // c.one_Loader (*one_LoaderService)(&c.common)
+    // c.one_Peers (*one_PeersService)(&c.common)
+    // c.one_Signatures (*one_SignaturesService)(&c.common)
+    // c.one_Transactions (*one_TransactionsService)(&c.common)
 
-    c.two.Blocks (*two_BlocksService)(&c.common)
-    c.two.Delegates (*two_DelegatesService)(&c.common)
-    c.two.Node (*two_NodeService)(&c.common)
-    c.two.Peers (*two_PeersService)(&c.common)
-    c.two.Transactions (*two_TransactionsService)(&c.common)
-    c.two.Votes (*two_VotesService)(&c.common)
-    c.two.Wallets (*two_WalletsService)(&c.common)
-    c.two.Webhooks (*two_WebhooksService)(&c.common)
+    // c.two.Blocks (*two_BlocksService)(&c.common)
+    // c.two.Delegates (*two_DelegatesService)(&c.common)
+    // c.two.Node (*two_NodeService)(&c.common)
+    // c.two.Peers (*two_PeersService)(&c.common)
+    // c.two.Transactions (*two_TransactionsService)(&c.common)
+    // c.two.Votes (*two_VotesService)(&c.common)
+    // c.two.Wallets (*two_WalletsService)(&c.common)
+    // c.two.Webhooks (*two_WebhooksService)(&c.common)
 
     return c
 }
 
 func (c *Client) NewRequest(method, urlStr string, body interface{}) (*http.Request, error) {
-    if !strings.HasSuffix(c.BaseURL.Path, "/") {
-        return nil, fmt.Errorf("BaseURL must have a trailing slash, but %q does not", c.BaseURL)
+    if !strings.HasSuffix(c.common.Client.BaseURL.Path, "/") {
+        return nil, fmt.Errorf("BaseURL must have a trailing slash, but %q does not", c.common.Client.BaseURL)
     }
-    u, err := c.BaseURL.Parse(urlStr)
+    u, err := c.common.Client.BaseURL.Parse(urlStr)
     if err != nil {
         return nil, err
     }
