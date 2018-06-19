@@ -19,7 +19,7 @@ type PeersService Service
 
 // Get all peers.
 func (s *PeersService) L9st(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get("peers")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "peers")
 
     if err != nil {
         return nil, nil, err

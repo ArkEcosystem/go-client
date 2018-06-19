@@ -19,7 +19,7 @@ type TransactionsService Service
 
 // Get all transactions.
 func (s *TransactionsService) List(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get("transactions")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "transactions")
 
     if err != nil {
         return nil, nil, err
@@ -54,7 +54,7 @@ func (s *TransactionsService) Get(ctx context.Context, id int) (*http.Response, 
 
 // Get all unconfirmed transactions.
 func (s *TransactionsService) ListUnconfirmed(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get("transactions/unconfirmed")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "transactions/unconfirmed")
 
     if err != nil {
         return nil, nil, err
@@ -89,7 +89,7 @@ func (s *TransactionsService) Search(ctx context.Context) (*http.Response, error
 
 // Get a list of valid transaction types.
 func (s *TransactionsService) Types(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get("transactions/types")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "transactions/types")
 
     if err != nil {
         return nil, nil, err

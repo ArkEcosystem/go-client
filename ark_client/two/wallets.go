@@ -19,7 +19,7 @@ type WalletsService Service
 
 // Get all wallets.
 func (s *WalletsService) List(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get("wallets")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "wallets")
 
     if err != nil {
         return nil, nil, err
@@ -30,7 +30,7 @@ func (s *WalletsService) List(ctx context.Context) (*http.Response, error) {
 
 // Get all wallets sorted by balance in descending order.
 func (s *WalletsService) Top(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get("wallets/top")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "wallets/top")
 
     if err != nil {
         return nil, nil, err

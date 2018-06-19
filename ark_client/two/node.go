@@ -18,7 +18,7 @@ type NodeService Service
 
 // Get the node status.
 func (s *NodeService) Status(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get("node/status")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "node/status")
 
     if err != nil {
         return nil, nil, err
@@ -29,7 +29,7 @@ func (s *NodeService) Status(ctx context.Context) (*http.Response, error) {
 
 // Get the node syncing status.
 func (s *NodeService) Syncing(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get("node/syncing")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "node/syncing")
 
     if err != nil {
         return nil, nil, err
@@ -40,7 +40,7 @@ func (s *NodeService) Syncing(ctx context.Context) (*http.Response, error) {
 
 // Get the node configuration.
 func (s *NodeService) Configuration(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get("node/configuration")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "node/configuration")
 
     if err != nil {
         return nil, nil, err

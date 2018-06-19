@@ -19,7 +19,7 @@ type WebhooksService Service
 
 // Get all webhooks.
 func (s *WebhooksService) List(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get("webhooks")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "webhooks")
 
     if err != nil {
         return nil, nil, err

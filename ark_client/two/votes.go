@@ -19,7 +19,7 @@ type VotesService Service
 
 // Get all votes.
 func (s *VotesService) List(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get("votes")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "votes")
 
     if err != nil {
         return nil, nil, err

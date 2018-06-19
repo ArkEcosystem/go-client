@@ -19,7 +19,7 @@ type DelegatesService Service
 
 // Get all accounts.
 func (s *DelegatesService) List(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get("delegates")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "delegates")
 
     if err != nil {
         return nil, nil, err

@@ -19,7 +19,7 @@ type BlocksService Service
 
 // Get all blocks.
 func (s *BlocksService) List(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get("blocks")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "blocks")
 
     if err != nil {
         return nil, nil, err
@@ -56,7 +56,7 @@ func (s *BlocksService) Transactions(ctx context.Context, id int) (*http.Respons
 
 // Filter all blocks by the given criteria.
 func (s *BlocksService) Search(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get("blocks/search")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "blocks/search")
 
     if err != nil {
         return nil, nil, err
