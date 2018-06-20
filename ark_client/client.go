@@ -28,7 +28,7 @@ import (
 )
 
 const (
-    defaultBaseURL = "https://api.ark.io/"
+    defaultBaseURL = "https://dexplorer.ark.io:8443/"
     userAgent      = "go-client"
 )
 
