@@ -2,14 +2,14 @@ package main
 
 import (
     "context"
-    "fmt"
     "./ark_client"
+    "github.com/davecgh/go-spew/spew"
 )
 
 func main () {
     client := ark_client.NewClient(nil)
 
-    resp, err := client.One_Accounts.List(context.Background())
+    resp, _ := client.One_Accounts.Top(context.Background())
 
-    fmt.Println(resp, err)
+    spew.Dump(resp)
 }

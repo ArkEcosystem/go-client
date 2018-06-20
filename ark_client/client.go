@@ -18,82 +18,82 @@ import (
     // "reflect"
     // "strconv"
     "strings"
+    "sync"
     // "time"
+    "strconv"
 
     // "github.com/google/go-querystring/query"
-
-    . "./types"
-    "./one"
-    "./two"
 )
 
 const (
-    defaultBaseURL = "https://dexplorer.ark.io:8443/"
+    defaultBaseURL = "https://dexplorer.ark.io:8443/api/"
     userAgent      = "go-client"
 )
 
 type Client struct {
+    clientMu sync.Mutex
+    client   *http.Client
+
+    BaseURL *url.URL
+
     common Service
 
-    // Services - Version 1
-    One_Accounts *one.AccountsService
-    One_Blocks *one.BlocksService
-    One_Delegates *one.DelegatesService
-    One_Loader *one.LoaderService
-    One_Peers *one.PeersService
-    One_Signatures *one.SignaturesService
-    One_Transactions *one.TransactionsService
+    One_Accounts *One_AccountsService
+    One_Blocks *One_BlocksService
+    One_Delegates *One_DelegatesService
+    One_Loader *One_LoaderService
+    One_Peers *One_PeersService
+    One_Signatures *One_SignaturesService
+    One_Transactions *One_TransactionsService
 
-    // // Services - Version 2
-    Two_Blocks *two.BlocksService
-    Two_Delegates *two.DelegatesService
-    Two_Node *two.NodeService
-    Two_Peers *two.PeersService
-    Two_Transactions *two.TransactionsService
-    Two_Votes *two.VotesService
-    Two_Wallets *two.WalletsService
-    Two_Webhooks *two.WebhooksService
+    Two_Blocks *Two_BlocksService
+    Two_Delegates *Two_DelegatesService
+    Two_Node *Two_NodeService
+    Two_Peers *Two_PeersService
+    Two_Transactions *Two_TransactionsService
+    Two_Votes *Two_VotesService
+    Two_Wallets *Two_WalletsService
+}
+
+type Service struct {
+    client *Client
 }
 
 func NewClient(httpClient *http.Client) *Client {
     if httpClient == nil {
         httpClient = http.DefaultClient
     }
+
     baseURL, _ := url.Parse(defaultBaseURL)
 
-    c := &Client{}
-    c.common = Service {
-        Client: &HttpClient {
-            Client: httpClient,
-            BaseURL: baseURL,
-        },
-    }
+    c := &Client{client: httpClient, BaseURL: baseURL}
+    c.common.client = c
 
-    c.One_Accounts = (*one.AccountsService)(&c.common)
-    c.One_Blocks = (*one.BlocksService)(&c.common)
-    c.One_Delegates = (*one.DelegatesService)(&c.common)
-    c.One_Loader = (*one.LoaderService)(&c.common)
-    c.One_Peers = (*one.PeersService)(&c.common)
-    c.One_Signatures = (*one.SignaturesService)(&c.common)
-    c.One_Transactions = (*one.TransactionsService)(&c.common)
+    c.One_Accounts = (*One_AccountsService)(&c.common)
+    c.One_Blocks = (*One_BlocksService)(&c.common)
+    c.One_Delegates = (*One_DelegatesService)(&c.common)
+    c.One_Loader = (*One_LoaderService)(&c.common)
+    c.One_Peers = (*One_PeersService)(&c.common)
+    c.One_Signatures = (*One_SignaturesService)(&c.common)
+    c.One_Transactions = (*One_TransactionsService)(&c.common)
 
-    c.Two_Blocks = (*two.BlocksService)(&c.common)
-    c.Two_Delegates = (*two.DelegatesService)(&c.common)
-    c.Two_Node = (*two.NodeService)(&c.common)
-    c.Two_Peers = (*two.PeersService)(&c.common)
-    c.Two_Transactions = (*two.TransactionsService)(&c.common)
-    c.Two_Votes = (*two.VotesService)(&c.common)
-    c.Two_Wallets = (*two.WalletsService)(&c.common)
-    c.Two_Webhooks = (*two.WebhooksService)(&c.common)
+    c.Two_Blocks = (*Two_BlocksService)(&c.common)
+    c.Two_Delegates = (*Two_DelegatesService)(&c.common)
+    c.Two_Node = (*Two_NodeService)(&c.common)
+    c.Two_Peers = (*Two_PeersService)(&c.common)
+    c.Two_Transactions = (*Two_TransactionsService)(&c.common)
+    c.Two_Votes = (*Two_VotesService)(&c.common)
+    c.Two_Wallets = (*Two_WalletsService)(&c.common)
 
     return c
 }
 
-func (c *Client) NewRequest(method, urlStr string, body interface{}) (*http.Request, error) {
-    if !strings.HasSuffix(c.common.Client.BaseURL.Path, "/") {
-        return nil, fmt.Errorf("BaseURL must have a trailing slash, but %q does not", c.common.Client.BaseURL)
+func (c *Client) NewRequest(version int, method string, urlStr string, body interface{}) (*http.Request, error) {
+    if !strings.HasSuffix(c.BaseURL.Path, "/") {
+        return nil, fmt.Errorf("BaseURL must have a trailing slash, but %q does not", c.BaseURL)
     }
-    u, err := c.common.Client.BaseURL.Parse(urlStr)
+
+    u, err := c.BaseURL.Parse(urlStr)
     if err != nil {
         return nil, err
     }
@@ -117,6 +117,8 @@ func (c *Client) NewRequest(method, urlStr string, body interface{}) (*http.Requ
     if body != nil {
         req.Header.Set("Content-Type", "application/json")
     }
+
+    req.Header.Set("API-Version", strconv.Itoa(version))
 
     return req, nil
 }
