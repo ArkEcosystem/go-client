@@ -16,48 +16,104 @@ import (
 type Two_WalletsService Service
 
 // Get all wallets.
-func (s *Two_WalletsService) List(ctx context.Context) (*http.Response, error) {
-	return s.client.SendRequest(ctx, 2, "GET", "wallets", nil, nil)
+func (s *Two_WalletsService) List(ctx context.Context) (*Accounts, *http.Response, error) {
+	accounts := &Accounts{}
+
+	resp, err := s.client.SendRequest(ctx, 2, "GET", "wallets", nil, nil)
+
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return accounts, resp, err
 }
 
 // Get all wallets sorted by balance in descending order.
-func (s *Two_WalletsService) Top(ctx context.Context) (*http.Response, error) {
-	return s.client.SendRequest(ctx, 2, "GET", "wallets/top", nil, nil)
+func (s *Two_WalletsService) Top(ctx context.Context) (*Accounts, *http.Response, error) {
+	accounts := &Accounts{}
+
+	resp, err := s.client.SendRequest(ctx, 2, "GET", "wallets/top", nil, nil)
+
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return accounts, resp, err
 }
 
 // Get a wallet by the given id.
-func (s *Two_WalletsService) Get(ctx context.Context, id int) (*http.Response, error) {
+func (s *Two_WalletsService) Get(ctx context.Context, id int) (*Accounts, *http.Response, error) {
 	uri := fmt.Sprintf("wallets/%v", id)
 
-	return s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
+	accounts := &Accounts{}
+
+	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
+
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return accounts, resp, err
 }
 
 // Get all transactions for the given wallet.
-func (s *Two_WalletsService) Transactions(ctx context.Context, id int) (*http.Response, error) {
+func (s *Two_WalletsService) Transactions(ctx context.Context, id int) (*Accounts, *http.Response, error) {
 	uri := fmt.Sprintf("wallets/%v/transactions", id)
 
-	return s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
+	accounts := &Accounts{}
+
+	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
+
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return accounts, resp, err
 }
 
 // Get all transactions sent by the given wallet.
-func (s *Two_WalletsService) SentTransactions(ctx context.Context, id int) (*http.Response, error) {
+func (s *Two_WalletsService) SentTransactions(ctx context.Context, id int) (*Accounts, *http.Response, error) {
 	uri := fmt.Sprintf("wallets/%v/transactions/sent", id)
 
-	return s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
+	accounts := &Accounts{}
+
+	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
+
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return accounts, resp, err
 }
 
 // Get all transactions received by the given wallet.
-func (s *Two_WalletsService) ReceivedTransaction(ctx context.Context, id int) (*http.Response, error) {
+func (s *Two_WalletsService) ReceivedTransaction(ctx context.Context, id int) (*Accounts, *http.Response, error) {
 	uri := fmt.Sprintf("wallets/%v/transactions/received", id)
 
-	return s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
+	accounts := &Accounts{}
+
+	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
+
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return accounts, resp, err
 }
 
 // Get all votes by the given wallet.
-func (s *Two_WalletsService) Votes(ctx context.Context, id int) (*http.Response, error) {
+func (s *Two_WalletsService) Votes(ctx context.Context, id int) (*Accounts, *http.Response, error) {
 	uri := fmt.Sprintf("wallets/%v/votes", id)
 
-	return s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
+	accounts := &Accounts{}
+
+	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
+
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return accounts, resp, err
 }
 
 // Filter all wallets by the given criteria.

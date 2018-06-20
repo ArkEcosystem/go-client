@@ -16,13 +16,29 @@ import (
 type Two_VotesService Service
 
 // Get all votes.
-func (s *Two_VotesService) List(ctx context.Context) (*http.Response, error) {
-	return s.client.SendRequest(ctx, 2, "GET", "votes", nil, nil)
+func (s *Two_VotesService) List(ctx context.Context) (*Accounts, *http.Response, error) {
+	accounts := &Accounts{}
+
+	resp, err := s.client.SendRequest(ctx, 2, "GET", "votes", nil, nil)
+
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return accounts, resp, err
 }
 
 // Get a vote by the given id.
-func (s *Two_VotesService) Get(ctx context.Context, id int) (*http.Response, error) {
+func (s *Two_VotesService) Get(ctx context.Context, id int) (*Accounts, *http.Response, error) {
 	uri := fmt.Sprintf("votes/%v", id)
 
-	return s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
+	accounts := &Accounts{}
+
+	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
+
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return accounts, resp, err
 }

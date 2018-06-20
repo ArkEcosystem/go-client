@@ -16,8 +16,16 @@ import (
 type Two_TransactionsService Service
 
 // Get all transactions.
-func (s *Two_TransactionsService) List(ctx context.Context) (*http.Response, error) {
-	return s.client.SendRequest(ctx, 2, "GET", "transactions", nil, nil)
+func (s *Two_TransactionsService) List(ctx context.Context) (*Accounts, *http.Response, error) {
+	accounts := &Accounts{}
+
+	resp, err := s.client.SendRequest(ctx, 2, "GET", "transactions", nil, nil)
+
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return accounts, resp, err
 }
 
 // Create a new transaction.
@@ -32,22 +40,46 @@ func (s *Two_TransactionsService) List(ctx context.Context) (*http.Response, err
 // }
 
 // Get a transaction by the given id.
-func (s *Two_TransactionsService) Get(ctx context.Context, id int) (*http.Response, error) {
+func (s *Two_TransactionsService) Get(ctx context.Context, id int) (*Accounts, *http.Response, error) {
 	uri := fmt.Sprintf("transactions/%v", id)
 
-	return s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
+	accounts := &Accounts{}
+
+	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
+
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return accounts, resp, err
 }
 
 // Get all unconfirmed transactions.
-func (s *Two_TransactionsService) ListUnconfirmed(ctx context.Context) (*http.Response, error) {
-	return s.client.SendRequest(ctx, 2, "GET", "transactions/unconfirmed", nil, nil)
+func (s *Two_TransactionsService) ListUnconfirmed(ctx context.Context) (*Accounts, *http.Response, error) {
+	accounts := &Accounts{}
+
+	resp, err := s.client.SendRequest(ctx, 2, "GET", "transactions/unconfirmed", nil, nil)
+
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return accounts, resp, err
 }
 
 // Get an unconfirmed transaction by the given id.
-func (s *Two_TransactionsService) GetUnconfirmed(ctx context.Context, id int) (*http.Response, error) {
+func (s *Two_TransactionsService) GetUnconfirmed(ctx context.Context, id int) (*Accounts, *http.Response, error) {
 	uri := fmt.Sprintf("transactions/unconfirmed/%v", id)
 
-	return s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
+	accounts := &Accounts{}
+
+	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
+
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return accounts, resp, err
 }
 
 // Filter all transactions by the given criteria.
@@ -62,6 +94,14 @@ func (s *Two_TransactionsService) GetUnconfirmed(ctx context.Context, id int) (*
 // }
 
 // Get a list of valid transaction types.
-func (s *Two_TransactionsService) Types(ctx context.Context) (*http.Response, error) {
-	return s.client.SendRequest(ctx, 2, "GET", "transactions/types", nil, nil)
+func (s *Two_TransactionsService) Types(ctx context.Context) (*Accounts, *http.Response, error) {
+	accounts := &Accounts{}
+
+	resp, err := s.client.SendRequest(ctx, 2, "GET", "transactions/types", nil, nil)
+
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return accounts, resp, err
 }

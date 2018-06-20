@@ -9,17 +9,14 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
-	// "errors"
 	"fmt"
+	"github.com/dyninc/qstring"
 	"io"
 	"net/http"
 	"net/url"
-	// "reflect"
 	"strconv"
 	"strings"
 	"sync"
-	// "time"
-	// "github.com/google/go-querystring/query"
 )
 
 const (
@@ -85,7 +82,7 @@ func NewClient(httpClient *http.Client) *Client {
 	return c
 }
 
-func (c *Client) SendRequest(ctx context.Context, version int, method string, urlStr string, body interface{}, v interface{}) (*http.Response, error) {
+func (c *Client) SendRequest(ctx context.Context, version int, method string, urlStr string, body interface{}, model interface{}) (*http.Response, error) {
 	// Create a new HTTP request
 	if !strings.HasSuffix(c.BaseURL.Path, "/") {
 		return nil, fmt.Errorf("BaseURL must have a trailing slash, but %q does not", c.BaseURL)
@@ -98,19 +95,29 @@ func (c *Client) SendRequest(ctx context.Context, version int, method string, ur
 
 	var buf io.ReadWriter
 	if body != nil {
-		buf = new(bytes.Buffer)
-		enc := json.NewEncoder(buf)
-		enc.SetEscapeHTML(false)
-		err := enc.Encode(body)
-		if err != nil {
-			return nil, err
+		if method == "POST" {
+			buf = new(bytes.Buffer)
+			enc := json.NewEncoder(buf)
+			enc.SetEscapeHTML(false)
+			err := enc.Encode(body)
+			if err != nil {
+				return nil, err
+			}
 		}
 	}
 
-	req, err := http.NewRequest(method, u.String(), buf)
+	req, err := http.NewRequest(method, u.String(), nil)
 
 	if err != nil {
 		return nil, err
+	}
+
+	if body != nil {
+		if method == "GET" {
+			queryString, _ := qstring.MarshalString(body)
+
+			req.URL.RawQuery = fmt.Sprintf("%s?%s", req.URL, queryString)
+		}
 	}
 
 	req.Header.Set("Content-Type", "application/json")
@@ -137,11 +144,11 @@ func (c *Client) SendRequest(ctx context.Context, version int, method string, ur
 	}
 
 	// Map the JSON response to a struct
-	if v != nil {
-		if w, ok := v.(io.Writer); ok {
+	if model != nil {
+		if w, ok := model.(io.Writer); ok {
 			io.Copy(w, resp.Body)
 		} else {
-			decErr := json.NewDecoder(resp.Body).Decode(v)
+			decErr := json.NewDecoder(resp.Body).Decode(model)
 
 			if decErr == io.EOF {
 				decErr = nil

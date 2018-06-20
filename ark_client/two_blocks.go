@@ -16,25 +16,57 @@ import (
 type Two_BlocksService Service
 
 // Get all blocks.
-func (s *Two_BlocksService) List(ctx context.Context) (*http.Response, error) {
-	return s.client.SendRequest(ctx, 2, "GET", "blocks", nil, nil)
+func (s *Two_BlocksService) List(ctx context.Context) (*Accounts, *http.Response, error) {
+	accounts := &Accounts{}
+
+	resp, err := s.client.SendRequest(ctx, 2, "GET", "blocks", nil, nil)
+
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return accounts, resp, err
 }
 
 // Get a block by the given id.
-func (s *Two_BlocksService) Get(ctx context.Context, id int) (*http.Response, error) {
+func (s *Two_BlocksService) Get(ctx context.Context, id int) (*Accounts, *http.Response, error) {
 	uri := fmt.Sprintf("blocks/%v", id)
 
-	return s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
+	accounts := &Accounts{}
+
+	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
+
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return accounts, resp, err
 }
 
 // Get all transactions by the given block.
-func (s *Two_BlocksService) Transactions(ctx context.Context, id int) (*http.Response, error) {
+func (s *Two_BlocksService) Transactions(ctx context.Context, id int) (*Accounts, *http.Response, error) {
 	uri := fmt.Sprintf("blocks/%v/transactions", id)
 
-	return s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
+	accounts := &Accounts{}
+
+	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
+
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return accounts, resp, err
 }
 
 // Filter all blocks by the given criteria.
-func (s *Two_BlocksService) Search(ctx context.Context) (*http.Response, error) {
-	return s.client.SendRequest(ctx, 2, "GET", "blocks/search", nil, nil)
+func (s *Two_BlocksService) Search(ctx context.Context) (*Accounts, *http.Response, error) {
+	accounts := &Accounts{}
+
+	resp, err := s.client.SendRequest(ctx, 2, "GET", "blocks/search", nil, nil)
+
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return accounts, resp, err
 }
