@@ -6,15 +6,15 @@
 package ark_client
 
 import (
-    "context"
-    "encoding/json"
-    "fmt"
-    "net/http"
-    "reflect"
-    "testing"
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+	"reflect"
+	"testing"
 )
 
 // Get the second signature registration fee.
 func TestSignaturesService_Fee(t *testing.T) {
-    //
+	//
 }

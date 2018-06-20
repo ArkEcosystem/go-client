@@ -6,20 +6,20 @@
 package ark_client
 
 import (
-    "context"
-    "encoding/json"
-    "fmt"
-    "net/http"
-    "reflect"
-    "testing"
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+	"reflect"
+	"testing"
 )
 
 // Get all peers.
 func TestPeersService_L9st(t *testing.T) {
-    //
+	//
 }
 
 // Get a peer by the given IP address.
 func TestPeersService_Get(t *testing.T) {
-    //
+	//
 }

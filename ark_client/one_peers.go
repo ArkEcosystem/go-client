@@ -6,8 +6,8 @@
 package ark_client
 
 import (
-    "context"
-    "net/http"
+	"context"
+	"net/http"
 )
 
 // PeersService handles communication with the peers related
@@ -16,9 +16,8 @@ type One_PeersService Service
 
 // Get all accounts.
 func (s *One_PeersService) List(ctx context.Context) (*http.Response, error) {
-    return s.client.SendRequest(ctx, 1, "GET", "peers", nil)
+	return s.client.SendRequest(ctx, 1, "GET", "peers", nil)
 }
-
 
 // Get a peer by the given IP address and port.
 // func (s *One_PeersService) Get(ctx context.Context) (*http.Response, error) {
@@ -33,6 +32,5 @@ func (s *One_PeersService) List(ctx context.Context) (*http.Response, error) {
 
 // Get the node version of the given peer.
 func (s *One_PeersService) Version(ctx context.Context) (*http.Response, error) {
-    return s.client.SendRequest(ctx, 1, "GET", "peers/version", nil)
+	return s.client.SendRequest(ctx, 1, "GET", "peers/version", nil)
 }
-

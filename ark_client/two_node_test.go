@@ -6,25 +6,25 @@
 package ark_client
 
 import (
-    "context"
-    "encoding/json"
-    "fmt"
-    "net/http"
-    "reflect"
-    "testing"
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+	"reflect"
+	"testing"
 )
 
 // Get the node status.
 func TestNodeService_Status(t *testing.T) {
-    //
+	//
 }
 
 // Get the node syncing status.
 func TestNodeService_Syncing(t *testing.T) {
-    //
+	//
 }
 
 // Get the node configuration.
 func TestNodeService_Configuration(t *testing.T) {
-    //
+	//
 }

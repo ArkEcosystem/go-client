@@ -6,20 +6,20 @@
 package ark_client
 
 import (
-    "context"
-    "encoding/json"
-    "fmt"
-    "net/http"
-    "reflect"
-    "testing"
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+	"reflect"
+	"testing"
 )
 
 // Get all votes.
 func TestVotesService_List(t *testing.T) {
-    //
+	//
 }
 
 // Get a vote by the given id.
 func TestVotesService_Get(t *testing.T) {
-    //
+	//
 }

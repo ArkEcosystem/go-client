@@ -6,9 +6,9 @@
 package ark_client
 
 import (
-    "context"
-    "fmt"
-    "net/http"
+	"context"
+	"fmt"
+	"net/http"
 )
 
 // TransactionsService handles communication with the transactions related
@@ -17,9 +17,8 @@ type Two_TransactionsService Service
 
 // Get all transactions.
 func (s *Two_TransactionsService) List(ctx context.Context) (*http.Response, error) {
-    return s.client.SendRequest(ctx, 2, "GET", "transactions", nil)
+	return s.client.SendRequest(ctx, 2, "GET", "transactions", nil)
 }
-
 
 // Create a new transaction.
 // func (s *Two_TransactionsService) Create(ctx context.Context) (*http.Response, error) {
@@ -34,25 +33,22 @@ func (s *Two_TransactionsService) List(ctx context.Context) (*http.Response, err
 
 // Get a transaction by the given id.
 func (s *Two_TransactionsService) Get(ctx context.Context, id int) (*http.Response, error) {
-    uri := fmt.Sprintf("transactions/%v", id)
+	uri := fmt.Sprintf("transactions/%v", id)
 
-    return s.client.SendRequest(ctx, 2, "GET", uri, nil)
+	return s.client.SendRequest(ctx, 2, "GET", uri, nil)
 }
-
 
 // Get all unconfirmed transactions.
 func (s *Two_TransactionsService) ListUnconfirmed(ctx context.Context) (*http.Response, error) {
-    return s.client.SendRequest(ctx, 2, "GET", "transactions/unconfirmed", nil)
+	return s.client.SendRequest(ctx, 2, "GET", "transactions/unconfirmed", nil)
 }
-
 
 // Get an unconfirmed transaction by the given id.
 func (s *Two_TransactionsService) GetUnconfirmed(ctx context.Context, id int) (*http.Response, error) {
-    uri := fmt.Sprintf("transactions/unconfirmed/%v", id)
+	uri := fmt.Sprintf("transactions/unconfirmed/%v", id)
 
-    return s.client.SendRequest(ctx, 2, "GET", uri, nil)
+	return s.client.SendRequest(ctx, 2, "GET", uri, nil)
 }
-
 
 // Filter all transactions by the given criteria.
 // func (s *Two_TransactionsService) Search(ctx context.Context) (*http.Response, error) {
@@ -67,6 +63,5 @@ func (s *Two_TransactionsService) GetUnconfirmed(ctx context.Context, id int) (*
 
 // Get a list of valid transaction types.
 func (s *Two_TransactionsService) Types(ctx context.Context) (*http.Response, error) {
-    return s.client.SendRequest(ctx, 2, "GET", "transactions/types", nil)
+	return s.client.SendRequest(ctx, 2, "GET", "transactions/types", nil)
 }
-

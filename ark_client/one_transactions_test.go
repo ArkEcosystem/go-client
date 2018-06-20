@@ -6,30 +6,30 @@
 package ark_client
 
 import (
-    "context"
-    "encoding/json"
-    "fmt"
-    "net/http"
-    "reflect"
-    "testing"
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+	"reflect"
+	"testing"
 )
 
 // Get all accounts.
 func TestTransactionsService_List(t *testing.T) {
-    //
+	//
 }
 
 // Get a transaction by the given id.
 func TestTransactionsService_Get(t *testing.T) {
-    //
+	//
 }
 
 // Get all unconfirmed transactions.
 func TestTransactionsService_ListUnconfirmed(t *testing.T) {
-    //
+	//
 }
 
 // Get an unconfirmed transaction by the given id.
 func TestTransactionsService_GetUnconfirmed(t *testing.T) {
-    //
+	//
 }

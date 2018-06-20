@@ -6,9 +6,9 @@
 package ark_client
 
 import (
-    "context"
-    "fmt"
-    "net/http"
+	"context"
+	"fmt"
+	"net/http"
 )
 
 // BlocksService handles communication with the blocks related
@@ -17,28 +17,24 @@ type Two_BlocksService Service
 
 // Get all blocks.
 func (s *Two_BlocksService) List(ctx context.Context) (*http.Response, error) {
-    return s.client.SendRequest(ctx, 2, "GET", "blocks", nil)
+	return s.client.SendRequest(ctx, 2, "GET", "blocks", nil)
 }
-
 
 // Get a block by the given id.
 func (s *Two_BlocksService) Get(ctx context.Context, id int) (*http.Response, error) {
-    uri := fmt.Sprintf("blocks/%v", id)
+	uri := fmt.Sprintf("blocks/%v", id)
 
-    return s.client.SendRequest(ctx, 2, "GET", uri, nil)
+	return s.client.SendRequest(ctx, 2, "GET", uri, nil)
 }
-
 
 // Get all transactions by the given block.
 func (s *Two_BlocksService) Transactions(ctx context.Context, id int) (*http.Response, error) {
-    uri := fmt.Sprintf("blocks/%v/transactions", id)
+	uri := fmt.Sprintf("blocks/%v/transactions", id)
 
-    return s.client.SendRequest(ctx, 2, "GET", uri, nil)
+	return s.client.SendRequest(ctx, 2, "GET", uri, nil)
 }
-
 
 // Filter all blocks by the given criteria.
 func (s *Two_BlocksService) Search(ctx context.Context) (*http.Response, error) {
-    return s.client.SendRequest(ctx, 2, "GET", "blocks/search", nil)
+	return s.client.SendRequest(ctx, 2, "GET", "blocks/search", nil)
 }
-
