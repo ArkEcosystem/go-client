@@ -17,37 +17,13 @@ type Two_WalletsService Service
 
 // Get all wallets.
 func (s *Two_WalletsService) List(ctx context.Context) (*http.Response, error) {
-    req, err := s.client.NewRequest(2, "GET", "wallets", nil)
-
-    if err != nil {
-        return nil, err
-    }
-
-    resp, err := s.client.Do(ctx, req)
-
-    if err != nil {
-        return nil, err
-    }
-
-    return resp, nil
+    return s.client.SendRequest(ctx, 2, "GET", "wallets", nil)
 }
 
 
 // Get all wallets sorted by balance in descending order.
 func (s *Two_WalletsService) Top(ctx context.Context) (*http.Response, error) {
-    req, err := s.client.NewRequest(2, "GET", "wallets/top", nil)
-
-    if err != nil {
-        return nil, err
-    }
-
-    resp, err := s.client.Do(ctx, req)
-
-    if err != nil {
-        return nil, err
-    }
-
-    return resp, nil
+    return s.client.SendRequest(ctx, 2, "GET", "wallets/top", nil)
 }
 
 
@@ -55,19 +31,7 @@ func (s *Two_WalletsService) Top(ctx context.Context) (*http.Response, error) {
 func (s *Two_WalletsService) Get(ctx context.Context, id int) (*http.Response, error) {
     uri := fmt.Sprintf("wallets/%v", id)
 
-    req, err := s.client.NewRequest(2, "GET", uri, nil)
-
-    if err != nil {
-        return nil, err
-    }
-
-    resp, err := s.client.Do(ctx, req)
-
-    if err != nil {
-        return nil, err
-    }
-
-    return resp, nil
+    return s.client.SendRequest(ctx, 2, "GET", uri, nil)
 }
 
 
@@ -75,19 +39,7 @@ func (s *Two_WalletsService) Get(ctx context.Context, id int) (*http.Response, e
 func (s *Two_WalletsService) Transactions(ctx context.Context, id int) (*http.Response, error) {
     uri := fmt.Sprintf("wallets/%v/transactions", id)
 
-    req, err := s.client.NewRequest(2, "GET", uri, nil)
-
-    if err != nil {
-        return nil, err
-    }
-
-    resp, err := s.client.Do(ctx, req)
-
-    if err != nil {
-        return nil, err
-    }
-
-    return resp, nil
+    return s.client.SendRequest(ctx, 2, "GET", uri, nil)
 }
 
 
@@ -95,19 +47,7 @@ func (s *Two_WalletsService) Transactions(ctx context.Context, id int) (*http.Re
 func (s *Two_WalletsService) SentTransactions(ctx context.Context, id int) (*http.Response, error) {
     uri := fmt.Sprintf("wallets/%v/transactions/sent", id)
 
-    req, err := s.client.NewRequest(2, "GET", uri, nil)
-
-    if err != nil {
-        return nil, err
-    }
-
-    resp, err := s.client.Do(ctx, req)
-
-    if err != nil {
-        return nil, err
-    }
-
-    return resp, nil
+    return s.client.SendRequest(ctx, 2, "GET", uri, nil)
 }
 
 
@@ -115,19 +55,7 @@ func (s *Two_WalletsService) SentTransactions(ctx context.Context, id int) (*htt
 func (s *Two_WalletsService) ReceivedTransaction(ctx context.Context, id int) (*http.Response, error) {
     uri := fmt.Sprintf("wallets/%v/transactions/received", id)
 
-    req, err := s.client.NewRequest(2, "GET", uri, nil)
-
-    if err != nil {
-        return nil, err
-    }
-
-    resp, err := s.client.Do(ctx, req)
-
-    if err != nil {
-        return nil, err
-    }
-
-    return resp, nil
+    return s.client.SendRequest(ctx, 2, "GET", uri, nil)
 }
 
 
@@ -135,19 +63,7 @@ func (s *Two_WalletsService) ReceivedTransaction(ctx context.Context, id int) (*
 func (s *Two_WalletsService) Votes(ctx context.Context, id int) (*http.Response, error) {
     uri := fmt.Sprintf("wallets/%v/votes", id)
 
-    req, err := s.client.NewRequest(2, "GET", uri, nil)
-
-    if err != nil {
-        return nil, err
-    }
-
-    resp, err := s.client.Do(ctx, req)
-
-    if err != nil {
-        return nil, err
-    }
-
-    return resp, nil
+    return s.client.SendRequest(ctx, 2, "GET", uri, nil)
 }
 
 

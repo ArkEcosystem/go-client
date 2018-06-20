@@ -17,19 +17,7 @@ type Two_BlocksService Service
 
 // Get all blocks.
 func (s *Two_BlocksService) List(ctx context.Context) (*http.Response, error) {
-    req, err := s.client.NewRequest(2, "GET", "blocks", nil)
-
-    if err != nil {
-        return nil, err
-    }
-
-    resp, err := s.client.Do(ctx, req)
-
-    if err != nil {
-        return nil, err
-    }
-
-    return resp, nil
+    return s.client.SendRequest(ctx, 2, "GET", "blocks", nil)
 }
 
 
@@ -37,19 +25,7 @@ func (s *Two_BlocksService) List(ctx context.Context) (*http.Response, error) {
 func (s *Two_BlocksService) Get(ctx context.Context, id int) (*http.Response, error) {
     uri := fmt.Sprintf("blocks/%v", id)
 
-    req, err := s.client.NewRequest(2, "GET", uri, nil)
-
-    if err != nil {
-        return nil, err
-    }
-
-    resp, err := s.client.Do(ctx, req)
-
-    if err != nil {
-        return nil, err
-    }
-
-    return resp, nil
+    return s.client.SendRequest(ctx, 2, "GET", uri, nil)
 }
 
 
@@ -57,36 +33,12 @@ func (s *Two_BlocksService) Get(ctx context.Context, id int) (*http.Response, er
 func (s *Two_BlocksService) Transactions(ctx context.Context, id int) (*http.Response, error) {
     uri := fmt.Sprintf("blocks/%v/transactions", id)
 
-    req, err := s.client.NewRequest(2, "GET", uri, nil)
-
-    if err != nil {
-        return nil, err
-    }
-
-    resp, err := s.client.Do(ctx, req)
-
-    if err != nil {
-        return nil, err
-    }
-
-    return resp, nil
+    return s.client.SendRequest(ctx, 2, "GET", uri, nil)
 }
 
 
 // Filter all blocks by the given criteria.
 func (s *Two_BlocksService) Search(ctx context.Context) (*http.Response, error) {
-    req, err := s.client.NewRequest(2, "GET", "blocks/search", nil)
-
-    if err != nil {
-        return nil, err
-    }
-
-    resp, err := s.client.Do(ctx, req)
-
-    if err != nil {
-        return nil, err
-    }
-
-    return resp, nil
+    return s.client.SendRequest(ctx, 2, "GET", "blocks/search", nil)
 }
 

@@ -17,19 +17,7 @@ type Two_DelegatesService Service
 
 // Get all accounts.
 func (s *Two_DelegatesService) List(ctx context.Context) (*http.Response, error) {
-    req, err := s.client.NewRequest(2, "GET", "delegates", nil)
-
-    if err != nil {
-        return nil, err
-    }
-
-    resp, err := s.client.Do(ctx, req)
-
-    if err != nil {
-        return nil, err
-    }
-
-    return resp, nil
+    return s.client.SendRequest(ctx, 2, "GET", "delegates", nil)
 }
 
 
@@ -37,19 +25,7 @@ func (s *Two_DelegatesService) List(ctx context.Context) (*http.Response, error)
 func (s *Two_DelegatesService) Get(ctx context.Context, id int) (*http.Response, error) {
     uri := fmt.Sprintf("delegates/%v", id)
 
-    req, err := s.client.NewRequest(2, "GET", uri, nil)
-
-    if err != nil {
-        return nil, err
-    }
-
-    resp, err := s.client.Do(ctx, req)
-
-    if err != nil {
-        return nil, err
-    }
-
-    return resp, nil
+    return s.client.SendRequest(ctx, 2, "GET", uri, nil)
 }
 
 
@@ -57,19 +33,7 @@ func (s *Two_DelegatesService) Get(ctx context.Context, id int) (*http.Response,
 func (s *Two_DelegatesService) Blocks(ctx context.Context, id int) (*http.Response, error) {
     uri := fmt.Sprintf("delegates/%v/blocks", id)
 
-    req, err := s.client.NewRequest(2, "GET", uri, nil)
-
-    if err != nil {
-        return nil, err
-    }
-
-    resp, err := s.client.Do(ctx, req)
-
-    if err != nil {
-        return nil, err
-    }
-
-    return resp, nil
+    return s.client.SendRequest(ctx, 2, "GET", uri, nil)
 }
 
 
@@ -77,18 +41,6 @@ func (s *Two_DelegatesService) Blocks(ctx context.Context, id int) (*http.Respon
 func (s *Two_DelegatesService) Voters(ctx context.Context, id int) (*http.Response, error) {
     uri := fmt.Sprintf("delegates/%v/voters", id)
 
-    req, err := s.client.NewRequest(2, "GET", uri, nil)
-
-    if err != nil {
-        return nil, err
-    }
-
-    resp, err := s.client.Do(ctx, req)
-
-    if err != nil {
-        return nil, err
-    }
-
-    return resp, nil
+    return s.client.SendRequest(ctx, 2, "GET", uri, nil)
 }
 

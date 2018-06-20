@@ -16,18 +16,6 @@ type One_SignaturesService Service
 
 // Get the second signature registration fee.
 func (s *One_SignaturesService) Fee(ctx context.Context) (*http.Response, error) {
-    req, err := s.client.NewRequest(1, "GET", "signatures/fee", nil)
-
-    if err != nil {
-        return nil, err
-    }
-
-    resp, err := s.client.Do(ctx, req)
-
-    if err != nil {
-        return nil, err
-    }
-
-    return resp, nil
+    return s.client.SendRequest(ctx, 1, "GET", "signatures/fee", nil)
 }
 

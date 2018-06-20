@@ -17,19 +17,7 @@ type Two_PeersService Service
 
 // Get all peers.
 func (s *Two_PeersService) L9st(ctx context.Context) (*http.Response, error) {
-    req, err := s.client.NewRequest(2, "GET", "peers", nil)
-
-    if err != nil {
-        return nil, err
-    }
-
-    resp, err := s.client.Do(ctx, req)
-
-    if err != nil {
-        return nil, err
-    }
-
-    return resp, nil
+    return s.client.SendRequest(ctx, 2, "GET", "peers", nil)
 }
 
 
@@ -37,18 +25,6 @@ func (s *Two_PeersService) L9st(ctx context.Context) (*http.Response, error) {
 func (s *Two_PeersService) Get(ctx context.Context, ip string) (*http.Response, error) {
     uri := fmt.Sprintf("peers/%v", ip)
 
-    req, err := s.client.NewRequest(2, "GET", uri, nil)
-
-    if err != nil {
-        return nil, err
-    }
-
-    resp, err := s.client.Do(ctx, req)
-
-    if err != nil {
-        return nil, err
-    }
-
-    return resp, nil
+    return s.client.SendRequest(ctx, 2, "GET", uri, nil)
 }
 

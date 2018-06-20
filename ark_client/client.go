@@ -85,7 +85,8 @@ func NewClient(httpClient *http.Client) *Client {
     return c
 }
 
-func (c *Client) NewRequest(version int, method string, urlStr string, body interface{}) (*http.Request, error) {
+func (c *Client) SendRequest(ctx context.Context, version int, method string, urlStr string, body interface{}) (*http.Response, error) {
+    // Create a new HTTP request
     if !strings.HasSuffix(c.BaseURL.Path, "/") {
         return nil, fmt.Errorf("BaseURL must have a trailing slash, but %q does not", c.BaseURL)
     }
@@ -107,6 +108,7 @@ func (c *Client) NewRequest(version int, method string, urlStr string, body inte
     }
 
     req, err := http.NewRequest(method, u.String(), buf)
+
     if err != nil {
         return nil, err
     }
@@ -114,22 +116,16 @@ func (c *Client) NewRequest(version int, method string, urlStr string, body inte
     req.Header.Set("Content-Type", "application/json")
     req.Header.Set("API-Version", strconv.Itoa(version))
 
-    return req, nil
-}
-
-func (c *Client) Do(ctx context.Context, req *http.Request) (*http.Response, error) {
+    // Execute the previously created HTTP request
     resp, err := c.client.Do(req)
 
     if err != nil {
-        // If we got an error, and the context has been canceled,
-        // the context's error is probably more useful.
         select {
         case <-ctx.Done():
             return nil, ctx.Err()
         default:
         }
 
-        // If the error type is *url.Error, sanitize its URL before returning.
         if e, ok := err.(*url.Error); ok {
             if url, err := url.Parse(e.URL); err == nil {
                 e.URL = url.String()

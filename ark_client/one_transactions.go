@@ -16,72 +16,24 @@ type One_TransactionsService Service
 
 // Get all accounts.
 func (s *One_TransactionsService) List(ctx context.Context) (*http.Response, error) {
-    req, err := s.client.NewRequest(1, "GET", "transactions", nil)
-
-    if err != nil {
-        return nil, err
-    }
-
-    resp, err := s.client.Do(ctx, req)
-
-    if err != nil {
-        return nil, err
-    }
-
-    return resp, nil
+    return s.client.SendRequest(ctx, 1, "GET", "transactions", nil)
 }
 
 
 // Get a transaction by the given id.
 func (s *One_TransactionsService) Get(ctx context.Context) (*http.Response, error) {
-    req, err := s.client.NewRequest(1, "GET", "transactions/get", nil)
-
-    if err != nil {
-        return nil, err
-    }
-
-    resp, err := s.client.Do(ctx, req)
-
-    if err != nil {
-        return nil, err
-    }
-
-    return resp, nil
+    return s.client.SendRequest(ctx, 1, "GET", "transactions/get", nil)
 }
 
 
 // Get all unconfirmed transactions.
 func (s *One_TransactionsService) ListUnconfirmed(ctx context.Context) (*http.Response, error) {
-    req, err := s.client.NewRequest(1, "GET", "transactions/unconfirmed", nil)
-
-    if err != nil {
-        return nil, err
-    }
-
-    resp, err := s.client.Do(ctx, req)
-
-    if err != nil {
-        return nil, err
-    }
-
-    return resp, nil
+    return s.client.SendRequest(ctx, 1, "GET", "transactions/unconfirmed", nil)
 }
 
 
 // Get an unconfirmed transaction by the given id.
 func (s *One_TransactionsService) GetUnconfirmed(ctx context.Context) (*http.Response, error) {
-    req, err := s.client.NewRequest(1, "GET", "transactions/unconfirmed/get", nil)
-
-    if err != nil {
-        return nil, err
-    }
-
-    resp, err := s.client.Do(ctx, req)
-
-    if err != nil {
-        return nil, err
-    }
-
-    return resp, nil
+    return s.client.SendRequest(ctx, 1, "GET", "transactions/unconfirmed/get", nil)
 }
 
