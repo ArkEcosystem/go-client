@@ -16,8 +16,14 @@ import (
 type Two_BlocksService Service
 
 // Get all blocks.
-func (s *Two_BlocksService) List(ctx context.Context) (*http.Request, error) {
-    resp, err := s.client.NewRequest(2, "GET", "blocks", nil)
+func (s *Two_BlocksService) List(ctx context.Context) (*http.Response, error) {
+    req, err := s.client.NewRequest(2, "GET", "blocks", nil)
+
+    if err != nil {
+        return nil, err
+    }
+
+    resp, err := s.client.Do(ctx, req)
 
     if err != nil {
         return nil, err
@@ -25,12 +31,19 @@ func (s *Two_BlocksService) List(ctx context.Context) (*http.Request, error) {
 
     return resp, nil
 }
+
 
 // Get a block by the given id.
-func (s *Two_BlocksService) Get(ctx context.Context, id int) (*http.Request, error) {
+func (s *Two_BlocksService) Get(ctx context.Context, id int) (*http.Response, error) {
     uri := fmt.Sprintf("blocks/%v", id)
 
-    resp, err := s.client.NewRequest(2, "GET", uri, nil)
+    req, err := s.client.NewRequest(2, "GET", uri, nil)
+
+    if err != nil {
+        return nil, err
+    }
+
+    resp, err := s.client.Do(ctx, req)
 
     if err != nil {
         return nil, err
@@ -38,12 +51,19 @@ func (s *Two_BlocksService) Get(ctx context.Context, id int) (*http.Request, err
 
     return resp, nil
 }
+
 
 // Get all transactions by the given block.
-func (s *Two_BlocksService) Transactions(ctx context.Context, id int) (*http.Request, error) {
+func (s *Two_BlocksService) Transactions(ctx context.Context, id int) (*http.Response, error) {
     uri := fmt.Sprintf("blocks/%v/transactions", id)
 
-    resp, err := s.client.NewRequest(2, "GET", uri, nil)
+    req, err := s.client.NewRequest(2, "GET", uri, nil)
+
+    if err != nil {
+        return nil, err
+    }
+
+    resp, err := s.client.Do(ctx, req)
 
     if err != nil {
         return nil, err
@@ -51,10 +71,17 @@ func (s *Two_BlocksService) Transactions(ctx context.Context, id int) (*http.Req
 
     return resp, nil
 }
+
 
 // Filter all blocks by the given criteria.
-func (s *Two_BlocksService) Search(ctx context.Context) (*http.Request, error) {
-    resp, err := s.client.NewRequest(2, "GET", "blocks/search", nil)
+func (s *Two_BlocksService) Search(ctx context.Context) (*http.Response, error) {
+    req, err := s.client.NewRequest(2, "GET", "blocks/search", nil)
+
+    if err != nil {
+        return nil, err
+    }
+
+    resp, err := s.client.Do(ctx, req)
 
     if err != nil {
         return nil, err
@@ -62,3 +89,4 @@ func (s *Two_BlocksService) Search(ctx context.Context) (*http.Request, error) {
 
     return resp, nil
 }
+

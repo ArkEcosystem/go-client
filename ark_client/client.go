@@ -7,21 +7,18 @@ package ark_client
 
 import (
     "bytes"
-    // "context"
+    "context"
     "encoding/json"
     // "errors"
     "fmt"
     "io"
-    // "io/ioutil"
     "net/http"
     "net/url"
     // "reflect"
-    // "strconv"
+    "strconv"
     "strings"
     "sync"
     // "time"
-    "strconv"
-
     // "github.com/google/go-querystring/query"
 )
 
@@ -114,11 +111,36 @@ func (c *Client) NewRequest(version int, method string, urlStr string, body inte
         return nil, err
     }
 
-    if body != nil {
-        req.Header.Set("Content-Type", "application/json")
-    }
-
+    req.Header.Set("Content-Type", "application/json")
     req.Header.Set("API-Version", strconv.Itoa(version))
 
     return req, nil
+}
+
+func (c *Client) Do(ctx context.Context, req *http.Request) (*http.Response, error) {
+    resp, err := c.client.Do(req)
+
+    if err != nil {
+        // If we got an error, and the context has been canceled,
+        // the context's error is probably more useful.
+        select {
+        case <-ctx.Done():
+            return nil, ctx.Err()
+        default:
+        }
+
+        // If the error type is *url.Error, sanitize its URL before returning.
+        if e, ok := err.(*url.Error); ok {
+            if url, err := url.Parse(e.URL); err == nil {
+                e.URL = url.String()
+                return nil, e
+            }
+        }
+
+        return nil, err
+    }
+
+    defer resp.Body.Close()
+
+    return resp, nil
 }

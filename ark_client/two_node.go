@@ -15,8 +15,14 @@ import (
 type Two_NodeService Service
 
 // Get the node status.
-func (s *Two_NodeService) Status(ctx context.Context) (*http.Request, error) {
-    resp, err := s.client.NewRequest(2, "GET", "node/status", nil)
+func (s *Two_NodeService) Status(ctx context.Context) (*http.Response, error) {
+    req, err := s.client.NewRequest(2, "GET", "node/status", nil)
+
+    if err != nil {
+        return nil, err
+    }
+
+    resp, err := s.client.Do(ctx, req)
 
     if err != nil {
         return nil, err
@@ -24,10 +30,17 @@ func (s *Two_NodeService) Status(ctx context.Context) (*http.Request, error) {
 
     return resp, nil
 }
+
 
 // Get the node syncing status.
-func (s *Two_NodeService) Syncing(ctx context.Context) (*http.Request, error) {
-    resp, err := s.client.NewRequest(2, "GET", "node/syncing", nil)
+func (s *Two_NodeService) Syncing(ctx context.Context) (*http.Response, error) {
+    req, err := s.client.NewRequest(2, "GET", "node/syncing", nil)
+
+    if err != nil {
+        return nil, err
+    }
+
+    resp, err := s.client.Do(ctx, req)
 
     if err != nil {
         return nil, err
@@ -35,10 +48,17 @@ func (s *Two_NodeService) Syncing(ctx context.Context) (*http.Request, error) {
 
     return resp, nil
 }
+
 
 // Get the node configuration.
-func (s *Two_NodeService) Configuration(ctx context.Context) (*http.Request, error) {
-    resp, err := s.client.NewRequest(2, "GET", "node/configuration", nil)
+func (s *Two_NodeService) Configuration(ctx context.Context) (*http.Response, error) {
+    req, err := s.client.NewRequest(2, "GET", "node/configuration", nil)
+
+    if err != nil {
+        return nil, err
+    }
+
+    resp, err := s.client.Do(ctx, req)
 
     if err != nil {
         return nil, err
@@ -46,3 +66,4 @@ func (s *Two_NodeService) Configuration(ctx context.Context) (*http.Request, err
 
     return resp, nil
 }
+

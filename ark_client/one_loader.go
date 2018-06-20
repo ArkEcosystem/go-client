@@ -15,8 +15,14 @@ import (
 type One_LoaderService Service
 
 // Get the loader status.
-func (s *One_LoaderService) Status(ctx context.Context) (*http.Request, error) {
-    resp, err := s.client.NewRequest(1, "GET", "loader/status", nil)
+func (s *One_LoaderService) Status(ctx context.Context) (*http.Response, error) {
+    req, err := s.client.NewRequest(1, "GET", "loader/status", nil)
+
+    if err != nil {
+        return nil, err
+    }
+
+    resp, err := s.client.Do(ctx, req)
 
     if err != nil {
         return nil, err
@@ -24,10 +30,17 @@ func (s *One_LoaderService) Status(ctx context.Context) (*http.Request, error) {
 
     return resp, nil
 }
+
 
 // Get the loader syncing status.
-func (s *One_LoaderService) SyncStatus(ctx context.Context) (*http.Request, error) {
-    resp, err := s.client.NewRequest(1, "GET", "loader/status/sync", nil)
+func (s *One_LoaderService) SyncStatus(ctx context.Context) (*http.Response, error) {
+    req, err := s.client.NewRequest(1, "GET", "loader/status/sync", nil)
+
+    if err != nil {
+        return nil, err
+    }
+
+    resp, err := s.client.Do(ctx, req)
 
     if err != nil {
         return nil, err
@@ -35,10 +48,17 @@ func (s *One_LoaderService) SyncStatus(ctx context.Context) (*http.Request, erro
 
     return resp, nil
 }
+
 
 // Get the loader configuration.
-func (s *One_LoaderService) AutoConfigure(ctx context.Context) (*http.Request, error) {
-    resp, err := s.client.NewRequest(1, "GET", "loader/autoconfigure", nil)
+func (s *One_LoaderService) AutoConfigure(ctx context.Context) (*http.Response, error) {
+    req, err := s.client.NewRequest(1, "GET", "loader/autoconfigure", nil)
+
+    if err != nil {
+        return nil, err
+    }
+
+    resp, err := s.client.Do(ctx, req)
 
     if err != nil {
         return nil, err
@@ -46,3 +66,4 @@ func (s *One_LoaderService) AutoConfigure(ctx context.Context) (*http.Request, e
 
     return resp, nil
 }
+
