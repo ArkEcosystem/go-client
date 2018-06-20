@@ -9,7 +9,7 @@ import (
 func main () {
     client := ark_client.NewClient(nil)
 
-    resp, _ := client.One_Accounts.Top(context.Background())
+    accounts, _, _ := client.One_Accounts.Top(context.Background())
 
-    spew.Dump(resp)
+    spew.Dump(accounts)
 }

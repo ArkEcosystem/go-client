@@ -16,15 +16,15 @@ type One_LoaderService Service
 
 // Get the loader status.
 func (s *One_LoaderService) Status(ctx context.Context) (*http.Response, error) {
-	return s.client.SendRequest(ctx, 1, "GET", "loader/status", nil)
+	return s.client.SendRequest(ctx, 1, "GET", "loader/status", nil, nil)
 }
 
 // Get the loader syncing status.
 func (s *One_LoaderService) SyncStatus(ctx context.Context) (*http.Response, error) {
-	return s.client.SendRequest(ctx, 1, "GET", "loader/status/sync", nil)
+	return s.client.SendRequest(ctx, 1, "GET", "loader/status/sync", nil, nil)
 }
 
 // Get the loader configuration.
 func (s *One_LoaderService) AutoConfigure(ctx context.Context) (*http.Response, error) {
-	return s.client.SendRequest(ctx, 1, "GET", "loader/autoconfigure", nil)
+	return s.client.SendRequest(ctx, 1, "GET", "loader/autoconfigure", nil, nil)
 }

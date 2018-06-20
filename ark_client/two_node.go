@@ -16,15 +16,15 @@ type Two_NodeService Service
 
 // Get the node status.
 func (s *Two_NodeService) Status(ctx context.Context) (*http.Response, error) {
-	return s.client.SendRequest(ctx, 2, "GET", "node/status", nil)
+	return s.client.SendRequest(ctx, 2, "GET", "node/status", nil, nil)
 }
 
 // Get the node syncing status.
 func (s *Two_NodeService) Syncing(ctx context.Context) (*http.Response, error) {
-	return s.client.SendRequest(ctx, 2, "GET", "node/syncing", nil)
+	return s.client.SendRequest(ctx, 2, "GET", "node/syncing", nil, nil)
 }
 
 // Get the node configuration.
 func (s *Two_NodeService) Configuration(ctx context.Context) (*http.Response, error) {
-	return s.client.SendRequest(ctx, 2, "GET", "node/configuration", nil)
+	return s.client.SendRequest(ctx, 2, "GET", "node/configuration", nil, nil)
 }

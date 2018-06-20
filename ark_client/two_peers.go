@@ -17,12 +17,12 @@ type Two_PeersService Service
 
 // Get all peers.
 func (s *Two_PeersService) L9st(ctx context.Context) (*http.Response, error) {
-	return s.client.SendRequest(ctx, 2, "GET", "peers", nil)
+	return s.client.SendRequest(ctx, 2, "GET", "peers", nil, nil)
 }
 
 // Get a peer by the given IP address.
 func (s *Two_PeersService) Get(ctx context.Context, ip string) (*http.Response, error) {
 	uri := fmt.Sprintf("peers/%v", ip)
 
-	return s.client.SendRequest(ctx, 2, "GET", uri, nil)
+	return s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
 }

@@ -85,7 +85,7 @@ func NewClient(httpClient *http.Client) *Client {
 	return c
 }
 
-func (c *Client) SendRequest(ctx context.Context, version int, method string, urlStr string, body interface{}) (*http.Response, error) {
+func (c *Client) SendRequest(ctx context.Context, version int, method string, urlStr string, body interface{}, v interface{}) (*http.Response, error) {
 	// Create a new HTTP request
 	if !strings.HasSuffix(c.BaseURL.Path, "/") {
 		return nil, fmt.Errorf("BaseURL must have a trailing slash, but %q does not", c.BaseURL)
@@ -134,6 +134,23 @@ func (c *Client) SendRequest(ctx context.Context, version int, method string, ur
 		}
 
 		return nil, err
+	}
+
+	// Map the JSON response to a struct
+	if v != nil {
+		if w, ok := v.(io.Writer); ok {
+			io.Copy(w, resp.Body)
+		} else {
+			decErr := json.NewDecoder(resp.Body).Decode(v)
+
+			if decErr == io.EOF {
+				decErr = nil
+			}
+
+			if decErr != nil {
+				err = decErr
+			}
+		}
 	}
 
 	defer resp.Body.Close()

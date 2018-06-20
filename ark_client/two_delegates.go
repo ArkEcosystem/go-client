@@ -17,26 +17,26 @@ type Two_DelegatesService Service
 
 // Get all accounts.
 func (s *Two_DelegatesService) List(ctx context.Context) (*http.Response, error) {
-	return s.client.SendRequest(ctx, 2, "GET", "delegates", nil)
+	return s.client.SendRequest(ctx, 2, "GET", "delegates", nil, nil)
 }
 
 // Get a block by the given id.
 func (s *Two_DelegatesService) Get(ctx context.Context, id int) (*http.Response, error) {
 	uri := fmt.Sprintf("delegates/%v", id)
 
-	return s.client.SendRequest(ctx, 2, "GET", uri, nil)
+	return s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
 }
 
 // Get all blocks for the given delegate.
 func (s *Two_DelegatesService) Blocks(ctx context.Context, id int) (*http.Response, error) {
 	uri := fmt.Sprintf("delegates/%v/blocks", id)
 
-	return s.client.SendRequest(ctx, 2, "GET", uri, nil)
+	return s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
 }
 
 // Get all voters for the given delegate.
 func (s *Two_DelegatesService) Voters(ctx context.Context, id int) (*http.Response, error) {
 	uri := fmt.Sprintf("delegates/%v/voters", id)
 
-	return s.client.SendRequest(ctx, 2, "GET", uri, nil)
+	return s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
 }

@@ -16,55 +16,55 @@ type One_BlocksService Service
 
 // Get all accounts.
 func (s *One_BlocksService) List(ctx context.Context) (*http.Response, error) {
-	return s.client.SendRequest(ctx, 1, "GET", "blocks", nil)
+	return s.client.SendRequest(ctx, 1, "GET", "blocks", nil, nil)
 }
 
 // Get a block by the given id.
 func (s *One_BlocksService) Get(ctx context.Context) (*http.Response, error) {
-	return s.client.SendRequest(ctx, 1, "GET", "blocks/get", nil)
+	return s.client.SendRequest(ctx, 1, "GET", "blocks/get", nil, nil)
 }
 
 // Get the blockchain epoch.
 func (s *One_BlocksService) Epoch(ctx context.Context) (*http.Response, error) {
-	return s.client.SendRequest(ctx, 1, "GET", "blocks/getEpoch", nil)
+	return s.client.SendRequest(ctx, 1, "GET", "blocks/getEpoch", nil, nil)
 }
 
 // Get the transfer transaction fee.
 func (s *One_BlocksService) Fee(ctx context.Context) (*http.Response, error) {
-	return s.client.SendRequest(ctx, 1, "GET", "blocks/getFee", nil)
+	return s.client.SendRequest(ctx, 1, "GET", "blocks/getFee", nil, nil)
 }
 
 // Get a list of transaction fees.
 func (s *One_BlocksService) Fees(ctx context.Context) (*http.Response, error) {
-	return s.client.SendRequest(ctx, 1, "GET", "blocks/getFees", nil)
+	return s.client.SendRequest(ctx, 1, "GET", "blocks/getFees", nil, nil)
 }
 
 // Get the blockchain height.
 func (s *One_BlocksService) Height(ctx context.Context) (*http.Response, error) {
-	return s.client.SendRequest(ctx, 1, "GET", "blocks/getHeight", nil)
+	return s.client.SendRequest(ctx, 1, "GET", "blocks/getHeight", nil, nil)
 }
 
 // Get the blockchain milestone.
 func (s *One_BlocksService) Milestone(ctx context.Context) (*http.Response, error) {
-	return s.client.SendRequest(ctx, 1, "GET", "blocks/getMilestone", nil)
+	return s.client.SendRequest(ctx, 1, "GET", "blocks/getMilestone", nil, nil)
 }
 
 // Get the blockchain nethash.
 func (s *One_BlocksService) Nethash(ctx context.Context) (*http.Response, error) {
-	return s.client.SendRequest(ctx, 1, "GET", "blocks/getNethash", nil)
+	return s.client.SendRequest(ctx, 1, "GET", "blocks/getNethash", nil, nil)
 }
 
 // Get the blockchain reward.
 func (s *One_BlocksService) Reward(ctx context.Context) (*http.Response, error) {
-	return s.client.SendRequest(ctx, 1, "GET", "blocks/getReward", nil)
+	return s.client.SendRequest(ctx, 1, "GET", "blocks/getReward", nil, nil)
 }
 
 // Get the blockchain status.
 func (s *One_BlocksService) Status(ctx context.Context) (*http.Response, error) {
-	return s.client.SendRequest(ctx, 1, "GET", "blocks/getStatus", nil)
+	return s.client.SendRequest(ctx, 1, "GET", "blocks/getStatus", nil, nil)
 }
 
 // Get the blockchain supply.
 func (s *One_BlocksService) Supply(ctx context.Context) (*http.Response, error) {
-	return s.client.SendRequest(ctx, 1, "GET", "blocks/getSupply", nil)
+	return s.client.SendRequest(ctx, 1, "GET", "blocks/getSupply", nil, nil)
 }
