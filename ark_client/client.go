@@ -10,7 +10,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/dyninc/qstring"
+	"github.com/google/go-querystring/query"
 	"io"
 	"net/http"
 	"net/url"
@@ -114,9 +114,9 @@ func (c *Client) SendRequest(ctx context.Context, version int, method string, ur
 
 	if body != nil {
 		if method == "GET" {
-			queryString, _ := qstring.MarshalString(body)
+			params, _ := query.Values(body)
 
-			req.URL.RawQuery = fmt.Sprintf("%s?%s", req.URL, queryString)
+			req.URL.RawQuery = params.Encode()
 		}
 	}
 

@@ -11,7 +11,7 @@ import (
 )
 
 type PublicKeyQuery struct {
-    Address string
+	Address string `url:"address"`
 }
 
 type PublicKeyResponse struct {
