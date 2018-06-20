@@ -18,7 +18,7 @@ type LoaderService Service
 
 // Get the loader status.
 func (s *LoaderService) Status(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "api/loader/status")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "loader/status")
 
     if err != nil {
         return nil, err
@@ -29,7 +29,7 @@ func (s *LoaderService) Status(ctx context.Context) (*http.Response, error) {
 
 // Get the loader syncing status.
 func (s *LoaderService) SyncStatus(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "api/loader/status/sync")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "loader/status/sync")
 
     if err != nil {
         return nil, err
@@ -40,7 +40,7 @@ func (s *LoaderService) SyncStatus(ctx context.Context) (*http.Response, error) 
 
 // Get the loader configuration.
 func (s *LoaderService) AutoConfigure(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "api/loader/autoconfigure")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "loader/autoconfigure")
 
     if err != nil {
         return nil, err

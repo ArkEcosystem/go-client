@@ -18,7 +18,7 @@ type PeersService Service
 
 // Get all accounts.
 func (s *PeersService) List(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "api/peers")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "peers")
 
     if err != nil {
         return nil, err
@@ -29,7 +29,7 @@ func (s *PeersService) List(ctx context.Context) (*http.Response, error) {
 
 // Get a peer by the given IP address and port.
 // func (s *PeersService) Get(ctx context.Context) (*http.Response, error) {
-//     resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "api/peers/get", compact("ip", "port"))
+//     resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "peers/get", compact("ip", "port"))
 
 //     if err != nil {
 //         return nil, err
@@ -40,7 +40,7 @@ func (s *PeersService) List(ctx context.Context) (*http.Response, error) {
 
 // Get the node version of the given peer.
 func (s *PeersService) Version(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "api/peers/version")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "peers/version")
 
     if err != nil {
         return nil, err

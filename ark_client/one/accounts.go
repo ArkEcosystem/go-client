@@ -18,7 +18,7 @@ type AccountsService Service
 
 // Get all accounts.
 func (s *AccountsService) List(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "api/accounts/getAllAccounts")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "accounts/getAllAccounts")
 
     if err != nil {
         return nil, err
@@ -29,7 +29,7 @@ func (s *AccountsService) List(ctx context.Context) (*http.Response, error) {
 
 // Get a account by the given address.
 func (s *AccountsService) Get(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "api/accounts")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "accounts")
 
     if err != nil {
         return nil, err
@@ -40,7 +40,7 @@ func (s *AccountsService) Get(ctx context.Context) (*http.Response, error) {
 
 // Count all accounts.
 func (s *AccountsService) Count(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "api/accounts/count")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "accounts/count")
 
     if err != nil {
         return nil, err
@@ -51,7 +51,7 @@ func (s *AccountsService) Count(ctx context.Context) (*http.Response, error) {
 
 // Get a delegate by the given address.
 func (s *AccountsService) Delegate(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "api/accounts/delegates")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "accounts/delegates")
 
     if err != nil {
         return nil, err
@@ -62,7 +62,7 @@ func (s *AccountsService) Delegate(ctx context.Context) (*http.Response, error) 
 
 // Get the delegate registration fee.
 func (s *AccountsService) DelegateFee(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "api/accounts/delegates/fee")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "accounts/delegates/fee")
 
     if err != nil {
         return nil, err
@@ -73,7 +73,7 @@ func (s *AccountsService) DelegateFee(ctx context.Context) (*http.Response, erro
 
 // Get the balance for an account by the given address.
 func (s *AccountsService) Balance(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "api/accounts/getBalance")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "accounts/getBalance")
 
     if err != nil {
         return nil, err
@@ -84,7 +84,7 @@ func (s *AccountsService) Balance(ctx context.Context) (*http.Response, error) {
 
 // Get the public key for an account by the given address.
 func (s *AccountsService) PublicKey(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "api/accounts/getPublicKey")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "accounts/getPublicKey")
 
     if err != nil {
         return nil, err
@@ -95,7 +95,7 @@ func (s *AccountsService) PublicKey(ctx context.Context) (*http.Response, error)
 
 // Get all wallets sorted by balance in descending order.
 func (s *AccountsService) Top(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "api/accounts/top")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "accounts/top")
 
     if err != nil {
         return nil, err

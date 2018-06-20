@@ -18,7 +18,7 @@ type TransactionsService Service
 
 // Get all accounts.
 func (s *TransactionsService) List(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "api/transactions")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "transactions")
 
     if err != nil {
         return nil, err
@@ -29,7 +29,7 @@ func (s *TransactionsService) List(ctx context.Context) (*http.Response, error) 
 
 // Get a transaction by the given id.
 func (s *TransactionsService) Get(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "api/transactions/get")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "transactions/get")
 
     if err != nil {
         return nil, err
@@ -40,7 +40,7 @@ func (s *TransactionsService) Get(ctx context.Context) (*http.Response, error) {
 
 // Get all unconfirmed transactions.
 func (s *TransactionsService) ListUnconfirmed(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "api/transactions/unconfirmed")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "transactions/unconfirmed")
 
     if err != nil {
         return nil, err
@@ -51,7 +51,7 @@ func (s *TransactionsService) ListUnconfirmed(ctx context.Context) (*http.Respon
 
 // Get an unconfirmed transaction by the given id.
 func (s *TransactionsService) GetUnconfirmed(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "api/transactions/unconfirmed/get")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "transactions/unconfirmed/get")
 
     if err != nil {
         return nil, err

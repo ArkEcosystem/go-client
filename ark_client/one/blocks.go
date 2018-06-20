@@ -18,7 +18,7 @@ type BlocksService Service
 
 // Get all accounts.
 func (s *BlocksService) List(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "api/blocks")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "blocks")
 
     if err != nil {
         return nil, err
@@ -29,7 +29,7 @@ func (s *BlocksService) List(ctx context.Context) (*http.Response, error) {
 
 // Get a block by the given id.
 func (s *BlocksService) Get(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "api/blocks/get")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "blocks/get")
 
     if err != nil {
         return nil, err
@@ -40,7 +40,7 @@ func (s *BlocksService) Get(ctx context.Context) (*http.Response, error) {
 
 // Get the blockchain epoch.
 func (s *BlocksService) Epoch(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "api/blocks/getEpoch")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "blocks/getEpoch")
 
     if err != nil {
         return nil, err
@@ -51,7 +51,7 @@ func (s *BlocksService) Epoch(ctx context.Context) (*http.Response, error) {
 
 // Get the transfer transaction fee.
 func (s *BlocksService) Fee(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "api/blocks/getFee")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "blocks/getFee")
 
     if err != nil {
         return nil, err
@@ -62,7 +62,7 @@ func (s *BlocksService) Fee(ctx context.Context) (*http.Response, error) {
 
 // Get a list of transaction fees.
 func (s *BlocksService) Fees(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "api/blocks/getFees")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "blocks/getFees")
 
     if err != nil {
         return nil, err
@@ -73,7 +73,7 @@ func (s *BlocksService) Fees(ctx context.Context) (*http.Response, error) {
 
 // Get the blockchain height.
 func (s *BlocksService) Height(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "api/blocks/getHeight")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "blocks/getHeight")
 
     if err != nil {
         return nil, err
@@ -84,7 +84,7 @@ func (s *BlocksService) Height(ctx context.Context) (*http.Response, error) {
 
 // Get the blockchain milestone.
 func (s *BlocksService) Milestone(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "api/blocks/getMilestone")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "blocks/getMilestone")
 
     if err != nil {
         return nil, err
@@ -95,7 +95,7 @@ func (s *BlocksService) Milestone(ctx context.Context) (*http.Response, error) {
 
 // Get the blockchain nethash.
 func (s *BlocksService) Nethash(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "api/blocks/getNethash")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "blocks/getNethash")
 
     if err != nil {
         return nil, err
@@ -106,7 +106,7 @@ func (s *BlocksService) Nethash(ctx context.Context) (*http.Response, error) {
 
 // Get the blockchain reward.
 func (s *BlocksService) Reward(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "api/blocks/getReward")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "blocks/getReward")
 
     if err != nil {
         return nil, err
@@ -117,7 +117,7 @@ func (s *BlocksService) Reward(ctx context.Context) (*http.Response, error) {
 
 // Get the blockchain status.
 func (s *BlocksService) Status(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "api/blocks/getStatus")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "blocks/getStatus")
 
     if err != nil {
         return nil, err
@@ -128,7 +128,7 @@ func (s *BlocksService) Status(ctx context.Context) (*http.Response, error) {
 
 // Get the blockchain supply.
 func (s *BlocksService) Supply(ctx context.Context) (*http.Response, error) {
-    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "api/blocks/getSupply")
+    resp, err := s.Client.Client.Get(s.Client.BaseURL.String() + "blocks/getSupply")
 
     if err != nil {
         return nil, err
