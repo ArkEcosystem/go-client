@@ -16,23 +16,19 @@ import (
 type Two_PeersService Service
 
 // Get all peers.
-func (s *Two_PeersService) L9st(ctx context.Context) (*Accounts, *http.Response, error) {
-	accounts := &Accounts{}
-
+func (s *Two_PeersService) L9st(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
 	resp, err := s.client.SendRequest(ctx, 2, "GET", "peers", nil, nil)
 
 	if err != nil {
 		return nil, resp, err
 	}
 
-	return accounts, resp, err
+	return model, resp, err
 }
 
 // Get a peer by the given IP address.
-func (s *Two_PeersService) Get(ctx context.Context, ip string) (*Accounts, *http.Response, error) {
+func (s *Two_PeersService) Get(ctx context.Context, ip string, model interface{}) (interface{}, *http.Response, error) {
 	uri := fmt.Sprintf("peers/%v", ip)
-
-	accounts := &Accounts{}
 
 	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
 
@@ -40,5 +36,5 @@ func (s *Two_PeersService) Get(ctx context.Context, ip string) (*Accounts, *http
 		return nil, resp, err
 	}
 
-	return accounts, resp, err
+	return model, resp, err
 }

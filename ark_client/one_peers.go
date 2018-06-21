@@ -15,16 +15,14 @@ import (
 type One_PeersService Service
 
 // Get all accounts.
-func (s *One_PeersService) List(ctx context.Context) (*Accounts, *http.Response, error) {
-	accounts := &Accounts{}
-
+func (s *One_PeersService) List(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
 	resp, err := s.client.SendRequest(ctx, 1, "GET", "peers", nil, nil)
 
 	if err != nil {
 		return nil, resp, err
 	}
 
-	return accounts, resp, err
+	return model, resp, err
 }
 
 // Get a peer by the given IP address and port.
@@ -39,14 +37,12 @@ func (s *One_PeersService) List(ctx context.Context) (*Accounts, *http.Response,
 // }
 
 // Get the node version of the given peer.
-func (s *One_PeersService) Version(ctx context.Context) (*Accounts, *http.Response, error) {
-	accounts := &Accounts{}
-
+func (s *One_PeersService) Version(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
 	resp, err := s.client.SendRequest(ctx, 1, "GET", "peers/version", nil, nil)
 
 	if err != nil {
 		return nil, resp, err
 	}
 
-	return accounts, resp, err
+	return model, resp, err
 }

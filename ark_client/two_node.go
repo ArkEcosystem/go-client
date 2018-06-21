@@ -15,40 +15,34 @@ import (
 type Two_NodeService Service
 
 // Get the node status.
-func (s *Two_NodeService) Status(ctx context.Context) (*Accounts, *http.Response, error) {
-	accounts := &Accounts{}
-
+func (s *Two_NodeService) Status(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
 	resp, err := s.client.SendRequest(ctx, 2, "GET", "node/status", nil, nil)
 
 	if err != nil {
 		return nil, resp, err
 	}
 
-	return accounts, resp, err
+	return model, resp, err
 }
 
 // Get the node syncing status.
-func (s *Two_NodeService) Syncing(ctx context.Context) (*Accounts, *http.Response, error) {
-	accounts := &Accounts{}
-
+func (s *Two_NodeService) Syncing(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
 	resp, err := s.client.SendRequest(ctx, 2, "GET", "node/syncing", nil, nil)
 
 	if err != nil {
 		return nil, resp, err
 	}
 
-	return accounts, resp, err
+	return model, resp, err
 }
 
 // Get the node configuration.
-func (s *Two_NodeService) Configuration(ctx context.Context) (*Accounts, *http.Response, error) {
-	accounts := &Accounts{}
-
+func (s *Two_NodeService) Configuration(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
 	resp, err := s.client.SendRequest(ctx, 2, "GET", "node/configuration", nil, nil)
 
 	if err != nil {
 		return nil, resp, err
 	}
 
-	return accounts, resp, err
+	return model, resp, err
 }

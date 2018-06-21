@@ -16,23 +16,19 @@ import (
 type Two_BlocksService Service
 
 // Get all blocks.
-func (s *Two_BlocksService) List(ctx context.Context) (*Accounts, *http.Response, error) {
-	accounts := &Accounts{}
-
+func (s *Two_BlocksService) List(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
 	resp, err := s.client.SendRequest(ctx, 2, "GET", "blocks", nil, nil)
 
 	if err != nil {
 		return nil, resp, err
 	}
 
-	return accounts, resp, err
+	return model, resp, err
 }
 
 // Get a block by the given id.
-func (s *Two_BlocksService) Get(ctx context.Context, id int) (*Accounts, *http.Response, error) {
+func (s *Two_BlocksService) Get(ctx context.Context, id int, model interface{}) (interface{}, *http.Response, error) {
 	uri := fmt.Sprintf("blocks/%v", id)
-
-	accounts := &Accounts{}
 
 	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
 
@@ -40,14 +36,12 @@ func (s *Two_BlocksService) Get(ctx context.Context, id int) (*Accounts, *http.R
 		return nil, resp, err
 	}
 
-	return accounts, resp, err
+	return model, resp, err
 }
 
 // Get all transactions by the given block.
-func (s *Two_BlocksService) Transactions(ctx context.Context, id int) (*Accounts, *http.Response, error) {
+func (s *Two_BlocksService) Transactions(ctx context.Context, id int, model interface{}) (interface{}, *http.Response, error) {
 	uri := fmt.Sprintf("blocks/%v/transactions", id)
-
-	accounts := &Accounts{}
 
 	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
 
@@ -55,18 +49,16 @@ func (s *Two_BlocksService) Transactions(ctx context.Context, id int) (*Accounts
 		return nil, resp, err
 	}
 
-	return accounts, resp, err
+	return model, resp, err
 }
 
 // Filter all blocks by the given criteria.
-func (s *Two_BlocksService) Search(ctx context.Context) (*Accounts, *http.Response, error) {
-	accounts := &Accounts{}
-
+func (s *Two_BlocksService) Search(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
 	resp, err := s.client.SendRequest(ctx, 2, "GET", "blocks/search", nil, nil)
 
 	if err != nil {
 		return nil, resp, err
 	}
 
-	return accounts, resp, err
+	return model, resp, err
 }

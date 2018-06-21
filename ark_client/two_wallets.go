@@ -16,36 +16,30 @@ import (
 type Two_WalletsService Service
 
 // Get all wallets.
-func (s *Two_WalletsService) List(ctx context.Context) (*Accounts, *http.Response, error) {
-	accounts := &Accounts{}
-
+func (s *Two_WalletsService) List(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
 	resp, err := s.client.SendRequest(ctx, 2, "GET", "wallets", nil, nil)
 
 	if err != nil {
 		return nil, resp, err
 	}
 
-	return accounts, resp, err
+	return model, resp, err
 }
 
 // Get all wallets sorted by balance in descending order.
-func (s *Two_WalletsService) Top(ctx context.Context) (*Accounts, *http.Response, error) {
-	accounts := &Accounts{}
-
+func (s *Two_WalletsService) Top(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
 	resp, err := s.client.SendRequest(ctx, 2, "GET", "wallets/top", nil, nil)
 
 	if err != nil {
 		return nil, resp, err
 	}
 
-	return accounts, resp, err
+	return model, resp, err
 }
 
 // Get a wallet by the given id.
-func (s *Two_WalletsService) Get(ctx context.Context, id int) (*Accounts, *http.Response, error) {
+func (s *Two_WalletsService) Get(ctx context.Context, id int, model interface{}) (interface{}, *http.Response, error) {
 	uri := fmt.Sprintf("wallets/%v", id)
-
-	accounts := &Accounts{}
 
 	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
 
@@ -53,14 +47,12 @@ func (s *Two_WalletsService) Get(ctx context.Context, id int) (*Accounts, *http.
 		return nil, resp, err
 	}
 
-	return accounts, resp, err
+	return model, resp, err
 }
 
 // Get all transactions for the given wallet.
-func (s *Two_WalletsService) Transactions(ctx context.Context, id int) (*Accounts, *http.Response, error) {
+func (s *Two_WalletsService) Transactions(ctx context.Context, id int, model interface{}) (interface{}, *http.Response, error) {
 	uri := fmt.Sprintf("wallets/%v/transactions", id)
-
-	accounts := &Accounts{}
 
 	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
 
@@ -68,14 +60,12 @@ func (s *Two_WalletsService) Transactions(ctx context.Context, id int) (*Account
 		return nil, resp, err
 	}
 
-	return accounts, resp, err
+	return model, resp, err
 }
 
 // Get all transactions sent by the given wallet.
-func (s *Two_WalletsService) SentTransactions(ctx context.Context, id int) (*Accounts, *http.Response, error) {
+func (s *Two_WalletsService) SentTransactions(ctx context.Context, id int, model interface{}) (interface{}, *http.Response, error) {
 	uri := fmt.Sprintf("wallets/%v/transactions/sent", id)
-
-	accounts := &Accounts{}
 
 	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
 
@@ -83,14 +73,12 @@ func (s *Two_WalletsService) SentTransactions(ctx context.Context, id int) (*Acc
 		return nil, resp, err
 	}
 
-	return accounts, resp, err
+	return model, resp, err
 }
 
 // Get all transactions received by the given wallet.
-func (s *Two_WalletsService) ReceivedTransaction(ctx context.Context, id int) (*Accounts, *http.Response, error) {
+func (s *Two_WalletsService) ReceivedTransaction(ctx context.Context, id int, model interface{}) (interface{}, *http.Response, error) {
 	uri := fmt.Sprintf("wallets/%v/transactions/received", id)
-
-	accounts := &Accounts{}
 
 	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
 
@@ -98,14 +86,12 @@ func (s *Two_WalletsService) ReceivedTransaction(ctx context.Context, id int) (*
 		return nil, resp, err
 	}
 
-	return accounts, resp, err
+	return model, resp, err
 }
 
 // Get all votes by the given wallet.
-func (s *Two_WalletsService) Votes(ctx context.Context, id int) (*Accounts, *http.Response, error) {
+func (s *Two_WalletsService) Votes(ctx context.Context, id int, model interface{}) (interface{}, *http.Response, error) {
 	uri := fmt.Sprintf("wallets/%v/votes", id)
-
-	accounts := &Accounts{}
 
 	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
 
@@ -113,7 +99,7 @@ func (s *Two_WalletsService) Votes(ctx context.Context, id int) (*Accounts, *htt
 		return nil, resp, err
 	}
 
-	return accounts, resp, err
+	return model, resp, err
 }
 
 // Filter all wallets by the given criteria.

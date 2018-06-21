@@ -15,14 +15,12 @@ import (
 type One_SignaturesService Service
 
 // Get the second signature registration fee.
-func (s *One_SignaturesService) Fee(ctx context.Context) (*Accounts, *http.Response, error) {
-	accounts := &Accounts{}
-
+func (s *One_SignaturesService) Fee(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
 	resp, err := s.client.SendRequest(ctx, 1, "GET", "signatures/fee", nil, nil)
 
 	if err != nil {
 		return nil, resp, err
 	}
 
-	return accounts, resp, err
+	return model, resp, err
 }
