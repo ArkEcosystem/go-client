@@ -5,6 +5,6 @@
 
 package request
 
-type PublicKeyQuery struct {
+type AddressQuery struct {
 	Address string `url:"address"`
 }

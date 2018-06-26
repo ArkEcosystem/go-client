@@ -27,8 +27,10 @@ func (s *One_AccountsService) List(ctx context.Context, model interface{}) (inte
 }
 
 // Get a account by the given address.
-func (s *One_AccountsService) Get(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts", nil, nil)
+func (s *One_AccountsService) Get(ctx context.Context, address string, model interface{}) (interface{}, *http.Response, error) {
+	query := &request.AddressQuery{Address: address}
+
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts", query, nil)
 
 	if err != nil {
 		return nil, resp, err
@@ -49,8 +51,10 @@ func (s *One_AccountsService) Count(ctx context.Context, model interface{}) (int
 }
 
 // Get a delegate by the given address.
-func (s *One_AccountsService) Delegate(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/delegates", nil, nil)
+func (s *One_AccountsService) Delegate(ctx context.Context, address string, model interface{}) (interface{}, *http.Response, error) {
+	query := &request.AddressQuery{Address: address}
+
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/delegates", query, nil)
 
 	if err != nil {
 		return nil, resp, err
@@ -71,8 +75,10 @@ func (s *One_AccountsService) DelegateFee(ctx context.Context, model interface{}
 }
 
 // Get the balance for an account by the given address.
-func (s *One_AccountsService) Balance(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/getBalance", nil, nil)
+func (s *One_AccountsService) Balance(ctx context.Context, address string, model interface{}) (interface{}, *http.Response, error) {
+	query := &request.AddressQuery{Address: address}
+
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/getBalance", query, nil)
 
 	if err != nil {
 		return nil, resp, err
@@ -83,7 +89,7 @@ func (s *One_AccountsService) Balance(ctx context.Context, model interface{}) (i
 
 // Get the public key for an account by the given address.
 func (s *One_AccountsService) PublicKey(ctx context.Context, address string, model interface{}) (interface{}, *http.Response, error) {
-	query := &request.PublicKeyQuery{Address: address}
+	query := &request.AddressQuery{Address: address}
 
 	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/getPublicKey", query, &model)
 
