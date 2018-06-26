@@ -6,6 +6,7 @@
 package ark_client
 
 import (
+	"./structs/request"
 	"context"
 	"net/http"
 )
@@ -26,8 +27,10 @@ func (s *One_DelegatesService) List(ctx context.Context, model interface{}) (int
 }
 
 // Get a delegate by the given id.
-func (s *One_DelegatesService) Get(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "delegates/get", nil, nil)
+func (s *One_DelegatesService) Get(ctx context.Context, id string, model interface{}) (interface{}, *http.Response, error) {
+	query := &request.PublicKeyQuery{PublicKey: id}
+
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "delegates/get", query, nil)
 
 	if err != nil {
 		return nil, resp, err
@@ -59,8 +62,10 @@ func (s *One_DelegatesService) Fee(ctx context.Context, model interface{}) (inte
 }
 
 // Get the forged totals by the given public key.
-func (s *One_DelegatesService) ForgedByAccount(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "delegates/forging/getForgedByAccount", nil, nil)
+func (s *One_DelegatesService) ForgedByAccount(ctx context.Context, id string, model interface{}) (interface{}, *http.Response, error) {
+	query := &request.GeneratorPublicKeyQuery{GeneratorPublicKey: id}
+
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "delegates/forging/getForgedByAccount", query, nil)
 
 	if err != nil {
 		return nil, resp, err
@@ -70,6 +75,7 @@ func (s *One_DelegatesService) ForgedByAccount(ctx context.Context, model interf
 }
 
 // Filter all delegates by the given criteria.
+// TODO: request query
 func (s *One_DelegatesService) Search(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
 	resp, err := s.client.SendRequest(ctx, 1, "GET", "delegates/search", nil, nil)
 
@@ -81,8 +87,10 @@ func (s *One_DelegatesService) Search(ctx context.Context, model interface{}) (i
 }
 
 // Get all voters by the given public key.
-func (s *One_DelegatesService) Voters(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "delegates/voters", nil, nil)
+func (s *One_DelegatesService) Voters(ctx context.Context, id string, model interface{}) (interface{}, *http.Response, error) {
+	query := &request.PublicKeyQuery{PublicKey: id}
+
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "delegates/voters", query, nil)
 
 	if err != nil {
 		return nil, resp, err

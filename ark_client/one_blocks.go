@@ -6,6 +6,7 @@
 package ark_client
 
 import (
+	"./structs/request"
 	"context"
 	"net/http"
 )
@@ -26,8 +27,10 @@ func (s *One_BlocksService) List(ctx context.Context, model interface{}) (interf
 }
 
 // Get a block by the given id.
-func (s *One_BlocksService) Get(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks/get", nil, nil)
+func (s *One_BlocksService) Get(ctx context.Context, id string, model interface{}) (interface{}, *http.Response, error) {
+	query := &request.BlockIdQuery{Id: id}
+
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks/get", query, nil)
 
 	if err != nil {
 		return nil, resp, err
