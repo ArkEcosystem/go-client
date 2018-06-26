@@ -6,13 +6,10 @@
 package ark_client
 
 import (
+	"./structs/request"
 	"context"
 	"net/http"
 )
-
-type PublicKeyQuery struct {
-	Address string `url:"address"`
-}
 
 // AccountsService handles communication with the accounts related
 // methods of the Ark Core API - Version 1.
@@ -86,7 +83,7 @@ func (s *One_AccountsService) Balance(ctx context.Context, model interface{}) (i
 
 // Get the public key for an account by the given address.
 func (s *One_AccountsService) PublicKey(ctx context.Context, address string, model interface{}) (interface{}, *http.Response, error) {
-	query := &PublicKeyQuery{Address: address}
+	query := &request.PublicKeyQuery{Address: address}
 
 	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/getPublicKey", query, &model)
 
