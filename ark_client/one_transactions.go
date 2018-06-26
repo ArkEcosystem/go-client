@@ -6,6 +6,7 @@
 package ark_client
 
 import (
+	"./structs/request"
 	"context"
 	"net/http"
 )
@@ -26,8 +27,10 @@ func (s *One_TransactionsService) List(ctx context.Context, model interface{}) (
 }
 
 // Get a transaction by the given id.
-func (s *One_TransactionsService) Get(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "transactions/get", nil, nil)
+func (s *One_TransactionsService) Get(ctx context.Context, id string, model interface{}) (interface{}, *http.Response, error) {
+	query := &request.TransactionIdQuery{Id: id}
+
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "transactions/get", query, nil)
 
 	if err != nil {
 		return nil, resp, err
@@ -48,8 +51,10 @@ func (s *One_TransactionsService) ListUnconfirmed(ctx context.Context, model int
 }
 
 // Get an unconfirmed transaction by the given id.
-func (s *One_TransactionsService) GetUnconfirmed(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "transactions/unconfirmed/get", nil, nil)
+func (s *One_TransactionsService) GetUnconfirmed(ctx context.Context, id string, model interface{}) (interface{}, *http.Response, error) {
+	query := &request.TransactionIdQuery{Id: id}
+
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "transactions/unconfirmed/get", query, nil)
 
 	if err != nil {
 		return nil, resp, err

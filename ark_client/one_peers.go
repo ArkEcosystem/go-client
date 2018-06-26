@@ -6,6 +6,7 @@
 package ark_client
 
 import (
+	"./structs/request"
 	"context"
 	"net/http"
 )
@@ -26,15 +27,17 @@ func (s *One_PeersService) List(ctx context.Context, model interface{}) (interfa
 }
 
 // Get a peer by the given IP address and port.
-// func (s *One_PeersService) Get(ctx context.Context) (*http.Response, error) {
-//     resp, err := s.client.SendRequest(ctx, 1, "GET", "peers/get", compact("ip", "port"))
+func (s *One_PeersService) Get(ctx context.Context, ip string, port int) (*http.Response, error) {
+	query := &request.PeersQuery{Ip: ip, Port: port}
 
-//     if err != nil {
-//         return nil, err
-//     }
+    resp, err := s.client.SendRequest(ctx, 1, "GET", "peers/get", query, nil)
 
-//     return resp, nil
-// }
+    if err != nil {
+        return nil, err
+    }
+
+    return resp, nil
+}
 
 // Get the node version of the given peer.
 func (s *One_PeersService) Version(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
