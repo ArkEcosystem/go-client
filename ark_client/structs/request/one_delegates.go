@@ -12,3 +12,19 @@ type GeneratorPublicKeyQuery struct {
 type PublicKeyQuery struct {
 	PublicKey string `url:"publicKey"`
 }
+
+type GetDelegateQuery struct {
+	PublicKey string `url:"publicKey"`
+	Username string `url:"username"`
+}
+
+type GetDelegatesQuery struct {
+	OrderBy string `url:"orderBy"`
+	Limit int `url:"limit"`
+	Offset int `url:"offset"`
+}
+
+type DelegateSearchQuery struct {
+	Q string `url:"q"`
+	Limit string `url:"limit"`
+}

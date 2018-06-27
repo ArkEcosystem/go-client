@@ -16,8 +16,8 @@ import (
 type One_BlocksService Service
 
 // Get all accounts.
-func (s *One_BlocksService) List(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks", nil, nil)
+func (s *One_BlocksService) List(ctx context.Context, query *request.BlocksQuery, model interface{}) (interface{}, *http.Response, error) {
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks", query, nil)
 
 	if err != nil {
 		return nil, resp, err

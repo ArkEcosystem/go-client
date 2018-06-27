@@ -16,8 +16,8 @@ import (
 type One_PeersService Service
 
 // Get all accounts.
-func (s *One_PeersService) List(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "peers", nil, nil)
+func (s *One_PeersService) List(ctx context.Context, query *request.GetPeersQuery, model interface{}) (interface{}, *http.Response, error) {
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "peers", query, nil)
 
 	if err != nil {
 		return nil, resp, err
@@ -27,9 +27,7 @@ func (s *One_PeersService) List(ctx context.Context, model interface{}) (interfa
 }
 
 // Get a peer by the given IP address and port.
-func (s *One_PeersService) Get(ctx context.Context, ip string, port int) (*http.Response, error) {
-	query := &request.PeersQuery{Ip: ip, Port: port}
-
+func (s *One_PeersService) Get(ctx context.Context, query *request.GetPeerQuery, model interface{}) (*http.Response, error) {
     resp, err := s.client.SendRequest(ctx, 1, "GET", "peers/get", query, nil)
 
     if err != nil {

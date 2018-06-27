@@ -16,8 +16,8 @@ import (
 type One_DelegatesService Service
 
 // Get all accounts.
-func (s *One_DelegatesService) List(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "delegates", nil, nil)
+func (s *One_DelegatesService) List(ctx context.Context, query *request.GetDelegatesQuery, model interface{}) (interface{}, *http.Response, error) {
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "delegates", query, nil)
 
 	if err != nil {
 		return nil, resp, err
@@ -26,10 +26,8 @@ func (s *One_DelegatesService) List(ctx context.Context, model interface{}) (int
 	return model, resp, err
 }
 
-// Get a delegate by the given id.
-func (s *One_DelegatesService) Get(ctx context.Context, id string, model interface{}) (interface{}, *http.Response, error) {
-	query := &request.PublicKeyQuery{PublicKey: id}
-
+// Get a delegate by public key or username.
+func (s *One_DelegatesService) Get(ctx context.Context, query *request.GetDelegateQuery, model interface{}) (interface{}, *http.Response, error) {
 	resp, err := s.client.SendRequest(ctx, 1, "GET", "delegates/get", query, nil)
 
 	if err != nil {
@@ -76,8 +74,8 @@ func (s *One_DelegatesService) ForgedByAccount(ctx context.Context, id string, m
 
 // Filter all delegates by the given criteria.
 // TODO: request query
-func (s *One_DelegatesService) Search(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "delegates/search", nil, nil)
+func (s *One_DelegatesService) Search(ctx context.Context, query *request.DelegateSearchQuery, model interface{}) (interface{}, *http.Response, error) {
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "delegates/search", query, nil)
 
 	if err != nil {
 		return nil, resp, err

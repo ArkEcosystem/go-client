@@ -101,8 +101,8 @@ func (s *One_AccountsService) PublicKey(ctx context.Context, address string, mod
 }
 
 // Get all wallets sorted by balance in descending order.
-func (s *One_AccountsService) Top(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/top", nil, &model)
+func (s *One_AccountsService) Top(ctx context.Context, query *request.TopQuery, model interface{}) (interface{}, *http.Response, error) {
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/top", query, &model)
 
 	if err != nil {
 		return nil, resp, err

@@ -8,3 +8,8 @@ package request
 type AddressQuery struct {
 	Address string `url:"address"`
 }
+
+type TopQuery struct {
+	Limit int `url:"limit"`
+	Offset int `url:"offset"`
+}

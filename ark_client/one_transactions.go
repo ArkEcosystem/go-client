@@ -16,8 +16,8 @@ import (
 type One_TransactionsService Service
 
 // Get all accounts.
-func (s *One_TransactionsService) List(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "transactions", nil, nil)
+func (s *One_TransactionsService) List(ctx context.Context, query *request.GetTransactionsQuery, model interface{}) (interface{}, *http.Response, error) {
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "transactions", query, nil)
 
 	if err != nil {
 		return nil, resp, err
@@ -40,8 +40,8 @@ func (s *One_TransactionsService) Get(ctx context.Context, id string, model inte
 }
 
 // Get all unconfirmed transactions.
-func (s *One_TransactionsService) ListUnconfirmed(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "transactions/unconfirmed", nil, nil)
+func (s *One_TransactionsService) ListUnconfirmed(ctx context.Context, query *request.GetUnconfirmedTransactionsQuery, model interface{}) (interface{}, *http.Response, error) {
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "transactions/unconfirmed", query, nil)
 
 	if err != nil {
 		return nil, resp, err
