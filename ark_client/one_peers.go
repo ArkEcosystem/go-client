@@ -17,7 +17,7 @@ type One_PeersService Service
 
 // Get all accounts.
 func (s *One_PeersService) List(ctx context.Context, query *request.GetPeersQuery, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "peers", query, nil)
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "peers", query, &model)
 
 	if err != nil {
 		return nil, resp, err
@@ -28,7 +28,7 @@ func (s *One_PeersService) List(ctx context.Context, query *request.GetPeersQuer
 
 // Get a peer by the given IP address and port.
 func (s *One_PeersService) Get(ctx context.Context, query *request.GetPeerQuery, model interface{}) (*http.Response, error) {
-    resp, err := s.client.SendRequest(ctx, 1, "GET", "peers/get", query, nil)
+    resp, err := s.client.SendRequest(ctx, 1, "GET", "peers/get", query, &model)
 
     if err != nil {
         return nil, err
@@ -39,7 +39,7 @@ func (s *One_PeersService) Get(ctx context.Context, query *request.GetPeerQuery,
 
 // Get the node version of the given peer.
 func (s *One_PeersService) Version(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "peers/version", nil, nil)
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "peers/version", nil, &model)
 
 	if err != nil {
 		return nil, resp, err

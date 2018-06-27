@@ -17,7 +17,7 @@ type One_BlocksService Service
 
 // Get all accounts.
 func (s *One_BlocksService) List(ctx context.Context, query *request.BlocksQuery, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks", query, nil)
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks", query, &model)
 
 	if err != nil {
 		return nil, resp, err
@@ -30,7 +30,7 @@ func (s *One_BlocksService) List(ctx context.Context, query *request.BlocksQuery
 func (s *One_BlocksService) Get(ctx context.Context, id string, model interface{}) (interface{}, *http.Response, error) {
 	query := &request.BlockIdQuery{Id: id}
 
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks/get", query, nil)
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks/get", query, &model)
 
 	if err != nil {
 		return nil, resp, err
@@ -41,7 +41,7 @@ func (s *One_BlocksService) Get(ctx context.Context, id string, model interface{
 
 // Get the blockchain epoch.
 func (s *One_BlocksService) Epoch(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks/getEpoch", nil, nil)
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks/getEpoch", nil, &model)
 
 	if err != nil {
 		return nil, resp, err
@@ -52,7 +52,7 @@ func (s *One_BlocksService) Epoch(ctx context.Context, model interface{}) (inter
 
 // Get the transfer transaction fee.
 func (s *One_BlocksService) Fee(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks/getFee", nil, nil)
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks/getFee", nil, &model)
 
 	if err != nil {
 		return nil, resp, err
@@ -63,7 +63,7 @@ func (s *One_BlocksService) Fee(ctx context.Context, model interface{}) (interfa
 
 // Get a list of transaction fees.
 func (s *One_BlocksService) Fees(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks/getFees", nil, nil)
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks/getFees", nil, &model)
 
 	if err != nil {
 		return nil, resp, err
@@ -74,7 +74,7 @@ func (s *One_BlocksService) Fees(ctx context.Context, model interface{}) (interf
 
 // Get the blockchain height.
 func (s *One_BlocksService) Height(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks/getHeight", nil, nil)
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks/getHeight", nil, &model)
 
 	if err != nil {
 		return nil, resp, err
@@ -85,7 +85,7 @@ func (s *One_BlocksService) Height(ctx context.Context, model interface{}) (inte
 
 // Get the blockchain milestone.
 func (s *One_BlocksService) Milestone(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks/getMilestone", nil, nil)
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks/getMilestone", nil, &model)
 
 	if err != nil {
 		return nil, resp, err
@@ -96,7 +96,7 @@ func (s *One_BlocksService) Milestone(ctx context.Context, model interface{}) (i
 
 // Get the blockchain nethash.
 func (s *One_BlocksService) Nethash(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks/getNethash", nil, nil)
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks/getNethash", nil, &model)
 
 	if err != nil {
 		return nil, resp, err
@@ -107,7 +107,7 @@ func (s *One_BlocksService) Nethash(ctx context.Context, model interface{}) (int
 
 // Get the blockchain reward.
 func (s *One_BlocksService) Reward(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks/getReward", nil, nil)
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks/getReward", nil, &model)
 
 	if err != nil {
 		return nil, resp, err
@@ -118,7 +118,7 @@ func (s *One_BlocksService) Reward(ctx context.Context, model interface{}) (inte
 
 // Get the blockchain status.
 func (s *One_BlocksService) Status(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks/getStatus", nil, nil)
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks/getStatus", nil, &model)
 
 	if err != nil {
 		return nil, resp, err
@@ -129,7 +129,7 @@ func (s *One_BlocksService) Status(ctx context.Context, model interface{}) (inte
 
 // Get the blockchain supply.
 func (s *One_BlocksService) Supply(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks/getSupply", nil, nil)
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks/getSupply", nil, &model)
 
 	if err != nil {
 		return nil, resp, err

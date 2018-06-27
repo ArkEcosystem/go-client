@@ -18,7 +18,7 @@ type Two_VotesService Service
 
 // Get all votes.
 func (s *Two_VotesService) List(ctx context.Context, query *request.Pagination, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 2, "GET", "votes", query, nil)
+	resp, err := s.client.SendRequest(ctx, 2, "GET", "votes", query, &model)
 
 	if err != nil {
 		return nil, resp, err
@@ -31,7 +31,7 @@ func (s *Two_VotesService) List(ctx context.Context, query *request.Pagination, 
 func (s *Two_VotesService) Get(ctx context.Context, id int, model interface{}) (interface{}, *http.Response, error) {
 	uri := fmt.Sprintf("votes/%v", id)
 
-	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
+	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, &model)
 
 	if err != nil {
 		return nil, resp, err

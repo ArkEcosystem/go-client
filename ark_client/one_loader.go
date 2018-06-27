@@ -16,7 +16,7 @@ type One_LoaderService Service
 
 // Get the loader status.
 func (s *One_LoaderService) Status(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "loader/status", nil, nil)
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "loader/status", nil, &model)
 
 	if err != nil {
 		return nil, resp, err
@@ -27,7 +27,7 @@ func (s *One_LoaderService) Status(ctx context.Context, model interface{}) (inte
 
 // Get the loader syncing status.
 func (s *One_LoaderService) SyncStatus(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "loader/status/sync", nil, nil)
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "loader/status/sync", nil, &model)
 
 	if err != nil {
 		return nil, resp, err
@@ -38,7 +38,7 @@ func (s *One_LoaderService) SyncStatus(ctx context.Context, model interface{}) (
 
 // Get the loader configuration.
 func (s *One_LoaderService) AutoConfigure(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "loader/autoconfigure", nil, nil)
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "loader/autoconfigure", nil, &model)
 
 	if err != nil {
 		return nil, resp, err

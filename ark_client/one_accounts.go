@@ -17,7 +17,7 @@ type One_AccountsService Service
 
 // Get all accounts.
 func (s *One_AccountsService) List(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/getAllAccounts", nil, nil)
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/getAllAccounts", nil, &model)
 
 	if err != nil {
 		return nil, resp, err
@@ -30,7 +30,7 @@ func (s *One_AccountsService) List(ctx context.Context, model interface{}) (inte
 func (s *One_AccountsService) Get(ctx context.Context, address string, model interface{}) (interface{}, *http.Response, error) {
 	query := &request.AddressQuery{Address: address}
 
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts", query, nil)
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts", query, &model)
 
 	if err != nil {
 		return nil, resp, err
@@ -41,7 +41,7 @@ func (s *One_AccountsService) Get(ctx context.Context, address string, model int
 
 // Count all accounts.
 func (s *One_AccountsService) Count(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/count", nil, nil)
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/count", nil, &model)
 
 	if err != nil {
 		return nil, resp, err
@@ -54,7 +54,7 @@ func (s *One_AccountsService) Count(ctx context.Context, model interface{}) (int
 func (s *One_AccountsService) Delegate(ctx context.Context, address string, model interface{}) (interface{}, *http.Response, error) {
 	query := &request.AddressQuery{Address: address}
 
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/delegates", query, nil)
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/delegates", query, &model)
 
 	if err != nil {
 		return nil, resp, err
@@ -65,7 +65,7 @@ func (s *One_AccountsService) Delegate(ctx context.Context, address string, mode
 
 // Get the delegate registration fee.
 func (s *One_AccountsService) DelegateFee(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/delegates/fee", nil, nil)
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/delegates/fee", nil, &model)
 
 	if err != nil {
 		return nil, resp, err
@@ -78,7 +78,7 @@ func (s *One_AccountsService) DelegateFee(ctx context.Context, model interface{}
 func (s *One_AccountsService) Balance(ctx context.Context, address string, model interface{}) (interface{}, *http.Response, error) {
 	query := &request.AddressQuery{Address: address}
 
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/getBalance", query, nil)
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/getBalance", query, &model)
 
 	if err != nil {
 		return nil, resp, err

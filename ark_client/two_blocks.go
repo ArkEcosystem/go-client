@@ -18,7 +18,7 @@ type Two_BlocksService Service
 
 // Get all blocks.
 func (s *Two_BlocksService) List(ctx context.Context, query *request.Pagination, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 2, "GET", "blocks", query, nil)
+	resp, err := s.client.SendRequest(ctx, 2, "GET", "blocks", query, &model)
 
 	if err != nil {
 		return nil, resp, err
@@ -31,7 +31,7 @@ func (s *Two_BlocksService) List(ctx context.Context, query *request.Pagination,
 func (s *Two_BlocksService) Get(ctx context.Context, id int, model interface{}) (interface{}, *http.Response, error) {
 	uri := fmt.Sprintf("blocks/%v", id)
 
-	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
+	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, &model)
 
 	if err != nil {
 		return nil, resp, err
@@ -44,7 +44,7 @@ func (s *Two_BlocksService) Get(ctx context.Context, id int, model interface{}) 
 func (s *Two_BlocksService) Transactions(ctx context.Context, id int, query *request.Pagination, model interface{}) (interface{}, *http.Response, error) {
 	uri := fmt.Sprintf("blocks/%v/transactions", id)
 
-	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, query, nil)
+	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, query, &model)
 
 	if err != nil {
 		return nil, resp, err
@@ -55,7 +55,7 @@ func (s *Two_BlocksService) Transactions(ctx context.Context, id int, query *req
 
 // Filter all blocks by the given criteria.
 func (s *Two_BlocksService) Search(ctx context.Context, query *request.Pagination, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 2, "GET", "blocks/search", query, nil)
+	resp, err := s.client.SendRequest(ctx, 2, "GET", "blocks/search", query, &model)
 
 	if err != nil {
 		return nil, resp, err
