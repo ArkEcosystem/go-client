@@ -6,6 +6,7 @@
 package ark_client
 
 import (
+	"./structs/request"
 	"context"
 	"fmt"
 	"net/http"
@@ -16,8 +17,8 @@ import (
 type Two_BlocksService Service
 
 // Get all blocks.
-func (s *Two_BlocksService) List(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 2, "GET", "blocks", nil, nil)
+func (s *Two_BlocksService) List(ctx context.Context, query *request.Pagination, model interface{}) (interface{}, *http.Response, error) {
+	resp, err := s.client.SendRequest(ctx, 2, "GET", "blocks", query, nil)
 
 	if err != nil {
 		return nil, resp, err
@@ -40,10 +41,10 @@ func (s *Two_BlocksService) Get(ctx context.Context, id int, model interface{}) 
 }
 
 // Get all transactions by the given block.
-func (s *Two_BlocksService) Transactions(ctx context.Context, id int, model interface{}) (interface{}, *http.Response, error) {
+func (s *Two_BlocksService) Transactions(ctx context.Context, id int, query *request.Pagination, model interface{}) (interface{}, *http.Response, error) {
 	uri := fmt.Sprintf("blocks/%v/transactions", id)
 
-	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
+	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, query, nil)
 
 	if err != nil {
 		return nil, resp, err
@@ -53,8 +54,8 @@ func (s *Two_BlocksService) Transactions(ctx context.Context, id int, model inte
 }
 
 // Filter all blocks by the given criteria.
-func (s *Two_BlocksService) Search(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 2, "GET", "blocks/search", nil, nil)
+func (s *Two_BlocksService) Search(ctx context.Context, query *request.Pagination, model interface{}) (interface{}, *http.Response, error) {
+	resp, err := s.client.SendRequest(ctx, 2, "GET", "blocks/search", query, nil)
 
 	if err != nil {
 		return nil, resp, err

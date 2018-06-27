@@ -6,6 +6,7 @@
 package ark_client
 
 import (
+	"./structs/request"
 	"context"
 	"fmt"
 	"net/http"
@@ -16,8 +17,8 @@ import (
 type Two_DelegatesService Service
 
 // Get all accounts.
-func (s *Two_DelegatesService) List(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 2, "GET", "delegates", nil, nil)
+func (s *Two_DelegatesService) List(ctx context.Context, query *request.Pagination, model interface{}) (interface{}, *http.Response, error) {
+	resp, err := s.client.SendRequest(ctx, 2, "GET", "delegates", query, nil)
 
 	if err != nil {
 		return nil, resp, err
@@ -40,10 +41,10 @@ func (s *Two_DelegatesService) Get(ctx context.Context, id int, model interface{
 }
 
 // Get all blocks for the given delegate.
-func (s *Two_DelegatesService) Blocks(ctx context.Context, id int, model interface{}) (interface{}, *http.Response, error) {
+func (s *Two_DelegatesService) Blocks(ctx context.Context, id int, query *request.Pagination, model interface{}) (interface{}, *http.Response, error) {
 	uri := fmt.Sprintf("delegates/%v/blocks", id)
 
-	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
+	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, query, nil)
 
 	if err != nil {
 		return nil, resp, err
@@ -53,10 +54,10 @@ func (s *Two_DelegatesService) Blocks(ctx context.Context, id int, model interfa
 }
 
 // Get all voters for the given delegate.
-func (s *Two_DelegatesService) Voters(ctx context.Context, id int, model interface{}) (interface{}, *http.Response, error) {
+func (s *Two_DelegatesService) Voters(ctx context.Context, id int, query *request.Pagination, model interface{}) (interface{}, *http.Response, error) {
 	uri := fmt.Sprintf("delegates/%v/voters", id)
 
-	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
+	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, query, nil)
 
 	if err != nil {
 		return nil, resp, err

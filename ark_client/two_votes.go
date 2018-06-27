@@ -6,6 +6,7 @@
 package ark_client
 
 import (
+	"./structs/request"
 	"context"
 	"fmt"
 	"net/http"
@@ -16,8 +17,8 @@ import (
 type Two_VotesService Service
 
 // Get all votes.
-func (s *Two_VotesService) List(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 2, "GET", "votes", nil, nil)
+func (s *Two_VotesService) List(ctx context.Context, query *request.Pagination, model interface{}) (interface{}, *http.Response, error) {
+	resp, err := s.client.SendRequest(ctx, 2, "GET", "votes", query, nil)
 
 	if err != nil {
 		return nil, resp, err

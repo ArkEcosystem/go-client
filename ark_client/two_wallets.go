@@ -6,6 +6,7 @@
 package ark_client
 
 import (
+	"./structs/request"
 	"context"
 	"fmt"
 	"net/http"
@@ -16,8 +17,8 @@ import (
 type Two_WalletsService Service
 
 // Get all wallets.
-func (s *Two_WalletsService) List(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 2, "GET", "wallets", nil, nil)
+func (s *Two_WalletsService) List(ctx context.Context, query *request.Pagination, model interface{}) (interface{}, *http.Response, error) {
+	resp, err := s.client.SendRequest(ctx, 2, "GET", "wallets", query, nil)
 
 	if err != nil {
 		return nil, resp, err
@@ -27,8 +28,8 @@ func (s *Two_WalletsService) List(ctx context.Context, model interface{}) (inter
 }
 
 // Get all wallets sorted by balance in descending order.
-func (s *Two_WalletsService) Top(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 2, "GET", "wallets/top", nil, nil)
+func (s *Two_WalletsService) Top(ctx context.Context, query *request.Pagination, model interface{}) (interface{}, *http.Response, error) {
+	resp, err := s.client.SendRequest(ctx, 2, "GET", "wallets/top", query, nil)
 
 	if err != nil {
 		return nil, resp, err
@@ -51,10 +52,10 @@ func (s *Two_WalletsService) Get(ctx context.Context, id int, model interface{})
 }
 
 // Get all transactions for the given wallet.
-func (s *Two_WalletsService) Transactions(ctx context.Context, id int, model interface{}) (interface{}, *http.Response, error) {
+func (s *Two_WalletsService) Transactions(ctx context.Context, id int, query *request.Pagination, model interface{}) (interface{}, *http.Response, error) {
 	uri := fmt.Sprintf("wallets/%v/transactions", id)
 
-	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
+	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, query, nil)
 
 	if err != nil {
 		return nil, resp, err
@@ -64,10 +65,10 @@ func (s *Two_WalletsService) Transactions(ctx context.Context, id int, model int
 }
 
 // Get all transactions sent by the given wallet.
-func (s *Two_WalletsService) SentTransactions(ctx context.Context, id int, model interface{}) (interface{}, *http.Response, error) {
+func (s *Two_WalletsService) SentTransactions(ctx context.Context, id int, query *request.Pagination, model interface{}) (interface{}, *http.Response, error) {
 	uri := fmt.Sprintf("wallets/%v/transactions/sent", id)
 
-	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
+	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, query, nil)
 
 	if err != nil {
 		return nil, resp, err
@@ -77,10 +78,10 @@ func (s *Two_WalletsService) SentTransactions(ctx context.Context, id int, model
 }
 
 // Get all transactions received by the given wallet.
-func (s *Two_WalletsService) ReceivedTransaction(ctx context.Context, id int, model interface{}) (interface{}, *http.Response, error) {
+func (s *Two_WalletsService) ReceivedTransaction(ctx context.Context, id int, query *request.Pagination, model interface{}) (interface{}, *http.Response, error) {
 	uri := fmt.Sprintf("wallets/%v/transactions/received", id)
 
-	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
+	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, query, nil)
 
 	if err != nil {
 		return nil, resp, err
@@ -90,10 +91,10 @@ func (s *Two_WalletsService) ReceivedTransaction(ctx context.Context, id int, mo
 }
 
 // Get all votes by the given wallet.
-func (s *Two_WalletsService) Votes(ctx context.Context, id int, model interface{}) (interface{}, *http.Response, error) {
+func (s *Two_WalletsService) Votes(ctx context.Context, id int, query *request.Pagination, model interface{}) (interface{}, *http.Response, error) {
 	uri := fmt.Sprintf("wallets/%v/votes", id)
 
-	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, nil)
+	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, query, nil)
 
 	if err != nil {
 		return nil, resp, err
@@ -103,12 +104,12 @@ func (s *Two_WalletsService) Votes(ctx context.Context, id int, model interface{
 }
 
 // Filter all wallets by the given criteria.
-// func (s *Two_WalletsService) Search(ctx context.Context) (*http.Response, error) {
-//     resp, err := s.Client.Client.Post("wallets/search")
+// func (s *Two_WalletsService) Search(ctx context.Context, query *request.Pagination) (*http.Response, error) {
+// 	resp, err := s.client.SendRequest(ctx, 2, "POST", "wallets/search", query, nil)
 
-//     if err != nil {
-//         return nil, err
-//     }
+// 	if err != nil {
+// 		return nil, resp, err
+// 	}
 
-//     return resp, nil
+// 	return model, resp, err
 // }

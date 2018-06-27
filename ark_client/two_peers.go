@@ -6,6 +6,7 @@
 package ark_client
 
 import (
+	"./structs/request"
 	"context"
 	"fmt"
 	"net/http"
@@ -16,8 +17,8 @@ import (
 type Two_PeersService Service
 
 // Get all peers.
-func (s *Two_PeersService) L9st(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 2, "GET", "peers", nil, nil)
+func (s *Two_PeersService) L9st(ctx context.Context, query *request.Pagination, model interface{}) (interface{}, *http.Response, error) {
+	resp, err := s.client.SendRequest(ctx, 2, "GET", "peers", query, nil)
 
 	if err != nil {
 		return nil, resp, err

@@ -6,6 +6,7 @@
 package ark_client
 
 import (
+	"./structs/request"
 	"context"
 	"fmt"
 	"net/http"
@@ -16,8 +17,8 @@ import (
 type Two_TransactionsService Service
 
 // Get all transactions.
-func (s *Two_TransactionsService) List(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 2, "GET", "transactions", nil, nil)
+func (s *Two_TransactionsService) List(ctx context.Context, query *request.Pagination, model interface{}) (interface{}, *http.Response, error) {
+	resp, err := s.client.SendRequest(ctx, 2, "GET", "transactions", query, nil)
 
 	if err != nil {
 		return nil, resp, err
@@ -27,6 +28,7 @@ func (s *Two_TransactionsService) List(ctx context.Context, model interface{}) (
 }
 
 // Create a new transaction.
+// TODO: Finish method
 // func (s *Two_TransactionsService) Create(ctx context.Context) (*http.Response, error) {
 //     resp, err := s.Client.Client.Post("transactions")
 
@@ -51,8 +53,8 @@ func (s *Two_TransactionsService) Get(ctx context.Context, id int, model interfa
 }
 
 // Get all unconfirmed transactions.
-func (s *Two_TransactionsService) ListUnconfirmed(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 2, "GET", "transactions/unconfirmed", nil, nil)
+func (s *Two_TransactionsService) ListUnconfirmed(ctx context.Context, query *request.Pagination, model interface{}) (interface{}, *http.Response, error) {
+	resp, err := s.client.SendRequest(ctx, 2, "GET", "transactions/unconfirmed", query, nil)
 
 	if err != nil {
 		return nil, resp, err
@@ -75,14 +77,15 @@ func (s *Two_TransactionsService) GetUnconfirmed(ctx context.Context, id int, mo
 }
 
 // Filter all transactions by the given criteria.
-// func (s *Two_TransactionsService) Search(ctx context.Context) (*http.Response, error) {
-//     resp, err := s.Client.Client.Post("transactions/search")
+// TODO: Finish method
+// func (s *Two_TransactionsService) Search(ctx context.Context, query *request.Pagination, model interface{}) (*http.Response, error) {
+// 	resp, err := s.client.SendRequest(ctx, 2, "POST", "transactions/search", query, nil)
 
-//     if err != nil {
-//         return nil, err
-//     }
+// 	if err != nil {
+// 		return nil, resp, err
+// 	}
 
-//     return resp, nil
+// 	return model, resp, err
 // }
 
 // Get a list of valid transaction types.
