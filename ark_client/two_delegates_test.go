@@ -15,21 +15,21 @@ import (
 )
 
 // Get all accounts.
-func TestDelegatesService_List(t *testing.T) {
+func TestTwoDelegatesService_List(t *testing.T) {
 	//
 }
 
 // Get a block by the given id.
-func TestDelegatesService_Get(t *testing.T) {
+func TestTwoDelegatesService_Get(t *testing.T) {
 	//
 }
 
 // Get all blocks for the given delegate.
-func TestDelegatesService_Blocks(t *testing.T) {
+func TestTwoDelegatesService_Blocks(t *testing.T) {
 	//
 }
 
 // Get all voters for the given delegate.
-func TestDelegatesService_Voters(t *testing.T) {
+func TestTwoDelegatesService_Voters(t *testing.T) {
 	//
 }

@@ -15,11 +15,11 @@ import (
 )
 
 // Get all peers.
-func TestPeersService_L9st(t *testing.T) {
+func TestTwoPeersService_L9st(t *testing.T) {
 	//
 }
 
 // Get a peer by the given IP address.
-func TestPeersService_Get(t *testing.T) {
+func TestTwoPeersService_Get(t *testing.T) {
 	//
 }

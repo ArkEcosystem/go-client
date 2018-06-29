@@ -16,7 +16,7 @@ import (
 )
 
 // Get all accounts.
-func TestAccountsService_List(t *testing.T) {
+func TestOneAccountsService_List(t *testing.T) {
 	client, mux, _, teardown := setupTest()
 	defer teardown()
 
@@ -43,36 +43,36 @@ func TestAccountsService_List(t *testing.T) {
 }
 
 // Get a account by the given address.
-func TestAccountsService_Get(t *testing.T) {
+func TestOneAccountsService_Get(t *testing.T) {
 	//
 }
 
 // Count all accounts.
-func TestAccountsService_Count(t *testing.T) {
+func TestOneAccountsService_Count(t *testing.T) {
 	//
 }
 
 // Get a delegate by the given address.
-func TestAccountsService_Delegate(t *testing.T) {
+func TestOneAccountsService_Delegate(t *testing.T) {
 	//
 }
 
 // Get the delegate registration fee.
-func TestAccountsService_DelegateFee(t *testing.T) {
+func TestOneAccountsService_DelegateFee(t *testing.T) {
 	//
 }
 
 // Get the balance for an account by the given address.
-func TestAccountsService_Balance(t *testing.T) {
+func TestOneAccountsService_Balance(t *testing.T) {
 	//
 }
 
 // Get the public key for an account by the given address.
-func TestAccountsService_PublicKey(t *testing.T) {
+func TestOneAccountsService_PublicKey(t *testing.T) {
 	//
 }
 
 // Get all wallets sorted by balance in descending order.
-func TestAccountsService_Top(t *testing.T) {
+func TestOneAccountsService_Top(t *testing.T) {
 	//
 }

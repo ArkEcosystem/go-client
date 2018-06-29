@@ -15,16 +15,16 @@ import (
 )
 
 // Get the loader status.
-func TestLoaderService_Status(t *testing.T) {
+func TestOneLoaderService_Status(t *testing.T) {
 	//
 }
 
 // Get the loader syncing status.
-func TestLoaderService_SyncStatus(t *testing.T) {
+func TestOneLoaderService_SyncStatus(t *testing.T) {
 	//
 }
 
 // Get the loader configuration.
-func TestLoaderService_AutoConfigure(t *testing.T) {
+func TestOneLoaderService_AutoConfigure(t *testing.T) {
 	//
 }

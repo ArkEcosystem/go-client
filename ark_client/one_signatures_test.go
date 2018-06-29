@@ -15,6 +15,6 @@ import (
 )
 
 // Get the second signature registration fee.
-func TestSignaturesService_Fee(t *testing.T) {
+func TestOneSignaturesService_Fee(t *testing.T) {
 	//
 }
