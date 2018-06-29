@@ -7,16 +7,39 @@ package ark_client
 
 import (
 	"context"
-	"encoding/json"
+	// "encoding/json"
 	"fmt"
 	"net/http"
-	"reflect"
+	// "reflect"
 	"testing"
+	"github.com/davecgh/go-spew/spew"
 )
 
 // Get all accounts.
 func TestAccountsService_List(t *testing.T) {
-	//
+	client, mux, _, teardown := setupTest()
+	defer teardown()
+
+	mux.HandleFunc("/accounts/getAllAccounts", func(writer http.ResponseWriter, request *http.Request) {
+		testMethod(t, request, "GET")
+		testFormValues(t, request, values{
+			"since": "1",
+		})
+		fmt.Fprint(w, `[{"id":1}]`)
+	})
+
+	response, _, err := client.One_Accounts.List(context.Background())
+	// opt := &RepositoryListAllOptions{1}
+	// response, _, err := client.One_Accounts.List(context.Background(), opt)
+	if err != nil {
+		t.Errorf("One_Accounts.List returned error: %v", err)
+	}
+
+	spew.Dump(response)
+	// want := []*Repository{{ID: Int64(1)}}
+	// if !reflect.DeepEqual(response, want) {
+	// 	t.Errorf("One_Accounts.List returned %+v, want %+v", response, want)
+	// }
 }
 
 // Get a account by the given address.
