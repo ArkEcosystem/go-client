@@ -25,10 +25,10 @@ func TestOneAccountsService_List(t *testing.T) {
 		testFormValues(t, request, values{
 			"since": "1",
 		})
-		fmt.Fprint(w, `[{"id":1}]`)
+		fmt.Fprint(writer, `[{"id":1}]`)
 	})
 
-	response, _, err := client.One_Accounts.List(context.Background())
+	response, _, err := client.One_Accounts.List(context.Background(), nil)
 	// opt := &RepositoryListAllOptions{1}
 	// response, _, err := client.One_Accounts.List(context.Background(), opt)
 	if err != nil {
