@@ -1,7 +1,7 @@
 package main
 
 import (
-	"./ark_client"
+	"github.com/arkecosystem/go-client/ark_client"
 	"context"
 	"github.com/davecgh/go-spew/spew"
 )

@@ -6,7 +6,7 @@
 package ark_client
 
 import (
-	"./structs/request"
+	"github.com/arkecosystem/go-client/ark_client/structs/request"
 	"context"
 	"net/http"
 )
