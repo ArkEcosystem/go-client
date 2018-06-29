@@ -6,20 +6,13 @@
 package ark_client
 
 import (
-	"bytes"
-	"context"
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
 	"net/url"
 	"os"
-	"path"
 	"reflect"
-	"strings"
 	"testing"
-	"time"
 )
 
 const (
