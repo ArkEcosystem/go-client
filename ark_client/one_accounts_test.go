@@ -22,9 +22,8 @@ func TestOneAccountsService_List(t *testing.T) {
 
 	mux.HandleFunc("/accounts/getAllAccounts", func(writer http.ResponseWriter, request *http.Request) {
 		testMethod(t, request, "GET")
-		testFormValues(t, request, values{
-			"since": "1",
-		})
+		spew.Dump(request)
+		testFormValues(t, request, values{})
 		fmt.Fprint(writer, `[{"id":1}]`)
 	})
 

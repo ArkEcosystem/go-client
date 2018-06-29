@@ -13,6 +13,7 @@ import (
 	"os"
 	"reflect"
 	"testing"
+	"github.com/davecgh/go-spew/spew"
 )
 
 const (
@@ -48,7 +49,9 @@ func setupTest() (client *Client, mux *http.ServeMux, serverURL string, teardown
 	client = NewClient(nil)
 	url, _ := url.Parse(server.URL + baseURLPath + "/")
 	client.BaseURL = url
-	client.UploadURL = url
+	spew.Dump(client)
+	spew.Dump(server.URL)
+	spew.Dump(baseURLPath)
 
 	return client, mux, server.URL, server.Close
 }
