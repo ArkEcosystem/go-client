@@ -15,8 +15,8 @@ import (
 type LoaderService Service
 
 // Get the loader status.
-func (s *LoaderService) Status(ctx context.Context) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
+func (s *LoaderService) Status(ctx context.Context) (*LoaderStatus, *http.Response, error) {
+	var responseStruct *LoaderStatus
 	resp, err := s.client.SendRequest(ctx, 1, "GET", "loader/status", nil, &responseStruct)
 
 	if err != nil {
@@ -27,8 +27,8 @@ func (s *LoaderService) Status(ctx context.Context) (*PublicKey, *http.Response,
 }
 
 // Get the loader syncing status.
-func (s *LoaderService) SyncStatus(ctx context.Context) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
+func (s *LoaderService) SyncStatus(ctx context.Context) (*LoaderSync, *http.Response, error) {
+	var responseStruct *LoaderSync
 	resp, err := s.client.SendRequest(ctx, 1, "GET", "loader/status/sync", nil, &responseStruct)
 
 	if err != nil {
@@ -39,8 +39,8 @@ func (s *LoaderService) SyncStatus(ctx context.Context) (*PublicKey, *http.Respo
 }
 
 // Get the loader configuration.
-func (s *LoaderService) AutoConfigure(ctx context.Context) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
+func (s *LoaderService) AutoConfigure(ctx context.Context) (*LoaderAutoConfigure, *http.Response, error) {
+	var responseStruct *LoaderAutoConfigure
 	resp, err := s.client.SendRequest(ctx, 1, "GET", "loader/autoconfigure", nil, &responseStruct)
 
 	if err != nil {
