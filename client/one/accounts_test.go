@@ -49,7 +49,7 @@ func TestAccountsService_PublicKey(t *testing.T) {
 	client, mux, _, teardown := setupTest()
 	defer teardown()
 
-	mux.HandleFunc("/accounts/getAllAccounts", func(writer http.ResponseWriter, request *http.Request) {
+	mux.HandleFunc("/accounts/getPublicKey", func(writer http.ResponseWriter, request *http.Request) {
 		testMethod(t, request, "GET")
 		fmt.Fprint(writer, `{"success":true,"publicKey":"dummy"}`)
 	})
