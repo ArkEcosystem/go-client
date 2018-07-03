@@ -104,7 +104,25 @@ func TestAccountsService_Get(t *testing.T) {
 
 // Count all accounts.
 func TestAccountsService_Count(t *testing.T) {
-	//
+	client, mux, _, teardown := setupTest()
+	defer teardown()
+
+	mux.HandleFunc("/accounts/count", func(writer http.ResponseWriter, request *http.Request) {
+		testMethod(t, request, "GET")
+		fmt.Fprint(writer,
+			`{
+			  "count": 3,
+			  "success": true
+			}`)
+	})
+
+	responseStruct, response, err := client.Accounts.Count(context.Background())
+	testGeneralError(t, "Accounts.Count", err)
+	testResponseUrl(t, "Accounts.Count", response, "/api/accounts/count")
+	testResponseStruct(t, "Accounts.Count", responseStruct, &AccountsCount{
+		Success: true,
+		Count: 3,
+	})
 }
 
 // Get a delegate by the given address.
