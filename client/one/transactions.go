@@ -15,8 +15,8 @@ import (
 type TransactionsService Service
 
 // Get all accounts.
-func (s *TransactionsService) List(ctx context.Context, query *requests_one.GetTransactionsQuery) (interface{}, *http.Response, error) {
-	var responseStruct *one.PublicKey
+func (s *TransactionsService) List(ctx context.Context, query *GetTransactionsQuery) (interface{}, *http.Response, error) {
+	var responseStruct *PublicKey
 	resp, err := s.client.SendRequest(ctx, 1, "GET", "transactions", query, &responseStruct)
 
 	if err != nil {
@@ -28,9 +28,9 @@ func (s *TransactionsService) List(ctx context.Context, query *requests_one.GetT
 
 // Get a transaction by the given id.
 func (s *TransactionsService) Get(ctx context.Context, id string) (interface{}, *http.Response, error) {
-	query := &requests_one.TransactionIdQuery{Id: id}
+	query := &TransactionIdQuery{Id: id}
 
-	var responseStruct *one.PublicKey
+	var responseStruct *PublicKey
 	resp, err := s.client.SendRequest(ctx, 1, "GET", "transactions/get", query, &responseStruct)
 
 	if err != nil {
@@ -41,8 +41,8 @@ func (s *TransactionsService) Get(ctx context.Context, id string) (interface{}, 
 }
 
 // Get all unconfirmed transactions.
-func (s *TransactionsService) ListUnconfirmed(ctx context.Context, query *requests_one.GetUnconfirmedTransactionsQuery) (interface{}, *http.Response, error) {
-	var responseStruct *one.PublicKey
+func (s *TransactionsService) ListUnconfirmed(ctx context.Context, query *GetUnconfirmedTransactionsQuery) (interface{}, *http.Response, error) {
+	var responseStruct *PublicKey
 	resp, err := s.client.SendRequest(ctx, 1, "GET", "transactions/unconfirmed", query, &responseStruct)
 
 	if err != nil {
@@ -54,9 +54,9 @@ func (s *TransactionsService) ListUnconfirmed(ctx context.Context, query *reques
 
 // Get an unconfirmed transaction by the given id.
 func (s *TransactionsService) GetUnconfirmed(ctx context.Context, id string) (interface{}, *http.Response, error) {
-	query := &requests_one.TransactionIdQuery{Id: id}
+	query := &TransactionIdQuery{Id: id}
 
-	var responseStruct *one.PublicKey
+	var responseStruct *PublicKey
 	resp, err := s.client.SendRequest(ctx, 1, "GET", "transactions/unconfirmed/get", query, &responseStruct)
 
 	if err != nil {

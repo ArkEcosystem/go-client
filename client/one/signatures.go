@@ -16,7 +16,7 @@ type SignaturesService Service
 
 // Get the second signature registration fee.
 func (s *SignaturesService) Fee(ctx context.Context) (interface{}, *http.Response, error) {
-	var responseStruct *one.PublicKey
+	var responseStruct *PublicKey
 	resp, err := s.client.SendRequest(ctx, 1, "GET", "signatures/fee", nil, &responseStruct)
 
 	if err != nil {

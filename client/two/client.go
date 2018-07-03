@@ -3,15 +3,13 @@
 // Use of this source code is governed by the MIT
 // license that can be found in the LICENSE file.
 
-package client
+package two
 
 import (
 	"bytes"
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/ArkEcosystem/go-client/client/one"
-	"github.com/ArkEcosystem/go-client/client/two"
 	"github.com/google/go-querystring/query"
 	"io"
 	"net/http"
@@ -34,21 +32,13 @@ type Client struct {
 
 	common Service
 
-	One_Accounts     *one.AccountsService
-	One_Blocks       *one.BlocksService
-	One_Delegates    *one.DelegatesService
-	One_Loader       *one.LoaderService
-	One_Peers        *one.PeersService
-	One_Signatures   *one.SignaturesService
-	One_Transactions *one.TransactionsService
-
-	Two_Blocks       *two.BlocksService
-	Two_Delegates    *two.DelegatesService
-	Two_Node         *two.NodeService
-	Two_Peers        *two.PeersService
-	Two_Transactions *two.TransactionsService
-	Two_Votes        *two.VotesService
-	Two_Wallets      *two.WalletsService
+	Blocks       *BlocksService
+	Delegates    *DelegatesService
+	Node         *NodeService
+	Peers        *PeersService
+	Transactions *TransactionsService
+	Votes        *VotesService
+	Wallets      *WalletsService
 }
 
 type Service struct {
@@ -65,21 +55,13 @@ func NewClient(httpClient *http.Client) *Client {
 	c := &Client{client: httpClient, BaseURL: baseURL}
 	c.common.client = c
 
-	c.One_Accounts = (*one.AccountsService)(&c.common)
-	c.One_Blocks = (*one.BlocksService)(&c.common)
-	c.One_Delegates = (*one.DelegatesService)(&c.common)
-	c.One_Loader = (*one.LoaderService)(&c.common)
-	c.One_Peers = (*one.PeersService)(&c.common)
-	c.One_Signatures = (*one.SignaturesService)(&c.common)
-	c.One_Transactions = (*one.TransactionsService)(&c.common)
-
-	c.Two_Blocks = (*two.BlocksService)(&c.common)
-	c.Two_Delegates = (*two.DelegatesService)(&c.common)
-	c.Two_Node = (*two.NodeService)(&c.common)
-	c.Two_Peers = (*two.PeersService)(&c.common)
-	c.Two_Transactions = (*two.TransactionsService)(&c.common)
-	c.Two_Votes = (*two.VotesService)(&c.common)
-	c.Two_Wallets = (*two.WalletsService)(&c.common)
+	c.Blocks = (*BlocksService)(&c.common)
+	c.Delegates = (*DelegatesService)(&c.common)
+	c.Node = (*NodeService)(&c.common)
+	c.Peers = (*PeersService)(&c.common)
+	c.Transactions = (*TransactionsService)(&c.common)
+	c.Votes = (*VotesService)(&c.common)
+	c.Wallets = (*WalletsService)(&c.common)
 
 	return c
 }

@@ -13,11 +13,11 @@ import (
 
 // PeersService handles communication with the peers related
 // methods of the Ark Core API - Version 2.
-type Two_PeersService Service
+type PeersService Service
 
 // Get all peers.
-func (s *Two_PeersService) L9st(ctx context.Context, query *requests_two.Pagination) (interface{}, *http.Response, error) {
-	var responseStruct *responses_two.PublicKey
+func (s *PeersService) L9st(ctx context.Context, query *Pagination) (interface{}, *http.Response, error) {
+	var responseStruct *responses_PublicKey
 	resp, err := s.client.SendRequest(ctx, 2, "GET", "peers", query, &responseStruct)
 
 	if err != nil {
@@ -28,10 +28,10 @@ func (s *Two_PeersService) L9st(ctx context.Context, query *requests_two.Paginat
 }
 
 // Get a peer by the given IP address.
-func (s *Two_PeersService) Get(ctx context.Context, ip string) (interface{}, *http.Response, error) {
+func (s *PeersService) Get(ctx context.Context, ip string) (interface{}, *http.Response, error) {
 	uri := fmt.Sprintf("peers/%v", ip)
 
-	var responseStruct *responses_two.PublicKey
+	var responseStruct *responses_PublicKey
 	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, &responseStruct)
 
 	if err != nil {

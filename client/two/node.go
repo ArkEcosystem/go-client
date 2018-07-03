@@ -12,11 +12,11 @@ import (
 
 // NodeService handles communication with the node related
 // methods of the Ark Core API - Version 2.
-type Two_NodeService Service
+type NodeService Service
 
 // Get the node status.
-func (s *Two_NodeService) Status(ctx context.Context) (interface{}, *http.Response, error) {
-	var responseStruct *responses_two.PublicKey
+func (s *NodeService) Status(ctx context.Context) (interface{}, *http.Response, error) {
+	var responseStruct *responses_PublicKey
 	resp, err := s.client.SendRequest(ctx, 2, "GET", "node/status", nil, &responseStruct)
 
 	if err != nil {
@@ -27,8 +27,8 @@ func (s *Two_NodeService) Status(ctx context.Context) (interface{}, *http.Respon
 }
 
 // Get the node syncing status.
-func (s *Two_NodeService) Syncing(ctx context.Context) (interface{}, *http.Response, error) {
-	var responseStruct *responses_two.PublicKey
+func (s *NodeService) Syncing(ctx context.Context) (interface{}, *http.Response, error) {
+	var responseStruct *responses_PublicKey
 	resp, err := s.client.SendRequest(ctx, 2, "GET", "node/syncing", nil, &responseStruct)
 
 	if err != nil {
@@ -39,8 +39,8 @@ func (s *Two_NodeService) Syncing(ctx context.Context) (interface{}, *http.Respo
 }
 
 // Get the node configuration.
-func (s *Two_NodeService) Configuration(ctx context.Context) (interface{}, *http.Response, error) {
-	var responseStruct *responses_two.PublicKey
+func (s *NodeService) Configuration(ctx context.Context) (interface{}, *http.Response, error) {
+	var responseStruct *responses_PublicKey
 	resp, err := s.client.SendRequest(ctx, 2, "GET", "node/configuration", nil, &responseStruct)
 
 	if err != nil {

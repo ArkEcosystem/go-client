@@ -16,7 +16,7 @@ type LoaderService Service
 
 // Get the loader status.
 func (s *LoaderService) Status(ctx context.Context) (interface{}, *http.Response, error) {
-	var responseStruct *one.PublicKey
+	var responseStruct *PublicKey
 	resp, err := s.client.SendRequest(ctx, 1, "GET", "loader/status", nil, &responseStruct)
 
 	if err != nil {
@@ -28,7 +28,7 @@ func (s *LoaderService) Status(ctx context.Context) (interface{}, *http.Response
 
 // Get the loader syncing status.
 func (s *LoaderService) SyncStatus(ctx context.Context) (interface{}, *http.Response, error) {
-	var responseStruct *one.PublicKey
+	var responseStruct *PublicKey
 	resp, err := s.client.SendRequest(ctx, 1, "GET", "loader/status/sync", nil, &responseStruct)
 
 	if err != nil {
@@ -40,7 +40,7 @@ func (s *LoaderService) SyncStatus(ctx context.Context) (interface{}, *http.Resp
 
 // Get the loader configuration.
 func (s *LoaderService) AutoConfigure(ctx context.Context) (interface{}, *http.Response, error) {
-	var responseStruct *one.PublicKey
+	var responseStruct *PublicKey
 	resp, err := s.client.SendRequest(ctx, 1, "GET", "loader/autoconfigure", nil, &responseStruct)
 
 	if err != nil {

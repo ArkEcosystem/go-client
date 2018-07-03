@@ -44,7 +44,7 @@ func TestBlocksService_Height(t *testing.T) {
 	//
 }
 
-// Get the blockchain milestone.
+// Get the blockchain milest
 func TestBlocksService_Milestone(t *testing.T) {
 	//
 }

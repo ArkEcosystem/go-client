@@ -13,11 +13,11 @@ import (
 
 // DelegatesService handles communication with the delegates related
 // methods of the Ark Core API - Version 2.
-type Two_DelegatesService Service
+type DelegatesService Service
 
 // Get all accounts.
-func (s *Two_DelegatesService) List(ctx context.Context, query *requests_two.Pagination) (interface{}, *http.Response, error) {
-	var responseStruct *responses_two.PublicKey
+func (s *DelegatesService) List(ctx context.Context, query *Pagination) (interface{}, *http.Response, error) {
+	var responseStruct *responses_PublicKey
 	resp, err := s.client.SendRequest(ctx, 2, "GET", "delegates", query, &responseStruct)
 
 	if err != nil {
@@ -28,10 +28,10 @@ func (s *Two_DelegatesService) List(ctx context.Context, query *requests_two.Pag
 }
 
 // Get a block by the given id.
-func (s *Two_DelegatesService) Get(ctx context.Context, id int) (interface{}, *http.Response, error) {
+func (s *DelegatesService) Get(ctx context.Context, id int) (interface{}, *http.Response, error) {
 	uri := fmt.Sprintf("delegates/%v", id)
 
-	var responseStruct *responses_two.PublicKey
+	var responseStruct *responses_PublicKey
 	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, &responseStruct)
 
 	if err != nil {
@@ -42,10 +42,10 @@ func (s *Two_DelegatesService) Get(ctx context.Context, id int) (interface{}, *h
 }
 
 // Get all blocks for the given delegate.
-func (s *Two_DelegatesService) Blocks(ctx context.Context, id int, query *requests_two.Pagination) (interface{}, *http.Response, error) {
+func (s *DelegatesService) Blocks(ctx context.Context, id int, query *Pagination) (interface{}, *http.Response, error) {
 	uri := fmt.Sprintf("delegates/%v/blocks", id)
 
-	var responseStruct *responses_two.PublicKey
+	var responseStruct *responses_PublicKey
 	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, query, &responseStruct)
 
 	if err != nil {
@@ -56,10 +56,10 @@ func (s *Two_DelegatesService) Blocks(ctx context.Context, id int, query *reques
 }
 
 // Get all voters for the given delegate.
-func (s *Two_DelegatesService) Voters(ctx context.Context, id int, query *requests_two.Pagination) (interface{}, *http.Response, error) {
+func (s *DelegatesService) Voters(ctx context.Context, id int, query *Pagination) (interface{}, *http.Response, error) {
 	uri := fmt.Sprintf("delegates/%v/voters", id)
 
-	var responseStruct *responses_two.PublicKey
+	var responseStruct *responses_PublicKey
 	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, query, &responseStruct)
 
 	if err != nil {
