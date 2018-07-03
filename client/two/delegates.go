@@ -16,7 +16,7 @@ import (
 type DelegatesService Service
 
 // Get all accounts.
-func (s *DelegatesService) List(ctx context.Context, query *Pagination) (interface{}, *http.Response, error) {
+func (s *DelegatesService) List(ctx context.Context, query *Pagination) (*PublicKey, *http.Response, error) {
 	var responseStruct *responses_PublicKey
 	resp, err := s.client.SendRequest(ctx, 2, "GET", "delegates", query, &responseStruct)
 
@@ -28,7 +28,7 @@ func (s *DelegatesService) List(ctx context.Context, query *Pagination) (interfa
 }
 
 // Get a block by the given id.
-func (s *DelegatesService) Get(ctx context.Context, id int) (interface{}, *http.Response, error) {
+func (s *DelegatesService) Get(ctx context.Context, id int) (*PublicKey, *http.Response, error) {
 	uri := fmt.Sprintf("delegates/%v", id)
 
 	var responseStruct *responses_PublicKey
@@ -42,7 +42,7 @@ func (s *DelegatesService) Get(ctx context.Context, id int) (interface{}, *http.
 }
 
 // Get all blocks for the given delegate.
-func (s *DelegatesService) Blocks(ctx context.Context, id int, query *Pagination) (interface{}, *http.Response, error) {
+func (s *DelegatesService) Blocks(ctx context.Context, id int, query *Pagination) (*PublicKey, *http.Response, error) {
 	uri := fmt.Sprintf("delegates/%v/blocks", id)
 
 	var responseStruct *responses_PublicKey
@@ -56,7 +56,7 @@ func (s *DelegatesService) Blocks(ctx context.Context, id int, query *Pagination
 }
 
 // Get all voters for the given delegate.
-func (s *DelegatesService) Voters(ctx context.Context, id int, query *Pagination) (interface{}, *http.Response, error) {
+func (s *DelegatesService) Voters(ctx context.Context, id int, query *Pagination) (*PublicKey, *http.Response, error) {
 	uri := fmt.Sprintf("delegates/%v/voters", id)
 
 	var responseStruct *responses_PublicKey

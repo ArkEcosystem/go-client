@@ -15,7 +15,7 @@ import (
 type NodeService Service
 
 // Get the node status.
-func (s *NodeService) Status(ctx context.Context) (interface{}, *http.Response, error) {
+func (s *NodeService) Status(ctx context.Context) (*PublicKey, *http.Response, error) {
 	var responseStruct *responses_PublicKey
 	resp, err := s.client.SendRequest(ctx, 2, "GET", "node/status", nil, &responseStruct)
 
@@ -27,7 +27,7 @@ func (s *NodeService) Status(ctx context.Context) (interface{}, *http.Response, 
 }
 
 // Get the node syncing status.
-func (s *NodeService) Syncing(ctx context.Context) (interface{}, *http.Response, error) {
+func (s *NodeService) Syncing(ctx context.Context) (*PublicKey, *http.Response, error) {
 	var responseStruct *responses_PublicKey
 	resp, err := s.client.SendRequest(ctx, 2, "GET", "node/syncing", nil, &responseStruct)
 
@@ -39,7 +39,7 @@ func (s *NodeService) Syncing(ctx context.Context) (interface{}, *http.Response,
 }
 
 // Get the node configuration.
-func (s *NodeService) Configuration(ctx context.Context) (interface{}, *http.Response, error) {
+func (s *NodeService) Configuration(ctx context.Context) (*PublicKey, *http.Response, error) {
 	var responseStruct *responses_PublicKey
 	resp, err := s.client.SendRequest(ctx, 2, "GET", "node/configuration", nil, &responseStruct)
 

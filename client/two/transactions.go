@@ -16,7 +16,7 @@ import (
 type TransactionsService Service
 
 // Get all transactions.
-func (s *TransactionsService) List(ctx context.Context, query *Pagination) (interface{}, *http.Response, error) {
+func (s *TransactionsService) List(ctx context.Context, query *Pagination) (*PublicKey, *http.Response, error) {
 	var responseStruct *responses_PublicKey
 	resp, err := s.client.SendRequest(ctx, 2, "GET", "transactions", query, nil)
 
@@ -40,7 +40,7 @@ func (s *TransactionsService) List(ctx context.Context, query *Pagination) (inte
 // }
 
 // Get a transaction by the given id.
-func (s *TransactionsService) Get(ctx context.Context, id int) (interface{}, *http.Response, error) {
+func (s *TransactionsService) Get(ctx context.Context, id int) (*PublicKey, *http.Response, error) {
 	uri := fmt.Sprintf("transactions/%v", id)
 
 	var responseStruct *responses_PublicKey
@@ -54,7 +54,7 @@ func (s *TransactionsService) Get(ctx context.Context, id int) (interface{}, *ht
 }
 
 // Get all unconfirmed transactions.
-func (s *TransactionsService) ListUnconfirmed(ctx context.Context, query *Pagination) (interface{}, *http.Response, error) {
+func (s *TransactionsService) ListUnconfirmed(ctx context.Context, query *Pagination) (*PublicKey, *http.Response, error) {
 	var responseStruct *responses_PublicKey
 	resp, err := s.client.SendRequest(ctx, 2, "GET", "transactions/unconfirmed", query, &responseStruct)
 
@@ -66,7 +66,7 @@ func (s *TransactionsService) ListUnconfirmed(ctx context.Context, query *Pagina
 }
 
 // Get an unconfirmed transaction by the given id.
-func (s *TransactionsService) GetUnconfirmed(ctx context.Context, id int) (interface{}, *http.Response, error) {
+func (s *TransactionsService) GetUnconfirmed(ctx context.Context, id int) (*PublicKey, *http.Response, error) {
 	uri := fmt.Sprintf("transactions/unconfirmed/%v", id)
 
 	var responseStruct *responses_PublicKey
@@ -92,7 +92,7 @@ func (s *TransactionsService) GetUnconfirmed(ctx context.Context, id int) (inter
 // }
 
 // Get a list of valid transaction types.
-func (s *TransactionsService) Types(ctx context.Context) (interface{}, *http.Response, error) {
+func (s *TransactionsService) Types(ctx context.Context) (*PublicKey, *http.Response, error) {
 	var responseStruct *responses_PublicKey
 	resp, err := s.client.SendRequest(ctx, 2, "GET", "transactions/types", nil, &responseStruct)
 

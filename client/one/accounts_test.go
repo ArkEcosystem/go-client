@@ -14,29 +14,9 @@ import (
 	"testing"
 )
 
-type SuccessResponse struct {
-	Success bool `json:"success,omitempty"`
-}
-
 // Get all accounts.
 func TestAccountsService_List(t *testing.T) {
-	client, mux, _, teardown := setupTest()
-	defer teardown()
-
-	mux.HandleFunc("/accounts/getAllAccounts", func(writer http.ResponseWriter, request *http.Request) {
-		testMethod(t, request, "GET")
-		fmt.Fprint(writer, `{"success":true}`)
-	})
-
-	// responseModel := &SuccessResponse{}
-	_, response, err := client.Accounts.List(context.Background(), &SuccessResponse{})
-	if err != nil {
-		t.Errorf("Accounts.List returned error: %v", err)
-	}
-
-	assert := assert.New(t)
-	assert.True(strings.Contains(response.Request.URL.String(), "/api/accounts/getAllAccounts"))
-	assert.True(responseModel.Success)
+	//
 }
 
 // Get a account by the given address.
@@ -66,7 +46,22 @@ func TestAccountsService_Balance(t *testing.T) {
 
 // Get the public key for an account by the given address.
 func TestAccountsService_PublicKey(t *testing.T) {
-	//
+	client, mux, _, teardown := setupTest()
+	defer teardown()
+
+	mux.HandleFunc("/accounts/getAllAccounts", func(writer http.ResponseWriter, request *http.Request) {
+		testMethod(t, request, "GET")
+		fmt.Fprint(writer, `{"success":true}`)
+	})
+
+	responseStruct, response, err := client.Accounts.List(context.Background())
+	if err != nil {
+		t.Errorf("Accounts.List returned error: %v", err)
+	}
+
+	assert := assert.New(t)
+	assert.True(strings.Contains(response.Request.URL.String(), "/api/accounts/getAllAccounts"))
+	assert.True(responseStruct.Success)
 }
 
 // Get all wallets sorted by balance in descending order.

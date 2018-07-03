@@ -16,7 +16,7 @@ import (
 type BlocksService Service
 
 // Get all blocks.
-func (s *BlocksService) List(ctx context.Context, query *Pagination) (interface{}, *http.Response, error) {
+func (s *BlocksService) List(ctx context.Context, query *Pagination) (*PublicKey, *http.Response, error) {
 	var responseStruct *responses_PublicKey
 	resp, err := s.client.SendRequest(ctx, 2, "GET", "blocks", query, &responseStruct)
 
@@ -28,7 +28,7 @@ func (s *BlocksService) List(ctx context.Context, query *Pagination) (interface{
 }
 
 // Get a block by the given id.
-func (s *BlocksService) Get(ctx context.Context, id int) (interface{}, *http.Response, error) {
+func (s *BlocksService) Get(ctx context.Context, id int) (*PublicKey, *http.Response, error) {
 	uri := fmt.Sprintf("blocks/%v", id)
 
 	var responseStruct *responses_PublicKey
@@ -42,7 +42,7 @@ func (s *BlocksService) Get(ctx context.Context, id int) (interface{}, *http.Res
 }
 
 // Get all transactions by the given block.
-func (s *BlocksService) Transactions(ctx context.Context, id int, query *Pagination) (interface{}, *http.Response, error) {
+func (s *BlocksService) Transactions(ctx context.Context, id int, query *Pagination) (*PublicKey, *http.Response, error) {
 	uri := fmt.Sprintf("blocks/%v/transactions", id)
 
 	var responseStruct *responses_PublicKey
@@ -56,7 +56,7 @@ func (s *BlocksService) Transactions(ctx context.Context, id int, query *Paginat
 }
 
 // Filter all blocks by the given criteria.
-func (s *BlocksService) Search(ctx context.Context, query *Pagination) (interface{}, *http.Response, error) {
+func (s *BlocksService) Search(ctx context.Context, query *Pagination) (*PublicKey, *http.Response, error) {
 	var responseStruct *responses_PublicKey
 	resp, err := s.client.SendRequest(ctx, 2, "GET", "blocks/search", query, &responseStruct)
 

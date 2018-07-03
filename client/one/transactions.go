@@ -15,7 +15,7 @@ import (
 type TransactionsService Service
 
 // Get all accounts.
-func (s *TransactionsService) List(ctx context.Context, query *GetTransactionsQuery) (interface{}, *http.Response, error) {
+func (s *TransactionsService) List(ctx context.Context, query *GetTransactionsQuery) (*PublicKey, *http.Response, error) {
 	var responseStruct *PublicKey
 	resp, err := s.client.SendRequest(ctx, 1, "GET", "transactions", query, &responseStruct)
 
@@ -27,7 +27,7 @@ func (s *TransactionsService) List(ctx context.Context, query *GetTransactionsQu
 }
 
 // Get a transaction by the given id.
-func (s *TransactionsService) Get(ctx context.Context, id string) (interface{}, *http.Response, error) {
+func (s *TransactionsService) Get(ctx context.Context, id string) (*PublicKey, *http.Response, error) {
 	query := &TransactionIdQuery{Id: id}
 
 	var responseStruct *PublicKey
@@ -41,7 +41,7 @@ func (s *TransactionsService) Get(ctx context.Context, id string) (interface{}, 
 }
 
 // Get all unconfirmed transactions.
-func (s *TransactionsService) ListUnconfirmed(ctx context.Context, query *GetUnconfirmedTransactionsQuery) (interface{}, *http.Response, error) {
+func (s *TransactionsService) ListUnconfirmed(ctx context.Context, query *GetUnconfirmedTransactionsQuery) (*PublicKey, *http.Response, error) {
 	var responseStruct *PublicKey
 	resp, err := s.client.SendRequest(ctx, 1, "GET", "transactions/unconfirmed", query, &responseStruct)
 
@@ -53,7 +53,7 @@ func (s *TransactionsService) ListUnconfirmed(ctx context.Context, query *GetUnc
 }
 
 // Get an unconfirmed transaction by the given id.
-func (s *TransactionsService) GetUnconfirmed(ctx context.Context, id string) (interface{}, *http.Response, error) {
+func (s *TransactionsService) GetUnconfirmed(ctx context.Context, id string) (*PublicKey, *http.Response, error) {
 	query := &TransactionIdQuery{Id: id}
 
 	var responseStruct *PublicKey

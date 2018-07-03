@@ -15,7 +15,7 @@ import (
 type PeersService Service
 
 // Get all accounts.
-func (s *PeersService) List(ctx context.Context, query *GetPeersQuery) (interface{}, *http.Response, error) {
+func (s *PeersService) List(ctx context.Context, query *GetPeersQuery) (*PublicKey, *http.Response, error) {
 	var responseStruct *PublicKey
 	resp, err := s.client.SendRequest(ctx, 1, "GET", "peers", query, &responseStruct)
 
@@ -39,7 +39,7 @@ func (s *PeersService) Get(ctx context.Context, query *GetPeerQuery) (*http.Resp
 }
 
 // Get the node version of the given peer.
-func (s *PeersService) Version(ctx context.Context) (interface{}, *http.Response, error) {
+func (s *PeersService) Version(ctx context.Context) (*PublicKey, *http.Response, error) {
 	var responseStruct *PublicKey
 	resp, err := s.client.SendRequest(ctx, 1, "GET", "peers/version", nil, &responseStruct)
 

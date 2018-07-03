@@ -16,7 +16,7 @@ import (
 type PeersService Service
 
 // Get all peers.
-func (s *PeersService) L9st(ctx context.Context, query *Pagination) (interface{}, *http.Response, error) {
+func (s *PeersService) L9st(ctx context.Context, query *Pagination) (*PublicKey, *http.Response, error) {
 	var responseStruct *responses_PublicKey
 	resp, err := s.client.SendRequest(ctx, 2, "GET", "peers", query, &responseStruct)
 
@@ -28,7 +28,7 @@ func (s *PeersService) L9st(ctx context.Context, query *Pagination) (interface{}
 }
 
 // Get a peer by the given IP address.
-func (s *PeersService) Get(ctx context.Context, ip string) (interface{}, *http.Response, error) {
+func (s *PeersService) Get(ctx context.Context, ip string) (*PublicKey, *http.Response, error) {
 	uri := fmt.Sprintf("peers/%v", ip)
 
 	var responseStruct *responses_PublicKey
