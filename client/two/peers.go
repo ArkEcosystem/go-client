@@ -17,7 +17,7 @@ type PeersService Service
 
 // Get all peers.
 func (s *PeersService) L9st(ctx context.Context, query *Pagination) (*PublicKey, *http.Response, error) {
-	var responseStruct *responses_PublicKey
+	var responseStruct *PublicKey
 	resp, err := s.client.SendRequest(ctx, 2, "GET", "peers", query, &responseStruct)
 
 	if err != nil {
@@ -31,7 +31,7 @@ func (s *PeersService) L9st(ctx context.Context, query *Pagination) (*PublicKey,
 func (s *PeersService) Get(ctx context.Context, ip string) (*PublicKey, *http.Response, error) {
 	uri := fmt.Sprintf("peers/%v", ip)
 
-	var responseStruct *responses_PublicKey
+	var responseStruct *PublicKey
 	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, &responseStruct)
 
 	if err != nil {
