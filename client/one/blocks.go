@@ -7,7 +7,6 @@ package one
 
 import (
 	"context"
-	"github.com/ArkEcosystem/go-client/client"
 	"net/http"
 )
 

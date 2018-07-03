@@ -8,7 +8,6 @@ package two
 import (
 	"context"
 	"fmt"
-	"github.com/ArkEcosystem/go-client/client"
 	"net/http"
 )
 
