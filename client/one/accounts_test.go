@@ -8,8 +8,8 @@ package one
 import (
 	"context"
 	"fmt"
-	"github.com/stretchr/testify/assert"
 	"net/http"
+	"reflect"
 	"strings"
 	"testing"
 )
@@ -51,17 +51,23 @@ func TestAccountsService_PublicKey(t *testing.T) {
 
 	mux.HandleFunc("/accounts/getAllAccounts", func(writer http.ResponseWriter, request *http.Request) {
 		testMethod(t, request, "GET")
-		fmt.Fprint(writer, `{"success":true}`)
+		fmt.Fprint(writer, `{"success":true,"publicKey":"dummy"}`)
 	})
 
-	responseStruct, response, err := client.Accounts.List(context.Background())
+	responseStruct, response, err := client.Accounts.PublicKey(context.Background(), "dummy")
 	if err != nil {
-		t.Errorf("Accounts.List returned error: %v", err)
+		t.Errorf("[Accounts.PublicKey] returned error: %v", err)
 	}
 
-	assert := assert.New(t)
-	assert.True(strings.Contains(response.Request.URL.String(), "/api/accounts/getAllAccounts"))
-	assert.True(responseStruct.Success)
+	expectedResponse := &PublicKey{Success: true, PublicKey: "dummy"}
+	if !reflect.DeepEqual(expectedResponse, responseStruct) {
+		t.Errorf("[Accounts.PublicKey][Response] expected %+v, actual %+v", expectedResponse, responseStruct)
+	}
+
+	expectedURL := "/api/accounts/getPublicKey?address=dummy"
+	if strings.Contains(response.Request.URL.String(), expectedURL) == false {
+		t.Errorf("[Accounts.PublicKey][URL] expected %+v, actual %+v", expectedURL, response.Request.URL.String())
+	}
 }
 
 // Get all wallets sorted by balance in descending order.
