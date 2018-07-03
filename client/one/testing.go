@@ -73,7 +73,9 @@ func testResponseUrl(t *testing.T, method string, r *http.Response, want string)
 
 func testResponseStruct(t *testing.T, method string, got interface{}, want interface{}) {
 	if !reflect.DeepEqual(got, want) {
-		t.Errorf("[%+v][Response] got %+v, want %+v", method, got, want)
+		var gotType reflect.Type = reflect.TypeOf(got)
+		var wantType reflect.Type = reflect.TypeOf(want)
+		t.Errorf("[%+v][Response] got (%+v) %+v, want (%+v) %+v", method, gotType.String(), got, wantType.String(), want)
 	}
 }
 
