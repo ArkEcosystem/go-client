@@ -15,8 +15,8 @@ import (
 type AccountsService Service
 
 // Get all accounts.
-func (s *AccountsService) List(ctx context.Context) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
+func (s *AccountsService) List(ctx context.Context) (*Accounts, *http.Response, error) {
+	var responseStruct *Accounts
 	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/getAllAccounts", nil, &responseStruct)
 
 	if err != nil {
