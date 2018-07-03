@@ -127,7 +127,45 @@ func TestAccountsService_Count(t *testing.T) {
 
 // Get a delegate by the given address.
 func TestAccountsService_Delegate(t *testing.T) {
-	//
+	client, mux, _, teardown := setupTest()
+	defer teardown()
+
+	mux.HandleFunc("/accounts/delegates", func(writer http.ResponseWriter, request *http.Request) {
+		testMethod(t, request, "GET")
+		fmt.Fprint(writer,
+			`{
+			  "delegates": [{
+			    "username": "dummy",
+			    "address": "dummy",
+			    "publicKey": "dummy",
+			    "vote": "dummy",
+			    "producedblocks": 1,
+			    "missedblocks": 2,
+			    "rate": 3,
+			    "approval": 0.5,
+			    "productivity": 0.10
+			  }],
+			  "success": true
+			}`)
+	})
+
+	responseStruct, response, err := client.Accounts.Delegate(context.Background(), "dummy")
+	testGeneralError(t, "Accounts.Delegate", err)
+	testResponseUrl(t, "Accounts.Delegate", response, "/api/accounts/delegates")
+	testResponseStruct(t, "Accounts.Delegate", responseStruct, &AccountDelegates{
+		Success: true,
+		Delegates: []Delegate {{
+			Username: "dummy",
+			Address: "dummy",
+			PublicKey: "dummy",
+			Vote: "dummy",
+			ProducedBlocks: 1,
+			MissedBlocks: 2,
+			Rate: 3,
+			Approval: 0.5,
+			Productivity: 0.10,
+		}},
+	})
 }
 
 // Get the delegate registration fee.
