@@ -43,3 +43,8 @@ type AccountBalance struct {
 	Balance            string `json:"balance,omitempty"`
 	UnconfirmedBalance string `json:"unconfirmedBalance,omitempty"`
 }
+
+type AccountsTop struct {
+	Success  bool      `json:"success,omitempty"`
+	Accounts []Account `json:"accounts,omitempty"`
+}

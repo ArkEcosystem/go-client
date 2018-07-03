@@ -107,8 +107,8 @@ func (s *AccountsService) PublicKey(ctx context.Context, address string) (*Publi
 }
 
 // Get all wallets sorted by balance in descending order.
-func (s *AccountsService) Top(ctx context.Context, query *TopQuery) (*Accounts, *http.Response, error) {
-	var responseStruct *Accounts
+func (s *AccountsService) Top(ctx context.Context, query *TopQuery) (*AccountsTop, *http.Response, error) {
+	var responseStruct *AccountsTop
 	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/top", query, &responseStruct)
 
 	if err != nil {

@@ -234,5 +234,32 @@ func TestAccountsService_PublicKey(t *testing.T) {
 
 // Get all wallets sorted by balance in descending order.
 func TestAccountsService_Top(t *testing.T) {
-	//
+	client, mux, _, teardown := setupTest()
+	defer teardown()
+
+	mux.HandleFunc("/accounts/top", func(writer http.ResponseWriter, request *http.Request) {
+		testMethod(t, request, "GET")
+		fmt.Fprint(writer,
+			`{
+			  "accounts": [{
+			    "address": "dummy",
+			    "balance": "dummy",
+			    "publicKey": "dummy"
+			  }],
+			  "success": true
+			}`)
+	})
+
+	query := &TopQuery{Limit: 1}
+	responseStruct, response, err := client.Accounts.Top(context.Background(), query)
+	testGeneralError(t, "Accounts.Top", err)
+	testResponseUrl(t, "Accounts.Top", response, "/api/accounts/top")
+	testResponseStruct(t, "Accounts.Top", responseStruct, &AccountsTop{
+		Success: true,
+		Accounts: []Account{{
+			Address:   "dummy",
+			Balance:   "dummy",
+			PublicKey: "dummy",
+		}},
+	})
 }
