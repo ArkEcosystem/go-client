@@ -5,25 +5,41 @@
 
 package one
 
-type PublicKey struct {
-	Success   bool   `json:"success,omitempty"`
-	PublicKey string `json:"publicKey,omitempty"`
-}
-
 type Account struct {
-	Address                     string    `json:"address,omitempty"`
-	PublicKey                   string    `json:"publicKey,omitempty"`
-	SecondPublicKey             string    `json:"secondPublicKey,omitempty"`
-	Username                    string    `json:"username,omitempty"`
-	Balance                     string    `json:"balance,omitempty"`
-	UnconfirmedBalance          string    `json:"unconfirmedBalance,omitempty"`
-	Multisignatures             []string  `json:"multisignatures,omitempty"`
-	UnconfirmedMultisignatures  []string  `json:"u_multisignatures,omitempty"`
-	UnconfirmedSignature        int       `json:"unconfirmedSignature,omitempty"`
-	SecondSignature             int       `json:"secondSignature,omitempty"`
+	Address                    string   `json:"address,omitempty"`
+	PublicKey                  string   `json:"publicKey,omitempty"`
+	SecondPublicKey            string   `json:"secondPublicKey,omitempty"`
+	Username                   string   `json:"username,omitempty"`
+	Balance                    string   `json:"balance,omitempty"`
+	UnconfirmedBalance         string   `json:"unconfirmedBalance,omitempty"`
+	Multisignatures            []string `json:"multisignatures,omitempty"`
+	UnconfirmedMultisignatures []string `json:"u_multisignatures,omitempty"`
+	UnconfirmedSignature       int      `json:"unconfirmedSignature,omitempty"`
+	SecondSignature            int      `json:"secondSignature,omitempty"`
 }
 
 type Accounts struct {
+	Success  bool      `json:"success,omitempty"`
+	Accounts []Account `json:"accounts,omitempty"`
+}
+
+type AccountsCount struct {
+	Success bool `json:"success,omitempty"`
+	Count   int  `json:"count,omitempty"`
+}
+
+type AccountDelegates struct {
 	Success   bool       `json:"success,omitempty"`
-	Accounts  []Account  `json:"accounts,omitempty"`
+	Delegates []Delegate `json:"delegates,omitempty"`
+}
+
+type AccountBalance struct {
+	Success            bool   `json:"success,omitempty"`
+	Balance            string `json:"balance,omitempty"`
+	UnconfirmedBalance string `json:"unconfirmedBalance,omitempty"`
+}
+
+type AccountPublicKey struct {
+	Success   bool   `json:"success,omitempty"`
+	PublicKey string `json:"publicKey,omitempty"`
 }

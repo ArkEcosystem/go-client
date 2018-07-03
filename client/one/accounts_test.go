@@ -20,7 +20,7 @@ func TestAccountsService_List(t *testing.T) {
 	mux.HandleFunc("/accounts/getAllAccounts", func(writer http.ResponseWriter, request *http.Request) {
 		testMethod(t, request, "GET")
 		fmt.Fprint(writer,
-		`{
+			`{
 		  "accounts": [{
 		    "address": "dummy",
 		    "publicKey": "dummy",
@@ -42,18 +42,18 @@ func TestAccountsService_List(t *testing.T) {
 	testResponseUrl(t, "Accounts.List", response, "/api/accounts/getAllAccounts")
 	testResponseStruct(t, "Accounts.List", responseStruct, &Accounts{
 		Success: true,
-		Accounts: []Account {{
-			Address: "dummy",
-			PublicKey: "dummy",
-			SecondPublicKey: "dummy",
-			Username: "dummy",
-			Balance: "dummy",
-			UnconfirmedBalance: "dummy",
-			Multisignatures: []string{},
+		Accounts: []Account{{
+			Address:                    "dummy",
+			PublicKey:                  "dummy",
+			SecondPublicKey:            "dummy",
+			Username:                   "dummy",
+			Balance:                    "dummy",
+			UnconfirmedBalance:         "dummy",
+			Multisignatures:            []string{},
 			UnconfirmedMultisignatures: []string{},
-			UnconfirmedSignature: 0,
-			SecondSignature: 0,
-		},},
+			UnconfirmedSignature:       0,
+			SecondSignature:            0,
+		}},
 	})
 }
 
@@ -95,7 +95,7 @@ func TestAccountsService_PublicKey(t *testing.T) {
 	responseStruct, response, err := client.Accounts.PublicKey(context.Background(), "dummy")
 	testGeneralError(t, "Accounts.PublicKey", err)
 	testResponseUrl(t, "Accounts.PublicKey", response, "/api/accounts/getPublicKey?address=dummy")
-	testResponseStruct(t, "Accounts.PublicKey", responseStruct, &PublicKey{Success: true, PublicKey: "dummy"})
+	testResponseStruct(t, "Accounts.PublicKey", responseStruct, &AccountPublicKey{Success: true, PublicKey: "dummy"})
 }
 
 // Get all wallets sorted by balance in descending order.
