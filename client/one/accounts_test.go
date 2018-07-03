@@ -170,6 +170,25 @@ func TestAccountsService_Delegate(t *testing.T) {
 
 // Get the delegate registration fee.
 func TestAccountsService_DelegateFee(t *testing.T) {
+	client, mux, _, teardown := setupTest()
+	defer teardown()
+
+	mux.HandleFunc("/accounts/delegates/fee", func(writer http.ResponseWriter, request *http.Request) {
+		testMethod(t, request, "GET")
+		fmt.Fprint(writer,
+			`{
+			  "fee": 10,
+			  "success": true
+			}`)
+	})
+
+	responseStruct, response, err := client.Accounts.DelegateFee(context.Background())
+	testGeneralError(t, "Accounts.DelegateFee", err)
+	testResponseUrl(t, "Accounts.DelegateFee", response, "/api/accounts/delegates/fee")
+	testResponseStruct(t, "Accounts.DelegateFee", responseStruct, &DelegateFee{
+		Success: true,
+		Fee: 10,
+	})
 	//
 }
 
