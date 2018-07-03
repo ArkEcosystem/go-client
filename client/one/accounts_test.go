@@ -189,12 +189,31 @@ func TestAccountsService_DelegateFee(t *testing.T) {
 		Success: true,
 		Fee: 10,
 	})
-	//
 }
 
 // Get the balance for an account by the given address.
 func TestAccountsService_Balance(t *testing.T) {
-	//
+	client, mux, _, teardown := setupTest()
+	defer teardown()
+
+	mux.HandleFunc("/accounts/getBalance", func(writer http.ResponseWriter, request *http.Request) {
+		testMethod(t, request, "GET")
+		fmt.Fprint(writer,
+			`{
+			  "balance": "10",
+			  "unconfirmedBalance": "10",
+			  "success": true
+			}`)
+	})
+
+	responseStruct, response, err := client.Accounts.Balance(context.Background(), "dummy")
+	testGeneralError(t, "Accounts.Balance", err)
+	testResponseUrl(t, "Accounts.Balance", response, "/api/accounts/getBalance")
+	testResponseStruct(t, "Accounts.Balance", responseStruct, &AccountBalance{
+		Success: true,
+		Balance: "10",
+		UnconfirmedBalance: "10",
+	})
 }
 
 // Get the public key for an account by the given address.
