@@ -38,8 +38,3 @@ type AccountBalance struct {
 	Balance            string `json:"balance,omitempty"`
 	UnconfirmedBalance string `json:"unconfirmedBalance,omitempty"`
 }
-
-type AccountPublicKey struct {
-	Success   bool   `json:"success,omitempty"`
-	PublicKey string `json:"publicKey,omitempty"`
-}

@@ -95,7 +95,7 @@ func TestAccountsService_PublicKey(t *testing.T) {
 	responseStruct, response, err := client.Accounts.PublicKey(context.Background(), "dummy")
 	testGeneralError(t, "Accounts.PublicKey", err)
 	testResponseUrl(t, "Accounts.PublicKey", response, "/api/accounts/getPublicKey?address=dummy")
-	testResponseStruct(t, "Accounts.PublicKey", responseStruct, &AccountPublicKey{Success: true, PublicKey: "dummy"})
+	testResponseStruct(t, "Accounts.PublicKey", responseStruct, &PublicKey{Success: true, PublicKey: "dummy"})
 }
 
 // Get all wallets sorted by balance in descending order.

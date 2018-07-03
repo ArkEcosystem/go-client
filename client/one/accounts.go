@@ -93,10 +93,10 @@ func (s *AccountsService) Balance(ctx context.Context, address string) (*Account
 }
 
 // Get the public key for an account by the given address.
-func (s *AccountsService) PublicKey(ctx context.Context, address string) (*AccountPublicKey, *http.Response, error) {
+func (s *AccountsService) PublicKey(ctx context.Context, address string) (*PublicKey, *http.Response, error) {
 	query := &AddressQuery{Address: address}
 
-	var responseStruct *AccountPublicKey
+	var responseStruct *PublicKey
 	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/getPublicKey", query, &responseStruct)
 
 	if err != nil {
