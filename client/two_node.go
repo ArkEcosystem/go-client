@@ -6,6 +6,7 @@
 package client
 
 import (
+	"./responses/two"
 	"context"
 	"net/http"
 )
@@ -15,34 +16,37 @@ import (
 type Two_NodeService Service
 
 // Get the node status.
-func (s *Two_NodeService) Status(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 2, "GET", "node/status", nil, &model)
+func (s *Two_NodeService) Status(ctx context.Context) (interface{}, *http.Response, error) {
+	var responseStruct *responses_two.PublicKey
+	resp, err := s.client.SendRequest(ctx, 2, "GET", "node/status", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
 	}
 
-	return model, resp, err
+	return responseStruct, resp, err
 }
 
 // Get the node syncing status.
-func (s *Two_NodeService) Syncing(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 2, "GET", "node/syncing", nil, &model)
+func (s *Two_NodeService) Syncing(ctx context.Context) (interface{}, *http.Response, error) {
+	var responseStruct *responses_two.PublicKey
+	resp, err := s.client.SendRequest(ctx, 2, "GET", "node/syncing", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
 	}
 
-	return model, resp, err
+	return responseStruct, resp, err
 }
 
 // Get the node configuration.
-func (s *Two_NodeService) Configuration(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 2, "GET", "node/configuration", nil, &model)
+func (s *Two_NodeService) Configuration(ctx context.Context) (interface{}, *http.Response, error) {
+	var responseStruct *responses_two.PublicKey
+	resp, err := s.client.SendRequest(ctx, 2, "GET", "node/configuration", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
 	}
 
-	return model, resp, err
+	return responseStruct, resp, err
 }

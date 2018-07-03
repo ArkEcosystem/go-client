@@ -6,7 +6,8 @@
 package client
 
 import (
-	"./structs/request"
+	"./requests/two"
+	"./responses/two"
 	"context"
 	"fmt"
 	"net/http"
@@ -17,49 +18,53 @@ import (
 type Two_BlocksService Service
 
 // Get all blocks.
-func (s *Two_BlocksService) List(ctx context.Context, query *request.Pagination, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 2, "GET", "blocks", query, &model)
+func (s *Two_BlocksService) List(ctx context.Context, query *requests_two.Pagination) (interface{}, *http.Response, error) {
+	var responseStruct *responses_two.PublicKey
+	resp, err := s.client.SendRequest(ctx, 2, "GET", "blocks", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
 	}
 
-	return model, resp, err
+	return responseStruct, resp, err
 }
 
 // Get a block by the given id.
-func (s *Two_BlocksService) Get(ctx context.Context, id int, model interface{}) (interface{}, *http.Response, error) {
+func (s *Two_BlocksService) Get(ctx context.Context, id int) (interface{}, *http.Response, error) {
 	uri := fmt.Sprintf("blocks/%v", id)
 
-	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, &model)
+	var responseStruct *responses_two.PublicKey
+	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
 	}
 
-	return model, resp, err
+	return responseStruct, resp, err
 }
 
 // Get all transactions by the given block.
-func (s *Two_BlocksService) Transactions(ctx context.Context, id int, query *request.Pagination, model interface{}) (interface{}, *http.Response, error) {
+func (s *Two_BlocksService) Transactions(ctx context.Context, id int, query *requests_two.Pagination) (interface{}, *http.Response, error) {
 	uri := fmt.Sprintf("blocks/%v/transactions", id)
 
-	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, query, &model)
+	var responseStruct *responses_two.PublicKey
+	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
 	}
 
-	return model, resp, err
+	return responseStruct, resp, err
 }
 
 // Filter all blocks by the given criteria.
-func (s *Two_BlocksService) Search(ctx context.Context, query *request.Pagination, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 2, "GET", "blocks/search", query, &model)
+func (s *Two_BlocksService) Search(ctx context.Context, query *requests_two.Pagination) (interface{}, *http.Response, error) {
+	var responseStruct *responses_two.PublicKey
+	resp, err := s.client.SendRequest(ctx, 2, "GET", "blocks/search", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
 	}
 
-	return model, resp, err
+	return responseStruct, resp, err
 }

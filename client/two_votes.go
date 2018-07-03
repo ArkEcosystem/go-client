@@ -6,7 +6,8 @@
 package client
 
 import (
-	"./structs/request"
+	"./requests/two"
+	"./responses/two"
 	"context"
 	"fmt"
 	"net/http"
@@ -17,25 +18,27 @@ import (
 type Two_VotesService Service
 
 // Get all votes.
-func (s *Two_VotesService) List(ctx context.Context, query *request.Pagination, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 2, "GET", "votes", query, &model)
+func (s *Two_VotesService) List(ctx context.Context, query *requests_two.Pagination) (interface{}, *http.Response, error) {
+	var responseStruct *responses_two.PublicKey
+	resp, err := s.client.SendRequest(ctx, 2, "GET", "votes", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
 	}
 
-	return model, resp, err
+	return responseStruct, resp, err
 }
 
 // Get a vote by the given id.
-func (s *Two_VotesService) Get(ctx context.Context, id int, model interface{}) (interface{}, *http.Response, error) {
+func (s *Two_VotesService) Get(ctx context.Context, id int) (interface{}, *http.Response, error) {
 	uri := fmt.Sprintf("votes/%v", id)
 
-	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, &model)
+	var responseStruct *responses_two.PublicKey
+	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
 	}
 
-	return model, resp, err
+	return responseStruct, resp, err
 }

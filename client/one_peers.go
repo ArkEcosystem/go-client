@@ -6,7 +6,8 @@
 package client
 
 import (
-	"./structs/request"
+	"./requests/one"
+	"./responses/one"
 	"context"
 	"net/http"
 )
@@ -16,19 +17,21 @@ import (
 type One_PeersService Service
 
 // Get all accounts.
-func (s *One_PeersService) List(ctx context.Context, query *request.GetPeersQuery, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "peers", query, &model)
+func (s *One_PeersService) List(ctx context.Context, query *requests_one.GetPeersQuery) (interface{}, *http.Response, error) {
+	var responseStruct *responses_one.PublicKey
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "peers", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
 	}
 
-	return model, resp, err
+	return responseStruct, resp, err
 }
 
 // Get a peer by the given IP address and port.
-func (s *One_PeersService) Get(ctx context.Context, query *request.GetPeerQuery, model interface{}) (*http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "peers/get", query, &model)
+func (s *One_PeersService) Get(ctx context.Context, query *requests_one.GetPeerQuery) (*http.Response, error) {
+	var responseStruct *responses_one.PublicKey
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "peers/get", query, &responseStruct)
 
 	if err != nil {
 		return nil, err
@@ -38,12 +41,13 @@ func (s *One_PeersService) Get(ctx context.Context, query *request.GetPeerQuery,
 }
 
 // Get the node version of the given peer.
-func (s *One_PeersService) Version(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "peers/version", nil, &model)
+func (s *One_PeersService) Version(ctx context.Context) (interface{}, *http.Response, error) {
+	var responseStruct *responses_one.PublicKey
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "peers/version", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
 	}
 
-	return model, resp, err
+	return responseStruct, resp, err
 }

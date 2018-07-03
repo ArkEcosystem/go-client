@@ -6,6 +6,7 @@
 package client
 
 import (
+	"./responses/one"
 	"context"
 	"net/http"
 )
@@ -15,34 +16,37 @@ import (
 type One_LoaderService Service
 
 // Get the loader status.
-func (s *One_LoaderService) Status(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "loader/status", nil, &model)
+func (s *One_LoaderService) Status(ctx context.Context) (interface{}, *http.Response, error) {
+	var responseStruct *responses_one.PublicKey
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "loader/status", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
 	}
 
-	return model, resp, err
+	return responseStruct, resp, err
 }
 
 // Get the loader syncing status.
-func (s *One_LoaderService) SyncStatus(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "loader/status/sync", nil, &model)
+func (s *One_LoaderService) SyncStatus(ctx context.Context) (interface{}, *http.Response, error) {
+	var responseStruct *responses_one.PublicKey
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "loader/status/sync", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
 	}
 
-	return model, resp, err
+	return responseStruct, resp, err
 }
 
 // Get the loader configuration.
-func (s *One_LoaderService) AutoConfigure(ctx context.Context, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "loader/autoconfigure", nil, &model)
+func (s *One_LoaderService) AutoConfigure(ctx context.Context) (interface{}, *http.Response, error) {
+	var responseStruct *responses_one.PublicKey
+	resp, err := s.client.SendRequest(ctx, 1, "GET", "loader/autoconfigure", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
 	}
 
-	return model, resp, err
+	return responseStruct, resp, err
 }

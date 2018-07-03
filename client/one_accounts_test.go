@@ -10,6 +10,7 @@ import (
 	"fmt"
 	"github.com/stretchr/testify/assert"
 	"net/http"
+	"strings"
 	"testing"
 )
 
@@ -24,17 +25,17 @@ func TestOneAccountsService_List(t *testing.T) {
 
 	mux.HandleFunc("/accounts/getAllAccounts", func(writer http.ResponseWriter, request *http.Request) {
 		testMethod(t, request, "GET")
-		testFormValues(t, request, values{})
 		fmt.Fprint(writer, `{"success":true}`)
 	})
 
-	responseModel := &SuccessResponse{}
-	_, _, err := client.One_Accounts.List(context.Background(), &responseModel)
+	// responseModel := &SuccessResponse{}
+	_, response, err := client.One_Accounts.List(context.Background(), &SuccessResponse{})
 	if err != nil {
 		t.Errorf("One_Accounts.List returned error: %v", err)
 	}
 
 	assert := assert.New(t)
+	assert.True(strings.Contains(response.Request.URL.String(), "/api/accounts/getAllAccounts"))
 	assert.True(responseModel.Success)
 }
 

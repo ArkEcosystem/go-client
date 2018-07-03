@@ -6,7 +6,8 @@
 package client
 
 import (
-	"./structs/request"
+	"./requests/two"
+	"./responses/two"
 	"context"
 	"fmt"
 	"net/http"
@@ -17,51 +18,55 @@ import (
 type Two_DelegatesService Service
 
 // Get all accounts.
-func (s *Two_DelegatesService) List(ctx context.Context, query *request.Pagination, model interface{}) (interface{}, *http.Response, error) {
-	resp, err := s.client.SendRequest(ctx, 2, "GET", "delegates", query, &model)
+func (s *Two_DelegatesService) List(ctx context.Context, query *requests_two.Pagination) (interface{}, *http.Response, error) {
+	var responseStruct *responses_two.PublicKey
+	resp, err := s.client.SendRequest(ctx, 2, "GET", "delegates", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
 	}
 
-	return model, resp, err
+	return responseStruct, resp, err
 }
 
 // Get a block by the given id.
-func (s *Two_DelegatesService) Get(ctx context.Context, id int, model interface{}) (interface{}, *http.Response, error) {
+func (s *Two_DelegatesService) Get(ctx context.Context, id int) (interface{}, *http.Response, error) {
 	uri := fmt.Sprintf("delegates/%v", id)
 
-	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, &model)
+	var responseStruct *responses_two.PublicKey
+	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
 	}
 
-	return model, resp, err
+	return responseStruct, resp, err
 }
 
 // Get all blocks for the given delegate.
-func (s *Two_DelegatesService) Blocks(ctx context.Context, id int, query *request.Pagination, model interface{}) (interface{}, *http.Response, error) {
+func (s *Two_DelegatesService) Blocks(ctx context.Context, id int, query *requests_two.Pagination) (interface{}, *http.Response, error) {
 	uri := fmt.Sprintf("delegates/%v/blocks", id)
 
-	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, query, &model)
+	var responseStruct *responses_two.PublicKey
+	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
 	}
 
-	return model, resp, err
+	return responseStruct, resp, err
 }
 
 // Get all voters for the given delegate.
-func (s *Two_DelegatesService) Voters(ctx context.Context, id int, query *request.Pagination, model interface{}) (interface{}, *http.Response, error) {
+func (s *Two_DelegatesService) Voters(ctx context.Context, id int, query *requests_two.Pagination) (interface{}, *http.Response, error) {
 	uri := fmt.Sprintf("delegates/%v/voters", id)
 
-	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, query, &model)
+	var responseStruct *responses_two.PublicKey
+	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
 	}
 
-	return model, resp, err
+	return responseStruct, resp, err
 }
