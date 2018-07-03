@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/arkecosystem/go-client/ark_client"
+	"./client"
 	"context"
 	"github.com/davecgh/go-spew/spew"
 )
@@ -12,7 +12,7 @@ type PublicKeyResponse struct {
 }
 
 func main() {
-	client := ark_client.NewClient(nil)
+	client := client.NewClient(nil)
 
 	response := &PublicKeyResponse{}
 
