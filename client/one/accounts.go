@@ -27,10 +27,10 @@ func (s *AccountsService) List(ctx context.Context) (*Accounts, *http.Response, 
 }
 
 // Get a account by the given address.
-func (s *AccountsService) Get(ctx context.Context, address string) (*PublicKey, *http.Response, error) {
+func (s *AccountsService) Get(ctx context.Context, address string) (*AccountSingle, *http.Response, error) {
 	query := &AddressQuery{Address: address}
 
-	var responseStruct *PublicKey
+	var responseStruct *AccountSingle
 	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts", query, &responseStruct)
 
 	if err != nil {

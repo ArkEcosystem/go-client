@@ -18,6 +18,11 @@ type Account struct {
 	SecondSignature            int      `json:"secondSignature,omitempty"`
 }
 
+type AccountSingle struct {
+	Success  bool    `json:"success,omitempty"`
+	Account  Account `json:"account,omitempty"`
+}
+
 type Accounts struct {
 	Success  bool      `json:"success,omitempty"`
 	Accounts []Account `json:"accounts,omitempty"`

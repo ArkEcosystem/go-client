@@ -59,7 +59,47 @@ func TestAccountsService_List(t *testing.T) {
 
 // Get a account by the given address.
 func TestAccountsService_Get(t *testing.T) {
-	//
+	client, mux, _, teardown := setupTest()
+	defer teardown()
+
+	mux.HandleFunc("/accounts", func(writer http.ResponseWriter, request *http.Request) {
+		testMethod(t, request, "GET")
+		fmt.Fprint(writer,
+			`{
+			  "account": {
+			    "address": "dummy",
+			    "publicKey": "dummy",
+			    "secondPublicKey": "dummy",
+			    "username": "dummy",
+			    "balance": "dummy",
+			    "unconfirmedBalance": "dummy",
+			    "multisignatures": [],
+			    "u_multisignatures": [],
+			    "unconfirmedSignature": 0,
+			    "secondSignature": 0
+			  },
+			  "success": true
+			}`)
+	})
+
+	responseStruct, response, err := client.Accounts.Get(context.Background(), "dummy")
+	testGeneralError(t, "Accounts.Get", err)
+	testResponseUrl(t, "Accounts.Get", response, "/api/accounts")
+	testResponseStruct(t, "Accounts.Get", responseStruct, &AccountSingle{
+		Success: true,
+		Account: Account{
+			Address:                    "dummy",
+			PublicKey:                  "dummy",
+			SecondPublicKey:            "dummy",
+			Username:                   "dummy",
+			Balance:                    "dummy",
+			UnconfirmedBalance:         "dummy",
+			Multisignatures:            []string{},
+			UnconfirmedMultisignatures: []string{},
+			UnconfirmedSignature:       0,
+			SecondSignature:            0,
+		},
+	})
 }
 
 // Count all accounts.
