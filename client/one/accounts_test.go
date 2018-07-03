@@ -9,8 +9,6 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-	"reflect"
-	"strings"
 	"testing"
 )
 
@@ -55,19 +53,9 @@ func TestAccountsService_PublicKey(t *testing.T) {
 	})
 
 	responseStruct, response, err := client.Accounts.PublicKey(context.Background(), "dummy")
-	if err != nil {
-		t.Errorf("[Accounts.PublicKey] returned error: %v", err)
-	}
-
-	expectedResponse := &PublicKey{Success: true, PublicKey: "dummy"}
-	if !reflect.DeepEqual(expectedResponse, responseStruct) {
-		t.Errorf("[Accounts.PublicKey][Response] expected %+v, actual %+v", expectedResponse, responseStruct)
-	}
-
-	expectedURL := "/api/accounts/getPublicKey?address=dummy"
-	if strings.Contains(response.Request.URL.String(), expectedURL) == false {
-		t.Errorf("[Accounts.PublicKey][URL] expected %+v, actual %+v", expectedURL, response.Request.URL.String())
-	}
+	testGeneralError(t, "Accounts.PublicKey", err)
+	testResponseUrl(t, "Accounts.PublicKey", response, "/api/accounts/getPublicKey?address=dummy")
+	testResponseStruct(t, "Accounts.PublicKey", responseStruct, &PublicKey{Success: true, PublicKey: "dummy"})
 }
 
 // Get all wallets sorted by balance in descending order.

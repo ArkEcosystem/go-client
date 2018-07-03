@@ -3,7 +3,7 @@
 // Use of this source code is governed by the MIT
 // license that can be found in the LICENSE file.
 
-package two
+package one
 
 import (
 	"fmt"
@@ -12,6 +12,7 @@ import (
 	"net/url"
 	"os"
 	"reflect"
+	"strings"
 	"testing"
 )
 
@@ -55,6 +56,24 @@ func setupTest() (client *Client, mux *http.ServeMux, serverURL string, teardown
 func testMethod(t *testing.T, r *http.Request, want string) {
 	if got := r.Method; got != want {
 		t.Errorf("Request method: %v, want %v", got, want)
+	}
+}
+
+func testGeneralError(t *testing.T, method string, err error) {
+	if err != nil {
+		t.Errorf("[%v] returned error: %v", method, err)
+	}
+}
+
+func testResponseUrl(t *testing.T, method string, r *http.Response, want string) {
+	if strings.Contains(r.Request.URL.String(), want) == false {
+		t.Errorf("[%+v][URL] got %+v, want %+v", method, r.Request.URL.String(), want)
+	}
+}
+
+func testResponseStruct(t *testing.T, method string, got interface{}, want interface{}) {
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("[%+v][Response] got %+v, want %+v", method, got, want)
 	}
 }
 
