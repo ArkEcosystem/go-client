@@ -10,7 +10,6 @@ type Block struct {
 	Version  byte   `json:"version,omitempty"`
 	Height   int64  `json:"height,omitempty"`
 	Previous string `json:"previous,omitempty"`
-	Previous string `json:"previous,omitempty"`
 	Forged   struct {
 		Reward int64 `json:"reward,omitempty"`
 		Fee    int64 `json:"fee,omitempty"`
