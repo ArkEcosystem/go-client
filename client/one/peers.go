@@ -15,8 +15,8 @@ import (
 type PeersService Service
 
 // Get all accounts.
-func (s *PeersService) List(ctx context.Context, query *GetPeersQuery) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
+func (s *PeersService) List(ctx context.Context, query *GetPeersQuery) (*Peers, *http.Response, error) {
+	var responseStruct *Peers
 	resp, err := s.client.SendRequest(ctx, 1, "GET", "peers", query, &responseStruct)
 
 	if err != nil {
@@ -27,20 +27,20 @@ func (s *PeersService) List(ctx context.Context, query *GetPeersQuery) (*PublicK
 }
 
 // Get a peer by the given IP address and port.
-func (s *PeersService) Get(ctx context.Context, query *GetPeerQuery) (*http.Response, error) {
-	var responseStruct *PublicKey
+func (s *PeersService) Get(ctx context.Context, query *GetPeerQuery) (*Peer, *http.Response, error) {
+	var responseStruct *Peer
 	resp, err := s.client.SendRequest(ctx, 1, "GET", "peers/get", query, &responseStruct)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return resp, nil
+	return responseStruct, resp, nil
 }
 
 // Get the node version of the given peer.
-func (s *PeersService) Version(ctx context.Context) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
+func (s *PeersService) Version(ctx context.Context) (*PeersVersion, *http.Response, error) {
+	var responseStruct *PeersVersion
 	resp, err := s.client.SendRequest(ctx, 1, "GET", "peers/version", nil, &responseStruct)
 
 	if err != nil {

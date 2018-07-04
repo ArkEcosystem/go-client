@@ -6,16 +6,16 @@
 package one
 
 type GetPeersQuery struct {
-	Port    int    `url:"port"`
+	Port    byte   `url:"port"`
 	Status  string `url:"status"`
 	Os      string `url:"os"`
 	Version string `url:"version"`
 	OrderBy string `url:"orderBy"`
-	Limit   int    `url:"limit"`
-	Offset  int    `url:"offset"`
+	Limit   byte   `url:"limit"`
+	Offset  byte   `url:"offset"`
 }
 
 type GetPeerQuery struct {
 	Ip   string `url:"ip"`
-	Port int    `url:"port"`
+	Port byte   `url:"port"`
 }
