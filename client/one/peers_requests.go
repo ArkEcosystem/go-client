@@ -8,7 +8,7 @@
 package one
 
 type GetPeersQuery struct {
-	Port    byte   `url:"port"`
+	Port    uint16 `url:"port"`
 	Status  string `url:"status"`
 	Os      string `url:"os"`
 	Version string `url:"version"`
@@ -19,5 +19,5 @@ type GetPeersQuery struct {
 
 type GetPeerQuery struct {
 	Ip   string `url:"ip"`
-	Port byte   `url:"port"`
+	Port uint16 `url:"port"`
 }

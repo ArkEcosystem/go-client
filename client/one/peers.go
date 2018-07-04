@@ -29,8 +29,8 @@ func (s *PeersService) List(ctx context.Context, query *GetPeersQuery) (*Peers, 
 }
 
 // Get a peer by the given IP address and port.
-func (s *PeersService) Get(ctx context.Context, query *GetPeerQuery) (*Peer, *http.Response, error) {
-	var responseStruct *Peer
+func (s *PeersService) Get(ctx context.Context, query *GetPeerQuery) (*GetPeer, *http.Response, error) {
+	var responseStruct *GetPeer
 	resp, err := s.client.SendRequest(ctx, "GET", "peers/get", query, &responseStruct)
 
 	if err != nil {

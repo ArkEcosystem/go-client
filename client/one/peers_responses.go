@@ -10,7 +10,7 @@ package one
 type Peer struct {
 	Success bool   `json:"success,omitempty"`
 	Ip      string `json:"ip,omitempty"`
-	Port    byte   `json:"port,omitempty"`
+	Port    uint16 `json:"port,omitempty"`
 	Version string `json:"version,omitempty"`
 	Errors  byte   `json:"errors,omitempty"`
 	Os      string `json:"os,omitempty"`
@@ -22,6 +22,11 @@ type Peer struct {
 type Peers struct {
 	Success bool   `json:"success,omitempty"`
 	Peers   []Peer `json:"peers,omitempty"`
+}
+
+type GetPeer struct {
+	Success bool `json:"success,omitempty"`
+	Peer    Peer `json:"peer,omitempty"`
 }
 
 type PeersVersion struct {
