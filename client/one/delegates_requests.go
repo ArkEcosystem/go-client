@@ -20,8 +20,8 @@ type GetDelegateQuery struct {
 
 type GetDelegatesQuery struct {
 	OrderBy string `url:"orderBy"`
-	Limit   int    `url:"limit"`
-	Offset  int    `url:"offset"`
+	Limit   byte   `url:"limit"`
+	Offset  byte   `url:"offset"`
 }
 
 type DelegateSearchQuery struct {

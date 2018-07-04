@@ -14,13 +14,13 @@ type Account struct {
 	UnconfirmedBalance         string   `json:"unconfirmedBalance,omitempty"`
 	Multisignatures            []string `json:"multisignatures,omitempty"`
 	UnconfirmedMultisignatures []string `json:"u_multisignatures,omitempty"`
-	UnconfirmedSignature       int      `json:"unconfirmedSignature,omitempty"`
-	SecondSignature            int      `json:"secondSignature,omitempty"`
+	UnconfirmedSignature       byte     `json:"unconfirmedSignature,omitempty"`
+	SecondSignature            byte     `json:"secondSignature,omitempty"`
 }
 
 type AccountSingle struct {
-	Success  bool    `json:"success,omitempty"`
-	Account  Account `json:"account,omitempty"`
+	Success bool    `json:"success,omitempty"`
+	Account Account `json:"account,omitempty"`
 }
 
 type Accounts struct {
@@ -30,7 +30,7 @@ type Accounts struct {
 
 type AccountsCount struct {
 	Success bool `json:"success,omitempty"`
-	Count   int  `json:"count,omitempty"`
+	Count   byte `json:"count,omitempty"`
 }
 
 type AccountDelegates struct {

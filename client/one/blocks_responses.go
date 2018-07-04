@@ -8,20 +8,20 @@ package one
 type Block struct {
 	Success              bool   `json:"success,omitempty"`
 	Id                   string `json:"id,omitempty"`
-	Version              int    `json:"version,omitempty"`
+	Version              byte   `json:"version,omitempty"`
 	Timestamp            int32  `json:"timestamp,omitempty"`
 	PreviousBlock        string `json:"previousBlock,omitempty"`
-	Height               int    `json:"height,omitempty"`
-	NumberOfTransactions int    `json:"numberOfTransactions,omitempty"`
+	Height               byte   `json:"height,omitempty"`
+	NumberOfTransactions byte   `json:"numberOfTransactions,omitempty"`
 	TotalAmount          int64  `json:"totalAmount,omitempty"`
 	TotalForged          string `json:"totalForged,omitempty"`
 	TotalFee             int64  `json:"totalFee,omitempty"`
 	Reward               int64  `json:"reward,omitempty"`
-	PayloadLength        int    `json:"payloadLength,omitempty"`
+	PayloadLength        byte   `json:"payloadLength,omitempty"`
 	PayloadHash          string `json:"payloadHash,omitempty"`
 	GeneratorPublicKey   string `json:"generatorPublicKey,omitempty"`
 	BlockSignature       string `json:"blockSignature,omitempty"`
-	Confirmations        int    `json:"confirmations,omitempty"`
+	Confirmations        byte   `json:"confirmations,omitempty"`
 }
 
 type Blocks struct {
@@ -31,7 +31,7 @@ type Blocks struct {
 
 type BlocksEpoch struct {
 	Success bool `json:"success,omitempty"`
-	Epoch   int  `json:"epoch,omitempty"`
+	Epoch   byte `json:"epoch,omitempty"`
 }
 
 type BlocksFee struct {
@@ -57,12 +57,12 @@ type BlocksHeight struct {
 
 type BlocksMilestone struct {
 	Success   bool `json:"success,omitempty"`
-	Milestone int  `json:"milestone,omitempty"`
+	Milestone byte `json:"milestone,omitempty"`
 }
 
 type BlocksNethash struct {
 	Success bool `json:"success,omitempty"`
-	Nethash int  `json:"nethash,omitempty"`
+	Nethash byte `json:"nethash,omitempty"`
 }
 
 type BlocksReward struct {
@@ -75,7 +75,7 @@ type BlocksStatus struct {
 	Epoch     string `json:"epoch,omitempty"`
 	Height    int64  `json:"height,omitempty"`
 	Fee       int64  `json:"fee,omitempty"`
-	Milestone int    `json:"milestone,omitempty"`
+	Milestone byte   `json:"milestone,omitempty"`
 	Nethash   string `json:"nethash,omitempty"`
 	Reward    int64  `json:"reward,omitempty"`
 	Supply    int64  `json:"supply,omitempty"`

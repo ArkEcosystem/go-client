@@ -11,16 +11,16 @@ type Delegate struct {
 	Address        string  `json:"address,omitempty"`
 	PublicKey      string  `json:"publicKey,omitempty"`
 	Vote           string  `json:"vote,omitempty"`
-	ProducedBlocks int     `json:"producedblocks,omitempty"`
-	MissedBlocks   int     `json:"missedblocks,omitempty"`
-	Rate           int     `json:"rate,omitempty"`
+	ProducedBlocks byte    `json:"producedblocks,omitempty"`
+	MissedBlocks   byte    `json:"missedblocks,omitempty"`
+	Rate           byte    `json:"rate,omitempty"`
 	Approval       float64 `json:"approval,omitempty"`
 	Productivity   float64 `json:"productivity,omitempty"`
 }
 
 type DelegatesCount struct {
 	Success bool `json:"success,omitempty"`
-	Count   int  `json:"count,omitempty"`
+	Count   byte `json:"count,omitempty"`
 }
 
 type DelegateFee struct {
@@ -30,7 +30,7 @@ type DelegateFee struct {
 
 type NextForger struct {
 	Success      bool              `json:"success,omitempty"`
-	CurrentBlock int               `json:"currentBlock,omitempty"`
+	CurrentBlock byte              `json:"currentBlock,omitempty"`
 	CurrentSlot  int64             `json:"currentSlot,omitempty"`
 	Delegates    map[string]string `json:"delegates,omitempty"`
 }

@@ -6,15 +6,15 @@
 package one
 
 type BlocksQuery struct {
-	Limit              int    `url:"limit"`
+	Limit              byte   `url:"limit"`
 	OrderBy            string `url:"orderBy"`
-	Offset             int    `url:"offset"`
+	Offset             byte   `url:"offset"`
 	GeneratorPublicKey string `url:"generatorPublicKey"`
-	TotalAmount        int    `url:"totalAmount"`
-	TotalFee           int    `url:"totalFee"`
-	Reward             int    `url:"reward"`
+	TotalAmount        byte   `url:"totalAmount"`
+	TotalFee           byte   `url:"totalFee"`
+	Reward             byte   `url:"reward"`
 	PreviousBlock      string `url:"previousBlock"`
-	Height             int    `url:"height"`
+	Height             byte   `url:"height"`
 }
 
 type BlockIdQuery struct {

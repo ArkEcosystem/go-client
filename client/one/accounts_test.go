@@ -121,7 +121,7 @@ func TestAccountsService_Count(t *testing.T) {
 	testResponseUrl(t, "Accounts.Count", response, "/api/accounts/count")
 	testResponseStruct(t, "Accounts.Count", responseStruct, &AccountsCount{
 		Success: true,
-		Count: 3,
+		Count:   3,
 	})
 }
 
@@ -154,16 +154,16 @@ func TestAccountsService_Delegate(t *testing.T) {
 	testResponseUrl(t, "Accounts.Delegate", response, "/api/accounts/delegates")
 	testResponseStruct(t, "Accounts.Delegate", responseStruct, &AccountDelegates{
 		Success: true,
-		Delegates: []Delegate {{
-			Username: "dummy",
-			Address: "dummy",
-			PublicKey: "dummy",
-			Vote: "dummy",
+		Delegates: []Delegate{{
+			Username:       "dummy",
+			Address:        "dummy",
+			PublicKey:      "dummy",
+			Vote:           "dummy",
 			ProducedBlocks: 1,
-			MissedBlocks: 2,
-			Rate: 3,
-			Approval: 0.5,
-			Productivity: 0.10,
+			MissedBlocks:   2,
+			Rate:           3,
+			Approval:       0.5,
+			Productivity:   0.10,
 		}},
 	})
 }
@@ -187,7 +187,7 @@ func TestAccountsService_DelegateFee(t *testing.T) {
 	testResponseUrl(t, "Accounts.DelegateFee", response, "/api/accounts/delegates/fee")
 	testResponseStruct(t, "Accounts.DelegateFee", responseStruct, &DelegateFee{
 		Success: true,
-		Fee: 10,
+		Fee:     10,
 	})
 }
 
@@ -210,8 +210,8 @@ func TestAccountsService_Balance(t *testing.T) {
 	testGeneralError(t, "Accounts.Balance", err)
 	testResponseUrl(t, "Accounts.Balance", response, "/api/accounts/getBalance")
 	testResponseStruct(t, "Accounts.Balance", responseStruct, &AccountBalance{
-		Success: true,
-		Balance: "10",
+		Success:            true,
+		Balance:            "10",
 		UnconfirmedBalance: "10",
 	})
 }
