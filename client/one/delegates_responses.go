@@ -20,6 +20,11 @@ type Delegate struct {
 	Productivity   float64 `json:"productivity,omitempty"`
 }
 
+type GetDelegate struct {
+	Success  bool     `json:"success,omitempty"`
+	Delegate Delegate `json:"delegate,omitempty"`
+}
+
 type DelegatesCount struct {
 	Success bool `json:"success,omitempty"`
 	Count   byte `json:"count,omitempty"`
@@ -31,15 +36,15 @@ type DelegateFee struct {
 }
 
 type NextForger struct {
-	Success      bool              `json:"success,omitempty"`
-	CurrentBlock byte              `json:"currentBlock,omitempty"`
-	CurrentSlot  int64             `json:"currentSlot,omitempty"`
-	Delegates    map[string]string `json:"delegates,omitempty"`
+	Success      bool     `json:"success,omitempty"`
+	CurrentBlock byte     `json:"currentBlock,omitempty"`
+	CurrentSlot  int64    `json:"currentSlot,omitempty"`
+	Delegates    []string `json:"delegates,omitempty"`
 }
 
 type ForgedByDelegate struct {
-	Success bool  `json:"success,omitempty"`
-	Fees    int64 `json:"fees,omitempty"`
-	Rewards int64 `json:"rewards,omitempty"`
-	Forged  int64 `json:"forged,omitempty"`
+	Success bool   `json:"success,omitempty"`
+	Fees    string `json:"fees,omitempty"`
+	Rewards string `json:"rewards,omitempty"`
+	Forged  string `json:"forged,omitempty"`
 }

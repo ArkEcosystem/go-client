@@ -28,5 +28,5 @@ type GetDelegatesQuery struct {
 
 type DelegateSearchQuery struct {
 	Q     string `url:"q"`
-	Limit string `url:"limit"`
+	Limit byte   `url:"limit"`
 }

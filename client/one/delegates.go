@@ -17,8 +17,8 @@ import (
 type DelegatesService Service
 
 // Get all accounts.
-func (s *DelegatesService) List(ctx context.Context, query *GetDelegatesQuery) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
+func (s *DelegatesService) List(ctx context.Context, query *GetDelegatesQuery) (*AccountDelegates, *http.Response, error) {
+	var responseStruct *AccountDelegates
 	resp, err := s.client.SendRequest(ctx, "GET", "delegates", query, &responseStruct)
 
 	if err != nil {
@@ -29,8 +29,8 @@ func (s *DelegatesService) List(ctx context.Context, query *GetDelegatesQuery) (
 }
 
 // Get a delegate by public key or username.
-func (s *DelegatesService) Get(ctx context.Context, query *GetDelegateQuery) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
+func (s *DelegatesService) Get(ctx context.Context, query *GetDelegateQuery) (*GetDelegate, *http.Response, error) {
+	var responseStruct *GetDelegate
 	resp, err := s.client.SendRequest(ctx, "GET", "delegates/get", query, &responseStruct)
 
 	if err != nil {
