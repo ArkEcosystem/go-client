@@ -22,22 +22,28 @@ type LoaderSync struct {
 	Id      string `json:"id,omitempty"`
 }
 
+type LoaderNetwork struct {
+	Nethash       string            `json:"nethash,omitempty"`
+	Token         string            `json:"token,omitempty"`
+	Symbol        string            `json:"symbol,omitempty"`
+	Explorer      string            `json:"explorer,omitempty"`
+	Version       byte              `json:"version,omitempty"`
+	Ports         map[string]uint16 `json:"ports,omitempty"`
+	FeeStatistics []FeeStatistic    `json:"feeStatistics,omitempty"`
+}
+
 type LoaderAutoConfigure struct {
-	Success       bool            `json:"success,omitempty"`
-	Nethash       string          `json:"nethash,omitempty"`
-	Token         string          `json:"token,omitempty"`
-	Symbol        string          `json:"symbol,omitempty"`
-	Explorer      string          `json:"explorer,omitempty"`
-	Version       byte            `json:"version,omitempty"`
-	Ports         map[string]byte `json:"ports,omitempty"`
-	FeeStatistics []FeeStatistic  `json:"feeStatistics,omitempty"`
+	Success bool          `json:"success,omitempty"`
+	Network LoaderNetwork `json:"network,omitempty"`
+}
+
+type Fees struct {
+	MinFee int64 `json:"minFee,omitempty"`
+	MaxFee int64 `json:"maxFee,omitempty"`
+	MvgFee int64 `json:"avgFee,omitempty"`
 }
 
 type FeeStatistic struct {
 	Type int64 `json:"type,omitempty"`
-	Fees struct {
-		MinFee int64 `json:"minFee,omitempty"`
-		MaxFee int64 `json:"maxFee,omitempty"`
-		MvgFee int64 `json:"avgFee,omitempty"`
-	} `json:"fees,omitempty"`
+	Fees Fees  `json:"fees,omitempty"`
 }
