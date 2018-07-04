@@ -35,3 +35,9 @@ type Timestamp struct {
 	Unix  int32  `json:"unix,omitempty"`
 	Human string `json:"human,omitempty"`
 }
+
+type CreateTransaction struct {
+	Accept  map[string]string `json:"accept,omitempty"`
+	Excess  map[string]string `json:"excess,omitempty"`
+	Invalid map[string]string `json:"invalid,omitempty"`
+}

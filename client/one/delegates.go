@@ -77,7 +77,6 @@ func (s *DelegatesService) ForgedByAccount(ctx context.Context, id string) (*For
 }
 
 // Filter all delegates by the given criteria.
-// TODO: request query
 func (s *DelegatesService) Search(ctx context.Context, query *DelegateSearchQuery) (*AccountDelegates, *http.Response, error) {
 	var responseStruct *AccountDelegates
 	resp, err := s.client.SendRequest(ctx, "GET", "delegates/search", query, &responseStruct)

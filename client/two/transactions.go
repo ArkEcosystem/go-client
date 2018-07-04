@@ -28,16 +28,17 @@ func (s *TransactionsService) List(ctx context.Context, query *Pagination) (*Tra
 }
 
 // Create a new transaction.
-// TODO: Finish method
-// func (s *TransactionsService) Create(ctx context.Context) (*http.Response, error) {
-//     resp, err := s.Client.Client.Post("transactions")
+// TODO: add struct for request body
+func (s *TransactionsService) Create(ctx context.Context) (*CreateTransaction, *http.Response, error) {
+	var responseStruct *CreateTransaction
+	resp, err := s.client.SendRequest(ctx, "POST", "transactions", query, &responseStruct)
 
-//     if err != nil {
-//         return nil, err
-//     }
+	if err != nil {
+		return nil, resp, err
+	}
 
-//     return resp, nil
-// }
+	return responseStruct, resp, err
+}
 
 // Get a transaction by the given id.
 func (s *TransactionsService) Get(ctx context.Context, id int) (*Transaction, *http.Response, error) {
@@ -80,16 +81,16 @@ func (s *TransactionsService) GetUnconfirmed(ctx context.Context, id int) (*Tran
 }
 
 // Filter all transactions by the given criteria.
-// TODO: Finish method
-// func (s *TransactionsService) Search(ctx context.Context, query *Pagination) (*http.Response, error) {
-// 	resp, err := s.client.SendRequest(ctx, "POST", "transactions/search", query, &responseStruct)
+func (s *TransactionsService) Search(ctx context.Context, query *Pagination) (*Transactions, *http.Response, error) {
+	var responseStruct *Transactions
+	resp, err := s.client.SendRequest(ctx, "POST", "transactions/search", query, &responseStruct)
 
-// 	if err != nil {
-// 		return nil, resp, err
-// 	}
+	if err != nil {
+		return nil, resp, err
+	}
 
-// 	return responseStruct, resp, err
-// }
+	return responseStruct, resp, err
+}
 
 // Get a list of valid transaction types.
 func (s *TransactionsService) Types(ctx context.Context) (*TransactionTypes, *http.Response, error) {
