@@ -29,9 +29,9 @@ func (s *TransactionsService) List(ctx context.Context, query *Pagination) (*Tra
 
 // Create a new transaction.
 // TODO: add struct for request body
-func (s *TransactionsService) Create(ctx context.Context) (*CreateTransaction, *http.Response, error) {
+func (s *TransactionsService) Create(ctx context.Context, body *CreateTransactionRequest) (*CreateTransaction, *http.Response, error) {
 	var responseStruct *CreateTransaction
-	resp, err := s.client.SendRequest(ctx, "POST", "transactions", query, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "POST", "transactions", body, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
