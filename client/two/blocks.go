@@ -16,8 +16,8 @@ import (
 type BlocksService Service
 
 // Get all blocks.
-func (s *BlocksService) List(ctx context.Context, query *Pagination) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
+func (s *BlocksService) List(ctx context.Context, query *Pagination) (*Blocks, *http.Response, error) {
+	var responseStruct *Blocks
 	resp, err := s.client.SendRequest(ctx, 2, "GET", "blocks", query, &responseStruct)
 
 	if err != nil {
@@ -28,10 +28,10 @@ func (s *BlocksService) List(ctx context.Context, query *Pagination) (*PublicKey
 }
 
 // Get a block by the given id.
-func (s *BlocksService) Get(ctx context.Context, id int) (*PublicKey, *http.Response, error) {
+func (s *BlocksService) Get(ctx context.Context, id int) (*Block, *http.Response, error) {
 	uri := fmt.Sprintf("blocks/%v", id)
 
-	var responseStruct *PublicKey
+	var responseStruct *Block
 	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, &responseStruct)
 
 	if err != nil {
@@ -42,10 +42,10 @@ func (s *BlocksService) Get(ctx context.Context, id int) (*PublicKey, *http.Resp
 }
 
 // Get all transactions by the given block.
-func (s *BlocksService) Transactions(ctx context.Context, id int, query *Pagination) (*PublicKey, *http.Response, error) {
+func (s *BlocksService) Transactions(ctx context.Context, id int, query *Pagination) (*Transactions, *http.Response, error) {
 	uri := fmt.Sprintf("blocks/%v/transactions", id)
 
-	var responseStruct *PublicKey
+	var responseStruct *Transactions
 	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, query, &responseStruct)
 
 	if err != nil {
@@ -56,8 +56,8 @@ func (s *BlocksService) Transactions(ctx context.Context, id int, query *Paginat
 }
 
 // Filter all blocks by the given criteria.
-func (s *BlocksService) Search(ctx context.Context, query *Pagination) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
+func (s *BlocksService) Search(ctx context.Context, query *Pagination) (*Blocks, *http.Response, error) {
+	var responseStruct *Blocks
 	resp, err := s.client.SendRequest(ctx, 2, "GET", "blocks/search", query, &responseStruct)
 
 	if err != nil {
