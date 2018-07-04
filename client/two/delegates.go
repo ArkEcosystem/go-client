@@ -16,8 +16,8 @@ import (
 type DelegatesService Service
 
 // Get all accounts.
-func (s *DelegatesService) List(ctx context.Context, query *Pagination) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
+func (s *DelegatesService) List(ctx context.Context, query *Pagination) (*Delegates, *http.Response, error) {
+	var responseStruct *Delegates
 	resp, err := s.client.SendRequest(ctx, 2, "GET", "delegates", query, &responseStruct)
 
 	if err != nil {
@@ -28,10 +28,10 @@ func (s *DelegatesService) List(ctx context.Context, query *Pagination) (*Public
 }
 
 // Get a block by the given id.
-func (s *DelegatesService) Get(ctx context.Context, id int) (*PublicKey, *http.Response, error) {
+func (s *DelegatesService) Get(ctx context.Context, id int) (*Delegate, *http.Response, error) {
 	uri := fmt.Sprintf("delegates/%v", id)
 
-	var responseStruct *PublicKey
+	var responseStruct *Delegate
 	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, &responseStruct)
 
 	if err != nil {
@@ -42,10 +42,10 @@ func (s *DelegatesService) Get(ctx context.Context, id int) (*PublicKey, *http.R
 }
 
 // Get all blocks for the given delegate.
-func (s *DelegatesService) Blocks(ctx context.Context, id int, query *Pagination) (*PublicKey, *http.Response, error) {
+func (s *DelegatesService) Blocks(ctx context.Context, id int, query *Pagination) (*Blocks, *http.Response, error) {
 	uri := fmt.Sprintf("delegates/%v/blocks", id)
 
-	var responseStruct *PublicKey
+	var responseStruct *Blocks
 	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, query, &responseStruct)
 
 	if err != nil {
@@ -56,10 +56,10 @@ func (s *DelegatesService) Blocks(ctx context.Context, id int, query *Pagination
 }
 
 // Get all voters for the given delegate.
-func (s *DelegatesService) Voters(ctx context.Context, id int, query *Pagination) (*PublicKey, *http.Response, error) {
+func (s *DelegatesService) Voters(ctx context.Context, id int, query *Pagination) (*Wallets, *http.Response, error) {
 	uri := fmt.Sprintf("delegates/%v/voters", id)
 
-	var responseStruct *PublicKey
+	var responseStruct *Wallets
 	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, query, &responseStruct)
 
 	if err != nil {
