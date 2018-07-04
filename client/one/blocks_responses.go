@@ -21,6 +21,7 @@ type Block struct {
 	Reward               int64  `json:"reward,omitempty"`
 	PayloadLength        byte   `json:"payloadLength,omitempty"`
 	PayloadHash          string `json:"payloadHash,omitempty"`
+	GeneratorId          string `json:"generatorId,omitempty"`
 	GeneratorPublicKey   string `json:"generatorPublicKey,omitempty"`
 	BlockSignature       string `json:"blockSignature,omitempty"`
 	Confirmations        byte   `json:"confirmations,omitempty"`
@@ -31,9 +32,14 @@ type Blocks struct {
 	Blocks  []Block `json:"blocks,omitempty"`
 }
 
+type GetBlock struct {
+	Success bool  `json:"success,omitempty"`
+	Block   Block `json:"block,omitempty"`
+}
+
 type BlocksEpoch struct {
-	Success bool `json:"success,omitempty"`
-	Epoch   byte `json:"epoch,omitempty"`
+	Success bool   `json:"success,omitempty"`
+	Epoch   string `json:"epoch,omitempty"`
 }
 
 type BlocksFee struct {
@@ -41,15 +47,17 @@ type BlocksFee struct {
 	Fee     int64 `json:"fee,omitempty"`
 }
 
+type BlockFeeTypes struct {
+	Send            int64 `json:"send,omitempty"`
+	Vote            int64 `json:"vote,omitempty"`
+	Secondsignature int64 `json:"secondsignature,omitempty"`
+	Delegate        int64 `json:"delegate,omitempty"`
+	Multisignature  int64 `json:"multisignature,omitempty"`
+}
+
 type BlocksFees struct {
-	Success bool `json:"success,omitempty"`
-	Fees    struct {
-		Send            int64 `json:"send,omitempty"`
-		Vote            int64 `json:"vote,omitempty"`
-		Secondsignature int64 `json:"secondsignature,omitempty"`
-		Delegate        int64 `json:"delegate,omitempty"`
-		Multisignature  int64 `json:"multisignature,omitempty"`
-	} `json:"fees,omitempty"`
+	Success bool          `json:"success,omitempty"`
+	Fees    BlockFeeTypes `json:"fees,omitempty"`
 }
 
 type BlocksHeight struct {
@@ -63,8 +71,8 @@ type BlocksMilestone struct {
 }
 
 type BlocksNethash struct {
-	Success bool `json:"success,omitempty"`
-	Nethash byte `json:"nethash,omitempty"`
+	Success bool   `json:"success,omitempty"`
+	Nethash string `json:"nethash,omitempty"`
 }
 
 type BlocksReward struct {
@@ -85,5 +93,5 @@ type BlocksStatus struct {
 
 type BlocksSupply struct {
 	Success bool  `json:"success,omitempty"`
-	Supply  int64 `json:"count,omitempty"`
+	Supply  int64 `json:"supply,omitempty"`
 }

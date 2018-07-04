@@ -29,10 +29,10 @@ func (s *BlocksService) List(ctx context.Context, query *BlocksQuery) (*Blocks, 
 }
 
 // Get a block by the given id.
-func (s *BlocksService) Get(ctx context.Context, id string) (*Block, *http.Response, error) {
+func (s *BlocksService) Get(ctx context.Context, id string) (*GetBlock, *http.Response, error) {
 	query := &BlockIdQuery{Id: id}
 
-	var responseStruct *Block
+	var responseStruct *GetBlock
 	resp, err := s.client.SendRequest(ctx, "GET", "blocks/get", query, &responseStruct)
 
 	if err != nil {
