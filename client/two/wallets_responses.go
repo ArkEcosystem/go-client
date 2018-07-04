@@ -5,7 +5,15 @@
 
 package two
 
-type PublicKey struct {
-	Success   bool   `json:"success,omitempty"`
-	PublicKey string `json:"publicKey,omitempty"`
+type Wallet struct {
+	Address    string `json:"address,omitempty"`
+	Address    string `json:"address,omitempty"`
+	PublicKey  string `json:"publicKey,omitempty"`
+	Balance    int64  `json:"balance,omitempty"`
+	IsDelegate bool   `json:"isDelegate,omitempty"`
+}
+
+type Wallets struct {
+	Meta Meta     `json:"meta,omitempty"`
+	Data []Wallet `json:"data,omitempty"`
 }

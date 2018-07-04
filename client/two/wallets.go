@@ -16,8 +16,8 @@ import (
 type WalletsService Service
 
 // Get all wallets.
-func (s *WalletsService) List(ctx context.Context, query *Pagination) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
+func (s *WalletsService) List(ctx context.Context, query *Pagination) (*Wallets, *http.Response, error) {
+	var responseStruct *Wallets
 	resp, err := s.client.SendRequest(ctx, 2, "GET", "wallets", query, &responseStruct)
 
 	if err != nil {
@@ -28,8 +28,8 @@ func (s *WalletsService) List(ctx context.Context, query *Pagination) (*PublicKe
 }
 
 // Get all wallets sorted by balance in descending order.
-func (s *WalletsService) Top(ctx context.Context, query *Pagination) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
+func (s *WalletsService) Top(ctx context.Context, query *Pagination) (*Wallets, *http.Response, error) {
+	var responseStruct *Wallets
 	resp, err := s.client.SendRequest(ctx, 2, "GET", "wallets/top", query, &responseStruct)
 
 	if err != nil {
@@ -40,10 +40,10 @@ func (s *WalletsService) Top(ctx context.Context, query *Pagination) (*PublicKey
 }
 
 // Get a wallet by the given id.
-func (s *WalletsService) Get(ctx context.Context, id int) (*PublicKey, *http.Response, error) {
+func (s *WalletsService) Get(ctx context.Context, id int) (*Wallet, *http.Response, error) {
 	uri := fmt.Sprintf("wallets/%v", id)
 
-	var responseStruct *PublicKey
+	var responseStruct *Wallet
 	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, &responseStruct)
 
 	if err != nil {
@@ -54,10 +54,10 @@ func (s *WalletsService) Get(ctx context.Context, id int) (*PublicKey, *http.Res
 }
 
 // Get all transactions for the given wallet.
-func (s *WalletsService) Transactions(ctx context.Context, id int, query *Pagination) (*PublicKey, *http.Response, error) {
+func (s *WalletsService) Transactions(ctx context.Context, id int, query *Pagination) (*Transactions, *http.Response, error) {
 	uri := fmt.Sprintf("wallets/%v/transactions", id)
 
-	var responseStruct *PublicKey
+	var responseStruct *Transactions
 	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, query, &responseStruct)
 
 	if err != nil {
@@ -68,10 +68,10 @@ func (s *WalletsService) Transactions(ctx context.Context, id int, query *Pagina
 }
 
 // Get all transactions sent by the given wallet.
-func (s *WalletsService) SentTransactions(ctx context.Context, id int, query *Pagination) (*PublicKey, *http.Response, error) {
+func (s *WalletsService) SentTransactions(ctx context.Context, id int, query *Pagination) (*Transactions, *http.Response, error) {
 	uri := fmt.Sprintf("wallets/%v/transactions/sent", id)
 
-	var responseStruct *PublicKey
+	var responseStruct *Transactions
 	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, query, &responseStruct)
 
 	if err != nil {
@@ -82,10 +82,10 @@ func (s *WalletsService) SentTransactions(ctx context.Context, id int, query *Pa
 }
 
 // Get all transactions received by the given wallet.
-func (s *WalletsService) ReceivedTransaction(ctx context.Context, id int, query *Pagination) (*PublicKey, *http.Response, error) {
+func (s *WalletsService) ReceivedTransaction(ctx context.Context, id int, query *Pagination) (*Transactions, *http.Response, error) {
 	uri := fmt.Sprintf("wallets/%v/transactions/received", id)
 
-	var responseStruct *PublicKey
+	var responseStruct *Transactions
 	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, query, &responseStruct)
 
 	if err != nil {
@@ -96,10 +96,10 @@ func (s *WalletsService) ReceivedTransaction(ctx context.Context, id int, query 
 }
 
 // Get all votes by the given wallet.
-func (s *WalletsService) Votes(ctx context.Context, id int, query *Pagination) (*PublicKey, *http.Response, error) {
+func (s *WalletsService) Votes(ctx context.Context, id int, query *Pagination) (*Transactions, *http.Response, error) {
 	uri := fmt.Sprintf("wallets/%v/votes", id)
 
-	var responseStruct *PublicKey
+	var responseStruct *Transactions
 	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, query, &responseStruct)
 
 	if err != nil {
