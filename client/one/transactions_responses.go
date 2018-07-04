@@ -20,6 +20,7 @@ type Transaction struct {
 	SenderPublicKey string            `json:"senderPublicKey,omitempty"`
 	VendorField     string            `json:"vendorField,omitempty"`
 	Signature       string            `json:"signature,omitempty"`
+	SignSignature   string            `json:"signSignature,omitempty"`
 	Asset           map[string]string `json:"asset,omitempty"`
 	Confirmations   byte              `json:"confirmations,omitempty"`
 }
