@@ -16,8 +16,8 @@ import (
 type VotesService Service
 
 // Get all votes.
-func (s *VotesService) List(ctx context.Context, query *Pagination) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
+func (s *VotesService) List(ctx context.Context, query *Pagination) (*Transactions, *http.Response, error) {
+	var responseStruct *Transactions
 	resp, err := s.client.SendRequest(ctx, 2, "GET", "votes", query, &responseStruct)
 
 	if err != nil {
@@ -28,10 +28,10 @@ func (s *VotesService) List(ctx context.Context, query *Pagination) (*PublicKey,
 }
 
 // Get a vote by the given id.
-func (s *VotesService) Get(ctx context.Context, id int) (*PublicKey, *http.Response, error) {
+func (s *VotesService) Get(ctx context.Context, id int) (*Transaction, *http.Response, error) {
 	uri := fmt.Sprintf("votes/%v", id)
 
-	var responseStruct *PublicKey
+	var responseStruct *Transaction
 	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, &responseStruct)
 
 	if err != nil {
