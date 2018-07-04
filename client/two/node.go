@@ -17,7 +17,7 @@ type NodeService Service
 // Get the node status.
 func (s *NodeService) Status(ctx context.Context) (*NodeStatus, *http.Response, error) {
 	var responseStruct *NodeStatus
-	resp, err := s.client.SendRequest(ctx, 2, "GET", "node/status", nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "node/status", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -29,7 +29,7 @@ func (s *NodeService) Status(ctx context.Context) (*NodeStatus, *http.Response, 
 // Get the node syncing status.
 func (s *NodeService) Syncing(ctx context.Context) (*NodeSyncing, *http.Response, error) {
 	var responseStruct *NodeSyncing
-	resp, err := s.client.SendRequest(ctx, 2, "GET", "node/syncing", nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "node/syncing", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -41,7 +41,7 @@ func (s *NodeService) Syncing(ctx context.Context) (*NodeSyncing, *http.Response
 // Get the node configuration.
 func (s *NodeService) Configuration(ctx context.Context) (*NodeConfiguration, *http.Response, error) {
 	var responseStruct *NodeConfiguration
-	resp, err := s.client.SendRequest(ctx, 2, "GET", "node/configuration", nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "node/configuration", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err

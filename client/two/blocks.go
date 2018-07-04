@@ -18,7 +18,7 @@ type BlocksService Service
 // Get all blocks.
 func (s *BlocksService) List(ctx context.Context, query *Pagination) (*Blocks, *http.Response, error) {
 	var responseStruct *Blocks
-	resp, err := s.client.SendRequest(ctx, 2, "GET", "blocks", query, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "blocks", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -32,7 +32,7 @@ func (s *BlocksService) Get(ctx context.Context, id int) (*Block, *http.Response
 	uri := fmt.Sprintf("blocks/%v", id)
 
 	var responseStruct *Block
-	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -46,7 +46,7 @@ func (s *BlocksService) Transactions(ctx context.Context, id int, query *Paginat
 	uri := fmt.Sprintf("blocks/%v/transactions", id)
 
 	var responseStruct *Transactions
-	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, query, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", uri, query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -58,7 +58,7 @@ func (s *BlocksService) Transactions(ctx context.Context, id int, query *Paginat
 // Filter all blocks by the given criteria.
 func (s *BlocksService) Search(ctx context.Context, query *Pagination) (*Blocks, *http.Response, error) {
 	var responseStruct *Blocks
-	resp, err := s.client.SendRequest(ctx, 2, "GET", "blocks/search", query, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "blocks/search", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err

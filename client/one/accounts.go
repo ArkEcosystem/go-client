@@ -17,7 +17,7 @@ type AccountsService Service
 // Get all accounts.
 func (s *AccountsService) List(ctx context.Context) (*Accounts, *http.Response, error) {
 	var responseStruct *Accounts
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/getAllAccounts", nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "accounts/getAllAccounts", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -31,7 +31,7 @@ func (s *AccountsService) Get(ctx context.Context, address string) (*AccountSing
 	query := &AddressQuery{Address: address}
 
 	var responseStruct *AccountSingle
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts", query, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "accounts", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -43,7 +43,7 @@ func (s *AccountsService) Get(ctx context.Context, address string) (*AccountSing
 // Count all accounts.
 func (s *AccountsService) Count(ctx context.Context) (*AccountsCount, *http.Response, error) {
 	var responseStruct *AccountsCount
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/count", nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "accounts/count", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -57,7 +57,7 @@ func (s *AccountsService) Delegate(ctx context.Context, address string) (*Accoun
 	query := &AddressQuery{Address: address}
 
 	var responseStruct *AccountDelegates
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/delegates", query, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "accounts/delegates", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -69,7 +69,7 @@ func (s *AccountsService) Delegate(ctx context.Context, address string) (*Accoun
 // Get the delegate registration fee.
 func (s *AccountsService) DelegateFee(ctx context.Context) (*DelegateFee, *http.Response, error) {
 	var responseStruct *DelegateFee
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/delegates/fee", nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "accounts/delegates/fee", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -83,7 +83,7 @@ func (s *AccountsService) Balance(ctx context.Context, address string) (*Account
 	query := &AddressQuery{Address: address}
 
 	var responseStruct *AccountBalance
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/getBalance", query, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "accounts/getBalance", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -97,7 +97,7 @@ func (s *AccountsService) PublicKey(ctx context.Context, address string) (*Publi
 	query := &AddressQuery{Address: address}
 
 	var responseStruct *PublicKey
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/getPublicKey", query, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "accounts/getPublicKey", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -109,7 +109,7 @@ func (s *AccountsService) PublicKey(ctx context.Context, address string) (*Publi
 // Get all wallets sorted by balance in descending order.
 func (s *AccountsService) Top(ctx context.Context, query *TopQuery) (*AccountsTop, *http.Response, error) {
 	var responseStruct *AccountsTop
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/top", query, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "accounts/top", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err

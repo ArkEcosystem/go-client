@@ -17,7 +17,7 @@ type BlocksService Service
 // Get all accounts.
 func (s *BlocksService) List(ctx context.Context, query *BlocksQuery) (*Blocks, *http.Response, error) {
 	var responseStruct *Blocks
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks", query, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "blocks", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -31,7 +31,7 @@ func (s *BlocksService) Get(ctx context.Context, id string) (*Block, *http.Respo
 	query := &BlockIdQuery{Id: id}
 
 	var responseStruct *Block
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks/get", query, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "blocks/get", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -43,7 +43,7 @@ func (s *BlocksService) Get(ctx context.Context, id string) (*Block, *http.Respo
 // Get the blockchain epoch.
 func (s *BlocksService) Epoch(ctx context.Context) (*BlocksEpoch, *http.Response, error) {
 	var responseStruct *BlocksEpoch
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks/getEpoch", nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "blocks/getEpoch", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -55,7 +55,7 @@ func (s *BlocksService) Epoch(ctx context.Context) (*BlocksEpoch, *http.Response
 // Get the transfer transaction fee.
 func (s *BlocksService) Fee(ctx context.Context) (*BlocksFee, *http.Response, error) {
 	var responseStruct *BlocksFee
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks/getFee", nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "blocks/getFee", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -67,7 +67,7 @@ func (s *BlocksService) Fee(ctx context.Context) (*BlocksFee, *http.Response, er
 // Get a list of transaction fees.
 func (s *BlocksService) Fees(ctx context.Context) (*BlocksFees, *http.Response, error) {
 	var responseStruct *BlocksFees
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks/getFees", nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "blocks/getFees", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -79,7 +79,7 @@ func (s *BlocksService) Fees(ctx context.Context) (*BlocksFees, *http.Response, 
 // Get the blockchain height.
 func (s *BlocksService) Height(ctx context.Context) (*BlocksHeight, *http.Response, error) {
 	var responseStruct *BlocksHeight
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks/getHeight", nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "blocks/getHeight", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -91,7 +91,7 @@ func (s *BlocksService) Height(ctx context.Context) (*BlocksHeight, *http.Respon
 // Get the blockchain milest
 func (s *BlocksService) Milestone(ctx context.Context) (*BlocksMilestone, *http.Response, error) {
 	var responseStruct *BlocksMilestone
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks/getMilestone", nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "blocks/getMilestone", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -103,7 +103,7 @@ func (s *BlocksService) Milestone(ctx context.Context) (*BlocksMilestone, *http.
 // Get the blockchain nethash.
 func (s *BlocksService) Nethash(ctx context.Context) (*BlocksNethash, *http.Response, error) {
 	var responseStruct *BlocksNethash
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks/getNethash", nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "blocks/getNethash", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -115,7 +115,7 @@ func (s *BlocksService) Nethash(ctx context.Context) (*BlocksNethash, *http.Resp
 // Get the blockchain reward.
 func (s *BlocksService) Reward(ctx context.Context) (*BlocksReward, *http.Response, error) {
 	var responseStruct *BlocksReward
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks/getReward", nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "blocks/getReward", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -127,7 +127,7 @@ func (s *BlocksService) Reward(ctx context.Context) (*BlocksReward, *http.Respon
 // Get the blockchain status.
 func (s *BlocksService) Status(ctx context.Context) (*BlocksStatus, *http.Response, error) {
 	var responseStruct *BlocksStatus
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks/getStatus", nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "blocks/getStatus", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -139,7 +139,7 @@ func (s *BlocksService) Status(ctx context.Context) (*BlocksStatus, *http.Respon
 // Get the blockchain supply.
 func (s *BlocksService) Supply(ctx context.Context) (*BlocksSupply, *http.Response, error) {
 	var responseStruct *BlocksSupply
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "blocks/getSupply", nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "blocks/getSupply", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err

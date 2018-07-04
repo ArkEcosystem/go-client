@@ -18,7 +18,7 @@ type WalletsService Service
 // Get all wallets.
 func (s *WalletsService) List(ctx context.Context, query *Pagination) (*Wallets, *http.Response, error) {
 	var responseStruct *Wallets
-	resp, err := s.client.SendRequest(ctx, 2, "GET", "wallets", query, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "wallets", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -30,7 +30,7 @@ func (s *WalletsService) List(ctx context.Context, query *Pagination) (*Wallets,
 // Get all wallets sorted by balance in descending order.
 func (s *WalletsService) Top(ctx context.Context, query *Pagination) (*Wallets, *http.Response, error) {
 	var responseStruct *Wallets
-	resp, err := s.client.SendRequest(ctx, 2, "GET", "wallets/top", query, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "wallets/top", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -44,7 +44,7 @@ func (s *WalletsService) Get(ctx context.Context, id int) (*Wallet, *http.Respon
 	uri := fmt.Sprintf("wallets/%v", id)
 
 	var responseStruct *Wallet
-	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -58,7 +58,7 @@ func (s *WalletsService) Transactions(ctx context.Context, id int, query *Pagina
 	uri := fmt.Sprintf("wallets/%v/transactions", id)
 
 	var responseStruct *Transactions
-	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, query, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", uri, query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -72,7 +72,7 @@ func (s *WalletsService) SentTransactions(ctx context.Context, id int, query *Pa
 	uri := fmt.Sprintf("wallets/%v/transactions/sent", id)
 
 	var responseStruct *Transactions
-	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, query, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", uri, query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -86,7 +86,7 @@ func (s *WalletsService) ReceivedTransaction(ctx context.Context, id int, query 
 	uri := fmt.Sprintf("wallets/%v/transactions/received", id)
 
 	var responseStruct *Transactions
-	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, query, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", uri, query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -100,7 +100,7 @@ func (s *WalletsService) Votes(ctx context.Context, id int, query *Pagination) (
 	uri := fmt.Sprintf("wallets/%v/votes", id)
 
 	var responseStruct *Transactions
-	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, query, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", uri, query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -111,7 +111,7 @@ func (s *WalletsService) Votes(ctx context.Context, id int, query *Pagination) (
 
 // Filter all wallets by the given criteria.
 // func (s *WalletsService) Search(ctx context.Context, query *Pagination) (*http.Response, error) {
-// 	resp, err := s.client.SendRequest(ctx, 2, "POST", "wallets/search", query, &responseStruct)
+// 	resp, err := s.client.SendRequest(ctx, "POST", "wallets/search", query, &responseStruct)
 
 // 	if err != nil {
 // 		return nil, resp, err

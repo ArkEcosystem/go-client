@@ -14,7 +14,6 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"strconv"
 	"strings"
 	"sync"
 )
@@ -66,7 +65,7 @@ func NewClient(httpClient *http.Client) *Client {
 	return c
 }
 
-func (c *Client) SendRequest(ctx context.Context, version int, method string, urlStr string, body interface{}, model interface{}) (*http.Response, error) {
+func (c *Client) SendRequest(ctx context.Context, method string, urlStr string, body interface{}, model interface{}) (*http.Response, error) {
 	// Create a new HTTP request
 	if !strings.HasSuffix(c.BaseURL.Path, "/") {
 		return nil, fmt.Errorf("BaseURL must have a trailing slash, but %q does not", c.BaseURL)
@@ -105,7 +104,7 @@ func (c *Client) SendRequest(ctx context.Context, version int, method string, ur
 	}
 
 	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("API-Version", strconv.Itoa(version))
+	req.Header.Set("API-Version", "1")
 
 	// Execute the previously created HTTP request
 	resp, err := c.client.Do(req)

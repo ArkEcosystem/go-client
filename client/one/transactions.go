@@ -17,7 +17,7 @@ type TransactionsService Service
 // Get all accounts.
 func (s *TransactionsService) List(ctx context.Context, query *GetTransactionsQuery) (*Transactions, *http.Response, error) {
 	var responseStruct *Transactions
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "transactions", query, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "transactions", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -31,7 +31,7 @@ func (s *TransactionsService) Get(ctx context.Context, id string) (*Transaction,
 	query := &TransactionIdQuery{Id: id}
 
 	var responseStruct *Transaction
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "transactions/get", query, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "transactions/get", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -43,7 +43,7 @@ func (s *TransactionsService) Get(ctx context.Context, id string) (*Transaction,
 // Get all unconfirmed transactions.
 func (s *TransactionsService) ListUnconfirmed(ctx context.Context, query *GetUnconfirmedTransactionsQuery) (*Transactions, *http.Response, error) {
 	var responseStruct *Transactions
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "transactions/unconfirmed", query, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "transactions/unconfirmed", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -57,7 +57,7 @@ func (s *TransactionsService) GetUnconfirmed(ctx context.Context, id string) (*T
 	query := &TransactionIdQuery{Id: id}
 
 	var responseStruct *Transaction
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "transactions/unconfirmed/get", query, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "transactions/unconfirmed/get", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err

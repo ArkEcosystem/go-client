@@ -18,7 +18,7 @@ type DelegatesService Service
 // Get all accounts.
 func (s *DelegatesService) List(ctx context.Context, query *Pagination) (*Delegates, *http.Response, error) {
 	var responseStruct *Delegates
-	resp, err := s.client.SendRequest(ctx, 2, "GET", "delegates", query, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "delegates", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -32,7 +32,7 @@ func (s *DelegatesService) Get(ctx context.Context, id int) (*Delegate, *http.Re
 	uri := fmt.Sprintf("delegates/%v", id)
 
 	var responseStruct *Delegate
-	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -46,7 +46,7 @@ func (s *DelegatesService) Blocks(ctx context.Context, id int, query *Pagination
 	uri := fmt.Sprintf("delegates/%v/blocks", id)
 
 	var responseStruct *Blocks
-	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, query, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", uri, query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -60,7 +60,7 @@ func (s *DelegatesService) Voters(ctx context.Context, id int, query *Pagination
 	uri := fmt.Sprintf("delegates/%v/voters", id)
 
 	var responseStruct *Wallets
-	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, query, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", uri, query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
