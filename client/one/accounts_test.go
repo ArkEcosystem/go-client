@@ -1,7 +1,9 @@
-// Copyright 2018 ArkEcosystem. All rights reserved.
+// This file is part of Ark Go Client.
 //
-// Use of this source code is governed by the MIT
-// license that can be found in the LICENSE file.
+// (c) Ark Ecosystem <info@ark.io>
+//
+// For the full copyright and license information, please view the LICENSE
+// file that was distributed with this source code.
 
 package one
 
@@ -22,16 +24,16 @@ func TestAccountsService_List(t *testing.T) {
 		fmt.Fprint(writer,
 			`{
 		  "accounts": [{
-		    "address": "dummy",
-		    "publicKey": "dummy",
-		    "secondPublicKey": "dummy",
-		    "username": "dummy",
-		    "balance": "dummy",
-		    "unconfirmedBalance": "dummy",
-		    "multisignatures": [],
-		    "u_multisignatures": [],
-		    "unconfirmedSignature": 0,
-		    "secondSignature": 0
+			"address": "dummy",
+			"publicKey": "dummy",
+			"secondPublicKey": "dummy",
+			"username": "dummy",
+			"balance": "dummy",
+			"unconfirmedBalance": "dummy",
+			"multisignatures": [],
+			"u_multisignatures": [],
+			"unconfirmedSignature": 0,
+			"secondSignature": 0
 		  }],
 		  "success": true
 		}`)
@@ -67,16 +69,16 @@ func TestAccountsService_Get(t *testing.T) {
 		fmt.Fprint(writer,
 			`{
 			  "account": {
-			    "address": "dummy",
-			    "publicKey": "dummy",
-			    "secondPublicKey": "dummy",
-			    "username": "dummy",
-			    "balance": "dummy",
-			    "unconfirmedBalance": "dummy",
-			    "multisignatures": [],
-			    "u_multisignatures": [],
-			    "unconfirmedSignature": 0,
-			    "secondSignature": 0
+				"address": "dummy",
+				"publicKey": "dummy",
+				"secondPublicKey": "dummy",
+				"username": "dummy",
+				"balance": "dummy",
+				"unconfirmedBalance": "dummy",
+				"multisignatures": [],
+				"u_multisignatures": [],
+				"unconfirmedSignature": 0,
+				"secondSignature": 0
 			  },
 			  "success": true
 			}`)
@@ -135,15 +137,15 @@ func TestAccountsService_Delegate(t *testing.T) {
 		fmt.Fprint(writer,
 			`{
 			  "delegates": [{
-			    "username": "dummy",
-			    "address": "dummy",
-			    "publicKey": "dummy",
-			    "vote": "dummy",
-			    "producedblocks": 1,
-			    "missedblocks": 2,
-			    "rate": 3,
-			    "approval": 0.5,
-			    "productivity": 0.10
+				"username": "dummy",
+				"address": "dummy",
+				"publicKey": "dummy",
+				"vote": "dummy",
+				"producedblocks": 1,
+				"missedblocks": 2,
+				"rate": 3,
+				"approval": 0.5,
+				"productivity": 0.10
 			  }],
 			  "success": true
 			}`)
@@ -242,9 +244,9 @@ func TestAccountsService_Top(t *testing.T) {
 		fmt.Fprint(writer,
 			`{
 			  "accounts": [{
-			    "address": "dummy",
-			    "balance": "dummy",
-			    "publicKey": "dummy"
+				"address": "dummy",
+				"balance": "dummy",
+				"publicKey": "dummy"
 			  }],
 			  "success": true
 			}`)
