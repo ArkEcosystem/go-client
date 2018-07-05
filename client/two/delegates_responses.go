@@ -8,14 +8,14 @@
 package two
 
 type DelegateBlocks struct {
-	Produced string `json:"produced,omitempty"`
-	Missed   string `json:"missed,omitempty"`
-	Last     Block  `json:"last,omitempty"`
+	Produced byte  `json:"produced,omitempty"`
+	Missed   byte  `json:"missed,omitempty"`
+	Last     Block `json:"last,omitempty"`
 }
 
 type DelegateProduction struct {
-	Approval     string `json:"approval,omitempty"`
-	Productivity string `json:"productivity,omitempty"`
+	Approval     float64 `json:"approval,omitempty"`
+	Productivity float64 `json:"productivity,omitempty"`
 }
 
 type Delegate struct {
@@ -31,4 +31,19 @@ type Delegate struct {
 type Delegates struct {
 	Meta Meta       `json:"meta,omitempty"`
 	Data []Delegate `json:"data,omitempty"`
+}
+
+type GetDelegate struct {
+	Meta Meta     `json:"meta,omitempty"`
+	Data Delegate `json:"data,omitempty"`
+}
+
+type GetDelegateBlocks struct {
+	Meta Meta    `json:"meta,omitempty"`
+	Data []Block `json:"data,omitempty"`
+}
+
+type GetDelegateVoters struct {
+	Meta Meta     `json:"meta,omitempty"`
+	Data []Wallet `json:"data,omitempty"`
 }

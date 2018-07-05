@@ -30,10 +30,10 @@ func (s *DelegatesService) List(ctx context.Context, query *Pagination) (*Delega
 }
 
 // Get a block by the given id.
-func (s *DelegatesService) Get(ctx context.Context, id int) (*Delegate, *http.Response, error) {
+func (s *DelegatesService) Get(ctx context.Context, id string) (*GetDelegate, *http.Response, error) {
 	uri := fmt.Sprintf("delegates/%v", id)
 
-	var responseStruct *Delegate
+	var responseStruct *GetDelegate
 	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, &responseStruct)
 
 	if err != nil {
@@ -44,10 +44,10 @@ func (s *DelegatesService) Get(ctx context.Context, id int) (*Delegate, *http.Re
 }
 
 // Get all blocks for the given delegate.
-func (s *DelegatesService) Blocks(ctx context.Context, id int, query *Pagination) (*Blocks, *http.Response, error) {
+func (s *DelegatesService) Blocks(ctx context.Context, id string, query *Pagination) (*GetDelegateBlocks, *http.Response, error) {
 	uri := fmt.Sprintf("delegates/%v/blocks", id)
 
-	var responseStruct *Blocks
+	var responseStruct *GetDelegateBlocks
 	resp, err := s.client.SendRequest(ctx, "GET", uri, query, &responseStruct)
 
 	if err != nil {
@@ -58,10 +58,10 @@ func (s *DelegatesService) Blocks(ctx context.Context, id int, query *Pagination
 }
 
 // Get all voters for the given delegate.
-func (s *DelegatesService) Voters(ctx context.Context, id int, query *Pagination) (*Wallets, *http.Response, error) {
+func (s *DelegatesService) Voters(ctx context.Context, id string, query *Pagination) (*GetDelegateVoters, *http.Response, error) {
 	uri := fmt.Sprintf("delegates/%v/voters", id)
 
-	var responseStruct *Wallets
+	var responseStruct *GetDelegateVoters
 	resp, err := s.client.SendRequest(ctx, "GET", uri, query, &responseStruct)
 
 	if err != nil {
