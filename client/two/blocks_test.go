@@ -29,9 +29,9 @@ func TestBlocksService_List(t *testing.T) {
 			    "totalCount": 1,
 			    "next": null,
 			    "previous": null,
-			    "self": "/api/v2/blocks?page=1&limit=1",
-			    "first": "/api/v2/blocks?page=1&limit=1",
-			    "last": "/api/v2/blocks?page=1&limit=1"
+			    "self": "/api/blocks?page=1&limit=1",
+			    "first": "/api/blocks?page=1&limit=1",
+			    "last": "/api/blocks?page=1&limit=1"
 			  },
 			  "data": [
 			    {
@@ -76,9 +76,9 @@ func TestBlocksService_List(t *testing.T) {
 			TotalCount: 1,
 			Next:       "",
 			Previous:   "",
-			Self:       "/api/v2/blocks?page=1&limit=1",
-			First:      "/api/v2/blocks?page=1&limit=1",
-			Last:       "/api/v2/blocks?page=1&limit=1",
+			Self:       "/api/blocks?page=1&limit=1",
+			First:      "/api/blocks?page=1&limit=1",
+			Last:       "/api/blocks?page=1&limit=1",
 		},
 		Data: []Block{{
 			Id:       "dummy",
@@ -198,9 +198,9 @@ func TestBlocksService_Transactions(t *testing.T) {
 			    "totalCount": 1,
 			    "next": null,
 			    "previous": null,
-			    "self": "/api/v2/blocks/10/transactions?page=1&limit=1",
-			    "first": "/api/v2/blocks/10/transactions?page=1&limit=1",
-			    "last": "/api/v2/blocks/10/transactions?page=1&limit=1"
+			    "self": "/api/blocks/10/transactions?page=1&limit=1",
+			    "first": "/api/blocks/10/transactions?page=1&limit=1",
+			    "last": "/api/blocks/10/transactions?page=1&limit=1"
 			  },
 			  "data": [
 			    {
@@ -235,9 +235,9 @@ func TestBlocksService_Transactions(t *testing.T) {
 			TotalCount: 1,
 			Next:       "",
 			Previous:   "",
-			Self:       "/api/v2/blocks/10/transactions?page=1&limit=1",
-			First:      "/api/v2/blocks/10/transactions?page=1&limit=1",
-			Last:       "/api/v2/blocks/10/transactions?page=1&limit=1",
+			Self:       "/api/blocks/10/transactions?page=1&limit=1",
+			First:      "/api/blocks/10/transactions?page=1&limit=1",
+			Last:       "/api/blocks/10/transactions?page=1&limit=1",
 		},
 		Data: []Transaction{{
 			Id:            "dummy",
@@ -274,9 +274,9 @@ func TestBlocksService_Search(t *testing.T) {
 			    "totalCount": 1,
 			    "next": null,
 			    "previous": null,
-			    "self": "/api/v2/blocks/search?page=1&limit=1",
-			    "first": "/api/v2/blocks/search?page=1&limit=1",
-			    "last": "/api/v2/blocks/search?page=1&limit=1"
+			    "self": "/api/blocks/search?page=1&limit=1",
+			    "first": "/api/blocks/search?page=1&limit=1",
+			    "last": "/api/blocks/search?page=1&limit=1"
 			  },
 			  "data": [
 			    {
@@ -321,9 +321,9 @@ func TestBlocksService_Search(t *testing.T) {
 			TotalCount: 1,
 			Next:       "",
 			Previous:   "",
-			Self:       "/api/v2/blocks/search?page=1&limit=1",
-			First:      "/api/v2/blocks/search?page=1&limit=1",
-			Last:       "/api/v2/blocks/search?page=1&limit=1",
+			Self:       "/api/blocks/search?page=1&limit=1",
+			First:      "/api/blocks/search?page=1&limit=1",
+			Last:       "/api/blocks/search?page=1&limit=1",
 		},
 		Data: []Block{{
 			Id:       "dummy",
