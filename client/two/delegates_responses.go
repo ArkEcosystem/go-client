@@ -7,21 +7,25 @@
 
 package two
 
+type DelegateBlocks struct {
+	Produced string `json:"produced,omitempty"`
+	Missed   string `json:"missed,omitempty"`
+	Last     Block  `json:"last,omitempty"`
+}
+
+type DelegateProduction struct {
+	Approval     string `json:"approval,omitempty"`
+	Productivity string `json:"productivity,omitempty"`
+}
+
 type Delegate struct {
-	Username  string `json:"username,omitempty"`
-	Address   string `json:"address,omitempty"`
-	PublicKey string `json:"publicKey,omitempty"`
-	Votes     int64  `json:"votes,omitempty"`
-	Rank      byte   `json:"rank,omitempty"`
-	Blocks    struct {
-		Produced string `json:"produced,omitempty"`
-		Missed   string `json:"missed,omitempty"`
-		Last     Block  `json:"last,omitempty"`
-	} `json:"blocks,omitempty"`
-	Production struct {
-		Approval     string `json:"approval,omitempty"`
-		Productivity string `json:"productivity,omitempty"`
-	} `json:"production,omitempty"`
+	Username   string             `json:"username,omitempty"`
+	Address    string             `json:"address,omitempty"`
+	PublicKey  string             `json:"publicKey,omitempty"`
+	Votes      int64              `json:"votes,omitempty"`
+	Rank       byte               `json:"rank,omitempty"`
+	Blocks     DelegateBlocks     `json:"blocks,omitempty"`
+	Production DelegateProduction `json:"production,omitempty"`
 }
 
 type Delegates struct {

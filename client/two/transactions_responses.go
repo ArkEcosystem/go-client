@@ -19,7 +19,7 @@ type Transaction struct {
 	Signature     string            `json:"signature,omitempty"`
 	VendorField   string            `json:"vendorField,omitempty"`
 	Asset         map[string]string `json:"asset,omitempty"`
-	Confirmations byte              `json:"confirmations,omitempty"`
+	Confirmations uint16            `json:"confirmations,omitempty"`
 	Timestamp     Timestamp         `json:"timestamp,omitempty"`
 }
 
