@@ -30,10 +30,10 @@ func (s *PeersService) List(ctx context.Context, query *Pagination) (*Peers, *ht
 }
 
 // Get a peer by the given IP address.
-func (s *PeersService) Get(ctx context.Context, ip string) (*Peer, *http.Response, error) {
+func (s *PeersService) Get(ctx context.Context, ip string) (*GetPeer, *http.Response, error) {
 	uri := fmt.Sprintf("peers/%v", ip)
 
-	var responseStruct *Peer
+	var responseStruct *GetPeer
 	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, &responseStruct)
 
 	if err != nil {

@@ -8,17 +8,21 @@
 package two
 
 type Peer struct {
-	Address string `json:"address,omitempty"`
-	ip      string `json:"ip,omitempty"`
-	port    byte   `json:"port,omitempty"`
-	version string `json:"version,omitempty"`
-	height  byte   `json:"height,omitempty"`
-	status  string `json:"status,omitempty"`
-	os      string `json:"os,omitempty"`
-	latency byte   `json:"latency,omitempty"`
+	Ip      string `json:"ip,omitempty"`
+	Port    uint16 `json:"port,omitempty"`
+	Version string `json:"version,omitempty"`
+	Height  byte   `json:"height,omitempty"`
+	Status  string `json:"status,omitempty"`
+	Os      string `json:"os,omitempty"`
+	Latency byte   `json:"latency,omitempty"`
 }
 
 type Peers struct {
 	Meta Meta   `json:"meta,omitempty"`
 	Data []Peer `json:"data,omitempty"`
+}
+
+type GetPeer struct {
+	Meta Meta `json:"meta,omitempty"`
+	Data Peer `json:"data,omitempty"`
 }
