@@ -8,5 +8,5 @@
 package two
 
 type CreateTransactionRequest struct {
-	Transactions interface{} `json:"transactions,omitempty"`
+	Transactions []Transaction `json:"transactions,omitempty"`
 }

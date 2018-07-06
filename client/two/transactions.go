@@ -20,7 +20,7 @@ type TransactionsService Service
 // Get all transactions.
 func (s *TransactionsService) List(ctx context.Context, query *Pagination) (*Transactions, *http.Response, error) {
 	var responseStruct *Transactions
-	resp, err := s.client.SendRequest(ctx, "GET", "transactions", query, nil)
+	resp, err := s.client.SendRequest(ctx, "GET", "transactions", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -30,7 +30,6 @@ func (s *TransactionsService) List(ctx context.Context, query *Pagination) (*Tra
 }
 
 // Create a new transaction.
-// TODO: add struct for request body
 func (s *TransactionsService) Create(ctx context.Context, body *CreateTransactionRequest) (*CreateTransaction, *http.Response, error) {
 	var responseStruct *CreateTransaction
 	resp, err := s.client.SendRequest(ctx, "POST", "transactions", body, &responseStruct)
@@ -43,11 +42,11 @@ func (s *TransactionsService) Create(ctx context.Context, body *CreateTransactio
 }
 
 // Get a transaction by the given id.
-func (s *TransactionsService) Get(ctx context.Context, id int) (*Transaction, *http.Response, error) {
+func (s *TransactionsService) Get(ctx context.Context, id string) (*GetTransaction, *http.Response, error) {
 	uri := fmt.Sprintf("transactions/%v", id)
 
-	var responseStruct *Transaction
-	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, nil)
+	var responseStruct *GetTransaction
+	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -69,10 +68,10 @@ func (s *TransactionsService) ListUnconfirmed(ctx context.Context, query *Pagina
 }
 
 // Get an unconfirmed transaction by the given id.
-func (s *TransactionsService) GetUnconfirmed(ctx context.Context, id int) (*Transaction, *http.Response, error) {
+func (s *TransactionsService) GetUnconfirmed(ctx context.Context, id string) (*GetTransaction, *http.Response, error) {
 	uri := fmt.Sprintf("transactions/unconfirmed/%v", id)
 
-	var responseStruct *Transaction
+	var responseStruct *GetTransaction
 	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, &responseStruct)
 
 	if err != nil {

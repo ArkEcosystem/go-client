@@ -32,8 +32,12 @@ type GetTransaction struct {
 	Data Transaction `json:"data,omitempty"`
 }
 
+type GetCreateTransaction struct {
+	Data CreateTransaction `json:"data,omitempty"`
+}
+
 type TransactionTypes struct {
-	Data map[string]byte `json:"publicKey,omitempty"`
+	Data map[string]byte `json:"data,omitempty"`
 }
 
 type Timestamp struct {
@@ -43,9 +47,9 @@ type Timestamp struct {
 }
 
 type CreateTransaction struct {
-	Accept  map[string]string `json:"accept,omitempty"`
-	Excess  map[string]string `json:"excess,omitempty"`
-	Invalid map[string]string `json:"invalid,omitempty"`
+	Accept  []string `json:"accept,omitempty"`
+	Excess  []string `json:"excess,omitempty"`
+	Invalid []string `json:"invalid,omitempty"`
 }
 
 ////////////////////////////////////////////////////////////////////////////////
