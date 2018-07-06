@@ -18,3 +18,7 @@ type Wallets struct {
 	Meta Meta     `json:"meta,omitempty"`
 	Data []Wallet `json:"data,omitempty"`
 }
+
+type GetWallet struct {
+	Data Wallet `json:"data,omitempty"`
+}
