@@ -1,20 +1,22 @@
-// Copyright 2018 ArkEcosystem. All rights reserved.
+// This file is part of Ark Go Client.
 //
-// Use of this source code is governed by the MIT
-// license that can be found in the LICENSE file.
+// (c) Ark Ecosystem <info@ark.io>
+//
+// For the full copyright and license information, please view the LICENSE
+// file that was distributed with this source code.
 
 package one
 
 type BlocksQuery struct {
-	Limit              int    `url:"limit"`
+	Limit              byte   `url:"limit"`
 	OrderBy            string `url:"orderBy"`
-	Offset             int    `url:"offset"`
+	Offset             byte   `url:"offset"`
 	GeneratorPublicKey string `url:"generatorPublicKey"`
-	TotalAmount        int    `url:"totalAmount"`
-	TotalFee           int    `url:"totalFee"`
-	Reward             int    `url:"reward"`
+	TotalAmount        byte   `url:"totalAmount"`
+	TotalFee           byte   `url:"totalFee"`
+	Reward             byte   `url:"reward"`
 	PreviousBlock      string `url:"previousBlock"`
-	Height             int    `url:"height"`
+	Height             byte   `url:"height"`
 }
 
 type BlockIdQuery struct {

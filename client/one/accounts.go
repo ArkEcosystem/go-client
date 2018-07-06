@@ -1,7 +1,9 @@
-// Copyright 2018 ArkEcosystem. All rights reserved.
+// This file is part of Ark Go Client.
 //
-// Use of this source code is governed by the MIT
-// license that can be found in the LICENSE file.
+// (c) Ark Ecosystem <info@ark.io>
+//
+// For the full copyright and license information, please view the LICENSE
+// file that was distributed with this source code.
 
 package one
 
@@ -15,9 +17,9 @@ import (
 type AccountsService Service
 
 // Get all accounts.
-func (s *AccountsService) List(ctx context.Context) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/getAllAccounts", nil, &responseStruct)
+func (s *AccountsService) List(ctx context.Context) (*Accounts, *http.Response, error) {
+	var responseStruct *Accounts
+	resp, err := s.client.SendRequest(ctx, "GET", "accounts/getAllAccounts", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -27,11 +29,11 @@ func (s *AccountsService) List(ctx context.Context) (*PublicKey, *http.Response,
 }
 
 // Get a account by the given address.
-func (s *AccountsService) Get(ctx context.Context, address string) (*PublicKey, *http.Response, error) {
+func (s *AccountsService) Get(ctx context.Context, address string) (*AccountSingle, *http.Response, error) {
 	query := &AddressQuery{Address: address}
 
-	var responseStruct *PublicKey
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts", query, &responseStruct)
+	var responseStruct *AccountSingle
+	resp, err := s.client.SendRequest(ctx, "GET", "accounts", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -41,9 +43,9 @@ func (s *AccountsService) Get(ctx context.Context, address string) (*PublicKey, 
 }
 
 // Count all accounts.
-func (s *AccountsService) Count(ctx context.Context) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/count", nil, &responseStruct)
+func (s *AccountsService) Count(ctx context.Context) (*AccountsCount, *http.Response, error) {
+	var responseStruct *AccountsCount
+	resp, err := s.client.SendRequest(ctx, "GET", "accounts/count", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -53,11 +55,11 @@ func (s *AccountsService) Count(ctx context.Context) (*PublicKey, *http.Response
 }
 
 // Get a delegate by the given address.
-func (s *AccountsService) Delegate(ctx context.Context, address string) (*PublicKey, *http.Response, error) {
+func (s *AccountsService) Delegate(ctx context.Context, address string) (*AccountDelegates, *http.Response, error) {
 	query := &AddressQuery{Address: address}
 
-	var responseStruct *PublicKey
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/delegates", query, &responseStruct)
+	var responseStruct *AccountDelegates
+	resp, err := s.client.SendRequest(ctx, "GET", "accounts/delegates", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -67,9 +69,9 @@ func (s *AccountsService) Delegate(ctx context.Context, address string) (*Public
 }
 
 // Get the delegate registration fee.
-func (s *AccountsService) DelegateFee(ctx context.Context) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/delegates/fee", nil, &responseStruct)
+func (s *AccountsService) DelegateFee(ctx context.Context) (*DelegateFee, *http.Response, error) {
+	var responseStruct *DelegateFee
+	resp, err := s.client.SendRequest(ctx, "GET", "accounts/delegates/fee", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -79,11 +81,11 @@ func (s *AccountsService) DelegateFee(ctx context.Context) (*PublicKey, *http.Re
 }
 
 // Get the balance for an account by the given address.
-func (s *AccountsService) Balance(ctx context.Context, address string) (*PublicKey, *http.Response, error) {
+func (s *AccountsService) Balance(ctx context.Context, address string) (*AccountBalance, *http.Response, error) {
 	query := &AddressQuery{Address: address}
 
-	var responseStruct *PublicKey
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/getBalance", query, &responseStruct)
+	var responseStruct *AccountBalance
+	resp, err := s.client.SendRequest(ctx, "GET", "accounts/getBalance", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -97,7 +99,7 @@ func (s *AccountsService) PublicKey(ctx context.Context, address string) (*Publi
 	query := &AddressQuery{Address: address}
 
 	var responseStruct *PublicKey
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/getPublicKey", query, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "accounts/getPublicKey", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -107,9 +109,9 @@ func (s *AccountsService) PublicKey(ctx context.Context, address string) (*Publi
 }
 
 // Get all wallets sorted by balance in descending order.
-func (s *AccountsService) Top(ctx context.Context, query *TopQuery) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "accounts/top", query, &responseStruct)
+func (s *AccountsService) Top(ctx context.Context, query *TopQuery) (*AccountsTop, *http.Response, error) {
+	var responseStruct *AccountsTop
+	resp, err := s.client.SendRequest(ctx, "GET", "accounts/top", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err

@@ -1,7 +1,9 @@
-// Copyright 2018 ArkEcosystem. All rights reserved.
+// This file is part of Ark Go Client.
 //
-// Use of this source code is governed by the MIT
-// license that can be found in the LICENSE file.
+// (c) Ark Ecosystem <info@ark.io>
+//
+// For the full copyright and license information, please view the LICENSE
+// file that was distributed with this source code.
 
 package one
 
@@ -15,9 +17,9 @@ import (
 type DelegatesService Service
 
 // Get all accounts.
-func (s *DelegatesService) List(ctx context.Context, query *GetDelegatesQuery) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "delegates", query, &responseStruct)
+func (s *DelegatesService) List(ctx context.Context, query *GetDelegatesQuery) (*AccountDelegates, *http.Response, error) {
+	var responseStruct *AccountDelegates
+	resp, err := s.client.SendRequest(ctx, "GET", "delegates", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -27,9 +29,9 @@ func (s *DelegatesService) List(ctx context.Context, query *GetDelegatesQuery) (
 }
 
 // Get a delegate by public key or username.
-func (s *DelegatesService) Get(ctx context.Context, query *GetDelegateQuery) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "delegates/get", query, &responseStruct)
+func (s *DelegatesService) Get(ctx context.Context, query *GetDelegateQuery) (*GetDelegate, *http.Response, error) {
+	var responseStruct *GetDelegate
+	resp, err := s.client.SendRequest(ctx, "GET", "delegates/get", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -39,9 +41,9 @@ func (s *DelegatesService) Get(ctx context.Context, query *GetDelegateQuery) (*P
 }
 
 // Count all delegates.
-func (s *DelegatesService) Count(ctx context.Context) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "delegates/count", nil, &responseStruct)
+func (s *DelegatesService) Count(ctx context.Context) (*DelegatesCount, *http.Response, error) {
+	var responseStruct *DelegatesCount
+	resp, err := s.client.SendRequest(ctx, "GET", "delegates/count", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -51,9 +53,9 @@ func (s *DelegatesService) Count(ctx context.Context) (*PublicKey, *http.Respons
 }
 
 // Get the delegate registration fee.
-func (s *DelegatesService) Fee(ctx context.Context) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "delegates/fee", nil, &responseStruct)
+func (s *DelegatesService) Fee(ctx context.Context) (*DelegateFee, *http.Response, error) {
+	var responseStruct *DelegateFee
+	resp, err := s.client.SendRequest(ctx, "GET", "delegates/fee", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -63,11 +65,11 @@ func (s *DelegatesService) Fee(ctx context.Context) (*PublicKey, *http.Response,
 }
 
 // Get the forged totals by the given public key.
-func (s *DelegatesService) ForgedByAccount(ctx context.Context, id string) (*PublicKey, *http.Response, error) {
+func (s *DelegatesService) ForgedByAccount(ctx context.Context, id string) (*ForgedByDelegate, *http.Response, error) {
 	query := &GeneratorPublicKeyQuery{GeneratorPublicKey: id}
 
-	var responseStruct *PublicKey
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "delegates/forging/getForgedByAccount", query, &responseStruct)
+	var responseStruct *ForgedByDelegate
+	resp, err := s.client.SendRequest(ctx, "GET", "delegates/forging/getForgedByAccount", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -77,10 +79,9 @@ func (s *DelegatesService) ForgedByAccount(ctx context.Context, id string) (*Pub
 }
 
 // Filter all delegates by the given criteria.
-// TODO: request query
-func (s *DelegatesService) Search(ctx context.Context, query *DelegateSearchQuery) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "delegates/search", query, &responseStruct)
+func (s *DelegatesService) Search(ctx context.Context, query *DelegateSearchQuery) (*AccountDelegates, *http.Response, error) {
+	var responseStruct *AccountDelegates
+	resp, err := s.client.SendRequest(ctx, "GET", "delegates/search", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -90,11 +91,11 @@ func (s *DelegatesService) Search(ctx context.Context, query *DelegateSearchQuer
 }
 
 // Get all voters by the given public key.
-func (s *DelegatesService) Voters(ctx context.Context, id string) (*PublicKey, *http.Response, error) {
+func (s *DelegatesService) Voters(ctx context.Context, id string) (*Accounts, *http.Response, error) {
 	query := &PublicKeyQuery{PublicKey: id}
 
-	var responseStruct *PublicKey
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "delegates/voters", query, &responseStruct)
+	var responseStruct *Accounts
+	resp, err := s.client.SendRequest(ctx, "GET", "delegates/voters", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -104,9 +105,9 @@ func (s *DelegatesService) Voters(ctx context.Context, id string) (*PublicKey, *
 }
 
 // Get a list of the next forgers.
-func (s *DelegatesService) NextForgers(ctx context.Context) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "delegates/getNextForgers", nil, &responseStruct)
+func (s *DelegatesService) NextForgers(ctx context.Context) (*NextForger, *http.Response, error) {
+	var responseStruct *NextForger
+	resp, err := s.client.SendRequest(ctx, "GET", "delegates/getNextForgers", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err

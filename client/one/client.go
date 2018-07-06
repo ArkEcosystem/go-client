@@ -1,7 +1,9 @@
-// Copyright 2018 ArkEcosystem. All rights reserved.
+// This file is part of Ark Go Client.
 //
-// Use of this source code is governed by the MIT
-// license that can be found in the LICENSE file.
+// (c) Ark Ecosystem <info@ark.io>
+//
+// For the full copyright and license information, please view the LICENSE
+// file that was distributed with this source code.
 
 package one
 
@@ -14,7 +16,6 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"strconv"
 	"strings"
 	"sync"
 )
@@ -66,7 +67,7 @@ func NewClient(httpClient *http.Client) *Client {
 	return c
 }
 
-func (c *Client) SendRequest(ctx context.Context, version int, method string, urlStr string, body interface{}, model interface{}) (*http.Response, error) {
+func (c *Client) SendRequest(ctx context.Context, method string, urlStr string, body interface{}, model interface{}) (*http.Response, error) {
 	// Create a new HTTP request
 	if !strings.HasSuffix(c.BaseURL.Path, "/") {
 		return nil, fmt.Errorf("BaseURL must have a trailing slash, but %q does not", c.BaseURL)
@@ -105,7 +106,7 @@ func (c *Client) SendRequest(ctx context.Context, version int, method string, ur
 	}
 
 	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("API-Version", strconv.Itoa(version))
+	req.Header.Set("API-Version", "1")
 
 	// Execute the previously created HTTP request
 	resp, err := c.client.Do(req)

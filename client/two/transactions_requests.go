@@ -7,7 +7,6 @@
 
 package two
 
-type Pagination struct {
-	Page  int `url:"page"`
-	Limit int `url:"limit"`
+type CreateTransactionRequest struct {
+	Transactions []Transaction `json:"transactions,omitempty"`
 }

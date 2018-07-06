@@ -5,9 +5,9 @@
 // For the full copyright and license information, please view the LICENSE
 // file that was distributed with this source code.
 
-package two
+package one
 
-type Pagination struct {
-	Page  int `url:"page"`
-	Limit int `url:"limit"`
+type PublicKey struct {
+	Success   bool   `json:"success,omitempty"`
+	PublicKey string `json:"publicKey,omitempty"`
 }

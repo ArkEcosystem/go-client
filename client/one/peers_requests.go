@@ -1,21 +1,23 @@
-// Copyright 2018 ArkEcosystem. All rights reserved.
+// This file is part of Ark Go Client.
 //
-// Use of this source code is governed by the MIT
-// license that can be found in the LICENSE file.
+// (c) Ark Ecosystem <info@ark.io>
+//
+// For the full copyright and license information, please view the LICENSE
+// file that was distributed with this source code.
 
 package one
 
 type GetPeersQuery struct {
-	Port    int    `url:"port"`
+	Port    uint16 `url:"port"`
 	Status  string `url:"status"`
 	Os      string `url:"os"`
 	Version string `url:"version"`
 	OrderBy string `url:"orderBy"`
-	Limit   int    `url:"limit"`
-	Offset  int    `url:"offset"`
+	Limit   byte   `url:"limit"`
+	Offset  byte   `url:"offset"`
 }
 
 type GetPeerQuery struct {
 	Ip   string `url:"ip"`
-	Port int    `url:"port"`
+	Port uint16 `url:"port"`
 }

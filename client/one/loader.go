@@ -1,7 +1,9 @@
-// Copyright 2018 ArkEcosystem. All rights reserved.
+// This file is part of Ark Go Client.
 //
-// Use of this source code is governed by the MIT
-// license that can be found in the LICENSE file.
+// (c) Ark Ecosystem <info@ark.io>
+//
+// For the full copyright and license information, please view the LICENSE
+// file that was distributed with this source code.
 
 package one
 
@@ -15,9 +17,9 @@ import (
 type LoaderService Service
 
 // Get the loader status.
-func (s *LoaderService) Status(ctx context.Context) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "loader/status", nil, &responseStruct)
+func (s *LoaderService) Status(ctx context.Context) (*LoaderStatus, *http.Response, error) {
+	var responseStruct *LoaderStatus
+	resp, err := s.client.SendRequest(ctx, "GET", "loader/status", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -27,9 +29,9 @@ func (s *LoaderService) Status(ctx context.Context) (*PublicKey, *http.Response,
 }
 
 // Get the loader syncing status.
-func (s *LoaderService) SyncStatus(ctx context.Context) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "loader/status/sync", nil, &responseStruct)
+func (s *LoaderService) SyncStatus(ctx context.Context) (*LoaderSync, *http.Response, error) {
+	var responseStruct *LoaderSync
+	resp, err := s.client.SendRequest(ctx, "GET", "loader/status/sync", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -39,9 +41,9 @@ func (s *LoaderService) SyncStatus(ctx context.Context) (*PublicKey, *http.Respo
 }
 
 // Get the loader configuration.
-func (s *LoaderService) AutoConfigure(ctx context.Context) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "loader/autoconfigure", nil, &responseStruct)
+func (s *LoaderService) AutoConfigure(ctx context.Context) (*LoaderAutoConfigure, *http.Response, error) {
+	var responseStruct *LoaderAutoConfigure
+	resp, err := s.client.SendRequest(ctx, "GET", "loader/autoconfigure", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err

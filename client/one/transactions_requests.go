@@ -1,7 +1,9 @@
-// Copyright 2018 ArkEcosystem. All rights reserved.
+// This file is part of Ark Go Client.
 //
-// Use of this source code is governed by the MIT
-// license that can be found in the LICENSE file.
+// (c) Ark Ecosystem <info@ark.io>
+//
+// For the full copyright and license information, please view the LICENSE
+// file that was distributed with this source code.
 
 package one
 
@@ -15,16 +17,16 @@ type GetUnconfirmedTransactionsQuery struct {
 
 type GetTransactionsQuery struct {
 	BlockId         string `url:"blockId"`
-	Limit           int    `url:"limit"`
-	Type            int    `url:"type"`
+	Limit           byte   `url:"limit"`
+	Type            byte   `url:"type"`
 	OrderBy         string `url:"orderBy"`
-	Offset          int    `url:"offset"`
+	Offset          byte   `url:"offset"`
 	SenderPublicKey string `url:"senderPublicKey"`
 	VendorField     string `url:"vendorField"`
 	OwnerPublicKey  string `url:"ownerPublicKey"`
 	OwnerAddress    string `url:"ownerAddress"`
 	SenderId        string `url:"senderId"`
 	RecipientId     string `url:"recipientId"`
-	Amount          int    `url:"amount"`
-	Fee             int    `url:"fee"`
+	Amount          byte   `url:"amount"`
+	Fee             byte   `url:"fee"`
 }

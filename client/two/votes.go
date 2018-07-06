@@ -1,7 +1,9 @@
-// Copyright 2018 ArkEcosystem. All rights reserved.
+// This file is part of Ark Go Client.
 //
-// Use of this source code is governed by the MIT
-// license that can be found in the LICENSE file.
+// (c) Ark Ecosystem <info@ark.io>
+//
+// For the full copyright and license information, please view the LICENSE
+// file that was distributed with this source code.
 
 package two
 
@@ -16,9 +18,9 @@ import (
 type VotesService Service
 
 // Get all votes.
-func (s *VotesService) List(ctx context.Context, query *Pagination) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
-	resp, err := s.client.SendRequest(ctx, 2, "GET", "votes", query, &responseStruct)
+func (s *VotesService) List(ctx context.Context, query *Pagination) (*Transactions, *http.Response, error) {
+	var responseStruct *Transactions
+	resp, err := s.client.SendRequest(ctx, "GET", "votes", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -28,11 +30,11 @@ func (s *VotesService) List(ctx context.Context, query *Pagination) (*PublicKey,
 }
 
 // Get a vote by the given id.
-func (s *VotesService) Get(ctx context.Context, id int) (*PublicKey, *http.Response, error) {
+func (s *VotesService) Get(ctx context.Context, id string) (*GetTransaction, *http.Response, error) {
 	uri := fmt.Sprintf("votes/%v", id)
 
-	var responseStruct *PublicKey
-	resp, err := s.client.SendRequest(ctx, 2, "GET", uri, nil, &responseStruct)
+	var responseStruct *GetTransaction
+	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err

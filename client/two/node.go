@@ -1,7 +1,9 @@
-// Copyright 2018 ArkEcosystem. All rights reserved.
+// This file is part of Ark Go Client.
 //
-// Use of this source code is governed by the MIT
-// license that can be found in the LICENSE file.
+// (c) Ark Ecosystem <info@ark.io>
+//
+// For the full copyright and license information, please view the LICENSE
+// file that was distributed with this source code.
 
 package two
 
@@ -15,9 +17,9 @@ import (
 type NodeService Service
 
 // Get the node status.
-func (s *NodeService) Status(ctx context.Context) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
-	resp, err := s.client.SendRequest(ctx, 2, "GET", "node/status", nil, &responseStruct)
+func (s *NodeService) Status(ctx context.Context) (*GetNodeStatus, *http.Response, error) {
+	var responseStruct *GetNodeStatus
+	resp, err := s.client.SendRequest(ctx, "GET", "node/status", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -27,9 +29,9 @@ func (s *NodeService) Status(ctx context.Context) (*PublicKey, *http.Response, e
 }
 
 // Get the node syncing status.
-func (s *NodeService) Syncing(ctx context.Context) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
-	resp, err := s.client.SendRequest(ctx, 2, "GET", "node/syncing", nil, &responseStruct)
+func (s *NodeService) Syncing(ctx context.Context) (*GetNodeSyncing, *http.Response, error) {
+	var responseStruct *GetNodeSyncing
+	resp, err := s.client.SendRequest(ctx, "GET", "node/syncing", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -39,9 +41,9 @@ func (s *NodeService) Syncing(ctx context.Context) (*PublicKey, *http.Response, 
 }
 
 // Get the node configuration.
-func (s *NodeService) Configuration(ctx context.Context) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
-	resp, err := s.client.SendRequest(ctx, 2, "GET", "node/configuration", nil, &responseStruct)
+func (s *NodeService) Configuration(ctx context.Context) (*GetNodeConfiguration, *http.Response, error) {
+	var responseStruct *GetNodeConfiguration
+	resp, err := s.client.SendRequest(ctx, "GET", "node/configuration", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err

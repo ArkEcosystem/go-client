@@ -1,7 +1,9 @@
-// Copyright 2018 ArkEcosystem. All rights reserved.
+// This file is part of Ark Go Client.
 //
-// Use of this source code is governed by the MIT
-// license that can be found in the LICENSE file.
+// (c) Ark Ecosystem <info@ark.io>
+//
+// For the full copyright and license information, please view the LICENSE
+// file that was distributed with this source code.
 
 package one
 
@@ -15,9 +17,9 @@ import (
 type TransactionsService Service
 
 // Get all accounts.
-func (s *TransactionsService) List(ctx context.Context, query *GetTransactionsQuery) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "transactions", query, &responseStruct)
+func (s *TransactionsService) List(ctx context.Context, query *GetTransactionsQuery) (*Transactions, *http.Response, error) {
+	var responseStruct *Transactions
+	resp, err := s.client.SendRequest(ctx, "GET", "transactions", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -27,11 +29,11 @@ func (s *TransactionsService) List(ctx context.Context, query *GetTransactionsQu
 }
 
 // Get a transaction by the given id.
-func (s *TransactionsService) Get(ctx context.Context, id string) (*PublicKey, *http.Response, error) {
+func (s *TransactionsService) Get(ctx context.Context, id string) (*Transaction, *http.Response, error) {
 	query := &TransactionIdQuery{Id: id}
 
-	var responseStruct *PublicKey
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "transactions/get", query, &responseStruct)
+	var responseStruct *Transaction
+	resp, err := s.client.SendRequest(ctx, "GET", "transactions/get", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -41,9 +43,9 @@ func (s *TransactionsService) Get(ctx context.Context, id string) (*PublicKey, *
 }
 
 // Get all unconfirmed transactions.
-func (s *TransactionsService) ListUnconfirmed(ctx context.Context, query *GetUnconfirmedTransactionsQuery) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "transactions/unconfirmed", query, &responseStruct)
+func (s *TransactionsService) ListUnconfirmed(ctx context.Context, query *GetUnconfirmedTransactionsQuery) (*Transactions, *http.Response, error) {
+	var responseStruct *Transactions
+	resp, err := s.client.SendRequest(ctx, "GET", "transactions/unconfirmed", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -53,11 +55,11 @@ func (s *TransactionsService) ListUnconfirmed(ctx context.Context, query *GetUnc
 }
 
 // Get an unconfirmed transaction by the given id.
-func (s *TransactionsService) GetUnconfirmed(ctx context.Context, id string) (*PublicKey, *http.Response, error) {
+func (s *TransactionsService) GetUnconfirmed(ctx context.Context, id string) (*Transaction, *http.Response, error) {
 	query := &TransactionIdQuery{Id: id}
 
-	var responseStruct *PublicKey
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "transactions/unconfirmed/get", query, &responseStruct)
+	var responseStruct *Transaction
+	resp, err := s.client.SendRequest(ctx, "GET", "transactions/unconfirmed/get", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err

@@ -1,7 +1,9 @@
-// Copyright 2018 ArkEcosystem. All rights reserved.
+// This file is part of Ark Go Client.
 //
-// Use of this source code is governed by the MIT
-// license that can be found in the LICENSE file.
+// (c) Ark Ecosystem <info@ark.io>
+//
+// For the full copyright and license information, please view the LICENSE
+// file that was distributed with this source code.
 
 package one
 
@@ -15,9 +17,9 @@ import (
 type PeersService Service
 
 // Get all accounts.
-func (s *PeersService) List(ctx context.Context, query *GetPeersQuery) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "peers", query, &responseStruct)
+func (s *PeersService) List(ctx context.Context, query *GetPeersQuery) (*Peers, *http.Response, error) {
+	var responseStruct *Peers
+	resp, err := s.client.SendRequest(ctx, "GET", "peers", query, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -27,21 +29,21 @@ func (s *PeersService) List(ctx context.Context, query *GetPeersQuery) (*PublicK
 }
 
 // Get a peer by the given IP address and port.
-func (s *PeersService) Get(ctx context.Context, query *GetPeerQuery) (*http.Response, error) {
-	var responseStruct *PublicKey
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "peers/get", query, &responseStruct)
+func (s *PeersService) Get(ctx context.Context, query *GetPeerQuery) (*GetPeer, *http.Response, error) {
+	var responseStruct *GetPeer
+	resp, err := s.client.SendRequest(ctx, "GET", "peers/get", query, &responseStruct)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return resp, nil
+	return responseStruct, resp, nil
 }
 
 // Get the node version of the given peer.
-func (s *PeersService) Version(ctx context.Context) (*PublicKey, *http.Response, error) {
-	var responseStruct *PublicKey
-	resp, err := s.client.SendRequest(ctx, 1, "GET", "peers/version", nil, &responseStruct)
+func (s *PeersService) Version(ctx context.Context) (*PeersVersion, *http.Response, error) {
+	var responseStruct *PeersVersion
+	resp, err := s.client.SendRequest(ctx, "GET", "peers/version", nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err

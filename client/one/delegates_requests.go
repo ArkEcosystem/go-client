@@ -1,7 +1,9 @@
-// Copyright 2018 ArkEcosystem. All rights reserved.
+// This file is part of Ark Go Client.
 //
-// Use of this source code is governed by the MIT
-// license that can be found in the LICENSE file.
+// (c) Ark Ecosystem <info@ark.io>
+//
+// For the full copyright and license information, please view the LICENSE
+// file that was distributed with this source code.
 
 package one
 
@@ -20,11 +22,11 @@ type GetDelegateQuery struct {
 
 type GetDelegatesQuery struct {
 	OrderBy string `url:"orderBy"`
-	Limit   int    `url:"limit"`
-	Offset  int    `url:"offset"`
+	Limit   byte   `url:"limit"`
+	Offset  byte   `url:"offset"`
 }
 
 type DelegateSearchQuery struct {
 	Q     string `url:"q"`
-	Limit string `url:"limit"`
+	Limit byte   `url:"limit"`
 }
