@@ -18,7 +18,7 @@ type Transaction struct {
 	Recipient     string            `json:"recipient,omitempty"`
 	Signature     string            `json:"signature,omitempty"`
 	VendorField   string            `json:"vendorField,omitempty"`
-	Asset         map[string]string `json:"asset,omitempty"`
+	Asset         *TransactionAsset `json:"asset,omitempty"`
 	Confirmations uint16            `json:"confirmations,omitempty"`
 	Timestamp     Timestamp         `json:"timestamp,omitempty"`
 }
@@ -42,4 +42,40 @@ type CreateTransaction struct {
 	Accept  map[string]string `json:"accept,omitempty"`
 	Excess  map[string]string `json:"excess,omitempty"`
 	Invalid map[string]string `json:"invalid,omitempty"`
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// TRANSACTION ASSETS //////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+type TransactionAsset struct {
+	Votes          []string                          `json:"votes,omitempty"`
+	Signature      *SecondSignatureRegistrationAsset `json:"signature,omitempty"`
+	Delegate       *DelegateAsset                    `json:"publicKey,omitempty"`
+	MultiSignature *MultiSignatureRegistrationAsset  `json:"multisignature,omitempty"`
+	Ipfs           *IpfsAsset                        `json:"ipfs,omitempty"`
+	Payments       []*MultiPaymentAsset              `json:"payments,omitempty"`
+}
+
+type SecondSignatureRegistrationAsset struct {
+	PublicKey string `json:"publicKey,omitempty"`
+}
+
+type DelegateAsset struct {
+	Username string `json:"username,omitempty"`
+}
+
+type MultiSignatureRegistrationAsset struct {
+	Min       byte     `json:"min,omitempty"`
+	Keysgroup []string `json:"keysgroup,omitempty"`
+	Lifetime  byte     `json:"lifetime,omitempty"`
+}
+
+type IpfsAsset struct {
+	Dag string `json:"dag,omitempty"`
+}
+
+type MultiPaymentAsset struct {
+	Amount      uint64 `json:"amount,omitempty"`
+	RecipientId string `json:"recipientId,omitempty"`
 }
