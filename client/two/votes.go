@@ -30,10 +30,10 @@ func (s *VotesService) List(ctx context.Context, query *Pagination) (*Transactio
 }
 
 // Get a vote by the given id.
-func (s *VotesService) Get(ctx context.Context, id int) (*Transaction, *http.Response, error) {
+func (s *VotesService) Get(ctx context.Context, id string) (*GetTransaction, *http.Response, error) {
 	uri := fmt.Sprintf("votes/%v", id)
 
-	var responseStruct *Transaction
+	var responseStruct *GetTransaction
 	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, &responseStruct)
 
 	if err != nil {

@@ -28,6 +28,10 @@ type Transactions struct {
 	Data []Transaction `json:"data,omitempty"`
 }
 
+type GetTransaction struct {
+	Data Transaction `json:"data,omitempty"`
+}
+
 type TransactionTypes struct {
 	Data map[string]byte `json:"publicKey,omitempty"`
 }
