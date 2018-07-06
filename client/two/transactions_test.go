@@ -138,9 +138,7 @@ func TestTransactionsService_Create(t *testing.T) {
 			Accept: []string{
 				"dummy",
 			},
-			Excess: []string{
-				"dummy",
-			},
+			Excess:  []string{},
 			Invalid: []string{},
 		},
 	})
