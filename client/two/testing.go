@@ -8,6 +8,7 @@
 package two
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"net/http/httptest"
@@ -38,15 +39,13 @@ func setupTest() (client *Client, mux *http.ServeMux, serverURL string, teardown
 		fmt.Fprintln(os.Stderr)
 		fmt.Fprintln(os.Stderr, "\t"+req.URL.String())
 		fmt.Fprintln(os.Stderr)
-		fmt.Fprintln(os.Stderr, "\tDid you accidentally use an absolute endpoint URL rather than relative?")
-		fmt.Fprintln(os.Stderr, "\tSee https://github.com/google/go-github/issues/752 for information.")
 		http.Error(w, "Client.BaseURL path prefix is not preserved in the request URL.", http.StatusInternalServerError)
 	})
 
 	// server is a test HTTP server used to provide mock API responses.
 	server := httptest.NewServer(apiHandler)
 
-	// client is the GitHub client being tested and is
+	// client is the Ark client being tested and is
 	// configured to use test server.
 	client = NewClient(nil)
 	url, _ := url.Parse(server.URL + baseURLPath + "/")
@@ -81,16 +80,26 @@ func testResponseStruct(t *testing.T, method string, got interface{}, want inter
 	}
 }
 
-type values map[string]string
+type values map[string]int
 
-func testFormValues(t *testing.T, r *http.Request, values values) {
-	want := url.Values{}
+type dummyJsonPayload struct {
+	Limit int `json:"limit,omitempty"`
+}
+
+func testJsonPayload(t *testing.T, r *http.Request, values values) {
+	want := make(map[string]int)
 	for k, v := range values {
-		want.Set(k, v)
+		want[k] = v
 	}
 
-	r.ParseForm()
-	if got := r.Form; !reflect.DeepEqual(got, want) {
-		t.Errorf("Request parameters: %v, want %v", got, want)
+	decoder := json.NewDecoder(r.Body)
+	var got dummyJsonPayload
+	decoder.Decode(&got)
+
+	gotBuffer, _ := json.Marshal(got)
+	wantBuffer, _ := json.Marshal(want)
+
+	if !reflect.DeepEqual(gotBuffer, wantBuffer) {
+		t.Errorf("Request parameters: %v, want %v", gotBuffer, wantBuffer)
 	}
 }

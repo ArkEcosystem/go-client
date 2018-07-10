@@ -91,7 +91,6 @@ func TestTransactionsService_List(t *testing.T) {
 }
 
 // Create a new transaction.
-// TODO: finish
 func TestTransactionsService_Create(t *testing.T) {
 	t.Skip("test not ready")
 	client, mux, _, teardown := setupTest()
@@ -99,6 +98,7 @@ func TestTransactionsService_Create(t *testing.T) {
 
 	mux.HandleFunc("/transactions", func(writer http.ResponseWriter, request *http.Request) {
 		testMethod(t, request, "POST")
+		testJsonPayload(t, request, values{"limit": 1})
 		fmt.Fprint(writer,
 			`{
 			  "data": {
@@ -327,14 +327,13 @@ func TestTransactionsService_GetUnconfirmed(t *testing.T) {
 }
 
 // Filter all transactions by the given criteria.
-// TODO: check this (no search criteria has been used)
 func TestTransactionsService_Search(t *testing.T) {
-	t.Skip("TODO: no search criteria has been used")
 	client, mux, _, teardown := setupTest()
 	defer teardown()
 
 	mux.HandleFunc("/transactions/search", func(writer http.ResponseWriter, request *http.Request) {
 		testMethod(t, request, "POST")
+		testJsonPayload(t, request, values{"limit": 1})
 		fmt.Fprint(writer,
 			`{
 			  "meta": {

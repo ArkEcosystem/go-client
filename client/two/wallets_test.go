@@ -467,12 +467,12 @@ func TestWalletsService_Votes(t *testing.T) {
 
 // Filter all wallets by the given criteria.
 func TestWalletsService_Search(t *testing.T) {
-	t.Skip("TODO: no search criteria has been used")
 	client, mux, _, teardown := setupTest()
 	defer teardown()
 
 	mux.HandleFunc("/wallets/search", func(writer http.ResponseWriter, request *http.Request) {
 		testMethod(t, request, "POST")
+		testJsonPayload(t, request, values{"limit": 1})
 		fmt.Fprint(writer,
 			`{
 			  "meta": {

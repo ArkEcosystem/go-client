@@ -12,12 +12,13 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/google/go-querystring/query"
 	"io"
 	"net/http"
 	"net/url"
 	"strings"
 	"sync"
+
+	"github.com/google/go-querystring/query"
 )
 
 const (
@@ -81,17 +82,12 @@ func (c *Client) SendRequest(ctx context.Context, method string, urlStr string, 
 	var buf io.ReadWriter
 	if body != nil {
 		if method == "POST" {
-			buf = new(bytes.Buffer)
-			enc := json.NewEncoder(buf)
-			enc.SetEscapeHTML(false)
-			err := enc.Encode(body)
-			if err != nil {
-				return nil, err
-			}
+			json, _ := json.Marshal(body)
+			buf = bytes.NewBuffer(json)
 		}
 	}
 
-	req, err := http.NewRequest(method, u.String(), nil)
+	req, err := http.NewRequest(method, u.String(), buf)
 
 	if err != nil {
 		return nil, err
@@ -129,19 +125,17 @@ func (c *Client) SendRequest(ctx context.Context, method string, urlStr string, 
 	}
 
 	// Map the JSON response to a struct
-	if model != nil {
-		if w, ok := model.(io.Writer); ok {
-			io.Copy(w, resp.Body)
-		} else {
-			decErr := json.NewDecoder(resp.Body).Decode(model)
+	if w, ok := model.(io.Writer); ok {
+		io.Copy(w, resp.Body)
+	} else {
+		decErr := json.NewDecoder(resp.Body).Decode(model)
 
-			if decErr == io.EOF {
-				decErr = nil
-			}
+		if decErr == io.EOF {
+			decErr = nil
+		}
 
-			if decErr != nil {
-				err = decErr
-			}
+		if decErr != nil {
+			err = decErr
 		}
 	}
 

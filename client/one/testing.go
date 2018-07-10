@@ -38,15 +38,13 @@ func setupTest() (client *Client, mux *http.ServeMux, serverURL string, teardown
 		fmt.Fprintln(os.Stderr)
 		fmt.Fprintln(os.Stderr, "\t"+req.URL.String())
 		fmt.Fprintln(os.Stderr)
-		fmt.Fprintln(os.Stderr, "\tDid you accidentally use an absolute endpoint URL rather than relative?")
-		fmt.Fprintln(os.Stderr, "\tSee https://github.com/google/go-github/issues/752 for information.")
 		http.Error(w, "Client.BaseURL path prefix is not preserved in the request URL.", http.StatusInternalServerError)
 	})
 
 	// server is a test HTTP server used to provide mock API responses.
 	server := httptest.NewServer(apiHandler)
 
-	// client is the GitHub client being tested and is
+	// client is the Ark client being tested and is
 	// configured to use test server.
 	client = NewClient(nil)
 	url, _ := url.Parse(server.URL + baseURLPath + "/")

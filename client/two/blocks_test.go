@@ -260,14 +260,13 @@ func TestBlocksService_Transactions(t *testing.T) {
 }
 
 // Filter all blocks by the given criteria.
-// TODO: check this (no search criteria has been used)
 func TestBlocksService_Search(t *testing.T) {
-	t.Skip("TODO: no search criteria has been used")
 	client, mux, _, teardown := setupTest()
 	defer teardown()
 
 	mux.HandleFunc("/blocks/search", func(writer http.ResponseWriter, request *http.Request) {
 		testMethod(t, request, "POST")
+		testJsonPayload(t, request, values{"limit": 1})
 		fmt.Fprint(writer,
 			`{
 			  "meta": {
