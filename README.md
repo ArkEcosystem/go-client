@@ -1,10 +1,10 @@
-# ARK Go - Client
+# Ark Go - Client
 
 <p align="center">
     <img src="https://github.com/ArkEcosystem/go-client/blob/master/banner.png" />
 </p>
 
-> A simple Go API client for the ARK Blockchain.
+> A simple Go API client for the Ark Blockchain.
 
 [![Build Status](https://img.shields.io/travis/ArkEcosystem/go-client/master.svg?style=flat-square)](https://travis-ci.org/ArkEcosystem/go-client)
 [![Latest Version](https://img.shields.io/github/release/ArkEcosystem/go-client.svg?style=flat-square)](https://github.com/ArkEcosystem/go-client/releases)
@@ -14,6 +14,14 @@
 
 ```bash
 ...
+```
+
+## Development
+
+### Format
+
+```bash
+gofmt -s -w .
 ```
 
 ## Security
