@@ -7,23 +7,9 @@
 > A simple Go API client for the Ark Blockchain.
 
 [![Build Status](https://img.shields.io/travis/ArkEcosystem/go-client/master.svg)](https://travis-ci.org/ArkEcosystem/go-client)
-[![Codecov](https://codecov.io/gh/arkecosystem/go-client)](https://img.shields.io/codecov/c/github/arkecosystem/go-client.svg)
+[![Codecov](https://img.shields.io/codecov/c/github/arkecosystem/go-client.svg)](https://codecov.io/gh/arkecosystem/go-client)
 [![Latest Version](https://img.shields.io/github/release/ArkEcosystem/go-client.svg)](https://github.com/ArkEcosystem/go-client/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-## Installation
-
-```bash
-...
-```
-
-## Development
-
-### Format
-
-```bash
-gofmt -s -w .
-```
 
 ## Documentation
 
