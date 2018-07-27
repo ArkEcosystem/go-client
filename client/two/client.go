@@ -16,18 +16,15 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
-	"sync"
 
 	"github.com/google/go-querystring/query"
 )
 
 const (
 	defaultBaseURL = "https://dexplorer.ark.io:8443/api/"
-	userAgent      = "go-client"
 )
 
 type Client struct {
-	clientMu sync.Mutex
 	client   *http.Client
 
 	BaseURL *url.URL
@@ -126,7 +123,7 @@ func (c *Client) SendRequest(ctx context.Context, method string, urlStr string, 
 
 	// Map the JSON response to a struct
 	if w, ok := model.(io.Writer); ok {
-		io.Copy(w, resp.Body)
+		_, _ = io.Copy(w, resp.Body)
 	} else {
 		decErr := json.NewDecoder(resp.Body).Decode(model)
 
@@ -141,5 +138,5 @@ func (c *Client) SendRequest(ctx context.Context, method string, urlStr string, 
 
 	defer resp.Body.Close()
 
-	return resp, nil
+	return resp, err
 }

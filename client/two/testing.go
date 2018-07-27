@@ -67,7 +67,7 @@ func testGeneralError(t *testing.T, method string, err error) {
 }
 
 func testResponseUrl(t *testing.T, method string, r *http.Response, want string) {
-	if strings.Contains(r.Request.URL.String(), want) == false {
+	if !strings.Contains(r.Request.URL.String(), want) {
 		t.Errorf("[%+v][URL] got %+v, want %+v", method, r.Request.URL.String(), want)
 	}
 }
@@ -94,7 +94,7 @@ func testJsonPayload(t *testing.T, r *http.Request, values values) {
 
 	decoder := json.NewDecoder(r.Body)
 	var got dummyJsonPayload
-	decoder.Decode(&got)
+	_ = decoder.Decode(&got)
 
 	gotBuffer, _ := json.Marshal(got)
 	wantBuffer, _ := json.Marshal(want)
