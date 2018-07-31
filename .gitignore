@@ -1,2 +1,7 @@
 .DS_Store
+
+# Microsoft Visual Studio
+.vs
+
+# Visual Studio Code
 .vscode
