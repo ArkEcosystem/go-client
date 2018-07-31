@@ -66,7 +66,7 @@ func testGeneralError(t *testing.T, method string, err error) {
 }
 
 func testResponseUrl(t *testing.T, method string, r *http.Response, want string) {
-	if strings.Contains(r.Request.URL.String(), want) == false {
+	if !strings.Contains(r.Request.URL.String(), want) {
 		t.Errorf("[%+v][URL] got %+v, want %+v", method, r.Request.URL.String(), want)
 	}
 }
@@ -76,19 +76,5 @@ func testResponseStruct(t *testing.T, method string, got interface{}, want inter
 		var gotType reflect.Type = reflect.TypeOf(got)
 		var wantType reflect.Type = reflect.TypeOf(want)
 		t.Errorf("[%+v][Response] got (%+v) %+v, want (%+v) %+v", method, gotType.String(), got, wantType.String(), want)
-	}
-}
-
-type values map[string]string
-
-func testFormValues(t *testing.T, r *http.Request, values values) {
-	want := url.Values{}
-	for k, v := range values {
-		want.Set(k, v)
-	}
-
-	r.ParseForm()
-	if got := r.Form; !reflect.DeepEqual(got, want) {
-		t.Errorf("Request parameters: %v, want %v", got, want)
 	}
 }
