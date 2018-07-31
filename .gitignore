@@ -1,1 +1,4 @@
 .DS_Store
+
+# Microsoft Visual Studio
+.vs
