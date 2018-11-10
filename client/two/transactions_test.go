@@ -368,7 +368,8 @@ func TestTransactionsService_Search(t *testing.T) {
 	})
 
 	query := &Pagination{Limit: 1}
-	responseStruct, response, err := client.Transactions.Search(context.Background(), query)
+	body := &TransactionsSearchRequest{Id: "dummy"}
+	responseStruct, response, err := client.Transactions.Search(context.Background(), query, body)
 	testGeneralError(t, "Transactions.Search", err)
 	testResponseUrl(t, "Transactions.Search", response, "/api/transactions/search")
 	testResponseStruct(t, "Transactions.Search", responseStruct, &Transactions{

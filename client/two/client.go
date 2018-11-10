@@ -25,7 +25,7 @@ const (
 )
 
 type Client struct {
-	client   *http.Client
+	client *http.Client
 
 	BaseURL *url.URL
 
