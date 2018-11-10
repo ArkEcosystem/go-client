@@ -20,7 +20,7 @@ type TransactionsService Service
 // Get all transactions.
 func (s *TransactionsService) List(ctx context.Context, query *Pagination) (*Transactions, *http.Response, error) {
 	var responseStruct *Transactions
-	resp, err := s.client.SendRequest(ctx, "GET", "transactions", query, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "transactions", query, nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -32,7 +32,7 @@ func (s *TransactionsService) List(ctx context.Context, query *Pagination) (*Tra
 // Create a new transaction.
 func (s *TransactionsService) Create(ctx context.Context, body *CreateTransactionRequest) (*CreateTransaction, *http.Response, error) {
 	var responseStruct *CreateTransaction
-	resp, err := s.client.SendRequest(ctx, "POST", "transactions", body, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "POST", "transactions", body, nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -46,7 +46,7 @@ func (s *TransactionsService) Get(ctx context.Context, id string) (*GetTransacti
 	uri := fmt.Sprintf("transactions/%v", id)
 
 	var responseStruct *GetTransaction
-	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -58,7 +58,7 @@ func (s *TransactionsService) Get(ctx context.Context, id string) (*GetTransacti
 // Get all unconfirmed transactions.
 func (s *TransactionsService) ListUnconfirmed(ctx context.Context, query *Pagination) (*Transactions, *http.Response, error) {
 	var responseStruct *Transactions
-	resp, err := s.client.SendRequest(ctx, "GET", "transactions/unconfirmed", query, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "transactions/unconfirmed", query, nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -72,7 +72,7 @@ func (s *TransactionsService) GetUnconfirmed(ctx context.Context, id string) (*G
 	uri := fmt.Sprintf("transactions/unconfirmed/%v", id)
 
 	var responseStruct *GetTransaction
-	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -84,7 +84,7 @@ func (s *TransactionsService) GetUnconfirmed(ctx context.Context, id string) (*G
 // Filter all transactions by the given criteria.
 func (s *TransactionsService) Search(ctx context.Context, query *Pagination) (*Transactions, *http.Response, error) {
 	var responseStruct *Transactions
-	resp, err := s.client.SendRequest(ctx, "POST", "transactions/search", query, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "POST", "transactions/search", query, nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -96,7 +96,7 @@ func (s *TransactionsService) Search(ctx context.Context, query *Pagination) (*T
 // Get a list of valid transaction types.
 func (s *TransactionsService) Types(ctx context.Context) (*TransactionTypes, *http.Response, error) {
 	var responseStruct *TransactionTypes
-	resp, err := s.client.SendRequest(ctx, "GET", "transactions/types", nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "transactions/types", nil, nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err

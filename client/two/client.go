@@ -65,7 +65,7 @@ func NewClient(httpClient *http.Client) *Client {
 	return c
 }
 
-func (c *Client) SendRequest(ctx context.Context, method string, urlStr string, body interface{}, model interface{}) (*http.Response, error) {
+func (c *Client) SendRequest(ctx context.Context, method string, urlStr string, queryString interface{}, body interface{}, model interface{}) (*http.Response, error) {
 	// Create a new HTTP request
 	if !strings.HasSuffix(c.BaseURL.Path, "/") {
 		return nil, fmt.Errorf("BaseURL must have a trailing slash, but %q does not", c.BaseURL)
@@ -90,12 +90,11 @@ func (c *Client) SendRequest(ctx context.Context, method string, urlStr string, 
 		return nil, err
 	}
 
-	if body != nil {
-		if method == "GET" {
-			params, _ := query.Values(body)
+	if queryString != nil {
+		params, _ := query.Values(queryString)
+		fmt.Println(params)
 
-			req.URL.RawQuery = params.Encode()
-		}
+		req.URL.RawQuery = params.Encode()
 	}
 
 	req.Header.Set("Content-Type", "application/json")

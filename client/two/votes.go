@@ -20,7 +20,7 @@ type VotesService Service
 // Get all votes.
 func (s *VotesService) List(ctx context.Context, query *Pagination) (*Transactions, *http.Response, error) {
 	var responseStruct *Transactions
-	resp, err := s.client.SendRequest(ctx, "GET", "votes", query, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "votes", query, nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -34,7 +34,7 @@ func (s *VotesService) Get(ctx context.Context, id string) (*GetTransaction, *ht
 	uri := fmt.Sprintf("votes/%v", id)
 
 	var responseStruct *GetTransaction
-	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err

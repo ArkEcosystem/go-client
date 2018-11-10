@@ -20,7 +20,7 @@ type PeersService Service
 // Get all peers.
 func (s *PeersService) List(ctx context.Context, query *Pagination) (*Peers, *http.Response, error) {
 	var responseStruct *Peers
-	resp, err := s.client.SendRequest(ctx, "GET", "peers", query, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "peers", query, nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
@@ -34,7 +34,7 @@ func (s *PeersService) Get(ctx context.Context, ip string) (*GetPeer, *http.Resp
 	uri := fmt.Sprintf("peers/%v", ip)
 
 	var responseStruct *GetPeer
-	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
