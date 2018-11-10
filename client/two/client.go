@@ -99,7 +99,6 @@ func (c *Client) SendRequest(ctx context.Context, method string, urlStr string, 
 		}
 
 		params, _ := query.Values(queryString)
-		fmt.Println(params)
 
 		req.URL.RawQuery = params.Encode()
 	}
