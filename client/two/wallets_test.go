@@ -472,7 +472,6 @@ func TestWalletsService_Search(t *testing.T) {
 
 	mux.HandleFunc("/wallets/search", func(writer http.ResponseWriter, request *http.Request) {
 		testMethod(t, request, "POST")
-		testJsonPayload(t, request, values{"limit": 1})
 		fmt.Fprint(writer,
 			`{
 			  "meta": {
