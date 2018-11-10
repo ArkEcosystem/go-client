@@ -310,9 +310,9 @@ func TestBlocksService_Search(t *testing.T) {
 			}`)
 	})
 
-	query := &BlocksSearchRequest{}
-	query.Limit = 1
-	responseStruct, response, err := client.Blocks.Search(context.Background(), query)
+	query := &Pagination{Limit: 1}
+	body := &BlocksSearchRequest{Id: "dummy"}
+	responseStruct, response, err := client.Blocks.Search(context.Background(), query, body)
 	testGeneralError(t, "Blocks.Search", err)
 	testResponseUrl(t, "Blocks.Search", response, "/api/blocks/search")
 	testResponseStruct(t, "Blocks.Search", responseStruct, &Blocks{
