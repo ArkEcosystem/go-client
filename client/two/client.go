@@ -91,6 +91,13 @@ func (c *Client) SendRequest(ctx context.Context, method string, urlStr string, 
 	}
 
 	if queryString != nil {
+		switch v := queryString.(type) {
+		case *Pagination:
+			if v.Page == 0 {
+				v.Page = 1
+			}
+		}
+
 		params, _ := query.Values(queryString)
 		fmt.Println(params)
 
