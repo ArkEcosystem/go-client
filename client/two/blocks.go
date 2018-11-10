@@ -58,9 +58,9 @@ func (s *BlocksService) Transactions(ctx context.Context, id int, query *Paginat
 }
 
 // Filter all blocks by the given criteria.
-func (s *BlocksService) Search(ctx context.Context, query *Pagination) (*Blocks, *http.Response, error) {
+func (s *BlocksService) Search(ctx context.Context, query *Pagination, body *BlocksSearchRequest) (*Blocks, *http.Response, error) {
 	var responseStruct *Blocks
-	resp, err := s.client.SendRequest(ctx, "POST", "blocks/search", query, nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "POST", "blocks/search", query, body, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
