@@ -266,7 +266,6 @@ func TestBlocksService_Search(t *testing.T) {
 
 	mux.HandleFunc("/blocks/search", func(writer http.ResponseWriter, request *http.Request) {
 		testMethod(t, request, "POST")
-		testJsonPayload(t, request, values{"limit": 1})
 		fmt.Fprint(writer,
 			`{
 			  "meta": {
@@ -312,7 +311,8 @@ func TestBlocksService_Search(t *testing.T) {
 	})
 
 	query := &Pagination{Limit: 1}
-	responseStruct, response, err := client.Blocks.Search(context.Background(), query)
+	body := &BlocksSearchRequest{Id: "dummy"}
+	responseStruct, response, err := client.Blocks.Search(context.Background(), query, body)
 	testGeneralError(t, "Blocks.Search", err)
 	testResponseUrl(t, "Blocks.Search", response, "/api/blocks/search")
 	testResponseStruct(t, "Blocks.Search", responseStruct, &Blocks{

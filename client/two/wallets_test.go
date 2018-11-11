@@ -472,7 +472,6 @@ func TestWalletsService_Search(t *testing.T) {
 
 	mux.HandleFunc("/wallets/search", func(writer http.ResponseWriter, request *http.Request) {
 		testMethod(t, request, "POST")
-		testJsonPayload(t, request, values{"limit": 1})
 		fmt.Fprint(writer,
 			`{
 			  "meta": {
@@ -497,7 +496,8 @@ func TestWalletsService_Search(t *testing.T) {
 	})
 
 	query := &Pagination{Limit: 1}
-	responseStruct, response, err := client.Wallets.Search(context.Background(), query)
+	body := &WalletsSearchRequest{Address: "dummy"}
+	responseStruct, response, err := client.Wallets.Search(context.Background(), query, body)
 	testGeneralError(t, "Wallets.Search", err)
 	testResponseUrl(t, "Wallets.Search", response, "/api/wallets/search")
 	testResponseStruct(t, "Wallets.Search", responseStruct, &Wallets{

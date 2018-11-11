@@ -100,6 +100,6 @@ func testJsonPayload(t *testing.T, r *http.Request, values values) {
 	wantBuffer, _ := json.Marshal(want)
 
 	if !reflect.DeepEqual(gotBuffer, wantBuffer) {
-		t.Errorf("Request parameters: %v, want %v", gotBuffer, wantBuffer)
+		t.Errorf("Request parameters: %v, want %v", string(gotBuffer), string(wantBuffer))
 	}
 }
