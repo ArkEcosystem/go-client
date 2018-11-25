@@ -8,8 +8,8 @@
 package two
 
 type DelegateBlocks struct {
-	Produced byte  `json:"produced,omitempty"`
-	Missed   byte  `json:"missed,omitempty"`
+	Produced uint32  `json:"produced,omitempty"`
+	Missed   uint32  `json:"missed,omitempty"`
 	Last     Block `json:"last,omitempty"`
 }
 
