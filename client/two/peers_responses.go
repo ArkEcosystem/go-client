@@ -12,7 +12,7 @@ type Peer struct {
 	Port    uint16 `json:"port,omitempty"`
 	Version string `json:"version,omitempty"`
 	Height  uint32 `json:"height,omitempty"`
-	Status  uint32 `json:"status,omitempty"`
+	Status  string `json:"status,omitempty"`
 	Os      string `json:"os,omitempty"`
 	Latency byte   `json:"latency,omitempty"`
 }
