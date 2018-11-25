@@ -8,9 +8,9 @@
 package two
 
 type Meta struct {
-	Count      byte   `url:"count,omitempty"`
-	PageCount  byte   `url:"pageCount,omitempty"`
-	TotalCount byte   `url:"totalCount,omitempty"`
+	Count      uint16   `url:"count,omitempty"`
+	PageCount  uint16   `url:"pageCount,omitempty"`
+	TotalCount uint16   `url:"totalCount,omitempty"`
 	Next       string `url:"next,omitempty"`
 	Previous   string `url:"previous,omitempty"`
 	Self       string `url:"self,omitempty"`
