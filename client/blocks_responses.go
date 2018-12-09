@@ -5,7 +5,7 @@
 // For the full copyright and license information, please view the LICENSE
 // file that was distributed with this source code.
 
-package two
+package client
 
 type BlockForged struct {
 	Reward int64 `json:"reward,omitempty"`

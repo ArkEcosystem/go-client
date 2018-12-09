@@ -5,7 +5,7 @@
 // For the full copyright and license information, please view the LICENSE
 // file that was distributed with this source code.
 
-package two
+package client
 
 type DelegateBlocks struct {
 	Produced uint32  `json:"produced,omitempty"`
