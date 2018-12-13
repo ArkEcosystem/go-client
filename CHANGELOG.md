@@ -7,5 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 0.1.1 - 2018-12-13
+
+### Fixed
+
+- Usage of search endpoints
+- Pagination data structs
+
 ## 0.1.0 - 2018-07-18
+
 - Initial Release
