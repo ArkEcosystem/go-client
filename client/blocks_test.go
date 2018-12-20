@@ -110,7 +110,7 @@ func TestBlocksService_List(t *testing.T) {
 	})
 }
 
-// Get a block by the given id.
+// Get a block by the given id (id and height are valid)
 func TestBlocksService_Get(t *testing.T) {
 	client, mux, _, teardown := setupTest()
 	defer teardown()

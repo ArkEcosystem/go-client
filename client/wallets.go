@@ -41,7 +41,7 @@ func (s *WalletsService) Top(ctx context.Context, query *Pagination) (*Wallets, 
 	return responseStruct, resp, err
 }
 
-// Get a wallet by the given id.
+// Get a wallet by the given id. (address, publicKey and username are valid)
 func (s *WalletsService) Get(ctx context.Context, id string) (*GetWallet, *http.Response, error) {
 	uri := fmt.Sprintf("wallets/%v", id)
 
