@@ -12,8 +12,8 @@ type Transaction struct {
 	Id            string            `json:"id,omitempty"`
 	BlockId       string            `json:"blockId,omitempty"`
 	Type          byte              `json:"type,omitempty"`
-	Amount        int64             `json:"amount,omitempty"`
-	Fee           int64             `json:"fee,omitempty"`
+	Amount        FlexToshi         `json:"amount,omitempty"`
+	Fee           FlexToshi         `json:"fee,omitempty"`
 	Sender        string            `json:"sender,omitempty"`
 	Recipient     string            `json:"recipient,omitempty"`
 	Signature     string            `json:"signature,omitempty"`
