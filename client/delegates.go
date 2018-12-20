@@ -29,7 +29,7 @@ func (s *DelegatesService) List(ctx context.Context, query *Pagination) (*Delega
 	return responseStruct, resp, err
 }
 
-// Get a block by the given id.
+// Get a delegate by the given ID. (address, publicKey and username are valid)
 func (s *DelegatesService) Get(ctx context.Context, id string) (*GetDelegate, *http.Response, error) {
 	uri := fmt.Sprintf("delegates/%v", id)
 

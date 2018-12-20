@@ -22,12 +22,12 @@ type GetNodeConfiguration struct {
 type NodeStatus struct {
 	Synced      bool  `json:"synced,omitempty"`
 	Now         int64 `json:"now,omitempty"`
-	BlocksCount int   `json:"blocksCount,omitempty"`
+	BlocksCount int64 `json:"blocksCount,omitempty"`
 }
 
 type NodeSyncing struct {
 	Syncing bool   `json:"syncing,omitempty"`
-	Blocks  int    `json:"blocks,omitempty"`
+	Blocks  int64  `json:"blocks,omitempty"`
 	Height  int64  `json:"height,omitempty"`
 	Id      string `json:"id,omitempty"`
 }
