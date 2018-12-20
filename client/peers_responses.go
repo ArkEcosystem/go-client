@@ -9,9 +9,9 @@ package client
 
 type Peer struct {
 	Ip      string `json:"ip,omitempty"`
-	Port    uint16 `json:"port,omitempty"`
+	Port    int16  `json:"port,omitempty"`
 	Version string `json:"version,omitempty"`
-	Height  uint32 `json:"height,omitempty"`
+	Height  int64  `json:"height,omitempty"`
 	Status  string `json:"status,omitempty"`
 	Os      string `json:"os,omitempty"`
 	Latency byte   `json:"latency,omitempty"`

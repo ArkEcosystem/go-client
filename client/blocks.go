@@ -29,7 +29,7 @@ func (s *BlocksService) List(ctx context.Context, query *Pagination) (*Blocks, *
 	return responseStruct, resp, err
 }
 
-// Get a block by the given id.
+// Get a block by the given id (id and height are valid)
 func (s *BlocksService) Get(ctx context.Context, id int) (*GetBlock, *http.Response, error) {
 	uri := fmt.Sprintf("blocks/%v", id)
 
