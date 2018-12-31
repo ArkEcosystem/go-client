@@ -111,24 +111,25 @@ func TestTransactionsService_Create(t *testing.T) {
 			}`)
 	})
 
+	transaction := &Transaction{
+		Id:            "dummy",
+		BlockId:       "dummy",
+		Type:          0,
+		Amount:        10000000,
+		Fee:           10000000,
+		Sender:        "dummy",
+		Recipient:     "dummy",
+		Signature:     "dummy",
+		VendorField:   "dummy",
+		Confirmations: 10,
+		Timestamp: Timestamp{
+			Epoch: 40505460,
+			Unix:  1530606660,
+			Human: "2018-07-03T08:31:00Z",
+		},
+	}
 	body := &CreateTransactionRequest{
-		Transactions: []Transaction{{
-			Id:            "dummy",
-			BlockId:       "dummy",
-			Type:          0,
-			Amount:        10000000,
-			Fee:           10000000,
-			Sender:        "dummy",
-			Recipient:     "dummy",
-			Signature:     "dummy",
-			VendorField:   "dummy",
-			Confirmations: 10,
-			Timestamp: Timestamp{
-				Epoch: 40505460,
-				Unix:  1530606660,
-				Human: "2018-07-03T08:31:00Z",
-			},
-		}},
+		Transactions: []interface{}{transaction},
 	}
 	responseStruct, response, err := client.Transactions.Create(context.Background(), body)
 	testGeneralError(t, "Transactions.Create", err)
