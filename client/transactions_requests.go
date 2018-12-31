@@ -8,7 +8,7 @@
 package client
 
 type CreateTransactionRequest struct {
-	Transactions []Transaction `json:"transactions,omitempty"`
+	Transactions []interface{} `json:"transactions,omitempty"`
 }
 
 type TransactionsSearchRequest struct {
