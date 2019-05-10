@@ -127,33 +127,7 @@ func TestNodeService_Configuration(t *testing.T) {
 			        "multiPayment": 500,
 			        "delegateResignation": 500
 			      }
-			    },
-			    "feeStatistics": [
-			      {
-			        "type": 0,
-			        "fees": {
-			          "minFee": 10000000,
-			          "maxFee": 10000000,
-			          "avgFee": 10000000
-			        }
-			      },
-			      {
-			        "type": 1,
-			        "fees": {
-			          "minFee": 500000000,
-			          "maxFee": 500000000,
-			          "avgFee": 500000000
-			        }
-			      },
-			      {
-			        "type": 3,
-			        "fees": {
-			          "minFee": 100000000,
-			          "maxFee": 100000000,
-			          "avgFee": 100000000
-			        }
-			      }
-			    ]
+			    }
 			  }
 			}`)
 	})
@@ -207,28 +181,73 @@ func TestNodeService_Configuration(t *testing.T) {
 					DelegateResignation:  500,
 				},
 			},
-			FeeStatistics: []FeeStatistic{{
-				Type: 0,
-				Fees: Fees{
-					MinFee: 10000000,
-					MaxFee: 10000000,
-					MvgFee: 10000000,
-				},
-			}, {
-				Type: 1,
-				Fees: Fees{
-					MinFee: 500000000,
-					MaxFee: 500000000,
-					MvgFee: 500000000,
-				},
-			}, {
-				Type: 3,
-				Fees: Fees{
-					MinFee: 100000000,
-					MaxFee: 100000000,
-					MvgFee: 100000000,
-				},
-			}},
 		},
+	})
+}
+
+// Get the node fee statistics.
+func TestNodeService_Fees(t *testing.T) {
+	client, mux, _, teardown := setupTest()
+	defer teardown()
+
+	mux.HandleFunc("/node/fees", func(writer http.ResponseWriter, request *http.Request) {
+		testMethod(t, request, "GET")
+		fmt.Fprint(writer,
+			`{
+			  "data": [
+		      {
+		        "type": 0,
+	          "min": 10000000,
+	          "max": 10000000,
+	          "avg": 10000000,
+	          "sum": 10000000,
+	          "median": 10000000
+		      },
+		      {
+		        "type": 1,
+	          "min": 500000000,
+	          "max": 500000000,
+	          "avg": 500000000,
+	          "sum": 500000000,
+	          "median": 500000000
+		      },
+		      {
+		        "type": 3,
+	          "min": 100000000,
+	          "max": 100000000,
+	          "avg": 100000000,
+	          "sum": 100000000,
+	          "median": 100000000
+		      }
+		    ]
+			}`)
+	})
+
+	responseStruct, response, err := client.Node.Fees(context.Background(), 7)
+	testGeneralError(t, "Node.Fees", err)
+	testResponseUrl(t, "Node.Fees", response, "/api/node/fees?days=7")
+	testResponseStruct(t, "Node.Fees", responseStruct, &GetNodeFees{
+		Data: []FeeStatistic{{
+			Type: 0,
+			MinFee: 10000000,
+			MaxFee: 10000000,
+			AvgFee: 10000000,
+			SumFee: 10000000,
+			MdnFee: 10000000,
+		}, {
+			Type: 1,
+			MinFee: 500000000,
+			MaxFee: 500000000,
+			AvgFee: 500000000,
+			SumFee: 500000000,
+			MdnFee: 500000000,
+		}, {
+			Type: 3,
+			MinFee: 100000000,
+			MaxFee: 100000000,
+			AvgFee: 100000000,
+			SumFee: 100000000,
+			MdnFee: 100000000,
+		}},
 	})
 }

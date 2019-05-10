@@ -19,6 +19,10 @@ type GetNodeConfiguration struct {
 	Data NodeConfiguration `json:"data,omitempty"`
 }
 
+type GetNodeFees struct {
+	Data NodeFees `json:"data,omitempty"`
+}
+
 type NodeStatus struct {
 	Synced      bool  `json:"synced,omitempty"`
 	Now         int64 `json:"now,omitempty"`
@@ -40,8 +44,9 @@ type NodeConfiguration struct {
 	Version       int16             `json:"version,omitempty"`
 	Ports         map[string]string `json:"ports,omitempty"`
 	Constants     NodeConstants     `json:"constants,omitempty"`
-	FeeStatistics []FeeStatistic    `json:"feeStatistics,omitempty"`
 }
+
+type NodeFees []FeeStatistic
 
 type NodeConstantsBlock struct {
 	Version         byte  `json:"version,omitempty"`
@@ -60,15 +65,13 @@ type NodeConstants struct {
 	DynamicOffsets  DynamicFeeOffsets  `json:"dynamicOffsets,omitempty"`
 }
 
-type Fees struct {
-	MinFee int64 `json:"minFee,omitempty"`
-	MaxFee int64 `json:"maxFee,omitempty"`
-	MvgFee int64 `json:"avgFee,omitempty"`
-}
-
 type FeeStatistic struct {
 	Type int16 `json:"type,omitempty"`
-	Fees Fees  `json:"fees,omitempty"`
+	MinFee int64 `json:"min,omitempty"`
+	MaxFee int64 `json:"max,omitempty"`
+	AvgFee int64 `json:"avg,omitempty"`
+	SumFee int64 `json:"sum,omitempty"`
+	MdnFee int64 `json:"median,omitempty"`
 }
 
 type FeeTypes struct {
