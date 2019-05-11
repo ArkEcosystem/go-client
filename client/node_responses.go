@@ -37,13 +37,13 @@ type NodeSyncing struct {
 }
 
 type NodeConfiguration struct {
-	Nethash       string            `json:"nethash,omitempty"`
-	Token         string            `json:"token,omitempty"`
-	Symbol        string            `json:"symbol,omitempty"`
-	Explorer      string            `json:"explorer,omitempty"`
-	Version       int16             `json:"version,omitempty"`
-	Ports         map[string]string `json:"ports,omitempty"`
-	Constants     NodeConstants     `json:"constants,omitempty"`
+	Nethash   string            `json:"nethash,omitempty"`
+	Token     string            `json:"token,omitempty"`
+	Symbol    string            `json:"symbol,omitempty"`
+	Explorer  string            `json:"explorer,omitempty"`
+	Version   int16             `json:"version,omitempty"`
+	Ports     map[string]string `json:"ports,omitempty"`
+	Constants NodeConstants     `json:"constants,omitempty"`
 }
 
 type NodeFees []FeeStatistic
@@ -66,7 +66,7 @@ type NodeConstants struct {
 }
 
 type FeeStatistic struct {
-	Type int16 `json:"type,omitempty"`
+	Type   int16 `json:"type,omitempty"`
 	MinFee int64 `json:"min,omitempty"`
 	MaxFee int64 `json:"max,omitempty"`
 	AvgFee int64 `json:"avg,omitempty"`

@@ -8,5 +8,5 @@
 package client
 
 type FeesRequest struct {
-	Days  int `url:"days"`
+	Days int `url:"days"`
 }

@@ -195,31 +195,31 @@ func TestNodeService_Fees(t *testing.T) {
 		fmt.Fprint(writer,
 			`{
 			  "data": [
-		      {
-		        "type": 0,
-	          "min": 10000000,
-	          "max": 10000000,
-	          "avg": 10000000,
-	          "sum": 10000000,
-	          "median": 10000000
-		      },
-		      {
-		        "type": 1,
-	          "min": 500000000,
-	          "max": 500000000,
-	          "avg": 500000000,
-	          "sum": 500000000,
-	          "median": 500000000
-		      },
-		      {
-		        "type": 3,
-	          "min": 100000000,
-	          "max": 100000000,
-	          "avg": 100000000,
-	          "sum": 100000000,
-	          "median": 100000000
-		      }
-		    ]
+			    {
+			      "type": 0,
+			      "min": 10000000,
+			      "max": 10000000,
+			      "avg": 10000000,
+			      "sum": 10000000,
+			      "median": 10000000
+			    },
+			    {
+			      "type": 1,
+			      "min": 500000000,
+			      "max": 500000000,
+			      "avg": 500000000,
+			      "sum": 500000000,
+			      "median": 500000000
+			    },
+			    {
+			      "type": 3,
+			      "min": 100000000,
+			      "max": 100000000,
+			      "avg": 100000000,
+			      "sum": 100000000,
+			      "median": 100000000
+			    }
+			  ]
 			}`)
 	})
 
@@ -228,21 +228,21 @@ func TestNodeService_Fees(t *testing.T) {
 	testResponseUrl(t, "Node.Fees", response, "/api/node/fees?days=7")
 	testResponseStruct(t, "Node.Fees", responseStruct, &GetNodeFees{
 		Data: []FeeStatistic{{
-			Type: 0,
+			Type:   0,
 			MinFee: 10000000,
 			MaxFee: 10000000,
 			AvgFee: 10000000,
 			SumFee: 10000000,
 			MdnFee: 10000000,
 		}, {
-			Type: 1,
+			Type:   1,
 			MinFee: 500000000,
 			MaxFee: 500000000,
 			AvgFee: 500000000,
 			SumFee: 500000000,
 			MdnFee: 500000000,
 		}, {
-			Type: 3,
+			Type:   3,
 			MinFee: 100000000,
 			MaxFee: 100000000,
 			AvgFee: 100000000,
