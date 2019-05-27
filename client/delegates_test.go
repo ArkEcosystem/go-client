@@ -102,7 +102,7 @@ func TestDelegatesService_List(t *testing.T) {
 	})
 }
 
-// Get a block by the given id.
+// Get a delegate by the given ID (address, publicKey and username are valid)
 func TestDelegatesService_Get(t *testing.T) {
 	client, mux, _, teardown := setupTest()
 	defer teardown()

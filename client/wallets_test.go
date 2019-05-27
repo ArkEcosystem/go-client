@@ -122,7 +122,7 @@ func TestWalletsService_Top(t *testing.T) {
 	})
 }
 
-// Get a wallet by the given id.
+// Get a wallet by the given id. (address, publicKey and username are valid)
 func TestWalletsService_Get(t *testing.T) {
 	client, mux, _, teardown := setupTest()
 	defer teardown()

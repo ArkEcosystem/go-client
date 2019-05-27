@@ -12,16 +12,16 @@ type CreateTransactionRequest struct {
 }
 
 type TransactionsSearchRequest struct {
-	OrderBy         string  `json:"orderBy,omitempty"`
-	Id              string  `json:"id,omitempty"`
-	SenderId        string  `json:"senderId,omitempty"`
-	BlockId         string  `json:"blockId,omitempty"`
-	Type            uint8   `json:"type,omitempty"`
-	Version         uint8   `json:"version,omitempty"`
-	SenderPublicKey string  `json:"senderPublicKey,omitempty"`
-	RecipientId     string  `json:"recipientId,omitempty"`
-	Timestamp       *FromTo `json:"timestamp,omitempty"`
-	Amount          *FromTo `json:"amount,omitempty"`
-	Fee             *FromTo `json:"fee,omitempty"`
+	OrderBy         string    `json:"orderBy,omitempty"`
+	Id              string    `json:"id,omitempty"`
+	SenderId        string    `json:"senderId,omitempty"`
+	BlockId         string    `json:"blockId,omitempty"`
+	Type            uint8     `json:"type,omitempty"`
+	Version         uint8     `json:"version,omitempty"`
+	SenderPublicKey string    `json:"senderPublicKey,omitempty"`
+	RecipientId     string    `json:"recipientId,omitempty"`
+	Timestamp       *FromTo   `json:"timestamp,omitempty"`
+	Amount          FlexToshi `json:"amount,omitempty"`
+	Fee             FlexToshi `json:"fee,omitempty"`
 	VendorFieldHex  string  `json:"vendorFieldHex,omitempty"`
 }

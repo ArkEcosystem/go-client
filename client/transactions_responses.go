@@ -7,13 +7,17 @@
 
 package client
 
+import (
+	"time"
+)
+
 type Transaction struct {
 	Address       string            `json:"address,omitempty"`
 	Id            string            `json:"id,omitempty"`
 	BlockId       string            `json:"blockId,omitempty"`
 	Type          byte              `json:"type,omitempty"`
-	Amount        int64             `json:"amount,omitempty"`
-	Fee           int64             `json:"fee,omitempty"`
+	Amount        FlexToshi         `json:"amount,omitempty"`
+	Fee           FlexToshi         `json:"fee,omitempty"`
 	Sender        string            `json:"sender,omitempty"`
 	Recipient     string            `json:"recipient,omitempty"`
 	Signature     string            `json:"signature,omitempty"`
@@ -44,6 +48,12 @@ type Timestamp struct {
 	Epoch int32  `json:"epoch,omitempty"`
 	Unix  int32  `json:"unix,omitempty"`
 	Human string `json:"human,omitempty"`
+}
+
+// Time parses the unix value of the timestamp and returns as time.Time object with
+// location as local.
+func (t Timestamp) Time() time.Time {
+	return time.Unix(int64(t.Unix), 0)
 }
 
 type CreateTransaction struct {
