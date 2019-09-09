@@ -413,15 +413,15 @@ func TestTransactionsService_Types(t *testing.T) {
 		fmt.Fprint(writer,
 			`{
 			  "data": {
-			    "TRANSFER": 0,
-			    "SECOND_SIGNATURE": 1,
-			    "DELEGATE_REGISTRATION": 2,
-			    "VOTE": 3,
-			    "MULTI_SIGNATURE": 4,
-			    "IPFS": 5,
-			    "TIMELOCK_TRANSFER": 6,
-			    "MULTI_PAYMENT": 7,
-			    "DELEGATE_RESIGNATION": 8
+			    "Transfer": 0,
+			    "SecondSignature": 1,
+			    "DelegateRegistration": 2,
+			    "Vote": 3,
+			    "MultiSignature": 4,
+			    "Ipfs": 5,
+			    "TimelockTransfer": 6,
+			    "MultiPayment": 7,
+			    "DelegateResignation": 8
 			  }
 			}`)
 	})
@@ -431,15 +431,56 @@ func TestTransactionsService_Types(t *testing.T) {
 	testResponseUrl(t, "Transactions.Types", response, "/api/transactions/types")
 	testResponseStruct(t, "Transactions.Types", responseStruct, &TransactionTypes{
 		Data: map[string]byte{
-			"TRANSFER":              0,
-			"SECOND_SIGNATURE":      1,
-			"DELEGATE_REGISTRATION": 2,
-			"VOTE":                  3,
-			"MULTI_SIGNATURE":       4,
-			"IPFS":                  5,
-			"TIMELOCK_TRANSFER":     6,
-			"MULTI_PAYMENT":         7,
-			"DELEGATE_RESIGNATION":  8,
+			"Transfer":             0,
+			"SecondSignature":      1,
+			"DelegateRegistration": 2,
+			"Vote":                 3,
+			"MultiSignature":       4,
+			"Ipfs":                 5,
+			"TimelockTransfer":     6,
+			"MultiPayment":         7,
+			"DelegateResignation":  8,
+		},
+	})
+}
+
+// Get a list of static transaction fees.
+func TestTransactionsService_Fees(t *testing.T) {
+	client, mux, _, teardown := setupTest()
+	defer teardown()
+
+	mux.HandleFunc("/transactions/fees", func(writer http.ResponseWriter, request *http.Request) {
+		testMethod(t, request, "GET")
+		fmt.Fprint(writer,
+			`{
+			  "data": {
+			    "transfer": 10000000,
+					"secondSignature": 500000000,
+					"delegateRegistration": 2500000000,
+					"vote": 100000000,
+					"multiSignature": 500000000,
+					"ipfs": 0,
+					"timelockTransfer": 0,
+					"multiPayment": 0,
+					"delegateResignation": 2500000000
+			  }
+			}`)
+	})
+
+	responseStruct, response, err := client.Transactions.Fees(context.Background())
+	testGeneralError(t, "Transactions.Fees", err)
+	testResponseUrl(t, "Transactions.Fees", response, "/api/transactions/fees")
+	testResponseStruct(t, "Transactions.Fees", responseStruct, &TransactionFees{
+		Data: map[string]FlexToshi{
+			"transfer":             10000000,
+			"secondSignature":      500000000,
+			"delegateRegistration": 2500000000,
+			"vote":                 100000000,
+			"multiSignature":       500000000,
+			"ipfs":                 0,
+			"timelockTransfer":     0,
+			"multiPayment":         0,
+			"delegateResignation":  2500000000,
 		},
 	})
 }
