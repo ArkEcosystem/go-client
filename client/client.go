@@ -35,6 +35,7 @@ type Client struct {
 	Delegates    *DelegatesService
 	Node         *NodeService
 	Peers        *PeersService
+	Rounds       *RoundsService
 	Transactions *TransactionsService
 	Votes        *VotesService
 	Wallets      *WalletsService
@@ -58,6 +59,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.Delegates = (*DelegatesService)(&c.common)
 	c.Node = (*NodeService)(&c.common)
 	c.Peers = (*PeersService)(&c.common)
+	c.Rounds = (*RoundsService)(&c.common)
 	c.Transactions = (*TransactionsService)(&c.common)
 	c.Votes = (*VotesService)(&c.common)
 	c.Wallets = (*WalletsService)(&c.common)
