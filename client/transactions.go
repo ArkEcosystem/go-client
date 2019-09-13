@@ -104,3 +104,15 @@ func (s *TransactionsService) Types(ctx context.Context) (*TransactionTypes, *ht
 
 	return responseStruct, resp, err
 }
+
+// Get a list of static transaction fees.
+func (s *TransactionsService) Fees(ctx context.Context) (*TransactionFees, *http.Response, error) {
+	var responseStruct *TransactionFees
+	resp, err := s.client.SendRequest(ctx, "GET", "transactions/fees", nil, nil, &responseStruct)
+
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return responseStruct, resp, err
+}

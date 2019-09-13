@@ -44,6 +44,10 @@ type TransactionTypes struct {
 	Data map[string]byte `json:"data,omitempty"`
 }
 
+type TransactionFees struct {
+	Data map[string]FlexToshi `json:"data,omitempty"`
+}
+
 type Timestamp struct {
 	Epoch int32  `json:"epoch,omitempty"`
 	Unix  int32  `json:"unix,omitempty"`
