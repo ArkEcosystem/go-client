@@ -249,7 +249,7 @@ func TestLocksService_Search(t *testing.T) {
 
 	query := &Pagination{Limit: 1}
 	body := &LocksUnlockedRequest{
-		Transactions: []string{{
+		Ids: []string{{
 			"dummyLockId",
 		}},
 	}
