@@ -8,9 +8,9 @@
 package client
 
 type DelegateBlocks struct {
-	Produced uint32  `json:"produced,omitempty"`
-	Missed   uint32  `json:"missed,omitempty"`
-	Last     Block `json:"last,omitempty"`
+	Produced uint32 `json:"produced,omitempty"`
+	Missed   uint32 `json:"missed,omitempty"`
+	Last     Block  `json:"last,omitempty"`
 }
 
 type DelegateProduction struct {

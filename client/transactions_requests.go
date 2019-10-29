@@ -23,5 +23,5 @@ type TransactionsSearchRequest struct {
 	Timestamp       *FromTo   `json:"timestamp,omitempty"`
 	Amount          FlexToshi `json:"amount,omitempty"`
 	Fee             FlexToshi `json:"fee,omitempty"`
-	VendorFieldHex  string  `json:"vendorFieldHex,omitempty"`
+	VendorFieldHex  string    `json:"vendorFieldHex,omitempty"`
 }

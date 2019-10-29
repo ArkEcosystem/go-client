@@ -55,6 +55,20 @@ func (s *WalletsService) Get(ctx context.Context, id string) (*GetWallet, *http.
 	return responseStruct, resp, err
 }
 
+// Get all locks for the given wallet.
+func (s *WalletsService) Locks(ctx context.Context, id string, query *Pagination) (*Locks, *http.Response, error) {
+	uri := fmt.Sprintf("wallets/%v/locks", id)
+
+	var responseStruct *Locks
+	resp, err := s.client.SendRequest(ctx, "GET", uri, query, nil, &responseStruct)
+
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return responseStruct, resp, err
+}
+
 // Get all transactions for the given wallet.
 func (s *WalletsService) Transactions(ctx context.Context, id string, query *Pagination) (*Transactions, *http.Response, error) {
 	uri := fmt.Sprintf("wallets/%v/transactions", id)

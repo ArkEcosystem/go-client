@@ -55,7 +55,7 @@ func (s *NodeService) Configuration(ctx context.Context) (*GetNodeConfiguration,
 // Get the node fee statistics.
 func (s *NodeService) Fees(ctx context.Context, days int) (*GetNodeFees, *http.Response, error) {
 	var responseStruct *GetNodeFees
-	resp, err := s.client.SendRequest(ctx, "GET", "node/fees", FeesRequest{ days }, nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "node/fees", FeesRequest{days}, nil, &responseStruct)
 
 	if err != nil {
 		return nil, resp, err
