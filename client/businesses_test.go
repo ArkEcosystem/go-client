@@ -182,9 +182,9 @@ func TestBusinessesService_Search(t *testing.T) {
 			    "totalCount": 1,
 			    "next": null,
 			    "previous": null,
-			    "self": "/api/businesses?page=1&limit=1",
-			    "first": "/api/businesses?page=1&limit=1",
-			    "last": "/api/businesses?page=1&limit=1"
+			    "self": "/api/businesses/search?page=1&limit=1",
+			    "first": "/api/businesses/search?page=1&limit=1",
+			    "last": "/api/businesses/search?page=1&limit=1"
 			  },
 			  "data": [
 			    {

@@ -150,9 +150,9 @@ func TestLocksService_Search(t *testing.T) {
 			    "totalCount": 1,
 			    "next": null,
 			    "previous": null,
-			    "self": "/api/locks?page=1&limit=1",
-			    "first": "/api/locks?page=1&limit=1",
-			    "last": "/api/locks?page=1&limit=1"
+			    "self": "/api/locks/search?page=1&limit=1",
+			    "first": "/api/locks/search?page=1&limit=1",
+			    "last": "/api/locks/search?page=1&limit=1"
 			  },
 			  "data": [
 			    {
@@ -186,9 +186,9 @@ func TestLocksService_Search(t *testing.T) {
 			TotalCount: 1,
 			Next:       "",
 			Previous:   "",
-			Self:       "/api/locks?page=1&limit=1",
-			First:      "/api/locks?page=1&limit=1",
-			Last:       "/api/locks?page=1&limit=1",
+			Self:       "/api/locks/search?page=1&limit=1",
+			First:      "/api/locks/search?page=1&limit=1",
+			Last:       "/api/locks/search?page=1&limit=1",
 		},
 		Data: []Lock{{
 			LockId:          "dummyLockId",
@@ -223,9 +223,9 @@ func TestLocksService_Unlocked(t *testing.T) {
 			    "totalCount": 1,
 			    "next": null,
 			    "previous": null,
-			    "self": "/api/locks?page=1&limit=1",
-			    "first": "/api/locks?page=1&limit=1",
-			    "last": "/api/locks?page=1&limit=1"
+			    "self": "/api/locks/unlocked?page=1&limit=1",
+			    "first": "/api/locks/unlocked?page=1&limit=1",
+			    "last": "/api/locks/unlocked?page=1&limit=1"
 			  },
 			  "data": [
 			    {
@@ -263,9 +263,9 @@ func TestLocksService_Unlocked(t *testing.T) {
 			TotalCount: 1,
 			Next:       "",
 			Previous:   "",
-			Self:       "/api/locks?page=1&limit=1",
-			First:      "/api/locks?page=1&limit=1",
-			Last:       "/api/locks?page=1&limit=1",
+			Self:       "/api/locks/unlocked?page=1&limit=1",
+			First:      "/api/locks/unlocked?page=1&limit=1",
+			Last:       "/api/locks/unlocked?page=1&limit=1",
 		},
 		Data: []Lock{{
 			LockId:          "dummyLockId",
