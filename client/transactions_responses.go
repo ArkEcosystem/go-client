@@ -12,19 +12,21 @@ import (
 )
 
 type Transaction struct {
-	Address       string            `json:"address,omitempty"`
-	Id            string            `json:"id,omitempty"`
-	BlockId       string            `json:"blockId,omitempty"`
-	Type          byte              `json:"type,omitempty"`
-	Amount        FlexToshi         `json:"amount,omitempty"`
-	Fee           FlexToshi         `json:"fee,omitempty"`
-	Sender        string            `json:"sender,omitempty"`
-	Recipient     string            `json:"recipient,omitempty"`
-	Signature     string            `json:"signature,omitempty"`
-	VendorField   string            `json:"vendorField,omitempty"`
-	Asset         *TransactionAsset `json:"asset,omitempty"`
-	Confirmations uint16            `json:"confirmations,omitempty"`
-	Timestamp     Timestamp         `json:"timestamp,omitempty"`
+	Id              string            `json:"id,omitempty"`
+	BlockId         string            `json:"blockId,omitempty"`
+	Type            byte              `json:"type,omitempty"`
+	TypeGroup       uint16            `json:"typeGroup,omitempty"`
+	Amount          string            `json:"amount,omitempty"`
+	Fee             string            `json:"fee,omitempty"`
+	Sender          string            `json:"sender,omitempty"`
+	SenderPublicKey string            `json:"senderPublicKey,omitempty"`
+	Recipient       string            `json:"recipient,omitempty"`
+	Signature       string            `json:"signature,omitempty"`
+	VendorField     string            `json:"vendorField,omitempty"`
+	Asset           *TransactionAsset `json:"asset,omitempty"`
+	Confirmations   uint32            `json:"confirmations,omitempty"`
+	Timestamp       Timestamp         `json:"timestamp,omitempty"`
+	Nonce           string            `json:"nonce,omitempty"`
 }
 
 type Transactions struct {
@@ -40,12 +42,14 @@ type GetCreateTransaction struct {
 	Data CreateTransaction `json:"data,omitempty"`
 }
 
+type TypeGroupTypes map[string]byte
+
 type TransactionTypes struct {
-	Data map[string]byte `json:"data,omitempty"`
+	Data map[string]TypeGroupTypes `json:"data,omitempty"`
 }
 
 type TransactionFees struct {
-	Data map[string]FlexToshi `json:"data,omitempty"`
+	Data map[string]uint64 `json:"data,omitempty"`
 }
 
 type Timestamp struct {
@@ -98,6 +102,6 @@ type IpfsAsset struct {
 }
 
 type MultiPaymentAsset struct {
-	Amount      uint64 `json:"amount,omitempty"`
+	Amount      string `json:"amount,omitempty"`
 	RecipientId string `json:"recipientId,omitempty"`
 }

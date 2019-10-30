@@ -27,6 +27,7 @@ type NodeStatus struct {
 	Synced      bool  `json:"synced,omitempty"`
 	Now         int64 `json:"now,omitempty"`
 	BlocksCount int64 `json:"blocksCount,omitempty"`
+	Timestamp   int64 `json:"timestamp,omitempty"`
 }
 
 type NodeSyncing struct {
@@ -37,13 +38,14 @@ type NodeSyncing struct {
 }
 
 type NodeConfiguration struct {
-	Nethash   string            `json:"nethash,omitempty"`
-	Token     string            `json:"token,omitempty"`
-	Symbol    string            `json:"symbol,omitempty"`
-	Explorer  string            `json:"explorer,omitempty"`
-	Version   int16             `json:"version,omitempty"`
-	Ports     map[string]string `json:"ports,omitempty"`
-	Constants NodeConstants     `json:"constants,omitempty"`
+	Nethash         string              `json:"nethash,omitempty"`
+	Token           string              `json:"token,omitempty"`
+	Symbol          string              `json:"symbol,omitempty"`
+	Explorer        string              `json:"explorer,omitempty"`
+	Version         int16               `json:"version,omitempty"`
+	Ports           map[string]int16    `json:"ports,omitempty"`
+	Constants       NodeConstants       `json:"constants,omitempty"`
+	TransactionPool NodeTransactionPool `json:"transactionPool,omitempty"`
 }
 
 type NodeFees []FeeStatistic
@@ -55,46 +57,45 @@ type NodeConstantsBlock struct {
 }
 
 type NodeConstants struct {
-	Height          int64              `json:"height,omitempty"`
-	Reward          int64              `json:"reward,omitempty"`
-	ActiveDelegates byte               `json:"activeDelegates,omitempty"`
-	BlockTime       byte               `json:"blocktime,omitempty"`
-	Block           NodeConstantsBlock `json:"block,omitempty"`
-	Epoch           string             `json:"epoch,omitempty"`
-	Fees            FeeTypes           `json:"fees,omitempty"`
-	DynamicOffsets  DynamicFeeOffsets  `json:"dynamicOffsets,omitempty"`
+	Height          int64               `json:"height,omitempty"`
+	Reward          int64               `json:"reward,omitempty"`
+	ActiveDelegates byte                `json:"activeDelegates,omitempty"`
+	BlockTime       byte                `json:"blocktime,omitempty"`
+	Block           NodeConstantsBlock  `json:"block,omitempty"`
+	Epoch           string              `json:"epoch,omitempty"`
+	Fees            map[string]FeeTypes `json:"fees,omitempty"`
+}
+
+type DynamicFees struct {
+	Enabled         bool     `json:"enabled,omitempty"`
+	MinFeePool      int16    `json:"minFeePool,omitempty"`
+	MinFeeBroadcast int16    `json:"minFeeBroadcast,omitempty"`
+	AddonBytes      FeeTypes `json:"addonBytes,omitempty"`
+}
+
+type NodeTransactionPool struct {
+	DynamicFees DynamicFees `json:"dynamicFees,omitempty"`
 }
 
 type FeeStatistic struct {
-	Type   int16 `json:"type,omitempty"`
-	MinFee int64 `json:"min,omitempty"`
-	MaxFee int64 `json:"max,omitempty"`
-	AvgFee int64 `json:"avg,omitempty"`
-	SumFee int64 `json:"sum,omitempty"`
-	MdnFee int64 `json:"median,omitempty"`
+	Type   int16  `json:"type,omitempty"`
+	MinFee string `json:"min,omitempty"`
+	MaxFee string `json:"max,omitempty"`
+	AvgFee string `json:"avg,omitempty"`
+	SumFee string `json:"sum,omitempty"`
+	MdnFee string `json:"median,omitempty"`
 }
 
 type FeeTypes struct {
-	Dynamic              bool  `json:"dynamic,omitempty"`
 	Transfer             int64 `json:"transfer,omitempty"`
 	SecondSignature      int64 `json:"secondSignature,omitempty"`
 	DelegateRegistration int64 `json:"delegateRegistration,omitempty"`
 	Vote                 int64 `json:"vote,omitempty"`
 	MultiSignature       int64 `json:"multiSignature,omitempty"`
 	Ipfs                 int64 `json:"ipfs,omitempty"`
-	TimelockTransfer     int64 `json:"timelockTransfer,omitempty"`
 	MultiPayment         int64 `json:"multiPayment,omitempty"`
 	DelegateResignation  int64 `json:"delegateResignation,omitempty"`
-}
-
-type DynamicFeeOffsets struct {
-	Transfer             int `json:"transfer,omitempty"`
-	SecondSignature      int `json:"secondSignature,omitempty"`
-	DelegateRegistration int `json:"delegateRegistration,omitempty"`
-	Vote                 int `json:"vote,omitempty"`
-	MultiSignature       int `json:"multiSignature,omitempty"`
-	Ipfs                 int `json:"ipfs,omitempty"`
-	TimelockTransfer     int `json:"timelockTransfer,omitempty"`
-	MultiPayment         int `json:"multiPayment,omitempty"`
-	DelegateResignation  int `json:"delegateResignation,omitempty"`
+	HtlcLock             int64 `json:"htlcLock,omitempty"`
+	HtlcClaim            int64 `json:"htlcClaim,omitempty"`
+	HtlcRefund           int64 `json:"htlcRefund,omitempty"`
 }

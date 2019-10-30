@@ -207,9 +207,11 @@ func TestBlocksService_Transactions(t *testing.T) {
 			      "id": "dummy",
 			      "blockId": "dummy",
 			      "type": 0,
-			      "amount": 10000000,
-			      "fee": 10000000,
+			      "typeGroup": 1,
+			      "amount": "10000000",
+			      "fee": "10000000",
 			      "sender": "dummy",
+			      "senderPublicKey": "dummy",
 			      "recipient": "dummy",
 			      "signature": "dummy",
 			      "vendorField": "dummy",
@@ -218,7 +220,8 @@ func TestBlocksService_Transactions(t *testing.T) {
 			        "epoch": 40505460,
 			        "unix": 1530606660,
 			        "human": "2018-07-03T08:31:00Z"
-			      }
+			      },
+			      "nonce": "dummy"
 			    }
 			  ]
 			}`)
@@ -240,21 +243,24 @@ func TestBlocksService_Transactions(t *testing.T) {
 			Last:       "/api/blocks/10/transactions?page=1&limit=1",
 		},
 		Data: []Transaction{{
-			Id:            "dummy",
-			BlockId:       "dummy",
-			Type:          0,
-			Amount:        10000000,
-			Fee:           10000000,
-			Sender:        "dummy",
-			Recipient:     "dummy",
-			Signature:     "dummy",
-			VendorField:   "dummy",
-			Confirmations: 10348,
+			Id:              "dummy",
+			BlockId:         "dummy",
+			Type:            0,
+			Type:            1,
+			Amount:          "10000000",
+			Fee:             "10000000",
+			Sender:          "dummy",
+			SenderPublicKey: "dummy",
+			Recipient:       "dummy",
+			Signature:       "dummy",
+			VendorField:     "dummy",
+			Confirmations:   10348,
 			Timestamp: Timestamp{
 				Epoch: 40505460,
 				Unix:  1530606660,
 				Human: "2018-07-03T08:31:00Z",
 			},
+			Nonce: "dummy",
 		}},
 	})
 }

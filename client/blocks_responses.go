@@ -8,9 +8,9 @@
 package client
 
 type BlockForged struct {
-	Reward int64 `json:"reward,omitempty"`
-	Fee    int64 `json:"fee,omitempty"`
-	Total  int64 `json:"total,omitempty"`
+	Reward string `json:"reward,omitempty"`
+	Fee    string `json:"fee,omitempty"`
+	Total  string `json:"total,omitempty"`
 }
 
 type BlockPayload struct {

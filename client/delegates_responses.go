@@ -8,14 +8,19 @@
 package client
 
 type DelegateBlocks struct {
-	Produced uint32  `json:"produced,omitempty"`
-	Missed   uint32  `json:"missed,omitempty"`
-	Last     Block `json:"last,omitempty"`
+	Produced uint32 `json:"produced,omitempty"`
+	Missed   uint32 `json:"missed,omitempty"`
+	Last     Block  `json:"last,omitempty"`
 }
 
 type DelegateProduction struct {
-	Approval     float64 `json:"approval,omitempty"`
-	Productivity float64 `json:"productivity,omitempty"`
+	Approval float64 `json:"approval,omitempty"`
+}
+
+type DelegateForged struct {
+	Fees    string `json:"fees,omitempty"`
+	Rewards string `json:"rewards,omitempty"`
+	Total   string `json:"total,omitempty"`
 }
 
 type Delegate struct {
@@ -26,6 +31,7 @@ type Delegate struct {
 	Rank       byte               `json:"rank,omitempty"`
 	Blocks     DelegateBlocks     `json:"blocks,omitempty"`
 	Production DelegateProduction `json:"production,omitempty"`
+	Production DelegateForged     `json:"forged,omitempty"`
 }
 
 type Delegates struct {

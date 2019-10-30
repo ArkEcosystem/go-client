@@ -53,8 +53,12 @@ func TestDelegatesService_List(t *testing.T) {
 			        }
 			      },
 			      "production": {
-			        "approval": 0.01,
-			        "productivity": 68
+			        "approval": 0.01
+			      },
+			      "forged": {
+			        "fees": "468407250508",
+			        "reward": "13589400000000",
+			        "total": "14057807250508"
 			      }
 			    }
 			  ]
@@ -95,8 +99,12 @@ func TestDelegatesService_List(t *testing.T) {
 				},
 			},
 			Production: DelegateProduction{
-				Approval:     0.01,
-				Productivity: 68,
+				Approval: 0.01,
+			},
+			Forged: DelegateForged{
+				Fees:   "468407250508",
+				Reward: "13589400000000",
+				Total:  "14057807250508",
 			},
 		}},
 	})
@@ -141,7 +149,11 @@ func TestDelegatesService_Get(t *testing.T) {
 			    },
 			    "production": {
 			      "approval": 0.01,
-			      "productivity": 68
+			    },
+			    "forged": {
+			      "fees": "468407250508",
+			      "reward": "13589400000000",
+			      "total": "14057807250508"
 			    }
 			  }
 			}`)
@@ -180,8 +192,12 @@ func TestDelegatesService_Get(t *testing.T) {
 				},
 			},
 			Production: DelegateProduction{
-				Approval:     0.01,
-				Productivity: 68,
+				Approval: 0.01,
+			},
+			Forged: DelegateForged{
+				Fees:   "468407250508",
+				Reward: "13589400000000",
+				Total:  "14057807250508",
 			},
 		},
 	})
@@ -306,7 +322,7 @@ func TestDelegatesService_Voters(t *testing.T) {
 			    {
 			      "address": "dummy",
 			      "publicKey": "dummy",
-			      "balance": 100000000,
+			      "balance": "100000000",
 			      "isDelegate": false
 			    }
 			  ]
@@ -331,7 +347,8 @@ func TestDelegatesService_Voters(t *testing.T) {
 		Data: []Wallet{{
 			Address:    "dummy",
 			PublicKey:  "dummy",
-			Balance:    100000000,
+			Nonce:      "dummy",
+			Balance:    "100000000",
 			IsDelegate: false,
 		}},
 	})
