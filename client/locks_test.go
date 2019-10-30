@@ -249,9 +249,9 @@ func TestLocksService_Unlocked(t *testing.T) {
 
 	query := &Pagination{Limit: 1}
 	body := &LocksUnlockedRequest{
-		Ids: []string{{
+		Ids: []string{
 			"dummyLockId",
-		}},
+		},
 	}
 	responseStruct, response, err := client.Locks.Unlocked(context.Background(), query, body)
 	testGeneralError(t, "Locks.Unlocked", err)
