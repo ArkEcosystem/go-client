@@ -55,9 +55,9 @@ func (s *LocksService) Search(ctx context.Context, query *Pagination, body *Lock
 	return responseStruct, resp, err
 }
 
-// Filter all locks by the given ids.
-func (s *LocksService) Unlocked(ctx context.Context, query *Pagination, body *LocksUnlockedRequest) (*Locks, *http.Response, error) {
-	var responseStruct *Locks
+// Retrieve transactions by the given lock ids.
+func (s *LocksService) Unlocked(ctx context.Context, query *Pagination, body *LocksUnlockedRequest) (*Transactions, *http.Response, error) {
+	var responseStruct *Transactions
 	resp, err := s.client.SendRequest(ctx, "POST", "locks/unlocked", query, body, &responseStruct)
 
 	if err != nil {

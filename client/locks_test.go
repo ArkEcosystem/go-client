@@ -208,7 +208,7 @@ func TestLocksService_Search(t *testing.T) {
 	})
 }
 
-// Filter all locks by the given ids.
+// Retrieve transactions by the given lock ids.
 func TestLocksService_Unlocked(t *testing.T) {
 	client, mux, _, teardown := setupTest()
 	defer teardown()
@@ -223,25 +223,36 @@ func TestLocksService_Unlocked(t *testing.T) {
 			    "totalCount": 1,
 			    "next": null,
 			    "previous": null,
-			    "self": "/api/locks/unlocked?page=1&limit=1",
-			    "first": "/api/locks/unlocked?page=1&limit=1",
-			    "last": "/api/locks/unlocked?page=1&limit=1"
+			    "self": "/api/locks/unlocked?limit=1&page=1",
+			    "first": "/api/locks/unlocked?limit=1&page=1",
+			    "last": "/api/locks/unlocked?limit=1&page=1"
 			  },
 			  "data": [
 			    {
-			      "lockId": "dummyLockId",
-			      "amount": "1",
-			      "secretHash": "dummySecretHash",
+			      "id": "dummyId",
+			      "blockId": "dummyBlockId",
+			      "version": 2,
+			      "type": 9,
+			      "typeGroup": 1,
+			      "amount": "0",
+			      "fee": "0",
+			      "sender": "dummySender",
 			      "senderPublicKey": "dummySenderPublicKey",
-			      "recipientId": "dummyRecipientId",
-			      "timestamp": {
-			        "epoch": 81911280,
-			        "unix": 1572012480,
-			        "human": "2019-10-25T14:08:00.000Z"
+			      "recipient": "dummyRecipient",
+			      "signature": "dummySignature",
+			      "asset": {
+			        "claim": {
+			          "lockTransactionId": "dummyLockTransactionId",
+			          "unlockSecret": "dummyUnlockSecret"
+			        }
 			      },
-			      "expirationType": 2,
-			      "expirationValue": 6000000,
-			      "vendorField": "dummyVendorField"
+			      "confirmations": 3,
+			      "timestamp": {
+			        "epoch": 82354848,
+			        "unix": 1572456048,
+			        "human": "2019-10-30T17:20:48.000Z"
+			      },
+			      "nonce": "dummyNonce"
 			    }
 			  ]
 			}`)
@@ -256,7 +267,7 @@ func TestLocksService_Unlocked(t *testing.T) {
 	responseStruct, response, err := client.Locks.Unlocked(context.Background(), query, body)
 	testGeneralError(t, "Locks.Unlocked", err)
 	testResponseUrl(t, "Locks.Unlocked", response, "/api/locks/unlocked")
-	testResponseStruct(t, "Locks.Unlocked", responseStruct, &Locks{
+	testResponseStruct(t, "Locks.Unlocked", responseStruct, &Transactions{
 		Meta: Meta{
 			Count:      1,
 			PageCount:  1,
@@ -267,20 +278,32 @@ func TestLocksService_Unlocked(t *testing.T) {
 			First:      "/api/locks/unlocked?page=1&limit=1",
 			Last:       "/api/locks/unlocked?page=1&limit=1",
 		},
-		Data: []Lock{{
-			LockId:          "dummyLockId",
-			Amount:          "1",
-			SecretHash:      "dummySecretHash",
+		Data: []Transaction{{
+			Id:              "dummyId",
+			BlockId:         "dummyBlockId",
+			Version:         "2",
+			Type:            0,
+			TypeGroup:       1,
+			Amount:          0,
+			Fee:             0,
+			Sender:          "dummySender",
 			SenderPublicKey: "dummySenderPublicKey",
-			RecipientId:     "dummyRecipientId",
-			Timestamp: Timestamp{
-				Epoch: 81911280,
-				Unix:  1572012480,
-				Human: "2019-10-25T14:08:00.000Z",
+			Recipient:       "dummyRecipient",
+			Signature:       "dummySignature",
+			Asset: &TransactionAsset{
+				Claim: {
+					LockTransactionId: "dummyLockTransactionId",
+					UnlockSecret:      "dummyUnlockSecret",
+				},
 			},
-			ExpirationType:  2,
-			ExpirationValue: 6000000,
-			VendorField:     "dummyVendorField",
+			Confirmations: 3,
+			VendorField:   "dummy",
+			Timestamp: Timestamp{
+				Epoch: 82354848,
+				Unix:  1572456048,
+				Human: "2019-10-30T17:20:48.000Z",
+			},
+			Nonce: "dummyNonce",
 		}},
 	})
 }

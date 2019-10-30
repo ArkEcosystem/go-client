@@ -9,7 +9,7 @@ package client
 
 type Lock struct {
 	LockId          string    `json:"lockId,omitempty"`
-	Amount          string    `json:"amount,omitempty"`
+	Amount          FlexToshi `json:"amount,omitempty"`
 	SecretHash      string    `json:"secretHash,omitempty"`
 	SenderPublicKey string    `json:"senderPublicKey,omitempty"`
 	RecipientId     string    `json:"recipientId,omitempty"`
