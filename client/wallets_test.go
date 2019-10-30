@@ -185,7 +185,7 @@ func TestWalletsService_Locks(t *testing.T) {
 			        "human": "2019-10-25T14:08:00.000Z"
 			      },
 			      "expirationType": 2,
-			      "expirationValue": 6000000",
+			      "expirationValue": 6000000,
 			      "vendorField": "dummyVendorField"
 			    }
 			  ]

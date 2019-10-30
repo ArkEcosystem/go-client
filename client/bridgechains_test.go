@@ -31,7 +31,7 @@ func TestBridgechainsService_List(t *testing.T) {
 				  "previous": null,
 				  "self": "/api/bridgechains?page=1&limit=1",
 				  "first": "/api/bridgechains?page=1&limit=1",
-				  "last": "/api/bridgechains?page=8&limit=1"
+				  "last": "/api/bridgechains?page=1&limit=1"
 				},
 				"data": [
 				  {
@@ -132,7 +132,7 @@ func TestBridgechainsService_Search(t *testing.T) {
 				  "previous": null,
 				  "self": "/api/bridgechains?page=1&limit=1",
 				  "first": "/api/bridgechains?page=1&limit=1",
-				  "last": "/api/bridgechains?page=8&limit=1"
+				  "last": "/api/bridgechains?page=1&limit=1"
 				},
 				"data": [
 				  {

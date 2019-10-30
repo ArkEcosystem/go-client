@@ -31,7 +31,7 @@ func TestBusinessesService_List(t *testing.T) {
 			    "previous": null,
 			    "self": "/api/businesses?page=1&limit=1",
 			    "first": "/api/businesses?page=1&limit=1",
-			    "last": "/api/businesses?page=30&limit=1"
+			    "last": "/api/businesses?page=1&limit=1"
 			  },
 			  "data": [
 			    {
@@ -120,7 +120,7 @@ func TestBusinessesService_Bridgechains(t *testing.T) {
 			    "previous": null,
 			    "self": "/api/businesses/1/bridgechains?page=1&limit=1",
 			    "first": "/api/businesses/1/bridgechains?page=1&limit=1",
-			    "last": "/api/businesses/1/bridgechains?page=5&limit=1"
+			    "last": "/api/businesses/1/bridgechains?page=1&limit=1"
 			  },
 			  "data": [
 			    {
@@ -184,7 +184,7 @@ func TestBusinessesService_Search(t *testing.T) {
 			    "previous": null,
 			    "self": "/api/businesses?page=1&limit=1",
 			    "first": "/api/businesses?page=1&limit=1",
-			    "last": "/api/businesses?page=30&limit=1"
+			    "last": "/api/businesses?page=1&limit=1"
 			  },
 			  "data": [
 			    {

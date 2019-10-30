@@ -31,7 +31,7 @@ func TestLocksService_List(t *testing.T) {
 			    "previous": null,
 			    "self": "/api/locks?page=1&limit=1",
 			    "first": "/api/locks?page=1&limit=1",
-			    "last": "/api/locks?page=7&limit=1"
+			    "last": "/api/locks?page=1&limit=1"
 			  },
 			  "data": [
 			    {
@@ -152,7 +152,7 @@ func TestLocksService_Search(t *testing.T) {
 			    "previous": null,
 			    "self": "/api/locks?page=1&limit=1",
 			    "first": "/api/locks?page=1&limit=1",
-			    "last": "/api/locks?page=7&limit=1"
+			    "last": "/api/locks?page=1&limit=1"
 			  },
 			  "data": [
 			    {
@@ -225,7 +225,7 @@ func TestLocksService_Unlocked(t *testing.T) {
 			    "previous": null,
 			    "self": "/api/locks?page=1&limit=1",
 			    "first": "/api/locks?page=1&limit=1",
-			    "last": "/api/locks?page=7&limit=1"
+			    "last": "/api/locks?page=1&limit=1"
 			  },
 			  "data": [
 			    {
