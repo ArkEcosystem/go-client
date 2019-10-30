@@ -154,7 +154,7 @@ func TestWalletsService_Get(t *testing.T) {
 }
 
 // Get all locks for the given wallet.
-func TestWalletsService_Transactions(t *testing.T) {
+func TestWalletsService_Locks(t *testing.T) {
 	client, mux, _, teardown := setupTest()
 	defer teardown()
 
