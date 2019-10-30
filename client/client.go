@@ -106,7 +106,6 @@ func (c *Client) SendRequest(ctx context.Context, method string, urlStr string, 
 	}
 
 	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("API-Version", "2")
 
 	// Execute the previously created HTTP request
 	resp, err := c.client.Do(req)
