@@ -44,7 +44,7 @@ func (s *BridgechainsService) Get(ctx context.Context, id uint16) (*GetBridgecha
 }
 
 // Filter all bridgechains by the given criteria.
-func (s *BridgechainsService) Search(ctx context.Context, query *Pagination, body *BridgechainSearchRequest) (*Bridgechains, *http.Response, error) {
+func (s *BridgechainsService) Search(ctx context.Context, query *Pagination, body *BridgechainsSearchRequest) (*Bridgechains, *http.Response, error) {
 	var responseStruct *Bridgechains
 	resp, err := s.client.SendRequest(ctx, "POST", "bridgechains/search", query, body, &responseStruct)
 
