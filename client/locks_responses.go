@@ -9,13 +9,13 @@ package client
 
 type Lock struct {
 	LockId          string    `json:"lockId,omitempty"`
-	Amount          FlexToshi `json:"amount,omitempty"`
+	Amount          string    `json:"amount,omitempty"`
 	SecretHash      string    `json:"secretHash,omitempty"`
 	SenderPublicKey string    `json:"senderPublicKey,omitempty"`
 	RecipientId     string    `json:"recipientId,omitempty"`
 	Timestamp       Timestamp `json:"timestamp,omitempty"`
 	ExpirationType  byte      `json:"expirationType,omitempty"`
-	ExpirationValue uint16    `json:"expirationValue,omitempty"`
+	ExpirationValue uint32    `json:"expirationValue,omitempty"`
 	VendorField     string    `json:"vendorField,omitempty"`
 }
 

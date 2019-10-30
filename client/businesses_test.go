@@ -93,13 +93,13 @@ func TestBusinessesService_Get(t *testing.T) {
 	testGeneralError(t, "Businesses.Get", err)
 	testResponseUrl(t, "Businesses.Get", response, "/businesses/1")
 	testResponseStruct(t, "Businesses.Get", responseStruct, &GetBusiness{
-		Data: Business{{
+		Data: Business{
 			BusinessId: 1,
 			Name:       "dummyName",
 			Website:    "http://dummy.website",
 			Vat:        "dummyVat",
 			Repository: "dummyRepository",
-		}},
+		},
 	})
 }
 

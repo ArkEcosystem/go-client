@@ -209,11 +209,11 @@ func TestLocksService_Search(t *testing.T) {
 }
 
 // Filter all locks by the given ids.
-func TestLocksService_Search(t *testing.T) {
+func TestLocksService_Unlocked(t *testing.T) {
 	client, mux, _, teardown := setupTest()
 	defer teardown()
 
-	mux.HandleFunc("/locks/search", func(writer http.ResponseWriter, request *http.Request) {
+	mux.HandleFunc("/locks/unlocked", func(writer http.ResponseWriter, request *http.Request) {
 		testMethod(t, request, "POST")
 		fmt.Fprint(writer,
 			`{
