@@ -56,7 +56,7 @@ func (s *LocksService) Search(ctx context.Context, query *Pagination, body *Lock
 }
 
 // Filter all locks by the given ids.
-func (s *LocksService) Search(ctx context.Context, query *Pagination, body *LocksUnlockedRequest) (*Locks, *http.Response, error) {
+func (s *LocksService) Unlocked(ctx context.Context, query *Pagination, body *LocksUnlockedRequest) (*Locks, *http.Response, error) {
 	var responseStruct *Locks
 	resp, err := s.client.SendRequest(ctx, "POST", "locks/unlocked", query, body, &responseStruct)
 
