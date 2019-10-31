@@ -37,9 +37,10 @@ func TestPeersService_List(t *testing.T) {
 			    {
 			      "ip": "1.2.3.4",
 			      "port": 4002,
+			      "ports": {
+			        "@arkecosystem/core-wallet-api": 4040
+			      },
 			      "version": "2.0.0",
-			      "status": "OK",
-			      "os": "dummy",
 			      "latency": 10
 			    }
 			  ]
@@ -62,11 +63,12 @@ func TestPeersService_List(t *testing.T) {
 			Last:       "/api/peers?page=1&limit=1",
 		},
 		Data: []Peer{{
-			Ip:      "1.2.3.4",
-			Port:    4002,
+			Ip:   "1.2.3.4",
+			Port: 4002,
+			Ports: PeerPorts{
+				"@arkecosystem/core-wallet-api": 4040,
+			},
 			Version: "2.0.0",
-			Status:  "OK",
-			Os:      "dummy",
 			Latency: 10,
 		}},
 	})
@@ -94,9 +96,10 @@ func TestPeersService_Get(t *testing.T) {
 			  "data": {
 			    "ip": "1.2.3.4",
 			    "port": 4002,
+			    "ports": {
+			      "@arkecosystem/core-wallet-api": 4040
+			    },
 			    "version": "2.0.0",
-			    "status": "OK",
-			    "os": "dummy",
 			    "latency": 10
 			  }
 			}`)
@@ -117,11 +120,12 @@ func TestPeersService_Get(t *testing.T) {
 			Last:       "/api/peers?page=1&limit=1",
 		},
 		Data: Peer{
-			Ip:      "1.2.3.4",
-			Port:    4002,
+			Ip:   "1.2.3.4",
+			Port: 4002,
+			Ports: PeerPorts{
+				"@arkecosystem/core-wallet-api": 4040,
+			},
 			Version: "2.0.0",
-			Status:  "OK",
-			Os:      "dummy",
 			Latency: 10,
 		},
 	})
