@@ -108,40 +108,40 @@ func TestNodeService_Configuration(t *testing.T) {
 			      "epoch": "2017-03-21T13:00:00.000Z",
 			      "fees": {
 			        "staticFees": {
-				        "transfer": 10000000,
-				        "secondSignature": 500000000,
-				        "delegateRegistration": 2500000000,
-				        "vote": 100000000,
-				        "multiSignature": 500000000,
-				        "ipfs": 500000000,
-				        "multiPayment": 10000000,
-				        "delegateResignation": 2500000000,
-				        "htlcLock": 10000000,
-				        "htlcClaim": 0,
-				        "htlcRefund": 0
+			          "transfer": 10000000,
+			          "secondSignature": 500000000,
+			          "delegateRegistration": 2500000000,
+			          "vote": 100000000,
+			          "multiSignature": 500000000,
+			          "ipfs": 500000000,
+			          "multiPayment": 10000000,
+			          "delegateResignation": 2500000000,
+			          "htlcLock": 10000000,
+			          "htlcClaim": 0,
+			          "htlcRefund": 0
 			        }
 			      }
 			    },
 			    "transactionPool": {
-				    "dynamicFees": {
-				      "enabled": true,
-				      "minFeePool": 1000,
-				      "minFeeBroadcast": 1000,
-				      "addonBytes": {
-				        "transfer": 100,
-				        "secondSignature": 250,
-				        "delegateRegistration": 400000,
-				        "vote": 100,
-				        "multiSignature": 500,
-				        "ipfs": 250,
-				        "multiPayment": 500,
-				        "delegateResignation": 100,
-				        "htlcLock": 100,
-				        "htlcClaim": 0,
-				        "htlcRefund": 0
-				      }
-				    }
-				  }
+			      "dynamicFees": {
+			        "enabled": true,
+			        "minFeePool": 1000,
+			        "minFeeBroadcast": 1000,
+			        "addonBytes": {
+			          "transfer": 100,
+			          "secondSignature": 250,
+			          "delegateRegistration": 400000,
+			          "vote": 100,
+			          "multiSignature": 500,
+			          "ipfs": 250,
+			          "multiPayment": 500,
+			          "delegateResignation": 100,
+			          "htlcLock": 100,
+			          "htlcClaim": 0,
+			          "htlcRefund": 0
+			        }
+			      }
+			    }
 			  }
 			}`)
 	})
