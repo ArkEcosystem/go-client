@@ -229,7 +229,7 @@ func TestBlocksService_Transactions(t *testing.T) {
 			        "unix": 1530606660,
 			        "human": "2018-07-03T08:31:00Z"
 			      },
-			      "nonce": "dummy"
+			      "nonce": "1"
 			    }
 			  ]
 			}`)
@@ -268,7 +268,7 @@ func TestBlocksService_Transactions(t *testing.T) {
 				Unix:  1530606660,
 				Human: "2018-07-03T08:31:00Z",
 			},
-			Nonce: "dummy",
+			Nonce: 1,
 		}},
 	})
 }

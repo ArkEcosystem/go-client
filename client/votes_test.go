@@ -56,7 +56,7 @@ func TestVotesService_List(t *testing.T) {
 			        "unix": 1529963254,
 			        "human": "2018-06-25T21:47:34Z"
 			      },
-			      "nonce": "dummy"
+			      "nonce": "1"
 			    }
 			  ]
 			}`)
@@ -99,7 +99,7 @@ func TestVotesService_List(t *testing.T) {
 				Unix:  1529963254,
 				Human: "2018-06-25T21:47:34Z",
 			},
-			Nonce: "dummy",
+			Nonce: 1,
 		}},
 	})
 }
@@ -135,7 +135,7 @@ func TestVotesService_Get(t *testing.T) {
 			      "unix": 1529963254,
 			      "human": "2018-06-25T21:47:34Z"
 			    },
-			    "nonce": "dummy"
+			    "nonce": "1"
 			  }
 			}`)
 	})
@@ -166,7 +166,7 @@ func TestVotesService_Get(t *testing.T) {
 				Unix:  1529963254,
 				Human: "2018-06-25T21:47:34Z",
 			},
-			Nonce: "dummy",
+			Nonce: 1,
 		},
 	})
 }

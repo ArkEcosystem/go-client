@@ -37,7 +37,7 @@ func TestWalletsService_List(t *testing.T) {
 			    {
 			      "address": "dummy",
 			      "publicKey": "dummy",
-			      "nonce": "dummy",
+			      "nonce": "1",
 			      "balance": "1000000000",
 			      "isDelegate": false
 			    }
@@ -63,7 +63,7 @@ func TestWalletsService_List(t *testing.T) {
 		Data: []Wallet{{
 			Address:    "dummy",
 			PublicKey:  "dummy",
-			Nonce:      "dummy",
+			Nonce:      1,
 			Balance:    1000000000,
 			IsDelegate: false,
 		}},
@@ -93,7 +93,7 @@ func TestWalletsService_Top(t *testing.T) {
 			    {
 			      "address": "dummy",
 			      "publicKey": "dummy",
-			      "nonce": "dummy",
+			      "nonce": "1",
 			      "balance": "1000000000",
 			      "isDelegate": false
 			    }
@@ -119,7 +119,7 @@ func TestWalletsService_Top(t *testing.T) {
 		Data: []Wallet{{
 			Address:    "dummy",
 			PublicKey:  "dummy",
-			Nonce:      "dummy",
+			Nonce:      1,
 			Balance:    1000000000,
 			IsDelegate: false,
 		}},
@@ -138,7 +138,7 @@ func TestWalletsService_Get(t *testing.T) {
 			  "data": {
 			    "address": "dummy",
 			    "publicKey": "dummy",
-		      "nonce": "dummy",
+		      "nonce": "1",
 			    "balance": "1000000000",
 			    "isDelegate": false
 			  }
@@ -152,7 +152,7 @@ func TestWalletsService_Get(t *testing.T) {
 		Data: Wallet{
 			Address:    "dummy",
 			PublicKey:  "dummy",
-			Nonce:      "dummy",
+			Nonce:      1,
 			Balance:    1000000000,
 			IsDelegate: false,
 		},
@@ -197,7 +197,7 @@ func TestWalletsService_Transactions(t *testing.T) {
 			        "unix": 1530606660,
 			        "human": "2018-07-03T08:31:00Z"
 			      },
-			      "nonce": "dummy"
+			      "nonce": "1"
 			    }
 			  ]
 			}`)
@@ -236,7 +236,7 @@ func TestWalletsService_Transactions(t *testing.T) {
 				Unix:  1530606660,
 				Human: "2018-07-03T08:31:00Z",
 			},
-			Nonce: "dummy",
+			Nonce: 1,
 		}},
 	})
 }
@@ -279,7 +279,7 @@ func TestWalletsService_SentTransactions(t *testing.T) {
 			        "unix": 1530606660,
 			        "human": "2018-07-03T08:31:00Z"
 			      },
-			      "nonce": "dummy"
+			      "nonce": "1"
 			    }
 			  ]
 			}`)
@@ -318,7 +318,7 @@ func TestWalletsService_SentTransactions(t *testing.T) {
 				Unix:  1530606660,
 				Human: "2018-07-03T08:31:00Z",
 			},
-			Nonce: "dummy",
+			Nonce: 1,
 		}},
 	})
 }
@@ -361,7 +361,7 @@ func TestWalletsService_ReceivedTransaction(t *testing.T) {
 			        "unix": 1530606660,
 			        "human": "2018-07-03T08:31:00Z"
 			      },
-			      "nonce": "dummy"
+			      "nonce": "1"
 			    }
 			  ]
 			}`)
@@ -400,7 +400,7 @@ func TestWalletsService_ReceivedTransaction(t *testing.T) {
 				Unix:  1530606660,
 				Human: "2018-07-03T08:31:00Z",
 			},
-			Nonce: "dummy",
+			Nonce: 1,
 		}},
 	})
 }
@@ -447,7 +447,7 @@ func TestWalletsService_Votes(t *testing.T) {
 			        "unix": 1529963254,
 			        "human": "2018-06-25T21:47:34Z"
 			      },
-			      "nonce": "dummy"
+			      "nonce": "1"
 			    }
 			  ]
 			}`)
@@ -490,7 +490,7 @@ func TestWalletsService_Votes(t *testing.T) {
 				Unix:  1529963254,
 				Human: "2018-06-25T21:47:34Z",
 			},
-			Nonce: "dummy",
+			Nonce: 1,
 		}},
 	})
 }
@@ -518,7 +518,7 @@ func TestWalletsService_Search(t *testing.T) {
 			    {
 			      "address": "dummy",
 			      "publicKey": "dummy",
-			      "nonce": "dummy",
+			      "nonce": "1",
 			      "balance": "1000000000",
 			      "isDelegate": false
 			    }
@@ -545,7 +545,7 @@ func TestWalletsService_Search(t *testing.T) {
 		Data: []Wallet{{
 			Address:    "dummy",
 			PublicKey:  "dummy",
-			Nonce:      "dummy",
+			Nonce:      1,
 			Balance:    1000000000,
 			IsDelegate: false,
 		}},

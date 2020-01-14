@@ -52,7 +52,7 @@ func TestTransactionsService_List(t *testing.T) {
 			        "unix": 1530606660,
 			        "human": "2018-07-03T08:31:00Z"
 			      },
-			      "nonce": "dummy"
+			      "nonce": "1"
 			    }
 			  ]
 			}`)
@@ -91,7 +91,7 @@ func TestTransactionsService_List(t *testing.T) {
 				Unix:  1530606660,
 				Human: "2018-07-03T08:31:00Z",
 			},
-			Nonce: "dummy",
+			Nonce: 1,
 		}},
 	})
 }
@@ -136,7 +136,7 @@ func TestTransactionsService_Create(t *testing.T) {
 				Unix:  1530606660,
 				Human: "2018-07-03T08:31:00Z",
 			},
-			Nonce: "dummy",
+			Nonce: 1,
 		}},
 	}
 	responseStruct, response, err := client.Transactions.Create(context.Background(), body)
@@ -180,7 +180,7 @@ func TestTransactionsService_Get(t *testing.T) {
 			      "unix": 1530606660,
 			      "human": "2018-07-03T08:31:00Z"
 			    },
-			    "nonce": "dummy"
+			    "nonce": "1"
 			  }
 			}`)
 	})
@@ -207,7 +207,7 @@ func TestTransactionsService_Get(t *testing.T) {
 				Unix:  1530606660,
 				Human: "2018-07-03T08:31:00Z",
 			},
-			Nonce: "dummy",
+			Nonce: 1,
 		},
 	})
 }
@@ -250,7 +250,7 @@ func TestTransactionsService_ListUnconfirmed(t *testing.T) {
 			        "unix": 1530606660,
 			        "human": "2018-07-03T08:31:00Z"
 			      },
-			      "nonce": "dummy"
+			      "nonce": "1"
 			    }
 			  ]
 			}`)
@@ -289,7 +289,7 @@ func TestTransactionsService_ListUnconfirmed(t *testing.T) {
 				Unix:  1530606660,
 				Human: "2018-07-03T08:31:00Z",
 			},
-			Nonce: "dummy",
+			Nonce: 1,
 		}},
 	})
 }
@@ -321,7 +321,7 @@ func TestTransactionsService_GetUnconfirmed(t *testing.T) {
 			      "unix": 1530606660,
 			      "human": "2018-07-03T08:31:00Z"
 			    },
-			    "nonce": "dummy"
+			    "nonce": "1"
 			  }
 			}`)
 	})
@@ -348,7 +348,7 @@ func TestTransactionsService_GetUnconfirmed(t *testing.T) {
 				Unix:  1530606660,
 				Human: "2018-07-03T08:31:00Z",
 			},
-			Nonce: "dummy",
+			Nonce: 1,
 		},
 	})
 }
@@ -391,7 +391,7 @@ func TestTransactionsService_Search(t *testing.T) {
 			        "unix": 1530606660,
 			        "human": "2018-07-03T08:31:00Z"
 			      },
-			      "nonce": "dummy"
+			      "nonce": "1"
 			    }
 			  ]
 			}`)
@@ -431,7 +431,7 @@ func TestTransactionsService_Search(t *testing.T) {
 				Unix:  1530606660,
 				Human: "2018-07-03T08:31:00Z",
 			},
-			Nonce: "dummy",
+			Nonce: 1,
 		}},
 	})
 }

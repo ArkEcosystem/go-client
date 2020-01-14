@@ -26,7 +26,7 @@ type Transaction struct {
 	Asset           *TransactionAsset `json:"asset,omitempty"`
 	Confirmations   uint32            `json:"confirmations,omitempty"`
 	Timestamp       Timestamp         `json:"timestamp,omitempty"`
-	Nonce           string            `json:"nonce,omitempty"`
+	Nonce           uint64            `json:"nonce,omitempty,string"`
 }
 
 type Transactions struct {
