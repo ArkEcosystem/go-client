@@ -215,7 +215,7 @@ func TestWalletsService_Locks(t *testing.T) {
 		},
 		Data: []Lock{{
 			LockId:          "dummy",
-			Amount:          "1",
+			Amount:          1,
 			SecretHash:      "dummySecretHash",
 			SenderPublicKey: "dummyPublicKey",
 			RecipientId:     "dummyRecipient",

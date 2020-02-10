@@ -71,7 +71,7 @@ func TestLocksService_List(t *testing.T) {
 		},
 		Data: []Lock{{
 			LockId:          "dummyLockId",
-			Amount:          "1",
+			Amount:          1,
 			SecretHash:      "dummySecretHash",
 			SenderPublicKey: "dummySenderPublicKey",
 			RecipientId:     "dummyRecipientId",
@@ -122,7 +122,7 @@ func TestLocksService_Get(t *testing.T) {
 	testResponseStruct(t, "Locks.Get", responseStruct, &GetLock{
 		Data: Lock{
 			LockId:          "dummyLockId",
-			Amount:          "1",
+			Amount:          1,
 			SecretHash:      "dummySecretHash",
 			SenderPublicKey: "dummySenderPublicKey",
 			RecipientId:     "dummyRecipientId",
@@ -197,7 +197,7 @@ func TestLocksService_Search(t *testing.T) {
 		},
 		Data: []Lock{{
 			LockId:          "dummyLockId",
-			Amount:          "1",
+			Amount:          1,
 			SecretHash:      "dummySecretHash",
 			SenderPublicKey: "dummySenderPublicKey",
 			RecipientId:     "dummyRecipientId",
@@ -229,16 +229,16 @@ func TestLocksService_Unlocked(t *testing.T) {
 			    "totalCount": 1,
 			    "next": null,
 			    "previous": null,
-			    "self": "/api/locks/unlocked?limit=1&page=1",
-			    "first": "/api/locks/unlocked?limit=1&page=1",
-			    "last": "/api/locks/unlocked?limit=1&page=1"
+			    "self": "/api/locks/unlocked?page=1&limit=1",
+			    "first": "/api/locks/unlocked?page=1&limit=1",
+			    "last": "/api/locks/unlocked?page=1&limit=1"
 			  },
 			  "data": [
 			    {
 			      "id": "dummyId",
 			      "blockId": "dummyBlockId",
 			      "version": 2,
-			      "type": 9,
+			      "type": 0,
 			      "typeGroup": 1,
 			      "amount": "0",
 			      "fee": "0",
@@ -252,13 +252,14 @@ func TestLocksService_Unlocked(t *testing.T) {
 			          "unlockSecret": "dummyUnlockSecret"
 			        }
 			      },
+			      "vendorField": "dummy",
 			      "confirmations": 3,
 			      "timestamp": {
 			        "epoch": 82354848,
 			        "unix": 1572456048,
 			        "human": "2019-10-30T17:20:48.000Z"
 			      },
-			      "nonce": "dummyNonce"
+			      "nonce": "1"
 			    }
 			  ]
 			}`)
@@ -287,7 +288,7 @@ func TestLocksService_Unlocked(t *testing.T) {
 		Data: []Transaction{{
 			Id:              "dummyId",
 			BlockId:         "dummyBlockId",
-			Version:         "2",
+			Version:         2,
 			Type:            0,
 			TypeGroup:       1,
 			Amount:          0,
@@ -297,7 +298,7 @@ func TestLocksService_Unlocked(t *testing.T) {
 			Recipient:       "dummyRecipient",
 			Signature:       "dummySignature",
 			Asset: &TransactionAsset{
-				Claim: {
+				Claim: &ClaimAsset{
 					LockTransactionId: "dummyLockTransactionId",
 					UnlockSecret:      "dummyUnlockSecret",
 				},
@@ -309,7 +310,7 @@ func TestLocksService_Unlocked(t *testing.T) {
 				Unix:  1572456048,
 				Human: "2019-10-30T17:20:48.000Z",
 			},
-			Nonce: "dummyNonce",
+			Nonce: 1,
 		}},
 	})
 }

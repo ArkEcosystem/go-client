@@ -14,6 +14,7 @@ import (
 type Transaction struct {
 	Id              string            `json:"id,omitempty"`
 	BlockId         string            `json:"blockId,omitempty"`
+	Version         byte              `json:"version,omitempty"`
 	Type            byte              `json:"type,omitempty"`
 	TypeGroup       uint16            `json:"typeGroup,omitempty"`
 	Amount          uint64            `json:"amount,omitempty,string"`
