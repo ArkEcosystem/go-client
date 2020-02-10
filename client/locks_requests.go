@@ -21,4 +21,5 @@ type LocksSearchRequest struct {
 	ExpirationType  byte    `json:"expirationType,omitempty"`
 	ExpirationValue *FromTo `json:"expirationValue,omitempty"`
 	VendorField     string  `json:"vendorField,omitempty"`
+	IsExpired       bool    `json:"isExpired,omitempty"`
 }

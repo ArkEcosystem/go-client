@@ -47,7 +47,8 @@ func TestLocksService_List(t *testing.T) {
 			      },
 			      "expirationType": 2,
 			      "expirationValue": 6000000,
-			      "vendorField": "dummyVendorField"
+			      "vendorField": "dummyVendorField",
+			      "isExpired": false
 			    }
 			  ]
 			}`)
@@ -82,6 +83,7 @@ func TestLocksService_List(t *testing.T) {
 			ExpirationType:  2,
 			ExpirationValue: 6000000,
 			VendorField:     "dummyVendorField",
+			IsExpired:       false,
 		}},
 	})
 }
@@ -108,7 +110,8 @@ func TestLocksService_Get(t *testing.T) {
 			    },
 			    "expirationType": 2,
 			    "expirationValue": 6000000,
-			    "vendorField": "dummyVendorField"
+			    "vendorField": "dummyVendorField",
+			    "isExpired": false
 			  }
 			}`)
 	})
@@ -131,6 +134,7 @@ func TestLocksService_Get(t *testing.T) {
 			ExpirationType:  2,
 			ExpirationValue: 6000000,
 			VendorField:     "dummyVendorField",
+			IsExpired:       false,
 		},
 	})
 }
@@ -168,7 +172,8 @@ func TestLocksService_Search(t *testing.T) {
 			      },
 			      "expirationType": 2,
 			      "expirationValue": 6000000,
-			      "vendorField": "dummyVendorField"
+			      "vendorField": "dummyVendorField",
+			      "isExpired": false
 			    }
 			  ]
 			}`)
@@ -204,6 +209,7 @@ func TestLocksService_Search(t *testing.T) {
 			ExpirationType:  2,
 			ExpirationValue: 6000000,
 			VendorField:     "dummyVendorField",
+			IsExpired:       false,
 		}},
 	})
 }

@@ -9,7 +9,7 @@ package client
 
 type Lock struct {
 	LockId          string    `json:"lockId,omitempty"`
-	Amount          FlexToshi `json:"amount,omitempty"`
+	Amount          uint64    `json:"amount,omitempty,string"`
 	SecretHash      string    `json:"secretHash,omitempty"`
 	SenderPublicKey string    `json:"senderPublicKey,omitempty"`
 	RecipientId     string    `json:"recipientId,omitempty"`
@@ -17,6 +17,7 @@ type Lock struct {
 	ExpirationType  byte      `json:"expirationType,omitempty"`
 	ExpirationValue uint32    `json:"expirationValue,omitempty"`
 	VendorField     string    `json:"vendorField,omitempty"`
+	IsExpired       bool      `json:"isExpired,omitempty"`
 }
 
 type Locks struct {
