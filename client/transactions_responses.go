@@ -12,22 +12,21 @@ import (
 )
 
 type Transaction struct {
-	Address         string            `json:"address,omitempty"`
 	Id              string            `json:"id,omitempty"`
 	BlockId         string            `json:"blockId,omitempty"`
 	Type            byte              `json:"type,omitempty"`
-	TypeGroup       byte              `json:"typeGroup,omitempty"`
-	Amount          FlexToshi         `json:"amount,omitempty"`
-	Fee             FlexToshi         `json:"fee,omitempty"`
+	TypeGroup       uint16            `json:"typeGroup,omitempty"`
+	Amount          uint64            `json:"amount,omitempty,string"`
+	Fee             uint64            `json:"fee,omitempty,string"`
 	Sender          string            `json:"sender,omitempty"`
 	SenderPublicKey string            `json:"senderPublicKey,omitempty"`
 	Recipient       string            `json:"recipient,omitempty"`
 	Signature       string            `json:"signature,omitempty"`
 	Asset           *TransactionAsset `json:"asset,omitempty"`
 	VendorField     string            `json:"vendorField,omitempty"`
-	Confirmations   uint16            `json:"confirmations,omitempty"`
+	Confirmations   uint32            `json:"confirmations,omitempty"`
 	Timestamp       Timestamp         `json:"timestamp,omitempty"`
-	Nonce           string            `json:"nonce,omitempty"`
+	Nonce           uint64            `json:"nonce,omitempty,string"`
 }
 
 type Transactions struct {
@@ -43,12 +42,14 @@ type GetCreateTransaction struct {
 	Data CreateTransaction `json:"data,omitempty"`
 }
 
+type TypeGroupTypes map[string]byte
+
 type TransactionTypes struct {
-	Data map[string]byte `json:"data,omitempty"`
+	Data map[string]TypeGroupTypes `json:"data,omitempty"`
 }
 
 type TransactionFees struct {
-	Data map[string]FlexToshi `json:"data,omitempty"`
+	Data map[string]uint32 `json:"data,omitempty"`
 }
 
 type Timestamp struct {
@@ -102,7 +103,7 @@ type IpfsAsset struct {
 }
 
 type MultiPaymentAsset struct {
-	Amount      uint64 `json:"amount,omitempty"`
+	Amount      uint64 `json:"amount,omitempty,string"`
 	RecipientId string `json:"recipientId,omitempty"`
 }
 

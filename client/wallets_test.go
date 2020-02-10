@@ -37,7 +37,8 @@ func TestWalletsService_List(t *testing.T) {
 			    {
 			      "address": "dummy",
 			      "publicKey": "dummy",
-			      "balance": 1000000000,
+			      "nonce": "1",
+			      "balance": "1000000000",
 			      "isDelegate": false
 			    }
 			  ]
@@ -62,6 +63,7 @@ func TestWalletsService_List(t *testing.T) {
 		Data: []Wallet{{
 			Address:    "dummy",
 			PublicKey:  "dummy",
+			Nonce:      1,
 			Balance:    1000000000,
 			IsDelegate: false,
 		}},
@@ -91,7 +93,8 @@ func TestWalletsService_Top(t *testing.T) {
 			    {
 			      "address": "dummy",
 			      "publicKey": "dummy",
-			      "balance": 1000000000,
+			      "nonce": "1",
+			      "balance": "1000000000",
 			      "isDelegate": false
 			    }
 			  ]
@@ -116,6 +119,7 @@ func TestWalletsService_Top(t *testing.T) {
 		Data: []Wallet{{
 			Address:    "dummy",
 			PublicKey:  "dummy",
+			Nonce:      1,
 			Balance:    1000000000,
 			IsDelegate: false,
 		}},
@@ -134,7 +138,8 @@ func TestWalletsService_Get(t *testing.T) {
 			  "data": {
 			    "address": "dummy",
 			    "publicKey": "dummy",
-			    "balance": 1000000000,
+		      "nonce": "1",
+			    "balance": "1000000000",
 			    "isDelegate": false
 			  }
 			}`)
@@ -147,6 +152,7 @@ func TestWalletsService_Get(t *testing.T) {
 		Data: Wallet{
 			Address:    "dummy",
 			PublicKey:  "dummy",
+			Nonce:      1,
 			Balance:    1000000000,
 			IsDelegate: false,
 		},
@@ -249,9 +255,11 @@ func TestWalletsService_Transactions(t *testing.T) {
 			      "id": "dummy",
 			      "blockId": "dummy",
 			      "type": 0,
-			      "amount": 10000000,
-			      "fee": 10000000,
+			      "typeGroup": 1,
+			      "amount": "10000000",
+			      "fee": "10000000",
 			      "sender": "dummy",
+			      "senderPublicKey": "dummy",
 			      "recipient": "dummy",
 			      "signature": "dummy",
 			      "vendorField": "dummy",
@@ -260,7 +268,8 @@ func TestWalletsService_Transactions(t *testing.T) {
 			        "epoch": 40505460,
 			        "unix": 1530606660,
 			        "human": "2018-07-03T08:31:00Z"
-			      }
+			      },
+			      "nonce": "1"
 			    }
 			  ]
 			}`)
@@ -282,21 +291,24 @@ func TestWalletsService_Transactions(t *testing.T) {
 			Last:       "/api/wallets/dummy/transactions?page=1&limit=1",
 		},
 		Data: []Transaction{{
-			Id:            "dummy",
-			BlockId:       "dummy",
-			Type:          0,
-			Amount:        10000000,
-			Fee:           10000000,
-			Sender:        "dummy",
-			Recipient:     "dummy",
-			Signature:     "dummy",
-			VendorField:   "dummy",
-			Confirmations: 10,
+			Id:              "dummy",
+			BlockId:         "dummy",
+			Type:            0,
+			TypeGroup:       1,
+			Amount:          10000000,
+			Fee:             10000000,
+			Sender:          "dummy",
+			SenderPublicKey: "dummy",
+			Recipient:       "dummy",
+			Signature:       "dummy",
+			VendorField:     "dummy",
+			Confirmations:   10,
 			Timestamp: Timestamp{
 				Epoch: 40505460,
 				Unix:  1530606660,
 				Human: "2018-07-03T08:31:00Z",
 			},
+			Nonce: 1,
 		}},
 	})
 }
@@ -325,9 +337,11 @@ func TestWalletsService_SentTransactions(t *testing.T) {
 			      "id": "dummy",
 			      "blockId": "dummy",
 			      "type": 0,
-			      "amount": 10000000,
-			      "fee": 10000000,
+			      "typeGroup": 1,
+			      "amount": "10000000",
+			      "fee": "10000000",
 			      "sender": "dummy",
+			      "senderPublicKey": "dummy",
 			      "recipient": "dummy",
 			      "signature": "dummy",
 			      "vendorField": "dummy",
@@ -336,7 +350,8 @@ func TestWalletsService_SentTransactions(t *testing.T) {
 			        "epoch": 40505460,
 			        "unix": 1530606660,
 			        "human": "2018-07-03T08:31:00Z"
-			      }
+			      },
+			      "nonce": "1"
 			    }
 			  ]
 			}`)
@@ -358,21 +373,24 @@ func TestWalletsService_SentTransactions(t *testing.T) {
 			Last:       "/api/wallets/dummy/transactions/sent?page=1&limit=1",
 		},
 		Data: []Transaction{{
-			Id:            "dummy",
-			BlockId:       "dummy",
-			Type:          0,
-			Amount:        10000000,
-			Fee:           10000000,
-			Sender:        "dummy",
-			Recipient:     "dummy",
-			Signature:     "dummy",
-			VendorField:   "dummy",
-			Confirmations: 10,
+			Id:              "dummy",
+			BlockId:         "dummy",
+			Type:            0,
+			TypeGroup:       1,
+			Amount:          10000000,
+			Fee:             10000000,
+			Sender:          "dummy",
+			SenderPublicKey: "dummy",
+			Recipient:       "dummy",
+			Signature:       "dummy",
+			VendorField:     "dummy",
+			Confirmations:   10,
 			Timestamp: Timestamp{
 				Epoch: 40505460,
 				Unix:  1530606660,
 				Human: "2018-07-03T08:31:00Z",
 			},
+			Nonce: 1,
 		}},
 	})
 }
@@ -401,9 +419,11 @@ func TestWalletsService_ReceivedTransaction(t *testing.T) {
 			      "id": "dummy",
 			      "blockId": "dummy",
 			      "type": 0,
-			      "amount": 10000000,
-			      "fee": 10000000,
+			      "typeGroup": 1,
+			      "amount": "10000000",
+			      "fee": "10000000",
 			      "sender": "dummy",
+			      "senderPublicKey": "dummy",
 			      "recipient": "dummy",
 			      "signature": "dummy",
 			      "vendorField": "dummy",
@@ -412,7 +432,8 @@ func TestWalletsService_ReceivedTransaction(t *testing.T) {
 			        "epoch": 40505460,
 			        "unix": 1530606660,
 			        "human": "2018-07-03T08:31:00Z"
-			      }
+			      },
+			      "nonce": "1"
 			    }
 			  ]
 			}`)
@@ -434,21 +455,24 @@ func TestWalletsService_ReceivedTransaction(t *testing.T) {
 			Last:       "/api/wallets/dummy/transactions/received?page=1&limit=1",
 		},
 		Data: []Transaction{{
-			Id:            "dummy",
-			BlockId:       "dummy",
-			Type:          0,
-			Amount:        10000000,
-			Fee:           10000000,
-			Sender:        "dummy",
-			Recipient:     "dummy",
-			Signature:     "dummy",
-			VendorField:   "dummy",
-			Confirmations: 10,
+			Id:              "dummy",
+			BlockId:         "dummy",
+			Type:            0,
+			TypeGroup:       1,
+			Amount:          10000000,
+			Fee:             10000000,
+			Sender:          "dummy",
+			SenderPublicKey: "dummy",
+			Recipient:       "dummy",
+			Signature:       "dummy",
+			VendorField:     "dummy",
+			Confirmations:   10,
 			Timestamp: Timestamp{
 				Epoch: 40505460,
 				Unix:  1530606660,
 				Human: "2018-07-03T08:31:00Z",
 			},
+			Nonce: 1,
 		}},
 	})
 }
@@ -477,9 +501,11 @@ func TestWalletsService_Votes(t *testing.T) {
 			      "id": "dummy",
 			      "blockId": "dummy",
 			      "type": 3,
-			      "amount": 0,
-			      "fee": 100000000,
+			      "typeGroup": 1,
+			      "amount": "0",
+			      "fee": "100000000",
 			      "sender": "dummy",
+			      "senderPublicKey": "dummy",
 			      "recipient": "dummy",
 			      "signature": "dummy",
 			      "asset": {
@@ -492,7 +518,8 @@ func TestWalletsService_Votes(t *testing.T) {
 			        "epoch": 39862054,
 			        "unix": 1529963254,
 			        "human": "2018-06-25T21:47:34Z"
-			      }
+			      },
+			      "nonce": "1"
 			    }
 			  ]
 			}`)
@@ -514,14 +541,16 @@ func TestWalletsService_Votes(t *testing.T) {
 			Last:       "/api/wallets/dummy/votes?page=1&limit=1",
 		},
 		Data: []Transaction{{
-			Id:        "dummy",
-			BlockId:   "dummy",
-			Type:      3,
-			Amount:    0,
-			Fee:       100000000,
-			Sender:    "dummy",
-			Recipient: "dummy",
-			Signature: "dummy",
+			Id:              "dummy",
+			BlockId:         "dummy",
+			Type:            3,
+			TypeGroup:       1,
+			Amount:          0,
+			Fee:             100000000,
+			Sender:          "dummy",
+			SenderPublicKey: "dummy",
+			Recipient:       "dummy",
+			Signature:       "dummy",
 			Asset: &TransactionAsset{
 				Votes: []string{
 					"+dummy",
@@ -533,6 +562,7 @@ func TestWalletsService_Votes(t *testing.T) {
 				Unix:  1529963254,
 				Human: "2018-06-25T21:47:34Z",
 			},
+			Nonce: 1,
 		}},
 	})
 }
@@ -560,7 +590,8 @@ func TestWalletsService_Search(t *testing.T) {
 			    {
 			      "address": "dummy",
 			      "publicKey": "dummy",
-			      "balance": 1000000000,
+			      "nonce": "1",
+			      "balance": "1000000000",
 			      "isDelegate": false
 			    }
 			  ]
@@ -586,6 +617,7 @@ func TestWalletsService_Search(t *testing.T) {
 		Data: []Wallet{{
 			Address:    "dummy",
 			PublicKey:  "dummy",
+			Nonce:      1,
 			Balance:    1000000000,
 			IsDelegate: false,
 		}},

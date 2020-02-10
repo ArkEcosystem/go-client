@@ -40,9 +40,10 @@ func TestBlocksService_List(t *testing.T) {
 			      "height": 10,
 			      "previous": "dummy",
 			      "forged": {
-			        "reward": 200000000,
-			        "fee": 0,
-			        "total": 200000000
+			        "reward": "200000000",
+			        "fee": "0",
+			        "total": "200000000",
+			        "amount": "0"
 			      },
 			      "payload": {
 			        "hash": "dummy",
@@ -54,6 +55,7 @@ func TestBlocksService_List(t *testing.T) {
 			        "publicKey": "dummy"
 			      },
 			      "signature": "dummy",
+			      "confirmations": 0,
 			      "transactions": 0,
 			      "timestamp": {
 			        "epoch": 40678848,
@@ -89,6 +91,7 @@ func TestBlocksService_List(t *testing.T) {
 				Reward: 200000000,
 				Fee:    0,
 				Total:  200000000,
+				Amount: 0,
 			},
 			Payload: BlockPayload{
 				Hash:   "dummy",
@@ -99,8 +102,9 @@ func TestBlocksService_List(t *testing.T) {
 				Address:   "dummy",
 				PublicKey: "dummy",
 			},
-			Signature:    "dummy",
-			Transactions: 0,
+			Signature:     "dummy",
+			Confirmations: 0,
+			Transactions:  0,
 			Timestamp: Timestamp{
 				Epoch: 40678848,
 				Unix:  1530780048,
@@ -125,9 +129,10 @@ func TestBlocksService_Get(t *testing.T) {
 			    "height": 10,
 			    "previous": "dummy",
 			    "forged": {
-			      "reward": 200000000,
-			      "fee": 0,
-			      "total": 200000000
+			      "reward": "200000000",
+			      "fee": "0",
+			      "total": "200000000",
+			      "amount": "0"
 			    },
 			    "payload": {
 			      "hash": "dummy",
@@ -139,6 +144,7 @@ func TestBlocksService_Get(t *testing.T) {
 			      "publicKey": "dummy"
 			    },
 			    "signature": "dummy",
+			    "confirmations": 0,
 			    "transactions": 0,
 			    "timestamp": {
 			      "epoch": 40678848,
@@ -162,6 +168,7 @@ func TestBlocksService_Get(t *testing.T) {
 				Reward: 200000000,
 				Fee:    0,
 				Total:  200000000,
+				Amount: 0,
 			},
 			Payload: BlockPayload{
 				Hash:   "dummy",
@@ -172,8 +179,9 @@ func TestBlocksService_Get(t *testing.T) {
 				Address:   "dummy",
 				PublicKey: "dummy",
 			},
-			Signature:    "dummy",
-			Transactions: 0,
+			Signature:     "dummy",
+			Confirmations: 0,
+			Transactions:  0,
 			Timestamp: Timestamp{
 				Epoch: 40678848,
 				Unix:  1530780048,
@@ -207,9 +215,11 @@ func TestBlocksService_Transactions(t *testing.T) {
 			      "id": "dummy",
 			      "blockId": "dummy",
 			      "type": 0,
-			      "amount": 10000000,
-			      "fee": 10000000,
+			      "typeGroup": 1,
+			      "amount": "10000000",
+			      "fee": "10000000",
 			      "sender": "dummy",
+			      "senderPublicKey": "dummy",
 			      "recipient": "dummy",
 			      "signature": "dummy",
 			      "vendorField": "dummy",
@@ -218,7 +228,8 @@ func TestBlocksService_Transactions(t *testing.T) {
 			        "epoch": 40505460,
 			        "unix": 1530606660,
 			        "human": "2018-07-03T08:31:00Z"
-			      }
+			      },
+			      "nonce": "1"
 			    }
 			  ]
 			}`)
@@ -240,21 +251,24 @@ func TestBlocksService_Transactions(t *testing.T) {
 			Last:       "/api/blocks/10/transactions?page=1&limit=1",
 		},
 		Data: []Transaction{{
-			Id:            "dummy",
-			BlockId:       "dummy",
-			Type:          0,
-			Amount:        10000000,
-			Fee:           10000000,
-			Sender:        "dummy",
-			Recipient:     "dummy",
-			Signature:     "dummy",
-			VendorField:   "dummy",
-			Confirmations: 10348,
+			Id:              "dummy",
+			BlockId:         "dummy",
+			Type:            0,
+			TypeGroup:       1,
+			Amount:          10000000,
+			Fee:             10000000,
+			Sender:          "dummy",
+			SenderPublicKey: "dummy",
+			Recipient:       "dummy",
+			Signature:       "dummy",
+			VendorField:     "dummy",
+			Confirmations:   10348,
 			Timestamp: Timestamp{
 				Epoch: 40505460,
 				Unix:  1530606660,
 				Human: "2018-07-03T08:31:00Z",
 			},
+			Nonce: 1,
 		}},
 	})
 }
@@ -285,9 +299,10 @@ func TestBlocksService_Search(t *testing.T) {
 			      "height": 10,
 			      "previous": "dummy",
 			      "forged": {
-			        "reward": 200000000,
-			        "fee": 0,
-			        "total": 200000000
+			        "reward": "200000000",
+			        "fee": "0",
+			        "total": "200000000",
+			        "amount": "0"
 			      },
 			      "payload": {
 			        "hash": "dummy",
@@ -299,6 +314,7 @@ func TestBlocksService_Search(t *testing.T) {
 			        "publicKey": "dummy"
 			      },
 			      "signature": "dummy",
+			      "confirmations": 0,
 			      "transactions": 0,
 			      "timestamp": {
 			        "epoch": 40678848,
@@ -335,6 +351,7 @@ func TestBlocksService_Search(t *testing.T) {
 				Reward: 200000000,
 				Fee:    0,
 				Total:  200000000,
+				Amount: 0,
 			},
 			Payload: BlockPayload{
 				Hash:   "dummy",
@@ -345,8 +362,9 @@ func TestBlocksService_Search(t *testing.T) {
 				Address:   "dummy",
 				PublicKey: "dummy",
 			},
-			Signature:    "dummy",
-			Transactions: 0,
+			Signature:     "dummy",
+			Confirmations: 0,
+			Transactions:  0,
 			Timestamp: Timestamp{
 				Epoch: 40678848,
 				Unix:  1530780048,

@@ -14,8 +14,13 @@ type DelegateBlocks struct {
 }
 
 type DelegateProduction struct {
-	Approval     float64 `json:"approval,omitempty"`
-	Productivity float64 `json:"productivity,omitempty"`
+	Approval float64 `json:"approval,omitempty"`
+}
+
+type DelegateForged struct {
+	Fees    uint64 `json:"fees,omitempty,string"`
+	Rewards uint64 `json:"rewards,omitempty,string"`
+	Total   uint64 `json:"total,omitempty,string"`
 }
 
 type Delegate struct {
@@ -26,6 +31,7 @@ type Delegate struct {
 	Rank       byte               `json:"rank,omitempty"`
 	Blocks     DelegateBlocks     `json:"blocks,omitempty"`
 	Production DelegateProduction `json:"production,omitempty"`
+	Forged     DelegateForged     `json:"forged,omitempty"`
 }
 
 type Delegates struct {
