@@ -16,9 +16,9 @@ type TransactionsSearchRequest struct {
 	Id              string  `json:"id,omitempty"`
 	SenderId        string  `json:"senderId,omitempty"`
 	BlockId         string  `json:"blockId,omitempty"`
-	Type            uint8   `json:"type,omitempty"`
+	Type            byte    `json:"type,omitempty"`
 	TypeGroup       uint16  `json:"type,omitempty"`
-	Version         uint8   `json:"version,omitempty"`
+	Version         byte    `json:"version,omitempty"`
 	SenderPublicKey string  `json:"senderPublicKey,omitempty"`
 	RecipientId     string  `json:"recipientId,omitempty"`
 	Timestamp       *FromTo `json:"timestamp,omitempty"`

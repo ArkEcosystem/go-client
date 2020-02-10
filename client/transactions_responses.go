@@ -14,6 +14,7 @@ import (
 type Transaction struct {
 	Id              string            `json:"id,omitempty"`
 	BlockId         string            `json:"blockId,omitempty"`
+	Version         byte              `json:"version,omitempty"`
 	Type            byte              `json:"type,omitempty"`
 	TypeGroup       uint16            `json:"typeGroup,omitempty"`
 	Amount          uint64            `json:"amount,omitempty,string"`
@@ -22,8 +23,8 @@ type Transaction struct {
 	SenderPublicKey string            `json:"senderPublicKey,omitempty"`
 	Recipient       string            `json:"recipient,omitempty"`
 	Signature       string            `json:"signature,omitempty"`
-	VendorField     string            `json:"vendorField,omitempty"`
 	Asset           *TransactionAsset `json:"asset,omitempty"`
+	VendorField     string            `json:"vendorField,omitempty"`
 	Confirmations   uint32            `json:"confirmations,omitempty"`
 	Timestamp       Timestamp         `json:"timestamp,omitempty"`
 	Nonce           uint64            `json:"nonce,omitempty,string"`
@@ -81,6 +82,7 @@ type TransactionAsset struct {
 	MultiSignature *MultiSignatureRegistrationAsset  `json:"multisignature,omitempty"`
 	Ipfs           *IpfsAsset                        `json:"ipfs,omitempty"`
 	Payments       []*MultiPaymentAsset              `json:"payments,omitempty"`
+	Claim          *ClaimAsset                       `json:"claim,omitempty"`
 }
 
 type SecondSignatureRegistrationAsset struct {
@@ -104,4 +106,9 @@ type IpfsAsset struct {
 type MultiPaymentAsset struct {
 	Amount      uint64 `json:"amount,omitempty,string"`
 	RecipientId string `json:"recipientId,omitempty"`
+}
+
+type ClaimAsset struct {
+	LockTransactionId string `json:"lockTransactionId,omitempty"`
+	UnlockSecret      string `json:"unlockSecret,omitempty"`
 }

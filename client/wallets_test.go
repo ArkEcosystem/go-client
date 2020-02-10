@@ -159,6 +159,78 @@ func TestWalletsService_Get(t *testing.T) {
 	})
 }
 
+// Get all locks for the given wallet.
+func TestWalletsService_Locks(t *testing.T) {
+	client, mux, _, teardown := setupTest()
+	defer teardown()
+
+	mux.HandleFunc("/wallets/dummy/locks", func(writer http.ResponseWriter, request *http.Request) {
+		testMethod(t, request, "GET")
+		fmt.Fprint(writer,
+			`{
+			  "meta": {
+			    "count": 1,
+			    "pageCount": 1,
+			    "totalCount": 1,
+			    "next": null,
+			    "previous": null,
+			    "self": "/api/wallets/dummy/locks?page=1&limit=1",
+			    "first": "/api/wallets/dummy/locks?page=1&limit=1",
+			    "last": "/api/wallets/dummy/locks?page=1&limit=1"
+			  },
+			  "data": [
+			    {
+			      "lockId": "dummy",
+			      "amount": "1",
+			      "secretHash": "dummySecretHash",
+			      "senderPublicKey": "dummyPublicKey",
+			      "recipientId": "dummyRecipient",
+			      "timestamp": {
+			        "epoch": 81911280,
+			        "unix": 1572012480,
+			        "human": "2019-10-25T14:08:00.000Z"
+			      },
+			      "expirationType": 2,
+			      "expirationValue": 6000000,
+			      "vendorField": "dummyVendorField"
+			    }
+			  ]
+			}`)
+	})
+
+	query := &Pagination{Limit: 1}
+	responseStruct, response, err := client.Wallets.Locks(context.Background(), "dummy", query)
+	testGeneralError(t, "Wallets.Locks", err)
+	testResponseUrl(t, "Wallets.Locks", response, "/api/wallets/dummy/locks")
+	testResponseStruct(t, "Wallets.Locks", responseStruct, &Locks{
+		Meta: Meta{
+			Count:      1,
+			PageCount:  1,
+			TotalCount: 1,
+			Next:       "",
+			Previous:   "",
+			Self:       "/api/wallets/dummy/locks?page=1&limit=1",
+			First:      "/api/wallets/dummy/locks?page=1&limit=1",
+			Last:       "/api/wallets/dummy/locks?page=1&limit=1",
+		},
+		Data: []Lock{{
+			LockId:          "dummy",
+			Amount:          1,
+			SecretHash:      "dummySecretHash",
+			SenderPublicKey: "dummyPublicKey",
+			RecipientId:     "dummyRecipient",
+			Timestamp: Timestamp{
+				Epoch: 81911280,
+				Unix:  1572012480,
+				Human: "2019-10-25T14:08:00.000Z",
+			},
+			ExpirationType:  2,
+			ExpirationValue: 6000000,
+			VendorField:     "dummyVendorField",
+		}},
+	})
+}
+
 // Get all transactions for the given wallet.
 func TestWalletsService_Transactions(t *testing.T) {
 	client, mux, _, teardown := setupTest()
