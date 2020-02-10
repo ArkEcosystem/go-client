@@ -10,7 +10,8 @@ package client
 type Wallet struct {
 	Address    string `json:"address,omitempty"`
 	PublicKey  string `json:"publicKey,omitempty"`
-	Balance    int64  `json:"balance,omitempty"`
+	Nonce      uint64 `json:"nonce,omitempty,string"`
+	Balance    uint64 `json:"balance,omitempty,string"`
 	IsDelegate bool   `json:"isDelegate,omitempty"`
 }
 

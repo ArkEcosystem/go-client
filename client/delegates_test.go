@@ -53,8 +53,12 @@ func TestDelegatesService_List(t *testing.T) {
 			        }
 			      },
 			      "production": {
-			        "approval": 0.01,
-			        "productivity": 68
+			        "approval": 0.01
+			      },
+			      "forged": {
+			        "fees": "468407250508",
+			        "rewards": "13589400000000",
+			        "total": "14057807250508"
 			      }
 			    }
 			  ]
@@ -95,8 +99,12 @@ func TestDelegatesService_List(t *testing.T) {
 				},
 			},
 			Production: DelegateProduction{
-				Approval:     0.01,
-				Productivity: 68,
+				Approval: 0.01,
+			},
+			Forged: DelegateForged{
+				Fees:    468407250508,
+				Rewards: 13589400000000,
+				Total:   14057807250508,
 			},
 		}},
 	})
@@ -140,8 +148,12 @@ func TestDelegatesService_Get(t *testing.T) {
 			      }
 			    },
 			    "production": {
-			      "approval": 0.01,
-			      "productivity": 68
+			      "approval": 0.01
+			    },
+			    "forged": {
+			      "fees": "468407250508",
+			      "rewards": "13589400000000",
+			      "total": "14057807250508"
 			    }
 			  }
 			}`)
@@ -180,8 +192,12 @@ func TestDelegatesService_Get(t *testing.T) {
 				},
 			},
 			Production: DelegateProduction{
-				Approval:     0.01,
-				Productivity: 68,
+				Approval: 0.01,
+			},
+			Forged: DelegateForged{
+				Fees:    468407250508,
+				Rewards: 13589400000000,
+				Total:   14057807250508,
 			},
 		},
 	})
@@ -213,9 +229,10 @@ func TestDelegatesService_Blocks(t *testing.T) {
 			      "height": 10,
 			      "previous": "dummy",
 			      "forged": {
-			        "reward": 200000000,
-			        "fee": 0,
-			        "total": 200000000
+			        "reward": "200000000",
+			        "fee": "0",
+			        "total": "200000000",
+			        "amount": "0"
 			      },
 			      "payload": {
 			        "hash": "dummy",
@@ -262,6 +279,7 @@ func TestDelegatesService_Blocks(t *testing.T) {
 				Reward: 200000000,
 				Fee:    0,
 				Total:  200000000,
+				Amount: 0,
 			},
 			Payload: BlockPayload{
 				Hash:   "dummy",
@@ -306,7 +324,8 @@ func TestDelegatesService_Voters(t *testing.T) {
 			    {
 			      "address": "dummy",
 			      "publicKey": "dummy",
-			      "balance": 100000000,
+			      "nonce": "1",
+			      "balance": "100000000",
 			      "isDelegate": false
 			    }
 			  ]
@@ -331,6 +350,7 @@ func TestDelegatesService_Voters(t *testing.T) {
 		Data: []Wallet{{
 			Address:    "dummy",
 			PublicKey:  "dummy",
+			Nonce:      1,
 			Balance:    100000000,
 			IsDelegate: false,
 		}},

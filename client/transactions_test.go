@@ -38,9 +38,11 @@ func TestTransactionsService_List(t *testing.T) {
 			      "id": "dummy",
 			      "blockId": "dummy",
 			      "type": 0,
-			      "amount": 10000000,
-			      "fee": 10000000,
+			      "typeGroup": 1,
+			      "amount": "10000000",
+			      "fee": "10000000",
 			      "sender": "dummy",
+			      "senderPublicKey": "dummy",
 			      "recipient": "dummy",
 			      "signature": "dummy",
 			      "vendorField": "dummy",
@@ -49,7 +51,8 @@ func TestTransactionsService_List(t *testing.T) {
 			        "epoch": 40505460,
 			        "unix": 1530606660,
 			        "human": "2018-07-03T08:31:00Z"
-			      }
+			      },
+			      "nonce": "1"
 			    }
 			  ]
 			}`)
@@ -71,21 +74,24 @@ func TestTransactionsService_List(t *testing.T) {
 			Last:       "/api/transactions?page=1&limit=1",
 		},
 		Data: []Transaction{{
-			Id:            "dummy",
-			BlockId:       "dummy",
-			Type:          0,
-			Amount:        10000000,
-			Fee:           10000000,
-			Sender:        "dummy",
-			Recipient:     "dummy",
-			Signature:     "dummy",
-			VendorField:   "dummy",
-			Confirmations: 10,
+			Id:              "dummy",
+			BlockId:         "dummy",
+			Type:            0,
+			TypeGroup:       1,
+			Amount:          10000000,
+			Fee:             10000000,
+			Sender:          "dummy",
+			SenderPublicKey: "dummy",
+			Recipient:       "dummy",
+			Signature:       "dummy",
+			VendorField:     "dummy",
+			Confirmations:   10,
 			Timestamp: Timestamp{
 				Epoch: 40505460,
 				Unix:  1530606660,
 				Human: "2018-07-03T08:31:00Z",
 			},
+			Nonce: 1,
 		}},
 	})
 }
@@ -113,21 +119,24 @@ func TestTransactionsService_Create(t *testing.T) {
 
 	body := &CreateTransactionRequest{
 		Transactions: []Transaction{{
-			Id:            "dummy",
-			BlockId:       "dummy",
-			Type:          0,
-			Amount:        10000000,
-			Fee:           10000000,
-			Sender:        "dummy",
-			Recipient:     "dummy",
-			Signature:     "dummy",
-			VendorField:   "dummy",
-			Confirmations: 10,
+			Id:              "dummy",
+			BlockId:         "dummy",
+			Type:            0,
+			TypeGroup:       1,
+			Amount:          10000000,
+			Fee:             10000000,
+			Sender:          "dummy",
+			SenderPublicKey: "dummy",
+			Recipient:       "dummy",
+			Signature:       "dummy",
+			VendorField:     "dummy",
+			Confirmations:   10,
 			Timestamp: Timestamp{
 				Epoch: 40505460,
 				Unix:  1530606660,
 				Human: "2018-07-03T08:31:00Z",
 			},
+			Nonce: 1,
 		}},
 	}
 	responseStruct, response, err := client.Transactions.Create(context.Background(), body)
@@ -157,9 +166,11 @@ func TestTransactionsService_Get(t *testing.T) {
 			    "id": "dummy",
 			    "blockId": "dummy",
 			    "type": 0,
-			    "amount": 10000000,
-			    "fee": 10000000,
+			    "typeGroup": 1,
+			    "amount": "10000000",
+			    "fee": "10000000",
 			    "sender": "dummy",
+			    "senderPublicKey": "dummy",
 			    "recipient": "dummy",
 			    "signature": "dummy",
 			    "vendorField": "dummy",
@@ -168,7 +179,8 @@ func TestTransactionsService_Get(t *testing.T) {
 			      "epoch": 40505460,
 			      "unix": 1530606660,
 			      "human": "2018-07-03T08:31:00Z"
-			    }
+			    },
+			    "nonce": "1"
 			  }
 			}`)
 	})
@@ -178,21 +190,24 @@ func TestTransactionsService_Get(t *testing.T) {
 	testResponseUrl(t, "Transactions.Get", response, "/api/transactions/dummy")
 	testResponseStruct(t, "Transactions.Get", responseStruct, &GetTransaction{
 		Data: Transaction{
-			Id:            "dummy",
-			BlockId:       "dummy",
-			Type:          0,
-			Amount:        10000000,
-			Fee:           10000000,
-			Sender:        "dummy",
-			Recipient:     "dummy",
-			Signature:     "dummy",
-			VendorField:   "dummy",
-			Confirmations: 10,
+			Id:              "dummy",
+			BlockId:         "dummy",
+			Type:            0,
+			TypeGroup:       1,
+			Amount:          10000000,
+			Fee:             10000000,
+			Sender:          "dummy",
+			SenderPublicKey: "dummy",
+			Recipient:       "dummy",
+			Signature:       "dummy",
+			VendorField:     "dummy",
+			Confirmations:   10,
 			Timestamp: Timestamp{
 				Epoch: 40505460,
 				Unix:  1530606660,
 				Human: "2018-07-03T08:31:00Z",
 			},
+			Nonce: 1,
 		},
 	})
 }
@@ -221,9 +236,11 @@ func TestTransactionsService_ListUnconfirmed(t *testing.T) {
 			      "id": "dummy",
 			      "blockId": "dummy",
 			      "type": 0,
-			      "amount": 10000000,
-			      "fee": 10000000,
+			      "typeGroup": 1,
+			      "amount": "10000000",
+			      "fee": "10000000",
 			      "sender": "dummy",
+			      "senderPublicKey": "dummy",
 			      "recipient": "dummy",
 			      "signature": "dummy",
 			      "vendorField": "dummy",
@@ -232,7 +249,8 @@ func TestTransactionsService_ListUnconfirmed(t *testing.T) {
 			        "epoch": 40505460,
 			        "unix": 1530606660,
 			        "human": "2018-07-03T08:31:00Z"
-			      }
+			      },
+			      "nonce": "1"
 			    }
 			  ]
 			}`)
@@ -254,21 +272,24 @@ func TestTransactionsService_ListUnconfirmed(t *testing.T) {
 			Last:       "/api/transactions/unconfirmed?page=1&limit=1",
 		},
 		Data: []Transaction{{
-			Id:            "dummy",
-			BlockId:       "dummy",
-			Type:          0,
-			Amount:        10000000,
-			Fee:           10000000,
-			Sender:        "dummy",
-			Recipient:     "dummy",
-			Signature:     "dummy",
-			VendorField:   "dummy",
-			Confirmations: 10,
+			Id:              "dummy",
+			BlockId:         "dummy",
+			Type:            0,
+			TypeGroup:       1,
+			Amount:          10000000,
+			Fee:             10000000,
+			Sender:          "dummy",
+			SenderPublicKey: "dummy",
+			Recipient:       "dummy",
+			Signature:       "dummy",
+			VendorField:     "dummy",
+			Confirmations:   10,
 			Timestamp: Timestamp{
 				Epoch: 40505460,
 				Unix:  1530606660,
 				Human: "2018-07-03T08:31:00Z",
 			},
+			Nonce: 1,
 		}},
 	})
 }
@@ -286,9 +307,11 @@ func TestTransactionsService_GetUnconfirmed(t *testing.T) {
 			    "id": "dummy",
 			    "blockId": "dummy",
 			    "type": 0,
-			    "amount": 10000000,
-			    "fee": 10000000,
+			    "typeGroup": 1,
+			    "amount": "10000000",
+			    "fee": "10000000",
 			    "sender": "dummy",
+			    "senderPublicKey": "dummy",
 			    "recipient": "dummy",
 			    "signature": "dummy",
 			    "vendorField": "dummy",
@@ -297,7 +320,8 @@ func TestTransactionsService_GetUnconfirmed(t *testing.T) {
 			      "epoch": 40505460,
 			      "unix": 1530606660,
 			      "human": "2018-07-03T08:31:00Z"
-			    }
+			    },
+			    "nonce": "1"
 			  }
 			}`)
 	})
@@ -307,21 +331,24 @@ func TestTransactionsService_GetUnconfirmed(t *testing.T) {
 	testResponseUrl(t, "Transactions.GetUnconfirmed", response, "/api/transactions/unconfirmed/dummy")
 	testResponseStruct(t, "Transactions.GetUnconfirmed", responseStruct, &GetTransaction{
 		Data: Transaction{
-			Id:            "dummy",
-			BlockId:       "dummy",
-			Type:          0,
-			Amount:        10000000,
-			Fee:           10000000,
-			Sender:        "dummy",
-			Recipient:     "dummy",
-			Signature:     "dummy",
-			VendorField:   "dummy",
-			Confirmations: 10,
+			Id:              "dummy",
+			BlockId:         "dummy",
+			Type:            0,
+			TypeGroup:       1,
+			Amount:          10000000,
+			Fee:             10000000,
+			Sender:          "dummy",
+			SenderPublicKey: "dummy",
+			Recipient:       "dummy",
+			Signature:       "dummy",
+			VendorField:     "dummy",
+			Confirmations:   10,
 			Timestamp: Timestamp{
 				Epoch: 40505460,
 				Unix:  1530606660,
 				Human: "2018-07-03T08:31:00Z",
 			},
+			Nonce: 1,
 		},
 	})
 }
@@ -350,9 +377,11 @@ func TestTransactionsService_Search(t *testing.T) {
 			      "id": "dummy",
 			      "blockId": "dummy",
 			      "type": 0,
-			      "amount": 10000000,
-			      "fee": 10000000,
+			      "typeGroup": 1,
+			      "amount": "10000000",
+			      "fee": "10000000",
 			      "sender": "dummy",
+			      "senderPublicKey": "dummy",
 			      "recipient": "dummy",
 			      "signature": "dummy",
 			      "vendorField": "dummy",
@@ -361,7 +390,8 @@ func TestTransactionsService_Search(t *testing.T) {
 			        "epoch": 40505460,
 			        "unix": 1530606660,
 			        "human": "2018-07-03T08:31:00Z"
-			      }
+			      },
+			      "nonce": "1"
 			    }
 			  ]
 			}`)
@@ -384,21 +414,24 @@ func TestTransactionsService_Search(t *testing.T) {
 			Last:       "/api/transactions/search?page=1&limit=1",
 		},
 		Data: []Transaction{{
-			Id:            "dummy",
-			BlockId:       "dummy",
-			Type:          0,
-			Amount:        10000000,
-			Fee:           10000000,
-			Sender:        "dummy",
-			Recipient:     "dummy",
-			Signature:     "dummy",
-			VendorField:   "dummy",
-			Confirmations: 10,
+			Id:              "dummy",
+			BlockId:         "dummy",
+			Type:            0,
+			TypeGroup:       1,
+			Amount:          10000000,
+			Fee:             10000000,
+			Sender:          "dummy",
+			SenderPublicKey: "dummy",
+			Recipient:       "dummy",
+			Signature:       "dummy",
+			VendorField:     "dummy",
+			Confirmations:   10,
 			Timestamp: Timestamp{
 				Epoch: 40505460,
 				Unix:  1530606660,
 				Human: "2018-07-03T08:31:00Z",
 			},
+			Nonce: 1,
 		}},
 	})
 }
@@ -413,15 +446,27 @@ func TestTransactionsService_Types(t *testing.T) {
 		fmt.Fprint(writer,
 			`{
 			  "data": {
-			    "Transfer": 0,
-			    "SecondSignature": 1,
-			    "DelegateRegistration": 2,
-			    "Vote": 3,
-			    "MultiSignature": 4,
-			    "Ipfs": 5,
-			    "TimelockTransfer": 6,
-			    "MultiPayment": 7,
-			    "DelegateResignation": 8
+			    "1": {
+			      "Transfer": 0,
+			      "SecondSignature": 1,
+			      "DelegateRegistration": 2,
+			      "Vote": 3,
+			      "MultiSignature": 4,
+			      "Ipfs": 5,
+			      "MultiPayment": 6,
+			      "DelegateResignation": 7,
+			      "HtlcLock": 8,
+			      "HtlcClaim": 9,
+			      "HtlcRefund": 10
+			    },
+			    "2": {
+			      "BusinessRegistration": 0,
+			      "BusinessResignation": 1,
+			      "BusinessUpdate": 2,
+			      "BridgechainRegistration": 3,
+			      "BridgechainResignation": 4,
+			      "BridgechainUpdate": 5
+			    }
 			  }
 			}`)
 	})
@@ -430,16 +475,28 @@ func TestTransactionsService_Types(t *testing.T) {
 	testGeneralError(t, "Transactions.Types", err)
 	testResponseUrl(t, "Transactions.Types", response, "/api/transactions/types")
 	testResponseStruct(t, "Transactions.Types", responseStruct, &TransactionTypes{
-		Data: map[string]byte{
-			"Transfer":             0,
-			"SecondSignature":      1,
-			"DelegateRegistration": 2,
-			"Vote":                 3,
-			"MultiSignature":       4,
-			"Ipfs":                 5,
-			"TimelockTransfer":     6,
-			"MultiPayment":         7,
-			"DelegateResignation":  8,
+		Data: map[string]TypeGroupTypes{
+			"1": {
+				"Transfer":             0,
+				"SecondSignature":      1,
+				"DelegateRegistration": 2,
+				"Vote":                 3,
+				"MultiSignature":       4,
+				"Ipfs":                 5,
+				"MultiPayment":         6,
+				"DelegateResignation":  7,
+				"HtlcLock":             8,
+				"HtlcClaim":            9,
+				"HtlcRefund":           10,
+			},
+			"2": {
+				"BusinessRegistration":    0,
+				"BusinessResignation":     1,
+				"BusinessUpdate":          2,
+				"BridgechainRegistration": 3,
+				"BridgechainResignation":  4,
+				"BridgechainUpdate":       5,
+			},
 		},
 	})
 }
@@ -455,14 +512,16 @@ func TestTransactionsService_Fees(t *testing.T) {
 			`{
 			  "data": {
 			    "transfer": 10000000,
-					"secondSignature": 500000000,
-					"delegateRegistration": 2500000000,
-					"vote": 100000000,
-					"multiSignature": 500000000,
-					"ipfs": 0,
-					"timelockTransfer": 0,
-					"multiPayment": 0,
-					"delegateResignation": 2500000000
+			    "secondSignature": 500000000,
+			    "delegateRegistration": 2500000000,
+			    "vote": 100000000,
+			    "multiSignature": 500000000,
+			    "ipfs": 500000000,
+			    "multiPayment": 10000000,
+			    "delegateResignation": 2500000000,
+			    "htlcLock": 10000000,
+			    "htlcClaim": 0,
+			    "htlcRefund": 0
 			  }
 			}`)
 	})
@@ -471,16 +530,18 @@ func TestTransactionsService_Fees(t *testing.T) {
 	testGeneralError(t, "Transactions.Fees", err)
 	testResponseUrl(t, "Transactions.Fees", response, "/api/transactions/fees")
 	testResponseStruct(t, "Transactions.Fees", responseStruct, &TransactionFees{
-		Data: map[string]FlexToshi{
+		Data: map[string]uint32{
 			"transfer":             10000000,
 			"secondSignature":      500000000,
 			"delegateRegistration": 2500000000,
 			"vote":                 100000000,
 			"multiSignature":       500000000,
-			"ipfs":                 0,
-			"timelockTransfer":     0,
-			"multiPayment":         0,
+			"ipfs":                 500000000,
+			"multiPayment":         10000000,
 			"delegateResignation":  2500000000,
+			"htlcLock":             10000000,
+			"htlcClaim":            0,
+			"htlcRefund":           0,
 		},
 	})
 }

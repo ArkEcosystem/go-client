@@ -38,9 +38,11 @@ func TestVotesService_List(t *testing.T) {
 			      "id": "dummy",
 			      "blockId": "dummy",
 			      "type": 3,
-			      "amount": 0,
-			      "fee": 100000000,
+			      "typeGroup": 1,
+			      "amount": "0",
+			      "fee": "100000000",
 			      "sender": "dummy",
+			      "senderPublicKey": "dummy",
 			      "recipient": "dummy",
 			      "signature": "dummy",
 			      "asset": {
@@ -53,7 +55,8 @@ func TestVotesService_List(t *testing.T) {
 			        "epoch": 39862054,
 			        "unix": 1529963254,
 			        "human": "2018-06-25T21:47:34Z"
-			      }
+			      },
+			      "nonce": "1"
 			    }
 			  ]
 			}`)
@@ -75,14 +78,16 @@ func TestVotesService_List(t *testing.T) {
 			Last:       "/api/votes?page=1&limit=1",
 		},
 		Data: []Transaction{{
-			Id:        "dummy",
-			BlockId:   "dummy",
-			Type:      3,
-			Amount:    0,
-			Fee:       100000000,
-			Sender:    "dummy",
-			Recipient: "dummy",
-			Signature: "dummy",
+			Id:              "dummy",
+			BlockId:         "dummy",
+			Type:            3,
+			TypeGroup:       1,
+			Amount:          0,
+			Fee:             100000000,
+			Sender:          "dummy",
+			SenderPublicKey: "dummy",
+			Recipient:       "dummy",
+			Signature:       "dummy",
 			Asset: &TransactionAsset{
 				Votes: []string{
 					"+dummy",
@@ -94,6 +99,7 @@ func TestVotesService_List(t *testing.T) {
 				Unix:  1529963254,
 				Human: "2018-06-25T21:47:34Z",
 			},
+			Nonce: 1,
 		}},
 	})
 }
@@ -111,9 +117,11 @@ func TestVotesService_Get(t *testing.T) {
 			    "id": "dummy",
 			    "blockId": "dummy",
 			    "type": 3,
-			    "amount": 0,
-			    "fee": 100000000,
+			    "typeGroup": 1,
+			    "amount": "0",
+			    "fee": "100000000",
 			    "sender": "dummy",
+			    "senderPublicKey": "dummy",
 			    "recipient": "dummy",
 			    "signature": "dummy",
 			    "asset": {
@@ -126,7 +134,8 @@ func TestVotesService_Get(t *testing.T) {
 			      "epoch": 39862054,
 			      "unix": 1529963254,
 			      "human": "2018-06-25T21:47:34Z"
-			    }
+			    },
+			    "nonce": "1"
 			  }
 			}`)
 	})
@@ -136,14 +145,16 @@ func TestVotesService_Get(t *testing.T) {
 	testResponseUrl(t, "Votes.Get", response, "/api/votes/dummy")
 	testResponseStruct(t, "Votes.Get", responseStruct, &GetTransaction{
 		Data: Transaction{
-			Id:        "dummy",
-			BlockId:   "dummy",
-			Type:      3,
-			Amount:    0,
-			Fee:       100000000,
-			Sender:    "dummy",
-			Recipient: "dummy",
-			Signature: "dummy",
+			Id:              "dummy",
+			BlockId:         "dummy",
+			Type:            3,
+			TypeGroup:       1,
+			Amount:          0,
+			Fee:             100000000,
+			Sender:          "dummy",
+			SenderPublicKey: "dummy",
+			Recipient:       "dummy",
+			Signature:       "dummy",
 			Asset: &TransactionAsset{
 				Votes: []string{
 					"+dummy",
@@ -155,6 +166,7 @@ func TestVotesService_Get(t *testing.T) {
 				Unix:  1529963254,
 				Human: "2018-06-25T21:47:34Z",
 			},
+			Nonce: 1,
 		},
 	})
 }

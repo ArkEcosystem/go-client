@@ -7,14 +7,15 @@
 
 package client
 
+type PeerPorts map[string]int16
+
 type Peer struct {
-	Ip      string `json:"ip,omitempty"`
-	Port    int16  `json:"port,omitempty"`
-	Version string `json:"version,omitempty"`
-	Height  int64  `json:"height,omitempty"`
-	Status  string `json:"status,omitempty"`
-	Os      string `json:"os,omitempty"`
-	Latency byte   `json:"latency,omitempty"`
+	Ip      string    `json:"ip,omitempty"`
+	Port    int16     `json:"port,omitempty"`
+	Ports   PeerPorts `json:"ports,omitempty"`
+	Version string    `json:"version,omitempty"`
+	Height  int64     `json:"height,omitempty"`
+	Latency byte      `json:"latency,omitempty"`
 }
 
 type Peers struct {
