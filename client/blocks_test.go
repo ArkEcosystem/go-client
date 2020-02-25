@@ -209,7 +209,7 @@ func TestBlocksService_First(t *testing.T) {
 			      "reward": "0",
 			      "fee": "0",
 			      "total": "0",
-			      "amount": 12500000000000004
+			      "amount": "12500000000000004"
 			    },
 			    "payload": {
 			      "hash": "2a44f340d76ffc3df204c5f38cd355b7496c9065a1ade2ef92071436bd72e867",
@@ -244,6 +244,7 @@ func TestBlocksService_First(t *testing.T) {
 				Reward: 0,
 				Fee:    0,
 				Total:  0,
+				Amount: 12500000000000004,
 			},
 			Payload: BlockPayload{
 				Hash:   "2a44f340d76ffc3df204c5f38cd355b7496c9065a1ade2ef92071436bd72e867",
