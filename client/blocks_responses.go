@@ -16,7 +16,7 @@ type BlockForged struct {
 
 type BlockPayload struct {
 	Hash   string `json:"hash,omitempty"`
-	Length byte   `json:"length,omitempty"`
+	Length uint32 `json:"length,omitempty"`
 }
 
 type BlockGenerator struct {
