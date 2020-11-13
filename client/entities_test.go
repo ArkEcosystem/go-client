@@ -108,7 +108,7 @@ func TestEntitiesService_Get(t *testing.T) {
 	responseStruct, response, err := client.Entities.Get(context.Background(), "dummyId")
 	testGeneralError(t, "Entities.Get", err)
 	testResponseUrl(t, "Entities.Get", response, "/entities/dummyId")
-	testResponseStruct(t, "Entities.Get", responseStruct, &GetLock{
+	testResponseStruct(t, "Entities.Get", responseStruct, &GetEntity{
 		Data: Entity{
 			Id:         "dummyId",
 			Address:    "dummy",
