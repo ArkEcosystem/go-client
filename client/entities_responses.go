@@ -14,7 +14,7 @@ type Entity struct {
 	IsResigned bool      `json:"isResigned,omitempty"`
 	Type       uint16    `json:"type,omitempty"`
 	SubType    uint16    `json:"subType,omitempty"`
-	Data       []Data    `json:"data,omitempty"`
+	Data       []RequestData    `json:"data,omitempty"`
 }
 
 type Entities struct {
@@ -26,7 +26,7 @@ type GetEntity struct {
 	Data Entity `json:"data,omitempty"`
 }
 
-type Data struct {
+type RequestData struct {
 	Name     string `json:"name,omitempty"`
 	IpfsData string `json:"ipfsData,omitempty"`
 }

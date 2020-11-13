@@ -72,7 +72,7 @@ func TestEntitiesService_List(t *testing.T) {
 			IsResigned: false,
 			Type:       0,
 			SubType:    2,
-			Data: Data{
+			Data: RequestData{
 				Name:     "dummy",
 				IpfsData: "dummy",
 			},
@@ -116,7 +116,7 @@ func TestEntitiesService_Get(t *testing.T) {
 			IsResigned: false,
 			Type:       0,
 			SubType:    2,
-			Data: Data{
+			Data: RequestData{
 				Name:     "dummy",
 				IpfsData: "dummy",
 			},
