@@ -81,18 +81,6 @@ func (s *TransactionsService) GetUnconfirmed(ctx context.Context, id string) (*G
 	return responseStruct, resp, err
 }
 
-// Filter all transactions by the given criteria.
-func (s *TransactionsService) Search(ctx context.Context, query *Pagination, body *TransactionsSearchRequest) (*Transactions, *http.Response, error) {
-	var responseStruct *Transactions
-	resp, err := s.client.SendRequest(ctx, "POST", "transactions/search", query, body, &responseStruct)
-
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return responseStruct, resp, err
-}
-
 // Get a list of valid transaction types.
 func (s *TransactionsService) Types(ctx context.Context) (*TransactionTypes, *http.Response, error) {
 	var responseStruct *TransactionTypes

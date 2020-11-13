@@ -80,15 +80,3 @@ func (s *BlocksService) Transactions(ctx context.Context, id int64, query *Pagin
 
 	return responseStruct, resp, err
 }
-
-// Filter all blocks by the given criteria.
-func (s *BlocksService) Search(ctx context.Context, query *Pagination, body *BlocksSearchRequest) (*Blocks, *http.Response, error) {
-	var responseStruct *Blocks
-	resp, err := s.client.SendRequest(ctx, "POST", "blocks/search", query, body, &responseStruct)
-
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return responseStruct, resp, err
-}
