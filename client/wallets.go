@@ -124,15 +124,3 @@ func (s *WalletsService) Votes(ctx context.Context, id string, query *Pagination
 
 	return responseStruct, resp, err
 }
-
-// Filter all wallets by the given criteria.
-func (s *WalletsService) Search(ctx context.Context, query *Pagination, body *WalletsSearchRequest) (*Wallets, *http.Response, error) {
-	var responseStruct *Wallets
-	resp, err := s.client.SendRequest(ctx, "POST", "wallets/search", query, body, &responseStruct)
-
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return responseStruct, resp, err
-}
