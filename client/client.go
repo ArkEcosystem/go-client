@@ -32,8 +32,6 @@ type Client struct {
 	common Service
 
 	Blocks       *BlocksService
-	Bridgechains *BridgechainsService
-	Businesses   *BusinessesService
 	Delegates    *DelegatesService
 	Entities     *EntitiesService
 	Locks        *LocksService
@@ -60,8 +58,6 @@ func NewClient(httpClient *http.Client) *Client {
 	c.common.client = c
 
 	c.Blocks = (*BlocksService)(&c.common)
-	c.Bridgechains = (*BridgechainsService)(&c.common)
-	c.Businesses = (*BusinessesService)(&c.common)
 	c.Delegates = (*DelegatesService)(&c.common)
 	c.Entities = (*EntitiesService)(&c.common)
 	c.Locks = (*LocksService)(&c.common)
