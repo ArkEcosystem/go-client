@@ -8,13 +8,13 @@
 package client
 
 type Entity struct {
-	Id         string    `json:"id,omitempty"`
-	Address    string    `json:"address,omitempty"`
-	PublicKey  string    `json:"publicKey,omitempty"`
-	IsResigned bool      `json:"isResigned,omitempty"`
-	Type       uint16    `json:"type,omitempty"`
-	SubType    uint16    `json:"subType,omitempty"`
-	Data       []RequestData    `json:"data,omitempty"`
+	Id         string      `json:"id,omitempty"`
+	Address    string      `json:"address,omitempty"`
+	PublicKey  string      `json:"publicKey,omitempty"`
+	IsResigned bool        `json:"isResigned,omitempty"`
+	Type       uint16      `json:"type,omitempty"`
+	SubType    uint16      `json:"subType,omitempty"`
+	Data       RequestData `json:"data,omitempty"`
 }
 
 type Entities struct {
