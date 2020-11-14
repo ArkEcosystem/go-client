@@ -18,7 +18,7 @@ type Entity struct {
 }
 
 type Entities struct {
-	Meta Meta   `json:"meta,omitempty"`
+	Meta Meta     `json:"meta,omitempty"`
 	Data []Entity `json:"data,omitempty"`
 }
 

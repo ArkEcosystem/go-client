@@ -254,9 +254,9 @@ func TestBlocksService_First(t *testing.T) {
 				Address:   "D6Z26L69gdk9qYmTv5uzk3uGepigtHY4ax",
 				PublicKey: "03d3fdad9c5b25bf8880e6b519eb3611a5c0b31adebc8455f0e096175b28321aff",
 			},
-			Signature:    "3044022035694a9b99a9236655c658eb07fc3b02ce5edcc24b76424a7287c54ed3822b0602203621e92defb360490610f763d85e94c2db2807a4bd7756cc8a6a585463ef7bae",
+			Signature:     "3044022035694a9b99a9236655c658eb07fc3b02ce5edcc24b76424a7287c54ed3822b0602203621e92defb360490610f763d85e94c2db2807a4bd7756cc8a6a585463ef7bae",
 			Confirmations: 4347586,
-			Transactions: 52,
+			Transactions:  52,
 			Timestamp: Timestamp{
 				Epoch: 0,
 				Unix:  1490101200,
