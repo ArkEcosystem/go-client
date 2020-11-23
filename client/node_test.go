@@ -89,7 +89,7 @@ func TestNodeService_Configuration(t *testing.T) {
 			    "nethash": "578e820911f24e039733b45e4882b73e301f813a0d2c31330dafda84534ffa23",
 			    "token": "DARK",
 			    "symbol": "DѦ",
-			    "explorer": "https://dexplorer.ark.io",
+			    "explorer": "https://dwallets.ark.io/api/",
 			    "version": 30,
 			    "ports": {
 			      "@arkecosystem/core-p2p": 4002,
@@ -154,7 +154,7 @@ func TestNodeService_Configuration(t *testing.T) {
 			Nethash:  "578e820911f24e039733b45e4882b73e301f813a0d2c31330dafda84534ffa23",
 			Token:    "DARK",
 			Symbol:   "DѦ",
-			Explorer: "https://dexplorer.ark.io",
+			Explorer: "https://dwallets.ark.io/api/",
 			Version:  30,
 			Ports: map[string]int16{
 				"@arkecosystem/core-p2p": 4002,
