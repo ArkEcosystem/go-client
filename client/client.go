@@ -21,7 +21,7 @@ import (
 )
 
 const (
-	defaultBaseURL = "https://dexplorer.ark.io:8443/api/"
+	defaultBaseURL = "https://dwallets.ark.io/api/"
 )
 
 type Client struct {
