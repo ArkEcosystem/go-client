@@ -5,3 +5,5 @@
 
 # Visual Studio Code
 .vscode
+coverage.txt
+profile.out
