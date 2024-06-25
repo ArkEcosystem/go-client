@@ -31,6 +31,7 @@ type Client struct {
 
 	common Service
 
+	ApiNodes     *ApiNodesService
 	Blocks       *BlocksService
 	Delegates    *DelegatesService
 	Locks        *LocksService
@@ -56,6 +57,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c := &Client{client: httpClient, BaseURL: baseURL}
 	c.common.client = c
 
+	c.ApiNodes = (*ApiNodesService)(&c.common)
 	c.Blocks = (*BlocksService)(&c.common)
 	c.Delegates = (*DelegatesService)(&c.common)
 	c.Locks = (*LocksService)(&c.common)
