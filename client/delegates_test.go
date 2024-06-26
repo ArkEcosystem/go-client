@@ -86,7 +86,7 @@ func TestDelegatesService_List(t *testing.T) {
 				Produced: 119,
 				Missed:   56,
 				Last: Block{
-					Id: "dummy",
+					Id:        "dummy",
 					Timestamp: 1719434741918,
 				},
 			},
@@ -171,7 +171,7 @@ func TestDelegatesService_Get(t *testing.T) {
 				Produced: 119,
 				Missed:   56,
 				Last: Block{
-					Id: "dummy",
+					Id:        "dummy",
 					Timestamp: 1719434741918,
 				},
 			},
@@ -272,7 +272,7 @@ func TestDelegatesService_Blocks(t *testing.T) {
 			},
 			Signature:    "dummy",
 			Transactions: 0,
-			Timestamp: 1719434741918,
+			Timestamp:    1719434741918,
 		}},
 	})
 }
@@ -292,9 +292,9 @@ func TestDelegatesService_Voters(t *testing.T) {
 			    "totalCount": 1,
 			    "next": null,
 			    "previous": null,
-			    "self": "/api/delegates/dummy/blocks?page=1&limit=1",
-			    "first": "/api/delegates/dummy/blocks?page=1&limit=1",
-			    "last": "/api/delegates/dummy/blocks?page=1&limit=1"
+			    "self": "/api/delegates/dummy/voters?page=1&limit=1",
+			    "first": "/api/delegates/dummy/voters?page=1&limit=1",
+			    "last": "/api/delegates/dummy/voters?page=1&limit=1"
 			  },
 			  "data": [
 			    {
@@ -319,9 +319,9 @@ func TestDelegatesService_Voters(t *testing.T) {
 			TotalCount: 1,
 			Next:       nil,
 			Previous:   nil,
-			Self:       "/api/delegates/dummy/blocks?page=1&limit=1",
-			First:      "/api/delegates/dummy/blocks?page=1&limit=1",
-			Last:       "/api/delegates/dummy/blocks?page=1&limit=1",
+			Self:       "/api/delegates/dummy/voters?page=1&limit=1",
+			First:      "/api/delegates/dummy/voters?page=1&limit=1",
+			Last:       "/api/delegates/dummy/voters?page=1&limit=1",
 		},
 		Data: []Wallet{{
 			Address:    "dummy",
