@@ -45,11 +45,7 @@ func TestDelegatesService_List(t *testing.T) {
 			        "missed": 56,
 			        "last": {
 			          "id": "dummy",
-			          "timestamp": {
-			            "epoch": 40686944,
-			            "unix": 1530788144,
-			            "human": "2018-07-05T10:55:44Z"
-			          }
+			          "timestamp": 1719434741918
 			        }
 			      },
 			      "production": {
@@ -74,8 +70,8 @@ func TestDelegatesService_List(t *testing.T) {
 			Count:      1,
 			PageCount:  1,
 			TotalCount: 1,
-			Next:       "",
-			Previous:   "",
+			Next:       nil,
+			Previous:   nil,
 			Self:       "/api/delegates?page=1&limit=1",
 			First:      "/api/delegates?page=1&limit=1",
 			Last:       "/api/delegates?page=1&limit=1",
@@ -91,7 +87,7 @@ func TestDelegatesService_List(t *testing.T) {
 				Missed:   56,
 				Last: Block{
 					Id: "dummy",
-					Timestamp: 1530788144,
+					Timestamp: 1719434741918,
 				},
 			},
 			Production: DelegateProduction{
@@ -136,11 +132,7 @@ func TestDelegatesService_Get(t *testing.T) {
 			      "missed": 56,
 			      "last": {
 			        "id": "dummy",
-			        "timestamp": {
-			          "epoch": 40686944,
-			          "unix": 1530788144,
-			          "human": "2018-07-05T10:55:44Z"
-			        }
+			        "timestamp": 1719434741918
 			      }
 			    },
 			    "production": {
@@ -163,8 +155,8 @@ func TestDelegatesService_Get(t *testing.T) {
 			Count:      1,
 			PageCount:  1,
 			TotalCount: 1,
-			Next:       "",
-			Previous:   "",
+			Next:       nil,
+			Previous:   nil,
 			Self:       "/api/delegates/dummy?page=1&limit=1",
 			First:      "/api/delegates/dummy?page=1&limit=1",
 			Last:       "/api/delegates/dummy?page=1&limit=1",
@@ -180,7 +172,7 @@ func TestDelegatesService_Get(t *testing.T) {
 				Missed:   56,
 				Last: Block{
 					Id: "dummy",
-					Timestamp: 1530788144,
+					Timestamp: 1719434741918,
 				},
 			},
 			Production: DelegateProduction{
@@ -237,11 +229,7 @@ func TestDelegatesService_Blocks(t *testing.T) {
 			      },
 			      "signature": "dummy",
 			      "transactions": 0,
-			      "timestamp": {
-			        "epoch": 40678848,
-			        "unix": 1530780048,
-			        "human": "2018-07-05T08:40:48Z"
-			      }
+			      "timestamp": 1719434741918
 			    }
 			  ]
 			}`)
@@ -256,8 +244,8 @@ func TestDelegatesService_Blocks(t *testing.T) {
 			Count:      1,
 			PageCount:  1,
 			TotalCount: 1,
-			Next:       "",
-			Previous:   "",
+			Next:       nil,
+			Previous:   nil,
 			Self:       "/api/delegates/dummy/blocks?page=1&limit=1",
 			First:      "/api/delegates/dummy/blocks?page=1&limit=1",
 			Last:       "/api/delegates/dummy/blocks?page=1&limit=1",
@@ -284,7 +272,7 @@ func TestDelegatesService_Blocks(t *testing.T) {
 			},
 			Signature:    "dummy",
 			Transactions: 0,
-			Timestamp: 1530788144,
+			Timestamp: 1719434741918,
 		}},
 	})
 }
@@ -329,8 +317,8 @@ func TestDelegatesService_Voters(t *testing.T) {
 			Count:      1,
 			PageCount:  1,
 			TotalCount: 1,
-			Next:       "",
-			Previous:   "",
+			Next:       nil,
+			Previous:   nil,
 			Self:       "/api/delegates/dummy/blocks?page=1&limit=1",
 			First:      "/api/delegates/dummy/blocks?page=1&limit=1",
 			Last:       "/api/delegates/dummy/blocks?page=1&limit=1",

@@ -51,11 +51,7 @@ func TestVotesService_List(t *testing.T) {
 			        ]
 			      },
 			      "confirmations": 10,
-			      "timestamp": {
-			        "epoch": 39862054,
-			        "unix": 1529963254,
-			        "human": "2018-06-25T21:47:34Z"
-			      },
+			      "timestamp": 1719434741918,
 			      "nonce": "1"
 			    }
 			  ]
@@ -71,8 +67,8 @@ func TestVotesService_List(t *testing.T) {
 			Count:      1,
 			PageCount:  1,
 			TotalCount: 1,
-			Next:       "",
-			Previous:   "",
+			Next:       nil,
+			Previous:   nil,
 			Self:       "/api/votes?page=1&limit=1",
 			First:      "/api/votes?page=1&limit=1",
 			Last:       "/api/votes?page=1&limit=1",
@@ -94,7 +90,7 @@ func TestVotesService_List(t *testing.T) {
 				},
 			},
 			Confirmations: 10,
-			Timestamp: 1530606660,
+			Timestamp: 1719434741918,
 			Nonce: 1,
 		}},
 	})
@@ -126,11 +122,7 @@ func TestVotesService_Get(t *testing.T) {
 			      ]
 			    },
 			    "confirmations": 10,
-			    "timestamp": {
-			      "epoch": 39862054,
-			      "unix": 1529963254,
-			      "human": "2018-06-25T21:47:34Z"
-			    },
+			    "timestamp": 1719434741918,
 			    "nonce": "1"
 			  }
 			}`)
@@ -157,7 +149,7 @@ func TestVotesService_Get(t *testing.T) {
 				},
 			},
 			Confirmations: 10,
-			Timestamp: 1530606660,
+			Timestamp: 1719434741918,
 			Nonce: 1,
 		},
 	})

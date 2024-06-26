@@ -47,11 +47,7 @@ func TestTransactionsService_List(t *testing.T) {
 			      "signature": "dummy",
 			      "vendorField": "dummy",
 			      "confirmations": 10,
-			      "timestamp": {
-			        "epoch": 40505460,
-			        "unix": 1530606660,
-			        "human": "2018-07-03T08:31:00Z"
-			      },
+			      "timestamp": 1719434741918,
 			      "nonce": "1"
 			    }
 			  ]
@@ -67,8 +63,8 @@ func TestTransactionsService_List(t *testing.T) {
 			Count:      1,
 			PageCount:  1,
 			TotalCount: 1,
-			Next:       "",
-			Previous:   "",
+			Next:       nil,
+			Previous:   nil,
 			Self:       "/api/transactions?page=1&limit=1",
 			First:      "/api/transactions?page=1&limit=1",
 			Last:       "/api/transactions?page=1&limit=1",
@@ -86,7 +82,7 @@ func TestTransactionsService_List(t *testing.T) {
 			Signature:       "dummy",
 			VendorField:     "dummy",
 			Confirmations:   10,
-			Timestamp: 1530606660,
+			Timestamp: 1719434741918,
 			Nonce: 1,
 		}},
 	})
@@ -127,7 +123,7 @@ func TestTransactionsService_Create(t *testing.T) {
 			Signature:       "dummy",
 			VendorField:     "dummy",
 			Confirmations:   10,
-			Timestamp: 1530606660,
+			Timestamp: 1719434741918,
 			Nonce: 1,
 		}},
 	}
@@ -167,11 +163,7 @@ func TestTransactionsService_Get(t *testing.T) {
 			    "signature": "dummy",
 			    "vendorField": "dummy",
 			    "confirmations": 10,
-			    "timestamp": {
-			      "epoch": 40505460,
-			      "unix": 1530606660,
-			      "human": "2018-07-03T08:31:00Z"
-			    },
+			    "timestamp": 1719434741918,
 			    "nonce": "1"
 			  }
 			}`)
@@ -194,7 +186,7 @@ func TestTransactionsService_Get(t *testing.T) {
 			Signature:       "dummy",
 			VendorField:     "dummy",
 			Confirmations:   10,
-			Timestamp: 1530606660,
+			Timestamp: 1719434741918,
 			Nonce: 1,
 		},
 	})
@@ -233,11 +225,7 @@ func TestTransactionsService_ListUnconfirmed(t *testing.T) {
 			      "signature": "dummy",
 			      "vendorField": "dummy",
 			      "confirmations": 10,
-			      "timestamp": {
-			        "epoch": 40505460,
-			        "unix": 1530606660,
-			        "human": "2018-07-03T08:31:00Z"
-			      },
+			      "timestamp": 1719434741918,
 			      "nonce": "1"
 			    }
 			  ]
@@ -253,8 +241,8 @@ func TestTransactionsService_ListUnconfirmed(t *testing.T) {
 			Count:      1,
 			PageCount:  1,
 			TotalCount: 1,
-			Next:       "",
-			Previous:   "",
+			Next:       nil,
+			Previous:   nil,
 			Self:       "/api/transactions/unconfirmed?page=1&limit=1",
 			First:      "/api/transactions/unconfirmed?page=1&limit=1",
 			Last:       "/api/transactions/unconfirmed?page=1&limit=1",
@@ -272,7 +260,7 @@ func TestTransactionsService_ListUnconfirmed(t *testing.T) {
 			Signature:       "dummy",
 			VendorField:     "dummy",
 			Confirmations:   10,
-			Timestamp: 1530606660,
+			Timestamp: 1719434741918,
 			Nonce: 1,
 		}},
 	})
@@ -300,11 +288,7 @@ func TestTransactionsService_GetUnconfirmed(t *testing.T) {
 			    "signature": "dummy",
 			    "vendorField": "dummy",
 			    "confirmations": 10,
-			    "timestamp": {
-			      "epoch": 40505460,
-			      "unix": 1530606660,
-			      "human": "2018-07-03T08:31:00Z"
-			    },
+			    "timestamp": 1719434741918,
 			    "nonce": "1"
 			  }
 			}`)
@@ -327,7 +311,7 @@ func TestTransactionsService_GetUnconfirmed(t *testing.T) {
 			Signature:       "dummy",
 			VendorField:     "dummy",
 			Confirmations:   10,
-			Timestamp: 1530606660,
+			Timestamp: 1719434741918,
 			Nonce: 1,
 		},
 	})
