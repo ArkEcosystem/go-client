@@ -219,11 +219,7 @@ func TestWalletsService_Locks(t *testing.T) {
 			SecretHash:      "dummySecretHash",
 			SenderPublicKey: "dummyPublicKey",
 			RecipientId:     "dummyRecipient",
-			Timestamp: Timestamp{
-				Epoch: 81911280,
-				Unix:  1572012480,
-				Human: "2019-10-25T14:08:00.000Z",
-			},
+			Timestamp: 1572012480,
 			ExpirationType:  2,
 			ExpirationValue: 6000000,
 			VendorField:     "dummyVendorField",
@@ -303,11 +299,7 @@ func TestWalletsService_Transactions(t *testing.T) {
 			Signature:       "dummy",
 			VendorField:     "dummy",
 			Confirmations:   10,
-			Timestamp: Timestamp{
-				Epoch: 40505460,
-				Unix:  1530606660,
-				Human: "2018-07-03T08:31:00Z",
-			},
+			Timestamp: 1530606660,
 			Nonce: 1,
 		}},
 	})
@@ -385,11 +377,7 @@ func TestWalletsService_SentTransactions(t *testing.T) {
 			Signature:       "dummy",
 			VendorField:     "dummy",
 			Confirmations:   10,
-			Timestamp: Timestamp{
-				Epoch: 40505460,
-				Unix:  1530606660,
-				Human: "2018-07-03T08:31:00Z",
-			},
+			Timestamp: 1530606660,
 			Nonce: 1,
 		}},
 	})
@@ -467,11 +455,7 @@ func TestWalletsService_ReceivedTransaction(t *testing.T) {
 			Signature:       "dummy",
 			VendorField:     "dummy",
 			Confirmations:   10,
-			Timestamp: Timestamp{
-				Epoch: 40505460,
-				Unix:  1530606660,
-				Human: "2018-07-03T08:31:00Z",
-			},
+			Timestamp: 1530606660,
 			Nonce: 1,
 		}},
 	})
@@ -557,11 +541,7 @@ func TestWalletsService_Votes(t *testing.T) {
 				},
 			},
 			Confirmations: 10,
-			Timestamp: Timestamp{
-				Epoch: 39862054,
-				Unix:  1529963254,
-				Human: "2018-06-25T21:47:34Z",
-			},
+			Timestamp: 1530606660,
 			Nonce: 1,
 		}},
 	})

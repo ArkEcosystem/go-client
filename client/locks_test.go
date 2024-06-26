@@ -75,11 +75,7 @@ func TestLocksService_List(t *testing.T) {
 			SecretHash:      "dummySecretHash",
 			SenderPublicKey: "dummySenderPublicKey",
 			RecipientId:     "dummyRecipientId",
-			Timestamp: Timestamp{
-				Epoch: 81911280,
-				Unix:  1572012480,
-				Human: "2019-10-25T14:08:00.000Z",
-			},
+			Timestamp: 1572012480,
 			ExpirationType:  2,
 			ExpirationValue: 6000000,
 			VendorField:     "dummyVendorField",
@@ -126,11 +122,7 @@ func TestLocksService_Get(t *testing.T) {
 			SecretHash:      "dummySecretHash",
 			SenderPublicKey: "dummySenderPublicKey",
 			RecipientId:     "dummyRecipientId",
-			Timestamp: Timestamp{
-				Epoch: 81911280,
-				Unix:  1572012480,
-				Human: "2019-10-25T14:08:00.000Z",
-			},
+			Timestamp: 1572012480,
 			ExpirationType:  2,
 			ExpirationValue: 6000000,
 			VendorField:     "dummyVendorField",
@@ -230,11 +222,7 @@ func TestLocksService_Unlocked(t *testing.T) {
 			},
 			Confirmations: 3,
 			VendorField:   "dummy",
-			Timestamp: Timestamp{
-				Epoch: 82354848,
-				Unix:  1572456048,
-				Human: "2019-10-30T17:20:48.000Z",
-			},
+			Timestamp: 1572012480,
 			Nonce: 1,
 		}},
 	})

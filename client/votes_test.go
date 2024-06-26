@@ -94,11 +94,7 @@ func TestVotesService_List(t *testing.T) {
 				},
 			},
 			Confirmations: 10,
-			Timestamp: Timestamp{
-				Epoch: 39862054,
-				Unix:  1529963254,
-				Human: "2018-06-25T21:47:34Z",
-			},
+			Timestamp: 1530606660,
 			Nonce: 1,
 		}},
 	})
@@ -161,11 +157,7 @@ func TestVotesService_Get(t *testing.T) {
 				},
 			},
 			Confirmations: 10,
-			Timestamp: Timestamp{
-				Epoch: 39862054,
-				Unix:  1529963254,
-				Human: "2018-06-25T21:47:34Z",
-			},
+			Timestamp: 1530606660,
 			Nonce: 1,
 		},
 	})

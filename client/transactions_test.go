@@ -86,11 +86,7 @@ func TestTransactionsService_List(t *testing.T) {
 			Signature:       "dummy",
 			VendorField:     "dummy",
 			Confirmations:   10,
-			Timestamp: Timestamp{
-				Epoch: 40505460,
-				Unix:  1530606660,
-				Human: "2018-07-03T08:31:00Z",
-			},
+			Timestamp: 1530606660,
 			Nonce: 1,
 		}},
 	})
@@ -131,11 +127,7 @@ func TestTransactionsService_Create(t *testing.T) {
 			Signature:       "dummy",
 			VendorField:     "dummy",
 			Confirmations:   10,
-			Timestamp: Timestamp{
-				Epoch: 40505460,
-				Unix:  1530606660,
-				Human: "2018-07-03T08:31:00Z",
-			},
+			Timestamp: 1530606660,
 			Nonce: 1,
 		}},
 	}
@@ -202,11 +194,7 @@ func TestTransactionsService_Get(t *testing.T) {
 			Signature:       "dummy",
 			VendorField:     "dummy",
 			Confirmations:   10,
-			Timestamp: Timestamp{
-				Epoch: 40505460,
-				Unix:  1530606660,
-				Human: "2018-07-03T08:31:00Z",
-			},
+			Timestamp: 1530606660,
 			Nonce: 1,
 		},
 	})
@@ -284,11 +272,7 @@ func TestTransactionsService_ListUnconfirmed(t *testing.T) {
 			Signature:       "dummy",
 			VendorField:     "dummy",
 			Confirmations:   10,
-			Timestamp: Timestamp{
-				Epoch: 40505460,
-				Unix:  1530606660,
-				Human: "2018-07-03T08:31:00Z",
-			},
+			Timestamp: 1530606660,
 			Nonce: 1,
 		}},
 	})
@@ -343,11 +327,7 @@ func TestTransactionsService_GetUnconfirmed(t *testing.T) {
 			Signature:       "dummy",
 			VendorField:     "dummy",
 			Confirmations:   10,
-			Timestamp: Timestamp{
-				Epoch: 40505460,
-				Unix:  1530606660,
-				Human: "2018-07-03T08:31:00Z",
-			},
+			Timestamp: 1530606660,
 			Nonce: 1,
 		},
 	})

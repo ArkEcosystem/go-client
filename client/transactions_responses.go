@@ -7,10 +7,6 @@
 
 package client
 
-import (
-	"time"
-)
-
 type Transaction struct {
 	Id              string            `json:"id,omitempty"`
 	BlockId         string            `json:"blockId,omitempty"`
@@ -26,8 +22,9 @@ type Transaction struct {
 	Asset           *TransactionAsset `json:"asset,omitempty"`
 	VendorField     string            `json:"vendorField,omitempty"`
 	Confirmations   uint32            `json:"confirmations,omitempty"`
-	Timestamp       Timestamp         `json:"timestamp,omitempty"`
+	Timestamp       int64             `json:"timestamp,omitempty"`
 	Nonce           uint64            `json:"nonce,omitempty,string"`
+	Signatures      []string          `json:"signatures,omitempty"`
 }
 
 type Transactions struct {
@@ -53,18 +50,6 @@ type TransactionFees struct {
 	Data map[string]uint32 `json:"data,omitempty"`
 }
 
-type Timestamp struct {
-	Epoch int32  `json:"epoch,omitempty"`
-	Unix  int32  `json:"unix,omitempty"`
-	Human string `json:"human,omitempty"`
-}
-
-// Time parses the unix value of the timestamp and returns as time.Time object with
-// location as local.
-func (t Timestamp) Time() time.Time {
-	return time.Unix(int64(t.Unix), 0)
-}
-
 type CreateTransaction struct {
 	Accept  []string `json:"accept,omitempty"`
 	Excess  []string `json:"excess,omitempty"`
@@ -77,9 +62,10 @@ type CreateTransaction struct {
 
 type TransactionAsset struct {
 	Votes          []string                          `json:"votes,omitempty"`
+	Unvotes        []string                          `json:"unvotes,omitempty"`
 	Signature      *SecondSignatureRegistrationAsset `json:"signature,omitempty"`
-	Delegate       *DelegateAsset                    `json:"publicKey,omitempty"`
-	MultiSignature *MultiSignatureRegistrationAsset  `json:"multisignature,omitempty"`
+	Delegate       *DelegateAsset                    `json:"delegate,omitempty"`
+	MultiSignature *MultiSignatureRegistrationAsset  `json:"multiSignature,omitempty"`
 	Ipfs           *IpfsAsset                        `json:"ipfs,omitempty"`
 	Payments       []*MultiPaymentAsset              `json:"payments,omitempty"`
 	Claim          *ClaimAsset                       `json:"claim,omitempty"`

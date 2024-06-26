@@ -13,7 +13,7 @@ type Lock struct {
 	SecretHash      string    `json:"secretHash,omitempty"`
 	SenderPublicKey string    `json:"senderPublicKey,omitempty"`
 	RecipientId     string    `json:"recipientId,omitempty"`
-	Timestamp       Timestamp `json:"timestamp,omitempty"`
+	Timestamp       int64		  `json:"timestamp,omitempty"`
 	ExpirationType  byte      `json:"expirationType,omitempty"`
 	ExpirationValue uint32    `json:"expirationValue,omitempty"`
 	VendorField     string    `json:"vendorField,omitempty"`

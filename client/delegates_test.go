@@ -91,11 +91,7 @@ func TestDelegatesService_List(t *testing.T) {
 				Missed:   56,
 				Last: Block{
 					Id: "dummy",
-					Timestamp: Timestamp{
-						Epoch: 40686944,
-						Unix:  1530788144,
-						Human: "2018-07-05T10:55:44Z",
-					},
+					Timestamp: 1530788144,
 				},
 			},
 			Production: DelegateProduction{
@@ -184,11 +180,7 @@ func TestDelegatesService_Get(t *testing.T) {
 				Missed:   56,
 				Last: Block{
 					Id: "dummy",
-					Timestamp: Timestamp{
-						Epoch: 40686944,
-						Unix:  1530788144,
-						Human: "2018-07-05T10:55:44Z",
-					},
+					Timestamp: 1530788144,
 				},
 			},
 			Production: DelegateProduction{
@@ -292,11 +284,7 @@ func TestDelegatesService_Blocks(t *testing.T) {
 			},
 			Signature:    "dummy",
 			Transactions: 0,
-			Timestamp: Timestamp{
-				Epoch: 40678848,
-				Unix:  1530780048,
-				Human: "2018-07-05T08:40:48Z",
-			},
+			Timestamp: 1530788144,
 		}},
 	})
 }
