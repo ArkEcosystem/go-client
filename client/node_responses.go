@@ -34,7 +34,7 @@ type NodeSyncing struct {
 	Syncing bool   `json:"syncing,omitempty"`
 	Blocks  int64  `json:"blocks,omitempty"`
 	Height  int64  `json:"height,omitempty"`
-	Id      string `json:"id,omitempty"`
+	Id      int    `json:"id,omitempty"`
 }
 
 type NodeConfiguration struct {
