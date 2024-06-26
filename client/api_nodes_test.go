@@ -24,48 +24,52 @@ func TestApiNodesService_All(t *testing.T) {
 		fmt.Fprint(writer,
 			`{
 			  "meta": {
+			    "totalCountIsEstimate": false,
 			    "count": 1,
-			    "pageCount": 1,
-			    "totalCount": 1,
+			    "first": "/api-nodes?transform=true&limit=100&page=1",
+			    "last": "/api-nodes?transform=true&limit=100&page=1",
 			    "next": null,
+			    "pageCount": 1,
 			    "previous": null,
-			    "self": "/api/api-nodes?page=1&limit=1",
-			    "first": "/api/api-nodes?page=1&limit=1",
-			    "last": "/api/api-nodes?page=1&limit=1"
+			    "self": "/api-nodes?transform=true&limit=100&page=1",
+			    "totalCount": 1
 			  },
-			  "data": [
-			    {
-			      "id": "dummy",
-			      "ip": "127.0.0.1",
+			  "data": [{
+			      "ip": "192.168.1.1",
 			      "port": 4003,
-			      "version": "2.0.0"
-			    }
-			  ]
+			      "version": "2.6.0",
+			      "height": 123456,
+			      "latency": 50,
+			      "ports": {"4000": "core-api"},
+			      "plugins": {"core-api": {"enabled": true}}
+			  }]
 			}`)
 	})
 
 	query := &Pagination{Limit: 1}
 	responseStruct, response, err := client.ApiNodes.All(context.Background(), query)
 	testGeneralError(t, "ApiNodes.All", err)
-	testResponseUrl(t, "ApiNodes.All", response, "/api/api-nodes")
+	testResponseUrl(t, "ApiNodes.All", response, "/api-nodes")
 	testResponseStruct(t, "ApiNodes.All", responseStruct, &ApiNodesResponse{
 		Meta: Meta{
-			Count:      1,
-			PageCount:  1,
-			TotalCount: 1,
-			Next:       "",
-			Previous:   "",
-			Self:       "/api/api-nodes?page=1&limit=1",
-			First:      "/api/api-nodes?page=1&limit=1",
-			Last:       "/api/api-nodes?page=1&limit=1",
+			TotalCountIsEstimate: false,
+			Count:                1,
+			First:                "/api-nodes?transform=true&limit=100&page=1",
+			Last:                 "/api-nodes?transform=true&limit=100&page=1",
+			Next:                 nil,
+			PageCount:            1,
+			Previous:             nil,
+			Self:                 "/api-nodes?transform=true&limit=100&page=1",
+			TotalCount:           1,
 		},
-		Data: []ApiNode{
-			{
-				Id:      "dummy",
-				Ip:      "127.0.0.1",
-				Port:    4003,
-				Version: "2.0.0",
-			},
-		},
+		Data: []ApiNode{{
+			Ip:       "192.168.1.1",
+			Port:     4003,
+			Version:  "2.6.0",
+			Height:   123456,
+			Latency:  50,
+			Ports:    map[string]interface{}{"4000": "core-api"},
+			Plugins:  map[string]interface{}{"core-api": map[string]interface{}{"enabled": true}},
+		}},
 	})
 }

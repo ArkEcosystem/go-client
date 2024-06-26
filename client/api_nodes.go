@@ -28,16 +28,3 @@ func (s *ApiNodesService) All(ctx context.Context, query *Pagination) (*ApiNodes
 	return responseStruct, resp, err
 }
 
-// ApiNodesResponse represents the response structure for the list of API nodes.
-type ApiNodesResponse struct {
-	Meta Meta       `json:"meta"`
-	Data []ApiNode  `json:"data"`
-}
-
-// ApiNode represents a single API node.
-type ApiNode struct {
-	Id      string `json:"id"`
-	Ip      string `json:"ip"`
-	Port    int    `json:"port"`
-	Version string `json:"version"`
-}
