@@ -30,3 +30,31 @@ func (s *RoundsService) Delegates(ctx context.Context, id int64) (*GetDelegates,
 
 	return responseStruct, resp, err
 }
+
+// Get all rounds.
+func (s *RoundsService) All(ctx context.Context, query *Pagination) (*GetRounds, *http.Response, error) {
+	uri := "rounds"
+
+	var responseStruct *GetRounds
+	resp, err := s.client.SendRequest(ctx, "GET", uri, query, nil, &responseStruct)
+
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return responseStruct, resp, err
+}
+
+// Get a round by the given id.
+func (s *RoundsService) Show(ctx context.Context, id int64) (*GetRound, *http.Response, error) {
+	uri := fmt.Sprintf("rounds/%v", id)
+
+	var responseStruct *GetRound
+	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, nil, &responseStruct)
+
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return responseStruct, resp, err
+}
