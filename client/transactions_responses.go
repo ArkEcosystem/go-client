@@ -98,3 +98,9 @@ type ClaimAsset struct {
 	LockTransactionId string `json:"lockTransactionId,omitempty"`
 	UnlockSecret      string `json:"unlockSecret,omitempty"`
 }
+
+
+// TransactionSchemas represents the response from the /transactions/schemas endpoint.
+type TransactionSchemas struct {
+	Data interface{} `json:"data"`
+}
