@@ -9,15 +9,5 @@ package client
 
 type ApiNodesResponse struct {
 	Meta Meta       `json:"meta"`
-	Data []ApiNode  `json:"data"`
-}
-
-type ApiNode struct {
-	Ip      string                 `json:"ip"`
-	Port    int                    `json:"port"`
-	Version string                 `json:"version,omitempty"`
-	Height  int                    `json:"height,omitempty"`
-	Latency int                    `json:"latency,omitempty"`
-	Ports   map[string]interface{} `json:"ports,omitempty"`
-	Plugins map[string]interface{} `json:"plugins,omitempty"`
+	Data []Peer  `json:"data"`
 }
