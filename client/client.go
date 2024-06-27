@@ -33,6 +33,7 @@ type Client struct {
 
 	ApiNodes     *ApiNodesService
 	Blocks       *BlocksService
+	Blockchain	 *BlockchainService
 	Delegates    *DelegatesService
 	Node         *NodeService
 	Peers        *PeersService
@@ -58,6 +59,7 @@ func NewClient(httpClient *http.Client) *Client {
 
 	c.ApiNodes = (*ApiNodesService)(&c.common)
 	c.Blocks = (*BlocksService)(&c.common)
+	c.Blockchain = (*BlockchainService)(&c.common)
 	c.Delegates = (*DelegatesService)(&c.common)
 	c.Node = (*NodeService)(&c.common)
 	c.Peers = (*PeersService)(&c.common)
