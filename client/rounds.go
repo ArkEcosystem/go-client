@@ -22,7 +22,7 @@ func (s *RoundsService) Delegates(ctx context.Context, id int64) (*GetDelegates,
 	uri := fmt.Sprintf("rounds/%v/delegates", id)
 
 	var responseStruct *GetDelegates
-	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, nil, &responseStruct, "api")
 
 	if err != nil {
 		return nil, resp, err
@@ -36,7 +36,7 @@ func (s *RoundsService) All(ctx context.Context, query *Pagination) (*GetRounds,
 	uri := "rounds"
 
 	var responseStruct *GetRounds
-	resp, err := s.client.SendRequest(ctx, "GET", uri, query, nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", uri, query, nil, &responseStruct, "api")
 
 	if err != nil {
 		return nil, resp, err
@@ -50,7 +50,7 @@ func (s *RoundsService) Show(ctx context.Context, id int64) (*GetRound, *http.Re
 	uri := fmt.Sprintf("rounds/%v", id)
 
 	var responseStruct *GetRound
-	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, nil, &responseStruct, "api")
 
 	if err != nil {
 		return nil, resp, err

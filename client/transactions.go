@@ -20,7 +20,7 @@ type TransactionsService Service
 // Get all transactions.
 func (s *TransactionsService) List(ctx context.Context, query *Pagination) (*Transactions, *http.Response, error) {
 	var responseStruct *Transactions
-	resp, err := s.client.SendRequest(ctx, "GET", "transactions", query, nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "transactions", query, nil, &responseStruct, "api")
 
 	if err != nil {
 		return nil, resp, err
@@ -32,7 +32,7 @@ func (s *TransactionsService) List(ctx context.Context, query *Pagination) (*Tra
 // Create a new transaction.
 func (s *TransactionsService) Create(ctx context.Context, body *CreateTransactionRequest) (*CreateTransaction, *http.Response, error) {
 	var responseStruct *CreateTransaction
-	resp, err := s.client.SendRequest(ctx, "POST", "transactions", nil, body, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "POST", "transactions", nil, body, &responseStruct, "transactions")
 
 	if err != nil {
 		return nil, resp, err
@@ -46,7 +46,7 @@ func (s *TransactionsService) Get(ctx context.Context, id string) (*GetTransacti
 	uri := fmt.Sprintf("transactions/%v", id)
 
 	var responseStruct *GetTransaction
-	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, nil, &responseStruct, "api")
 
 	if err != nil {
 		return nil, resp, err
@@ -58,7 +58,7 @@ func (s *TransactionsService) Get(ctx context.Context, id string) (*GetTransacti
 // Get all unconfirmed transactions.
 func (s *TransactionsService) ListUnconfirmed(ctx context.Context, query *Pagination) (*Transactions, *http.Response, error) {
 	var responseStruct *Transactions
-	resp, err := s.client.SendRequest(ctx, "GET", "transactions/unconfirmed", query, nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "transactions/unconfirmed", query, nil, &responseStruct, "api")
 
 	if err != nil {
 		return nil, resp, err
@@ -72,7 +72,7 @@ func (s *TransactionsService) GetUnconfirmed(ctx context.Context, id string) (*G
 	uri := fmt.Sprintf("transactions/unconfirmed/%v", id)
 
 	var responseStruct *GetTransaction
-	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, nil, &responseStruct, "api")
 
 	if err != nil {
 		return nil, resp, err
@@ -84,7 +84,7 @@ func (s *TransactionsService) GetUnconfirmed(ctx context.Context, id string) (*G
 // Get a list of valid transaction types.
 func (s *TransactionsService) Types(ctx context.Context) (*TransactionTypes, *http.Response, error) {
 	var responseStruct *TransactionTypes
-	resp, err := s.client.SendRequest(ctx, "GET", "transactions/types", nil, nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "transactions/types", nil, nil, &responseStruct, "api")
 
 	if err != nil {
 		return nil, resp, err
@@ -96,7 +96,7 @@ func (s *TransactionsService) Types(ctx context.Context) (*TransactionTypes, *ht
 // Get a list of static transaction fees.
 func (s *TransactionsService) Fees(ctx context.Context) (*TransactionFees, *http.Response, error) {
 	var responseStruct *TransactionFees
-	resp, err := s.client.SendRequest(ctx, "GET", "transactions/fees", nil, nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "transactions/fees", nil, nil, &responseStruct, "api")
 
 	if err != nil {
 		return nil, resp, err
@@ -108,7 +108,7 @@ func (s *TransactionsService) Fees(ctx context.Context) (*TransactionFees, *http
 // Get the list of transaction schemas.
 func (s *TransactionsService) Schemas(ctx context.Context) (*TransactionSchemas, *http.Response, error) {
 	var responseStruct *TransactionSchemas
-	resp, err := s.client.SendRequest(ctx, "GET", "transactions/schemas", nil, nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "transactions/schemas", nil, nil, &responseStruct, "api")
 
 	if err != nil {
 		return nil, resp, err
