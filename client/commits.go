@@ -20,7 +20,7 @@ func (s *CommitsService) GetCommit(ctx context.Context, height int) (*CommitResp
 	uri := fmt.Sprintf("commits/%d", height)
 
 	var responseStruct *CommitResponse
-	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, nil, &responseStruct, "api")
 
 	if err != nil {
 		return nil, resp, err

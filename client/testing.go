@@ -12,7 +12,6 @@ import (
 	"fmt"
 	"net/http"
 	"net/http/httptest"
-	"net/url"
 	"os"
 	"reflect"
 	"strings"
@@ -45,11 +44,16 @@ func setupTest() (client *Client, mux *http.ServeMux, serverURL string, teardown
 	// server is a test HTTP server used to provide mock API responses.
 	server := httptest.NewServer(apiHandler)
 
+	hosts := Hosts{
+		API:          server.URL + baseURLPath + "/",
+		Transactions: server.URL + "/tx/api/",
+		EVM:          server.URL + "/evm/api/",
+	}
+
+
 	// client is the Ark client being tested and is
 	// configured to use test server.
-	client = NewClient(nil)
-	url, _ := url.Parse(server.URL + baseURLPath + "/")
-	client.BaseURL = url
+	client = NewClient(nil, hosts)
 
 	return client, mux, server.URL, server.Close
 }

@@ -20,21 +20,22 @@ import (
 	"github.com/google/go-querystring/query"
 )
 
-const (
-	defaultBaseURL = "https://dwallets.ark.io/api/"
-)
+type Hosts struct {
+	API          string
+	Transactions string
+	EVM          string
+}
 
 type Client struct {
-	client *http.Client
+	httpClient *http.Client
+	Hosts        Hosts
 
-	BaseURL *url.URL
-
-	common Service
+	common 			 Service
 
 	ApiNodes     *ApiNodesService
 	Blocks       *BlocksService
-	Blockchain	 *BlockchainService
-	Commits			 *CommitsService
+	Blockchain   *BlockchainService
+	Commits      *CommitsService
 	Delegates    *DelegatesService
 	Node         *NodeService
 	Peers        *PeersService
@@ -48,14 +49,15 @@ type Service struct {
 	client *Client
 }
 
-func NewClient(httpClient *http.Client) *Client {
+func NewClient(httpClient *http.Client, hosts Hosts) *Client {
 	if httpClient == nil {
 		httpClient = http.DefaultClient
 	}
 
-	baseURL, _ := url.Parse(defaultBaseURL)
-
-	c := &Client{client: httpClient, BaseURL: baseURL}
+	c := &Client{
+		httpClient: httpClient,
+		Hosts:      hosts,
+	}
 	c.common.client = c
 
 	c.ApiNodes = (*ApiNodesService)(&c.common)
@@ -73,13 +75,28 @@ func NewClient(httpClient *http.Client) *Client {
 	return c
 }
 
-func (c *Client) SendRequest(ctx context.Context, method string, urlStr string, queryString interface{}, body interface{}, model interface{}) (*http.Response, error) {
-	// Create a new HTTP request
-	if !strings.HasSuffix(c.BaseURL.Path, "/") {
-		return nil, fmt.Errorf("BaseURL must have a trailing slash, but %q does not", c.BaseURL)
+
+func (c *Client) SendRequest(ctx context.Context, method string, endpoint string, queryString interface{}, body interface{}, model interface{}, hostType string) (*http.Response, error) {
+	var host string
+	switch hostType {
+		case "transactions":
+			host = c.Hosts.Transactions
+		case "evm":
+			host = c.Hosts.EVM
+		default:
+			host = c.Hosts.API
 	}
 
-	u, err := c.BaseURL.Parse(urlStr)
+	parsedHost, err := url.Parse(host)
+	if err != nil {
+		return nil, fmt.Errorf("invalid host URL: %v", err)
+	}
+
+	if !strings.HasSuffix(parsedHost.Path, "/") {
+		parsedHost.Path += "/"
+	}
+
+	u, err := parsedHost.Parse(endpoint)
 	if err != nil {
 		return nil, err
 	}
@@ -114,7 +131,7 @@ func (c *Client) SendRequest(ctx context.Context, method string, urlStr string, 
 	req.Header.Set("Content-Type", "application/json")
 
 	// Execute the previously created HTTP request
-	resp, err := c.client.Do(req)
+	resp, err := c.httpClient.Do(req)
 
 	if err != nil {
 		select {

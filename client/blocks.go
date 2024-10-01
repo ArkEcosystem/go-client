@@ -20,7 +20,7 @@ type BlocksService Service
 // Get all blocks.
 func (s *BlocksService) List(ctx context.Context, query *Pagination) (*Blocks, *http.Response, error) {
 	var responseStruct *Blocks
-	resp, err := s.client.SendRequest(ctx, "GET", "blocks", query, nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "blocks", query, nil, &responseStruct, "api")
 
 	if err != nil {
 		return nil, resp, err
@@ -34,7 +34,7 @@ func (s *BlocksService) Get(ctx context.Context, id int64) (*GetBlock, *http.Res
 	uri := fmt.Sprintf("blocks/%v", id)
 
 	var responseStruct *GetBlock
-	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, nil, &responseStruct, "api")
 
 	if err != nil {
 		return nil, resp, err
@@ -46,7 +46,7 @@ func (s *BlocksService) Get(ctx context.Context, id int64) (*GetBlock, *http.Res
 // Get the first block.
 func (s *BlocksService) First(ctx context.Context) (*GetBlock, *http.Response, error) {
 	var responseStruct *GetBlock
-	resp, err := s.client.SendRequest(ctx, "GET", "blocks/first", nil, nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "blocks/first", nil, nil, &responseStruct, "api")
 
 	if err != nil {
 		return nil, resp, err
@@ -58,7 +58,7 @@ func (s *BlocksService) First(ctx context.Context) (*GetBlock, *http.Response, e
 // Get the last block.
 func (s *BlocksService) Last(ctx context.Context) (*GetBlock, *http.Response, error) {
 	var responseStruct *GetBlock
-	resp, err := s.client.SendRequest(ctx, "GET", "blocks/last", nil, nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", "blocks/last", nil, nil, &responseStruct, "api")
 
 	if err != nil {
 		return nil, resp, err
@@ -72,7 +72,7 @@ func (s *BlocksService) Transactions(ctx context.Context, id int64, query *Pagin
 	uri := fmt.Sprintf("blocks/%v/transactions", id)
 
 	var responseStruct *GetBlockTransactions
-	resp, err := s.client.SendRequest(ctx, "GET", uri, query, nil, &responseStruct)
+	resp, err := s.client.SendRequest(ctx, "GET", uri, query, nil, &responseStruct, "api")
 
 	if err != nil {
 		return nil, resp, err
