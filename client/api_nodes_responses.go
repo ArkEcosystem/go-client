@@ -7,6 +7,7 @@
 
 package client
 
-type LocksUnlockedRequest struct {
-	Ids []string `json:"ids,omitempty"`
+type ApiNodesResponse struct {
+	Meta Meta       `json:"meta"`
+	Data []Peer  `json:"data"`
 }

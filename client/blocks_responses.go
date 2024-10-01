@@ -36,7 +36,7 @@ type Block struct {
 	Signature     string         `json:"signature,omitempty"`
 	Confirmations uint32         `json:"confirmations,omitempty"`
 	Transactions  byte           `json:"transactions,omitempty"`
-	Timestamp     Timestamp      `json:"timestamp,omitempty"`
+	Timestamp     int64          `json:"timestamp,omitempty"`
 }
 
 type Blocks struct {

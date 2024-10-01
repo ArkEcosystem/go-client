@@ -58,7 +58,7 @@ func TestNodeService_Syncing(t *testing.T) {
 			    "syncing": false,
 			    "blocks": -1385,
 			    "height": 2399723,
-			    "id": "10438786023074296467"
+			    "id": 1
 			  }
 			}`)
 	})
@@ -71,7 +71,7 @@ func TestNodeService_Syncing(t *testing.T) {
 			Syncing: false,
 			Blocks:  -1385,
 			Height:  2399723,
-			Id:      "10438786023074296467",
+			Id:      1,
 		},
 	})
 }

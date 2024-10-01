@@ -17,7 +17,7 @@ type Peer struct {
 	Height  int64     `json:"height,omitempty"`
 	Latency byte      `json:"latency,omitempty"`
 }
-
+	
 type Peers struct {
 	Meta Meta   `json:"meta,omitempty"`
 	Data []Peer `json:"data,omitempty"`

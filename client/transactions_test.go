@@ -11,6 +11,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"encoding/json"
 	"testing"
 )
 
@@ -47,11 +48,7 @@ func TestTransactionsService_List(t *testing.T) {
 			      "signature": "dummy",
 			      "vendorField": "dummy",
 			      "confirmations": 10,
-			      "timestamp": {
-			        "epoch": 40505460,
-			        "unix": 1530606660,
-			        "human": "2018-07-03T08:31:00Z"
-			      },
+			      "timestamp": 1719434741918,
 			      "nonce": "1"
 			    }
 			  ]
@@ -67,8 +64,8 @@ func TestTransactionsService_List(t *testing.T) {
 			Count:      1,
 			PageCount:  1,
 			TotalCount: 1,
-			Next:       "",
-			Previous:   "",
+			Next:       nil,
+			Previous:   nil,
 			Self:       "/api/transactions?page=1&limit=1",
 			First:      "/api/transactions?page=1&limit=1",
 			Last:       "/api/transactions?page=1&limit=1",
@@ -86,11 +83,7 @@ func TestTransactionsService_List(t *testing.T) {
 			Signature:       "dummy",
 			VendorField:     "dummy",
 			Confirmations:   10,
-			Timestamp: Timestamp{
-				Epoch: 40505460,
-				Unix:  1530606660,
-				Human: "2018-07-03T08:31:00Z",
-			},
+			Timestamp: 1719434741918,
 			Nonce: 1,
 		}},
 	})
@@ -131,11 +124,7 @@ func TestTransactionsService_Create(t *testing.T) {
 			Signature:       "dummy",
 			VendorField:     "dummy",
 			Confirmations:   10,
-			Timestamp: Timestamp{
-				Epoch: 40505460,
-				Unix:  1530606660,
-				Human: "2018-07-03T08:31:00Z",
-			},
+			Timestamp: 1719434741918,
 			Nonce: 1,
 		}},
 	}
@@ -175,11 +164,7 @@ func TestTransactionsService_Get(t *testing.T) {
 			    "signature": "dummy",
 			    "vendorField": "dummy",
 			    "confirmations": 10,
-			    "timestamp": {
-			      "epoch": 40505460,
-			      "unix": 1530606660,
-			      "human": "2018-07-03T08:31:00Z"
-			    },
+			    "timestamp": 1719434741918,
 			    "nonce": "1"
 			  }
 			}`)
@@ -202,11 +187,7 @@ func TestTransactionsService_Get(t *testing.T) {
 			Signature:       "dummy",
 			VendorField:     "dummy",
 			Confirmations:   10,
-			Timestamp: Timestamp{
-				Epoch: 40505460,
-				Unix:  1530606660,
-				Human: "2018-07-03T08:31:00Z",
-			},
+			Timestamp: 1719434741918,
 			Nonce: 1,
 		},
 	})
@@ -245,11 +226,7 @@ func TestTransactionsService_ListUnconfirmed(t *testing.T) {
 			      "signature": "dummy",
 			      "vendorField": "dummy",
 			      "confirmations": 10,
-			      "timestamp": {
-			        "epoch": 40505460,
-			        "unix": 1530606660,
-			        "human": "2018-07-03T08:31:00Z"
-			      },
+			      "timestamp": 1719434741918,
 			      "nonce": "1"
 			    }
 			  ]
@@ -265,8 +242,8 @@ func TestTransactionsService_ListUnconfirmed(t *testing.T) {
 			Count:      1,
 			PageCount:  1,
 			TotalCount: 1,
-			Next:       "",
-			Previous:   "",
+			Next:       nil,
+			Previous:   nil,
 			Self:       "/api/transactions/unconfirmed?page=1&limit=1",
 			First:      "/api/transactions/unconfirmed?page=1&limit=1",
 			Last:       "/api/transactions/unconfirmed?page=1&limit=1",
@@ -284,11 +261,7 @@ func TestTransactionsService_ListUnconfirmed(t *testing.T) {
 			Signature:       "dummy",
 			VendorField:     "dummy",
 			Confirmations:   10,
-			Timestamp: Timestamp{
-				Epoch: 40505460,
-				Unix:  1530606660,
-				Human: "2018-07-03T08:31:00Z",
-			},
+			Timestamp: 1719434741918,
 			Nonce: 1,
 		}},
 	})
@@ -316,11 +289,7 @@ func TestTransactionsService_GetUnconfirmed(t *testing.T) {
 			    "signature": "dummy",
 			    "vendorField": "dummy",
 			    "confirmations": 10,
-			    "timestamp": {
-			      "epoch": 40505460,
-			      "unix": 1530606660,
-			      "human": "2018-07-03T08:31:00Z"
-			    },
+			    "timestamp": 1719434741918,
 			    "nonce": "1"
 			  }
 			}`)
@@ -343,11 +312,7 @@ func TestTransactionsService_GetUnconfirmed(t *testing.T) {
 			Signature:       "dummy",
 			VendorField:     "dummy",
 			Confirmations:   10,
-			Timestamp: Timestamp{
-				Epoch: 40505460,
-				Unix:  1530606660,
-				Human: "2018-07-03T08:31:00Z",
-			},
+			Timestamp: 1719434741918,
 			Nonce: 1,
 		},
 	})
@@ -462,3 +427,179 @@ func TestTransactionsService_Fees(t *testing.T) {
 		},
 	})
 }
+
+// Get the list of transaction schemas.
+func TestTransactionsService_Schemas(t *testing.T) {
+	client, mux, _, teardown := setupTest()
+	defer teardown()
+
+	mux.HandleFunc("/transactions/schemas", func(writer http.ResponseWriter, request *http.Request) {
+		testMethod(t, request, "GET")
+		fmt.Fprint(writer,
+			`{
+			  "data": {
+			    "1": {
+			      "0": {
+			        "id": {
+			          "anyOf": [
+			            { "$ref": "transactionId" },
+			            { "type": "null" }
+			          ]
+			        },
+			        "fee": {
+			          "bignumber": {
+			            "minimum": 0
+			          }
+			        },
+			        "type": {
+			          "transactionType": 0
+			        },
+			        "nonce": {
+			          "bignumber": {
+			            "minimum": 0
+			          }
+			        },
+			        "amount": {
+			          "bignumber": {
+			            "minimum": 1
+			          }
+			        },
+			        "network": {
+			          "$ref": "networkByte"
+			        },
+			        "version": {
+			          "enum": [1]
+			        },
+			        "signature": {
+			          "$ref": "alphanumeric"
+			        },
+			        "typeGroup": {
+			          "type": "integer",
+			          "minimum": 0
+			        },
+			        "expiration": {
+			          "type": "integer",
+			          "minimum": 0
+			        },
+			        "signatures": {
+			          "type": "array",
+			          "items": {
+			            "type": "string",
+			            "maxLength": 130,
+			            "minLength": 130,
+			            "$ref": "alphanumeric"
+			          },
+			          "maxItems": 16,
+			          "minItems": 1,
+			          "uniqueItems": true
+			        },
+			        "recipientId": {
+			          "$ref": "address"
+			        },
+			        "vendorField": {
+			          "anyOf": [
+			            { "type": "null" },
+			            { "type": "string", "format": "vendorField" }
+			          ]
+			        },
+			        "senderPublicKey": {
+			          "$ref": "publicKey"
+			        }
+			      }
+			    }
+			  }
+			}`)
+	})
+
+	expectedData := map[string]interface{}{
+		"1": map[string]interface{}{
+			"0": map[string]interface{}{
+				"id": map[string]interface{}{
+					"anyOf": []interface{}{
+						map[string]interface{}{"$ref": "transactionId"},
+						map[string]interface{}{"type": "null"},
+					},
+				},
+				"fee": map[string]interface{}{
+					"bignumber": map[string]interface{}{
+						"minimum": 0,
+					},
+				},
+				"type": map[string]interface{}{
+					"transactionType": 0,
+				},
+				"nonce": map[string]interface{}{
+					"bignumber": map[string]interface{}{
+						"minimum": 0,
+					},
+				},
+				"amount": map[string]interface{}{
+					"bignumber": map[string]interface{}{
+						"minimum": 1,
+					},
+				},
+				"network": map[string]interface{}{
+					"$ref": "networkByte",
+				},
+				"version": map[string]interface{}{
+					"enum": []interface{}{1},
+				},
+				"signature": map[string]interface{}{
+					"$ref": "alphanumeric",
+				},
+				"typeGroup": map[string]interface{}{
+					"type":    "integer",
+					"minimum": 0,
+				},
+				"expiration": map[string]interface{}{
+					"type":    "integer",
+					"minimum": 0,
+				},
+				"signatures": map[string]interface{}{
+					"type": "array",
+					"items": map[string]interface{}{
+						"type":     "string",
+						"maxLength": 130,
+						"minLength": 130,
+						"$ref":    "alphanumeric",
+					},
+					"maxItems":    16,
+					"minItems":    1,
+					"uniqueItems": true,
+				},
+				"recipientId": map[string]interface{}{
+					"$ref": "address",
+				},
+				"vendorField": map[string]interface{}{
+					"anyOf": []interface{}{
+						map[string]interface{}{"type": "null"},
+						map[string]interface{}{"type": "string", "format": "vendorField"},
+					},
+				},
+				"senderPublicKey": map[string]interface{}{
+					"$ref": "publicKey",
+				},
+			},
+		},
+	}
+
+	responseStruct, response, err := client.Transactions.Schemas(context.Background())
+	testGeneralError(t, "Transactions.Schemas", err)
+	testResponseUrl(t, "Transactions.Schemas", response, "/transactions/schemas")
+
+	// Compare JSON representations
+	actualJSON, err := json.Marshal(responseStruct.Data)
+	if err != nil {
+		t.Fatalf("Failed to marshal actual data: %v", err)
+	}
+
+	expectedJSON, err := json.Marshal(expectedData)
+	if err != nil {
+		t.Fatalf("Failed to marshal expected data: %v", err)
+	}
+
+	if string(actualJSON) != string(expectedJSON) {
+		t.Errorf("[Transactions.Schemas][Response] got %v, want %v", string(actualJSON), string(expectedJSON))
+	}
+}
+
