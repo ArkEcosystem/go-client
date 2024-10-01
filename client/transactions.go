@@ -116,3 +116,15 @@ func (s *TransactionsService) Schemas(ctx context.Context) (*TransactionSchemas,
 
 	return responseStruct, resp, err
 }
+
+// Get the list of transaction schemas.
+func (s *TransactionsService) Schemas(ctx context.Context) (*TransactionSchemas, *http.Response, error) {
+	var responseStruct *TransactionSchemas
+	resp, err := s.client.SendRequest(ctx, "GET", "transactions/schemas", nil, nil, &responseStruct)
+
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return responseStruct, resp, err
+}
