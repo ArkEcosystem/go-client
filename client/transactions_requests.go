@@ -8,5 +8,5 @@
 package client
 
 type CreateTransactionRequest struct {
-	Transactions []Transaction `json:"transactions,omitempty"`
+	Transactions []string `json:"transactions,omitempty"`
 }

@@ -111,22 +111,7 @@ func TestTransactionsService_Create(t *testing.T) {
 	})
 
 	body := &CreateTransactionRequest{
-		Transactions: []Transaction{{
-			Id:              "dummy",
-			BlockId:         "dummy",
-			Type:            0,
-			TypeGroup:       1,
-			Amount:          10000000,
-			Fee:             10000000,
-			Sender:          "dummy",
-			SenderPublicKey: "dummy",
-			Recipient:       "dummy",
-			Signature:       "dummy",
-			VendorField:     "dummy",
-			Confirmations:   10,
-			Timestamp: 1719434741918,
-			Nonce: 1,
-		}},
+		Transactions: []string{"dummy"},
 	}
 	responseStruct, response, err := client.Transactions.Create(context.Background(), body)
 	testGeneralError(t, "Transactions.Create", err)
