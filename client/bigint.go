@@ -13,6 +13,14 @@ type BigInt struct {
 	*big.Int
 }
 
+// UnmarshalJSON and MarshalJSON intentionally use different receiver types
+// (a lint tool may flag this). UnmarshalJSON must be a pointer receiver since
+// it mutates b.Int; a value receiver would only update a local copy and the
+// parsed value would be lost. MarshalJSON must stay a value receiver because
+// BigInt is used as a map value elsewhere (e.g. NodeFeesResponse), and map
+// values are not addressable in Go — a pointer receiver would fail to satisfy
+// json.Marshaler there, silently falling back to *big.Int's default (bare,
+// unquoted) JSON encoding instead of this type's quoted decimal-string format.
 func (b *BigInt) UnmarshalJSON(data []byte) error {
 	s := strings.Trim(string(data), `"`)
 	if s == "" || s == "null" {
