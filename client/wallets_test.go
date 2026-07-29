@@ -249,7 +249,7 @@ func TestWalletsService_Transactions(t *testing.T) {
 		},
 		Data: []Transaction{{
 			Hash:            "dummy",
-			BlockNumber:     "dummy",
+			BlockHash:       "dummy",
 			Value:           newBigInt(10000000),
 			Gas:             newBigInt(21000),
 			GasPrice:        newBigInt(10000000),
@@ -333,7 +333,7 @@ func TestWalletsService_SentTransactions(t *testing.T) {
 		},
 		Data: []Transaction{{
 			Hash:            "dummy",
-			BlockNumber:     "dummy",
+			BlockHash:       "dummy",
 			Value:           newBigInt(10000000),
 			Gas:             newBigInt(21000),
 			GasPrice:        newBigInt(10000000),
@@ -417,7 +417,7 @@ func TestWalletsService_ReceivedTransaction(t *testing.T) {
 		},
 		Data: []Transaction{{
 			Hash:            "dummy",
-			BlockNumber:     "dummy",
+			BlockHash:       "dummy",
 			Value:           newBigInt(10000000),
 			Gas:             newBigInt(21000),
 			GasPrice:        newBigInt(10000000),
@@ -501,7 +501,7 @@ func TestWalletsService_Votes(t *testing.T) {
 		},
 		Data: []Transaction{{
 			Hash:            "dummy",
-			BlockNumber:     "dummy",
+			BlockHash:       "dummy",
 			Value:           newBigInt(0),
 			Gas:             newBigInt(100000),
 			GasPrice:        newBigInt(10000000),
@@ -514,9 +514,10 @@ func TestWalletsService_Votes(t *testing.T) {
 			Timestamp:       "1719434741918",
 			Nonce:           newBigInt(1),
 			Receipt: TransactionReceipt{
-				GasRefunded: 0,
-				GasUsed:     100000,
-				Success:     true,
+				CumulativeGasUsed: 100000,
+				GasRefunded:       0,
+				GasUsed:           100000,
+				Status:            1,
 			},
 		}},
 	})
