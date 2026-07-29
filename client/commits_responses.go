@@ -14,7 +14,7 @@ type CommitResponse struct {
 
 // CommitData represents the data field in the commit response.
 type CommitData struct {
-	Height     string   `json:"height"`
-	Signature  string   `json:"signature"`
-	Validators []string `json:"validators"`
+	BlockNumber string   `json:"blockNumber"`
+	Signature   string   `json:"signature"`
+	Validators  []string `json:"validators"`
 }

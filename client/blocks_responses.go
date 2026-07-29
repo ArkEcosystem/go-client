@@ -7,36 +7,24 @@
 
 package client
 
-type BlockForged struct {
-	Reward uint64 `json:"reward,omitempty,string"`
-	Fee    uint64 `json:"fee,omitempty,string"`
-	Total  uint64 `json:"total,omitempty,string"`
-	Amount uint64 `json:"amount,omitempty,string"`
-}
-
-type BlockPayload struct {
-	Hash   string `json:"hash,omitempty"`
-	Length uint32 `json:"length,omitempty"`
-}
-
-type BlockGenerator struct {
-	Username  string `json:"username,omitempty"`
-	Address   string `json:"address,omitempty"`
-	PublicKey string `json:"publicKey,omitempty"`
-}
-
 type Block struct {
-	Id            string         `json:"id,omitempty"`
-	Version       byte           `json:"version,omitempty"`
-	Height        int64          `json:"height,omitempty"`
-	Previous      string         `json:"previous,omitempty"`
-	Forged        BlockForged    `json:"forged,omitempty"`
-	Payload       BlockPayload   `json:"payload,omitempty"`
-	Generator     BlockGenerator `json:"generator,omitempty"`
-	Signature     string         `json:"signature,omitempty"`
-	Confirmations uint32         `json:"confirmations,omitempty"`
-	Transactions  byte           `json:"transactions,omitempty"`
-	Timestamp     int64          `json:"timestamp,omitempty"`
+	Hash              string `json:"hash,omitempty"`
+	Number            int64  `json:"number,omitempty"`
+	Confirmations     uint32 `json:"confirmations,omitempty"`
+	Amount            BigInt `json:"amount,omitempty"`
+	Fee               BigInt `json:"fee,omitempty"`
+	Reward            BigInt `json:"reward,omitempty"`
+	Total             BigInt `json:"total,omitempty"`
+	Proposer          string `json:"proposer,omitempty"`
+	PublicKey         string `json:"publicKey,omitempty"`
+	Username          string `json:"username,omitempty"`
+	TransactionsRoot  string `json:"transactionsRoot,omitempty"`
+	PayloadSize       int64  `json:"payloadSize,omitempty"`
+	ParentHash        string `json:"parentHash,omitempty"`
+	Signature         string `json:"signature,omitempty"`
+	Timestamp         string `json:"timestamp,omitempty"`
+	TransactionsCount int64  `json:"transactionsCount,omitempty"`
+	Version           byte   `json:"version,omitempty"`
 }
 
 type Blocks struct {

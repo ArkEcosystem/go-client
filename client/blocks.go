@@ -29,9 +29,9 @@ func (s *BlocksService) List(ctx context.Context, query *Pagination) (*Blocks, *
 	return responseStruct, resp, err
 }
 
-// Get a block by the given id.
-func (s *BlocksService) Get(ctx context.Context, id int64) (*GetBlock, *http.Response, error) {
-	uri := fmt.Sprintf("blocks/%v", id)
+// Get a block by the given hash.
+func (s *BlocksService) Get(ctx context.Context, hash string) (*GetBlock, *http.Response, error) {
+	uri := fmt.Sprintf("blocks/%v", hash)
 
 	var responseStruct *GetBlock
 	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, nil, &responseStruct, "api")
@@ -68,8 +68,8 @@ func (s *BlocksService) Last(ctx context.Context) (*GetBlock, *http.Response, er
 }
 
 // Get all transactions by the given block.
-func (s *BlocksService) Transactions(ctx context.Context, id int64, query *Pagination) (*GetBlockTransactions, *http.Response, error) {
-	uri := fmt.Sprintf("blocks/%v/transactions", id)
+func (s *BlocksService) Transactions(ctx context.Context, hash string, query *Pagination) (*GetBlockTransactions, *http.Response, error) {
+	uri := fmt.Sprintf("blocks/%v/transactions", hash)
 
 	var responseStruct *GetBlockTransactions
 	resp, err := s.client.SendRequest(ctx, "GET", uri, query, nil, &responseStruct, "api")

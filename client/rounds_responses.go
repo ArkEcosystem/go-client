@@ -25,14 +25,3 @@ type GetRounds struct {
 type GetRound struct {
 	Data RoundData `json:"data"`
 }
-
-// RoundValidator represents the validators of the round.
-type RoundValidator struct {
-	PublicKey string `json:"publicKey,omitempty"`
-	Votes     string `json:"votes,omitempty"`
-}
-
-// GetValidators represents the response from the /api/rounds/<id>/validators endpoint.
-type GetValidators struct {
-	Data []RoundValidator `json:"data,omitempty"`
-}

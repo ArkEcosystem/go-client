@@ -10,6 +10,7 @@ package client
 import (
 	"context"
 	"fmt"
+	"math/big"
 	"net/http"
 	"testing"
 )
@@ -39,7 +40,7 @@ func TestWalletsService_List(t *testing.T) {
 			      "publicKey": "dummy",
 			      "nonce": "1",
 			      "balance": "1000000000",
-			      "isDelegate": false
+			      "attributes": {}
 			    }
 			  ]
 			}`)
@@ -61,11 +62,10 @@ func TestWalletsService_List(t *testing.T) {
 			Last:       "/api/wallets?page=1&limit=1",
 		},
 		Data: []Wallet{{
-			Address:    "dummy",
-			PublicKey:  "dummy",
-			Nonce:      1,
-			Balance:    1000000000,
-			IsDelegate: false,
+			Address:   "dummy",
+			PublicKey: "dummy",
+			Nonce:     newBigInt(1),
+			Balance:   newBigInt(1000000000),
 		}},
 	})
 }
@@ -94,8 +94,7 @@ func TestWalletsService_Top(t *testing.T) {
 			      "address": "dummy",
 			      "publicKey": "dummy",
 			      "nonce": "1",
-			      "balance": "1000000000",
-			      "isDelegate": false
+			      "balance": "1000000000"
 			    }
 			  ]
 			}`)
@@ -117,11 +116,10 @@ func TestWalletsService_Top(t *testing.T) {
 			Last:       "/api/wallets/top?page=1&limit=1",
 		},
 		Data: []Wallet{{
-			Address:    "dummy",
-			PublicKey:  "dummy",
-			Nonce:      1,
-			Balance:    1000000000,
-			IsDelegate: false,
+			Address:   "dummy",
+			PublicKey: "dummy",
+			Nonce:     newBigInt(1),
+			Balance:   newBigInt(1000000000),
 		}},
 	})
 }
@@ -140,7 +138,8 @@ func TestWalletsService_Get(t *testing.T) {
 			    "publicKey": "dummy",
 		      "nonce": "1",
 			    "balance": "1000000000",
-			    "isDelegate": false
+			    "updated_at": "2026-03-02T15:00:00.000Z",
+			    "tokenCount": 2
 			  }
 			}`)
 	})
@@ -152,13 +151,41 @@ func TestWalletsService_Get(t *testing.T) {
 		Data: Wallet{
 			Address:    "dummy",
 			PublicKey:  "dummy",
-			Nonce:      1,
-			Balance:    1000000000,
-			IsDelegate: false,
+			Nonce:      newBigInt(1),
+			Balance:    newBigInt(1000000000),
+			UpdatedAt:  "2026-03-02T15:00:00.000Z",
+			TokenCount: 2,
 		},
 	})
 }
 
+// Get a wallet with a Mainsail wei-scale balance that overflows uint64.
+func TestWalletsService_Get_WeiScaleBalance(t *testing.T) {
+	client, mux, _, teardown := setupTest()
+	defer teardown()
+
+	mux.HandleFunc("/wallets/dummy", func(writer http.ResponseWriter, request *http.Request) {
+		testMethod(t, request, "GET")
+		fmt.Fprint(writer,
+			`{
+			  "data": {
+			    "address": "dummy",
+			    "publicKey": "dummy",
+			    "nonce": "1",
+			    "balance": "260000000000000000000"
+			  }
+			}`)
+	})
+
+	responseStruct, response, err := client.Wallets.Get(context.Background(), "dummy")
+	testGeneralError(t, "Wallets.Get", err)
+	testResponseUrl(t, "Wallets.Get", response, "/api/wallets/dummy")
+
+	want, _ := new(big.Int).SetString("260000000000000000000", 10)
+	if responseStruct.Data.Balance.Int == nil || responseStruct.Data.Balance.Cmp(want) != 0 {
+		t.Errorf("[Wallets.Get][Balance] got %v, want %v", responseStruct.Data.Balance.Int, want)
+	}
+}
 
 // Get all transactions for the given wallet.
 func TestWalletsService_Transactions(t *testing.T) {
@@ -181,20 +208,24 @@ func TestWalletsService_Transactions(t *testing.T) {
 			  },
 			  "data": [
 			    {
-			      "id": "dummy",
-			      "blockId": "dummy",
-			      "type": 0,
-			      "typeGroup": 1,
-			      "amount": "10000000",
-			      "fee": "10000000",
-			      "sender": "dummy",
+			      "hash": "dummy",
+			      "blockNumber": "dummy",
+			      "value": "10000000",
+			      "gas": "21000",
+			      "gasPrice": "10000000",
 			      "senderPublicKey": "dummy",
-			      "recipient": "dummy",
+			      "to": "dummy",
+			      "from": "dummy",
+			      "data": "0x",
 			      "signature": "dummy",
-			      "vendorField": "dummy",
 			      "confirmations": 10,
-			      "timestamp": 1719434741918,
-			      "nonce": "1"
+			      "timestamp": "1719434741918",
+			      "nonce": "1",
+			      "receipt": {
+			        "gasRefunded": 0,
+			        "gasUsed": 21000,
+			        "success": true
+			      }
 			    }
 			  ]
 			}`)
@@ -216,20 +247,24 @@ func TestWalletsService_Transactions(t *testing.T) {
 			Last:       "/api/wallets/dummy/transactions?page=1&limit=1",
 		},
 		Data: []Transaction{{
-			Id:              "dummy",
-			BlockId:         "dummy",
-			Type:            0,
-			TypeGroup:       1,
-			Amount:          10000000,
-			Fee:             10000000,
-			Sender:          "dummy",
+			Hash:            "dummy",
+			BlockNumber:     "dummy",
+			Value:           newBigInt(10000000),
+			Gas:             newBigInt(21000),
+			GasPrice:        newBigInt(10000000),
 			SenderPublicKey: "dummy",
-			Recipient:       "dummy",
+			To:              "dummy",
+			From:            "dummy",
+			Data:            "0x",
 			Signature:       "dummy",
-			VendorField:     "dummy",
 			Confirmations:   10,
-			Timestamp: 1719434741918,
-			Nonce: 1,
+			Timestamp:       "1719434741918",
+			Nonce:           newBigInt(1),
+			Receipt: TransactionReceipt{
+				GasRefunded: 0,
+				GasUsed:     21000,
+				Success:     true,
+			},
 		}},
 	})
 }
@@ -255,20 +290,24 @@ func TestWalletsService_SentTransactions(t *testing.T) {
 			  },
 			  "data": [
 			    {
-			      "id": "dummy",
-			      "blockId": "dummy",
-			      "type": 0,
-			      "typeGroup": 1,
-			      "amount": "10000000",
-			      "fee": "10000000",
-			      "sender": "dummy",
+			      "hash": "dummy",
+			      "blockNumber": "dummy",
+			      "value": "10000000",
+			      "gas": "21000",
+			      "gasPrice": "10000000",
 			      "senderPublicKey": "dummy",
-			      "recipient": "dummy",
+			      "to": "dummy",
+			      "from": "dummy",
+			      "data": "0x",
 			      "signature": "dummy",
-			      "vendorField": "dummy",
 			      "confirmations": 10,
-			      "timestamp": 1719434741918,
-			      "nonce": "1"
+			      "timestamp": "1719434741918",
+			      "nonce": "1",
+			      "receipt": {
+			        "gasRefunded": 0,
+			        "gasUsed": 21000,
+			        "success": true
+			      }
 			    }
 			  ]
 			}`)
@@ -290,20 +329,24 @@ func TestWalletsService_SentTransactions(t *testing.T) {
 			Last:       "/api/wallets/dummy/transactions/sent?page=1&limit=1",
 		},
 		Data: []Transaction{{
-			Id:              "dummy",
-			BlockId:         "dummy",
-			Type:            0,
-			TypeGroup:       1,
-			Amount:          10000000,
-			Fee:             10000000,
-			Sender:          "dummy",
+			Hash:            "dummy",
+			BlockNumber:     "dummy",
+			Value:           newBigInt(10000000),
+			Gas:             newBigInt(21000),
+			GasPrice:        newBigInt(10000000),
 			SenderPublicKey: "dummy",
-			Recipient:       "dummy",
+			To:              "dummy",
+			From:            "dummy",
+			Data:            "0x",
 			Signature:       "dummy",
-			VendorField:     "dummy",
 			Confirmations:   10,
-			Timestamp: 1719434741918,
-			Nonce: 1,
+			Timestamp:       "1719434741918",
+			Nonce:           newBigInt(1),
+			Receipt: TransactionReceipt{
+				GasRefunded: 0,
+				GasUsed:     21000,
+				Success:     true,
+			},
 		}},
 	})
 }
@@ -329,20 +372,24 @@ func TestWalletsService_ReceivedTransaction(t *testing.T) {
 			  },
 			  "data": [
 			    {
-			      "id": "dummy",
-			      "blockId": "dummy",
-			      "type": 0,
-			      "typeGroup": 1,
-			      "amount": "10000000",
-			      "fee": "10000000",
-			      "sender": "dummy",
+			      "hash": "dummy",
+			      "blockNumber": "dummy",
+			      "value": "10000000",
+			      "gas": "21000",
+			      "gasPrice": "10000000",
 			      "senderPublicKey": "dummy",
-			      "recipient": "dummy",
+			      "to": "dummy",
+			      "from": "dummy",
+			      "data": "0x",
 			      "signature": "dummy",
-			      "vendorField": "dummy",
 			      "confirmations": 10,
-			      "timestamp": 1719434741918,
-			      "nonce": "1"
+			      "timestamp": "1719434741918",
+			      "nonce": "1",
+			      "receipt": {
+			        "gasRefunded": 0,
+			        "gasUsed": 21000,
+			        "success": true
+			      }
 			    }
 			  ]
 			}`)
@@ -364,20 +411,24 @@ func TestWalletsService_ReceivedTransaction(t *testing.T) {
 			Last:       "/api/wallets/dummy/transactions/received?page=1&limit=1",
 		},
 		Data: []Transaction{{
-			Id:              "dummy",
-			BlockId:         "dummy",
-			Type:            0,
-			TypeGroup:       1,
-			Amount:          10000000,
-			Fee:             10000000,
-			Sender:          "dummy",
+			Hash:            "dummy",
+			BlockNumber:     "dummy",
+			Value:           newBigInt(10000000),
+			Gas:             newBigInt(21000),
+			GasPrice:        newBigInt(10000000),
 			SenderPublicKey: "dummy",
-			Recipient:       "dummy",
+			To:              "dummy",
+			From:            "dummy",
+			Data:            "0x",
 			Signature:       "dummy",
-			VendorField:     "dummy",
 			Confirmations:   10,
-			Timestamp: 1719434741918,
-			Nonce: 1,
+			Timestamp:       "1719434741918",
+			Nonce:           newBigInt(1),
+			Receipt: TransactionReceipt{
+				GasRefunded: 0,
+				GasUsed:     21000,
+				Success:     true,
+			},
 		}},
 	})
 }
@@ -403,24 +454,24 @@ func TestWalletsService_Votes(t *testing.T) {
 			  },
 			  "data": [
 			    {
-			      "id": "dummy",
-			      "blockId": "dummy",
-			      "type": 3,
-			      "typeGroup": 1,
-			      "amount": "0",
-			      "fee": "100000000",
-			      "sender": "dummy",
+			      "hash": "dummy",
+			      "blockNumber": "dummy",
+			      "value": "0",
+			      "gas": "100000",
+			      "gasPrice": "10000000",
 			      "senderPublicKey": "dummy",
-			      "recipient": "dummy",
+			      "to": "dummy",
+			      "from": "dummy",
+			      "data": "0x",
 			      "signature": "dummy",
-			      "asset": {
-			        "votes": [
-			          "+dummy"
-			        ]
-			      },
 			      "confirmations": 10,
-			      "timestamp": 1719434741918,
-			      "nonce": "1"
+			      "timestamp": "1719434741918",
+			      "nonce": "1",
+			      "receipt": {
+			        "gasRefunded": 0,
+			        "gasUsed": 100000,
+			        "success": true
+			      }
 			    }
 			  ]
 			}`)
@@ -442,24 +493,24 @@ func TestWalletsService_Votes(t *testing.T) {
 			Last:       "/api/wallets/dummy/votes?page=1&limit=1",
 		},
 		Data: []Transaction{{
-			Id:              "dummy",
-			BlockId:         "dummy",
-			Type:            3,
-			TypeGroup:       1,
-			Amount:          0,
-			Fee:             100000000,
-			Sender:          "dummy",
+			Hash:            "dummy",
+			BlockNumber:     "dummy",
+			Value:           newBigInt(0),
+			Gas:             newBigInt(100000),
+			GasPrice:        newBigInt(10000000),
 			SenderPublicKey: "dummy",
-			Recipient:       "dummy",
+			To:              "dummy",
+			From:            "dummy",
+			Data:            "0x",
 			Signature:       "dummy",
-			Asset: &TransactionAsset{
-				Votes: []string{
-					"+dummy",
-				},
+			Confirmations:   10,
+			Timestamp:       "1719434741918",
+			Nonce:           newBigInt(1),
+			Receipt: TransactionReceipt{
+				GasRefunded: 0,
+				GasUsed:     100000,
+				Success:     true,
 			},
-			Confirmations: 10,
-			Timestamp: 1719434741918,
-			Nonce: 1,
 		}},
 	})
 }

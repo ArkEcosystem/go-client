@@ -58,7 +58,7 @@ func (s *TransactionsService) Get(ctx context.Context, id string) (*GetTransacti
 // Get all unconfirmed transactions.
 func (s *TransactionsService) ListUnconfirmed(ctx context.Context, query *Pagination) (*Transactions, *http.Response, error) {
 	var responseStruct *Transactions
-	resp, err := s.client.SendRequest(ctx, "GET", "transactions/unconfirmed", query, nil, &responseStruct, "api")
+	resp, err := s.client.SendRequest(ctx, "GET", "transactions/unconfirmed", query, nil, &responseStruct, "transactions")
 
 	if err != nil {
 		return nil, resp, err
@@ -72,7 +72,7 @@ func (s *TransactionsService) GetUnconfirmed(ctx context.Context, id string) (*G
 	uri := fmt.Sprintf("transactions/unconfirmed/%v", id)
 
 	var responseStruct *GetTransaction
-	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, nil, &responseStruct, "api")
+	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, nil, &responseStruct, "transactions")
 
 	if err != nil {
 		return nil, resp, err

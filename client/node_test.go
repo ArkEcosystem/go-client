@@ -57,7 +57,7 @@ func TestNodeService_Syncing(t *testing.T) {
 			  "data": {
 			    "syncing": false,
 			    "blocks": -1385,
-			    "height": 2399723,
+			    "blockNumber": 2399723,
 			    "id": 1
 			  }
 			}`)
@@ -68,10 +68,10 @@ func TestNodeService_Syncing(t *testing.T) {
 	testResponseUrl(t, "Node.Syncing", response, "/api/node/syncing")
 	testResponseStruct(t, "Node.Syncing", responseStruct, &GetNodeSyncing{
 		Data: NodeSyncing{
-			Syncing: false,
-			Blocks:  -1385,
-			Height:  2399723,
-			Id:      1,
+			Syncing:     false,
+			Blocks:      -1385,
+			BlockNumber: 2399723,
+			Id:          1,
 		},
 	})
 }
@@ -91,55 +91,75 @@ func TestNodeService_Configuration(t *testing.T) {
 			    "symbol": "DѦ",
 			    "explorer": "https://dwallets.ark.io/api/",
 			    "version": 30,
+			    "wif": 170,
+			    "slip44": 111,
 			    "ports": {
 			      "@arkecosystem/core-p2p": 4002,
 			      "@arkecosystem/core-api": 4003
 			    },
+			    "core": {
+			      "version": "4.0.0"
+			    },
 			    "constants": {
 			      "height": 75600,
-			      "reward": 200000000,
-			      "activeDelegates": 51,
-			      "blocktime": 8,
+			      "reward": "200000000",
+			      "activeValidators": 51,
+			      "multiPaymentLimit": 128,
+			      "vendorFieldLength": 255,
+			      "epoch": "2017-03-21T13:00:00.000Z",
+			      "evmSpec": "shanghai",
 			      "block": {
 			        "version": 0,
-			        "maxTransactions": 50,
-			        "maxPayload": 2097152
+			        "maxPayload": 2097152,
+			        "maxGasLimit": 30000000,
+			        "maxTransactions": 50
 			      },
-			      "epoch": "2017-03-21T13:00:00.000Z",
+			      "address": {
+			        "keccak256": true
+			      },
+			      "satoshi": {
+			        "decimals": 18,
+			        "denomination": 1000000000000000000
+			      },
+			      "timeouts": {
+			        "blockTime": 8000,
+			        "tolerance": 500,
+			        "stageTimeout": 2000,
+			        "blockPrepareTime": 4000,
+			        "stageTimeoutIncrease": 2000
+			      },
+			      "gas": {
+			        "minimumGasFee": 10,
+			        "maximumGasLimit": 30000000,
+			        "minimumGasLimit": 21000,
+			        "nativeFeeMultiplier": 1,
+			        "nativeGasLimits": {
+			          "vote": 100000,
+			          "transfer": 21000,
+			          "multiPayment": 50000,
+			          "multiSignature": 60000,
+			          "usernameResignation": 40000,
+			          "usernameRegistration": 40000,
+			          "validatorResignation": 40000,
+			          "validatorRegistration": 60000
+			        }
+			      },
 			      "fees": {
 			        "staticFees": {
-			          "transfer": 10000000,
-			          "secondSignature": 500000000,
-			          "delegateRegistration": 2500000000,
 			          "vote": 100000000,
-			          "multiSignature": 500000000,
-			          "ipfs": 500000000,
+			          "transfer": 10000000,
 			          "multiPayment": 10000000,
-			          "delegateResignation": 2500000000,
-			          "htlcLock": 10000000,
-			          "htlcClaim": 0,
-			          "htlcRefund": 0
+			          "multiSignature": 500000000,
+			          "usernameResignation": 2500000000,
+			          "usernameRegistration": 2500000000,
+			          "validatorResignation": 2500000000,
+			          "validatorRegistration": 2500000000
 			        }
 			      }
 			    },
 			    "transactionPool": {
 			      "dynamicFees": {
-			        "enabled": true,
-			        "minFeePool": 1000,
-			        "minFeeBroadcast": 1000,
-			        "addonBytes": {
-			          "transfer": 100,
-			          "secondSignature": 250,
-			          "delegateRegistration": 400000,
-			          "vote": 100,
-			          "multiSignature": 500,
-			          "ipfs": 250,
-			          "multiPayment": 500,
-			          "delegateResignation": 100,
-			          "htlcLock": 100,
-			          "htlcClaim": 0,
-			          "htlcRefund": 0
-			        }
+			        "enabled": true
 			      }
 			    }
 			  }
@@ -156,55 +176,75 @@ func TestNodeService_Configuration(t *testing.T) {
 			Symbol:   "DѦ",
 			Explorer: "https://dwallets.ark.io/api/",
 			Version:  30,
+			Wif:      170,
+			Slip44:   111,
 			Ports: map[string]int16{
 				"@arkecosystem/core-p2p": 4002,
 				"@arkecosystem/core-api": 4003,
 			},
+			Core: NodeCore{
+				Version: "4.0.0",
+			},
 			Constants: NodeConstants{
-				Height:          75600,
-				Reward:          200000000,
-				ActiveDelegates: 51,
-				BlockTime:       8,
+				Height:            75600,
+				Reward:            newBigInt(200000000),
+				ActiveValidators:  51,
+				MultiPaymentLimit: 128,
+				VendorFieldLength: 255,
+				Epoch:             "2017-03-21T13:00:00.000Z",
+				EvmSpec:           "shanghai",
 				Block: NodeConstantsBlock{
 					Version:         0,
-					MaxTransactions: 50,
 					MaxPayload:      2097152,
+					MaxGasLimit:     30000000,
+					MaxTransactions: 50,
 				},
-				Epoch: "2017-03-21T13:00:00.000Z",
-				Fees: map[string]FeeTypes{
-					"staticFees": FeeTypes{
-						Transfer:             10000000,
-						SecondSignature:      500000000,
-						DelegateRegistration: 2500000000,
-						Vote:                 100000000,
-						MultiSignature:       500000000,
-						Ipfs:                 500000000,
-						MultiPayment:         10000000,
-						DelegateResignation:  2500000000,
-						HtlcLock:             10000000,
-						HtlcClaim:            0,
-						HtlcRefund:           0,
+				Address: NodeConstantsAddress{
+					Keccak256: true,
+				},
+				Satoshi: NodeConstantsSatoshi{
+					Decimals:     18,
+					Denomination: 1000000000000000000,
+				},
+				Timeouts: NodeConstantsTimeouts{
+					BlockTime:            8000,
+					Tolerance:            500,
+					StageTimeout:         2000,
+					BlockPrepareTime:     4000,
+					StageTimeoutIncrease: 2000,
+				},
+				Gas: NodeConstantsGas{
+					MinimumGasFee:       10,
+					MaximumGasLimit:     30000000,
+					MinimumGasLimit:     21000,
+					NativeFeeMultiplier: 1,
+					NativeGasLimits: NodeConstantsGasLimits{
+						Vote:                  100000,
+						Transfer:              21000,
+						MultiPayment:          50000,
+						MultiSignature:        60000,
+						UsernameResignation:   40000,
+						UsernameRegistration:  40000,
+						ValidatorResignation:  40000,
+						ValidatorRegistration: 60000,
+					},
+				},
+				Fees: NodeConstantsFees{
+					StaticFees: NodeConstantsStaticFees{
+						Vote:                  100000000,
+						Transfer:              10000000,
+						MultiPayment:          10000000,
+						MultiSignature:        500000000,
+						UsernameResignation:   2500000000,
+						UsernameRegistration:  2500000000,
+						ValidatorResignation:  2500000000,
+						ValidatorRegistration: 2500000000,
 					},
 				},
 			},
 			TransactionPool: NodeTransactionPool{
-				DynamicFees: DynamicFees{
-					Enabled:         true,
-					MinFeePool:      1000,
-					MinFeeBroadcast: 1000,
-					AddonBytes: FeeTypes{
-						Transfer:             100,
-						SecondSignature:      250,
-						DelegateRegistration: 400000,
-						Vote:                 100,
-						MultiSignature:       500,
-						Ipfs:                 250,
-						MultiPayment:         500,
-						DelegateResignation:  100,
-						HtlcLock:             100,
-						HtlcClaim:            0,
-						HtlcRefund:           0,
-					},
+				DynamicFees: NodeDynamicFees{
+					Enabled: true,
 				},
 			},
 		},
@@ -220,32 +260,26 @@ func TestNodeService_Fees(t *testing.T) {
 		testMethod(t, request, "GET")
 		fmt.Fprint(writer,
 			`{
-			  "data": [
-			    {
-			      "type": 0,
+			  "data": {
+			    "transfer": {
 			      "min": "10000000",
 			      "max": "10000000",
 			      "avg": "10000000",
-			      "sum": "10000000",
-			      "median": "10000000"
+			      "sum": "10000000"
 			    },
-			    {
-			      "type": 1,
+			    "multiSignature": {
 			      "min": "500000000",
 			      "max": "500000000",
 			      "avg": "500000000",
-			      "sum": "500000000",
-			      "median": "500000000"
+			      "sum": "500000000"
 			    },
-			    {
-			      "type": 3,
+			    "vote": {
 			      "min": "100000000",
 			      "max": "100000000",
 			      "avg": "100000000",
-			      "sum": "100000000",
-			      "median": "100000000"
+			      "sum": "100000000"
 			    }
-			  ]
+			  }
 			}`)
 	})
 
@@ -253,27 +287,25 @@ func TestNodeService_Fees(t *testing.T) {
 	testGeneralError(t, "Node.Fees", err)
 	testResponseUrl(t, "Node.Fees", response, "/api/node/fees?days=7")
 	testResponseStruct(t, "Node.Fees", responseStruct, &GetNodeFees{
-		Data: []FeeStatistic{{
-			Type:   0,
-			MinFee: 10000000,
-			MaxFee: 10000000,
-			AvgFee: 10000000,
-			SumFee: 10000000,
-			MdnFee: 10000000,
-		}, {
-			Type:   1,
-			MinFee: 500000000,
-			MaxFee: 500000000,
-			AvgFee: 500000000,
-			SumFee: 500000000,
-			MdnFee: 500000000,
-		}, {
-			Type:   3,
-			MinFee: 100000000,
-			MaxFee: 100000000,
-			AvgFee: 100000000,
-			SumFee: 100000000,
-			MdnFee: 100000000,
-		}},
+		Data: NodeFeesResponse{
+			"transfer": {
+				Min: newBigInt(10000000),
+				Max: newBigInt(10000000),
+				Avg: newBigInt(10000000),
+				Sum: newBigInt(10000000),
+			},
+			"multiSignature": {
+				Min: newBigInt(500000000),
+				Max: newBigInt(500000000),
+				Avg: newBigInt(500000000),
+				Sum: newBigInt(500000000),
+			},
+			"vote": {
+				Min: newBigInt(100000000),
+				Max: newBigInt(100000000),
+				Avg: newBigInt(100000000),
+				Sum: newBigInt(100000000),
+			},
+		},
 	})
 }

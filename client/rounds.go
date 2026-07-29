@@ -18,10 +18,10 @@ import (
 type RoundsService Service
 
 // Get the forging validators of a round by the given id.
-func (s *RoundsService) Validators(ctx context.Context, id int64) (*GetValidators, *http.Response, error) {
+func (s *RoundsService) Validators(ctx context.Context, id string) (*Wallets, *http.Response, error) {
 	uri := fmt.Sprintf("rounds/%v/validators", id)
 
-	var responseStruct *GetValidators
+	var responseStruct *Wallets
 	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, nil, &responseStruct, "api")
 
 	if err != nil {
@@ -46,7 +46,7 @@ func (s *RoundsService) All(ctx context.Context, query *Pagination) (*GetRounds,
 }
 
 // Get a round by the given id.
-func (s *RoundsService) Show(ctx context.Context, id int64) (*GetRound, *http.Response, error) {
+func (s *RoundsService) Show(ctx context.Context, id string) (*GetRound, *http.Response, error) {
 	uri := fmt.Sprintf("rounds/%v", id)
 
 	var responseStruct *GetRound

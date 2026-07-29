@@ -17,9 +17,9 @@ import (
 // methods of the Ark Core API - Version 2.
 type ValidatorsService Service
 
-// Get all accounts.
-func (s *ValidatorsService) List(ctx context.Context, query *Pagination) (*Validators, *http.Response, error) {
-	var responseStruct *Validators
+// Get all validators.
+func (s *ValidatorsService) List(ctx context.Context, query *Pagination) (*Wallets, *http.Response, error) {
+	var responseStruct *Wallets
 	resp, err := s.client.SendRequest(ctx, "GET", "validators", query, nil, &responseStruct, "api")
 
 	if err != nil {
@@ -30,10 +30,10 @@ func (s *ValidatorsService) List(ctx context.Context, query *Pagination) (*Valid
 }
 
 // Get a validator by the given ID. (address, publicKey and username are valid)
-func (s *ValidatorsService) Get(ctx context.Context, id string) (*GetValidator, *http.Response, error) {
+func (s *ValidatorsService) Get(ctx context.Context, id string) (*GetWallet, *http.Response, error) {
 	uri := fmt.Sprintf("validators/%v", id)
 
-	var responseStruct *GetValidator
+	var responseStruct *GetWallet
 	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, nil, &responseStruct, "api")
 
 	if err != nil {
@@ -44,10 +44,10 @@ func (s *ValidatorsService) Get(ctx context.Context, id string) (*GetValidator, 
 }
 
 // Get all blocks for the given validator.
-func (s *ValidatorsService) Blocks(ctx context.Context, id string, query *Pagination) (*GetValidatorBlocks, *http.Response, error) {
+func (s *ValidatorsService) Blocks(ctx context.Context, id string, query *Pagination) (*Blocks, *http.Response, error) {
 	uri := fmt.Sprintf("validators/%v/blocks", id)
 
-	var responseStruct *GetValidatorBlocks
+	var responseStruct *Blocks
 	resp, err := s.client.SendRequest(ctx, "GET", uri, query, nil, &responseStruct, "api")
 
 	if err != nil {
@@ -58,10 +58,10 @@ func (s *ValidatorsService) Blocks(ctx context.Context, id string, query *Pagina
 }
 
 // Get all voters for the given validator.
-func (s *ValidatorsService) Voters(ctx context.Context, id string, query *Pagination) (*GetValidatorVoters, *http.Response, error) {
+func (s *ValidatorsService) Voters(ctx context.Context, id string, query *Pagination) (*Wallets, *http.Response, error) {
 	uri := fmt.Sprintf("validators/%v/voters", id)
 
-	var responseStruct *GetValidatorVoters
+	var responseStruct *Wallets
 	resp, err := s.client.SendRequest(ctx, "GET", uri, query, nil, &responseStruct, "api")
 
 	if err != nil {
