@@ -17,7 +17,7 @@ type RoundData struct {
 
 // GetRounds represents the response from the /api/rounds endpoint.
 type GetRounds struct {
-	Meta Meta   `json:"meta"`
+	Meta Meta        `json:"meta"`
 	Data []RoundData `json:"data"`
 }
 
@@ -26,13 +26,13 @@ type GetRound struct {
 	Data RoundData `json:"data"`
 }
 
-// RoundDelegate represents the delegates of the round.
-type RoundDelegate struct {
+// RoundValidator represents the validators of the round.
+type RoundValidator struct {
 	PublicKey string `json:"publicKey,omitempty"`
 	Votes     string `json:"votes,omitempty"`
 }
 
-// GetDelegates represents the response from the /api/rounds/<id>/delegates endpoint.
-type GetDelegates struct {
-	Data []RoundDelegate `json:"data,omitempty"`
+// GetValidators represents the response from the /api/rounds/<id>/validators endpoint.
+type GetValidators struct {
+	Data []RoundValidator `json:"data,omitempty"`
 }

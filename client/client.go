@@ -28,15 +28,15 @@ type Hosts struct {
 
 type Client struct {
 	httpClient *http.Client
-	Hosts        Hosts
+	Hosts      Hosts
 
-	common 			 Service
+	common Service
 
 	ApiNodes     *ApiNodesService
 	Blocks       *BlocksService
 	Blockchain   *BlockchainService
 	Commits      *CommitsService
-	Delegates    *DelegatesService
+	Validators   *ValidatorsService
 	Node         *NodeService
 	Peers        *PeersService
 	Rounds       *RoundsService
@@ -64,7 +64,7 @@ func NewClient(httpClient *http.Client, hosts Hosts) *Client {
 	c.Blocks = (*BlocksService)(&c.common)
 	c.Blockchain = (*BlockchainService)(&c.common)
 	c.Commits = (*CommitsService)(&c.common)
-	c.Delegates = (*DelegatesService)(&c.common)
+	c.Validators = (*ValidatorsService)(&c.common)
 	c.Node = (*NodeService)(&c.common)
 	c.Peers = (*PeersService)(&c.common)
 	c.Rounds = (*RoundsService)(&c.common)
@@ -75,16 +75,15 @@ func NewClient(httpClient *http.Client, hosts Hosts) *Client {
 	return c
 }
 
-
 func (c *Client) SendRequest(ctx context.Context, method string, endpoint string, queryString interface{}, body interface{}, model interface{}, hostType string) (*http.Response, error) {
 	var host string
 	switch hostType {
-		case "transactions":
-			host = c.Hosts.Transactions
-		case "evm":
-			host = c.Hosts.EVM
-		default:
-			host = c.Hosts.API
+	case "transactions":
+		host = c.Hosts.Transactions
+	case "evm":
+		host = c.Hosts.EVM
+	default:
+		host = c.Hosts.API
 	}
 
 	parsedHost, err := url.Parse(host)

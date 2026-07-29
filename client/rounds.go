@@ -17,11 +17,11 @@ import (
 // methods of the Ark Core API - Version 2.
 type RoundsService Service
 
-// Get the forging delegates of a round by the given id.
-func (s *RoundsService) Delegates(ctx context.Context, id int64) (*GetDelegates, *http.Response, error) {
-	uri := fmt.Sprintf("rounds/%v/delegates", id)
+// Get the forging validators of a round by the given id.
+func (s *RoundsService) Validators(ctx context.Context, id int64) (*GetValidators, *http.Response, error) {
+	uri := fmt.Sprintf("rounds/%v/validators", id)
 
-	var responseStruct *GetDelegates
+	var responseStruct *GetValidators
 	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, nil, &responseStruct, "api")
 
 	if err != nil {
