@@ -42,67 +42,38 @@ type NodeCore struct {
 }
 
 type NodeConfiguration struct {
-	Nethash         string              `json:"nethash,omitempty"`
-	Token           string              `json:"token,omitempty"`
-	Symbol          string              `json:"symbol,omitempty"`
-	Explorer        string              `json:"explorer,omitempty"`
-	Version         int16               `json:"version,omitempty"`
-	Wif             int16               `json:"wif,omitempty"`
-	Slip44          int16               `json:"slip44,omitempty"`
-	Ports           map[string]int16    `json:"ports,omitempty"`
-	Constants       NodeConstants       `json:"constants,omitempty"`
-	Core            NodeCore            `json:"core,omitempty"`
-	TransactionPool NodeTransactionPool `json:"transactionPool,omitempty"`
-}
-
-type NodeConstantsGasLimits struct {
-	Vote                  int64 `json:"vote,omitempty"`
-	Transfer              int64 `json:"transfer,omitempty"`
-	MultiPayment          int64 `json:"multiPayment,omitempty"`
-	MultiSignature        int64 `json:"multiSignature,omitempty"`
-	UsernameResignation   int64 `json:"usernameResignation,omitempty"`
-	UsernameRegistration  int64 `json:"usernameRegistration,omitempty"`
-	ValidatorResignation  int64 `json:"validatorResignation,omitempty"`
-	ValidatorRegistration int64 `json:"validatorRegistration,omitempty"`
+	Nethash   string           `json:"nethash,omitempty"`
+	Token     string           `json:"token,omitempty"`
+	Symbol    string           `json:"symbol,omitempty"`
+	Explorer  string           `json:"explorer,omitempty"`
+	Version   int16            `json:"version,omitempty"`
+	Wif       int16            `json:"wif,omitempty"`
+	Ports     map[string]int16 `json:"ports,omitempty"`
+	Constants NodeConstants    `json:"constants,omitempty"`
+	Core      NodeCore         `json:"core,omitempty"`
 }
 
 type NodeConstantsGas struct {
-	MinimumGasFee       int64                  `json:"minimumGasFee,omitempty"`
-	MaximumGasLimit     int64                  `json:"maximumGasLimit,omitempty"`
-	MinimumGasLimit     int64                  `json:"minimumGasLimit,omitempty"`
-	NativeGasLimits     NodeConstantsGasLimits `json:"nativeGasLimits,omitempty"`
-	NativeFeeMultiplier int64                  `json:"nativeFeeMultiplier,omitempty"`
-}
-
-type NodeConstantsStaticFees struct {
-	Vote                  int64 `json:"vote,omitempty"`
-	Transfer              int64 `json:"transfer,omitempty"`
-	MultiPayment          int64 `json:"multiPayment,omitempty"`
-	MultiSignature        int64 `json:"multiSignature,omitempty"`
-	UsernameResignation   int64 `json:"usernameResignation,omitempty"`
-	UsernameRegistration  int64 `json:"usernameRegistration,omitempty"`
-	ValidatorResignation  int64 `json:"validatorResignation,omitempty"`
-	ValidatorRegistration int64 `json:"validatorRegistration,omitempty"`
-}
-
-type NodeConstantsFees struct {
-	StaticFees NodeConstantsStaticFees `json:"staticFees,omitempty"`
+	MaximumGasLimit int64 `json:"maximumGasLimit,omitempty"`
+	MaximumGasPrice int64 `json:"maximumGasPrice,omitempty"`
+	MinimumGasLimit int64 `json:"minimumGasLimit,omitempty"`
+	MinimumGasPrice int64 `json:"minimumGasPrice,omitempty"`
 }
 
 type NodeConstantsBlock struct {
-	Version         byte  `json:"version,omitempty"`
-	MaxPayload      int64 `json:"maxPayload,omitempty"`
-	MaxGasLimit     int64 `json:"maxGasLimit,omitempty"`
-	MaxTransactions int64 `json:"maxTransactions,omitempty"`
-}
-
-type NodeConstantsAddress struct {
-	Keccak256 bool `json:"keccak256,omitempty"`
+	Version     byte  `json:"version,omitempty"`
+	MaxPayload  int64 `json:"maxPayload,omitempty"`
+	MaxGasLimit int64 `json:"maxGasLimit,omitempty"`
 }
 
 type NodeConstantsSatoshi struct {
 	Decimals     int16 `json:"decimals,omitempty"`
 	Denomination int64 `json:"denomination,omitempty"`
+}
+
+type NodeConstantsSnapshot struct {
+	SnapshotHash             string `json:"snapshotHash,omitempty"`
+	PreviousGenesisBlockHash string `json:"previousGenesisBlockHash,omitempty"`
 }
 
 type NodeConstantsTimeouts struct {
@@ -113,28 +84,21 @@ type NodeConstantsTimeouts struct {
 	StageTimeoutIncrease int64 `json:"stageTimeoutIncrease,omitempty"`
 }
 
+// NodeConstants represents a single milestone's constants, as returned both
+// by node/configuration (the currently active milestone) and as an entry in
+// node/configuration/crypto's milestones list.
 type NodeConstants struct {
-	Gas               NodeConstantsGas      `json:"gas,omitempty"`
-	Fees              NodeConstantsFees     `json:"fees,omitempty"`
-	Block             NodeConstantsBlock    `json:"block,omitempty"`
-	Epoch             string                `json:"epoch,omitempty"`
-	Height            int64                 `json:"height,omitempty"`
-	Reward            BigInt                `json:"reward,omitempty"`
-	Address           NodeConstantsAddress  `json:"address,omitempty"`
-	EvmSpec           string                `json:"evmSpec,omitempty"`
-	Satoshi           NodeConstantsSatoshi  `json:"satoshi,omitempty"`
-	Timeouts          NodeConstantsTimeouts `json:"timeouts,omitempty"`
-	ActiveValidators  int64                 `json:"activeValidators,omitempty"`
-	MultiPaymentLimit int64                 `json:"multiPaymentLimit,omitempty"`
-	VendorFieldLength int64                 `json:"vendorFieldLength,omitempty"`
-}
-
-type NodeDynamicFees struct {
-	Enabled bool `json:"enabled,omitempty"`
-}
-
-type NodeTransactionPool struct {
-	DynamicFees NodeDynamicFees `json:"dynamicFees,omitempty"`
+	Gas                      NodeConstantsGas      `json:"gas,omitempty"`
+	Block                    NodeConstantsBlock    `json:"block,omitempty"`
+	Epoch                    string                `json:"epoch,omitempty"`
+	Height                   int64                 `json:"height,omitempty"`
+	Reward                   BigInt                `json:"reward,omitempty"`
+	EvmSpec                  string                `json:"evmSpec,omitempty"`
+	Satoshi                  NodeConstantsSatoshi  `json:"satoshi,omitempty"`
+	Snapshot                 NodeConstantsSnapshot `json:"snapshot,omitempty"`
+	Timeouts                 NodeConstantsTimeouts `json:"timeouts,omitempty"`
+	RoundValidators          int64                 `json:"roundValidators,omitempty"`
+	ValidatorRegistrationFee BigInt                `json:"validatorRegistrationFee,omitempty"`
 }
 
 // TransactionTypeFee represents the fee statistics for a single transaction type.

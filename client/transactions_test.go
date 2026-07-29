@@ -37,7 +37,7 @@ func TestTransactionsService_List(t *testing.T) {
 			  "data": [
 			    {
 			      "hash": "dummy",
-			      "blockNumber": "dummy",
+			      "blockHash": "dummy",
 			      "value": "10000000",
 			      "gas": "21000",
 			      "gasPrice": "10000000",
@@ -50,9 +50,10 @@ func TestTransactionsService_List(t *testing.T) {
 			      "timestamp": "1719434741918",
 			      "nonce": "1",
 			      "receipt": {
+			        "cumulativeGasUsed": 21000,
 			        "gasRefunded": 0,
 			        "gasUsed": 21000,
-			        "success": true
+			        "status": 1
 			      }
 			    }
 			  ]
@@ -76,7 +77,7 @@ func TestTransactionsService_List(t *testing.T) {
 		},
 		Data: []Transaction{{
 			Hash:            "dummy",
-			BlockNumber:     "dummy",
+			BlockHash:       "dummy",
 			Value:           newBigInt(10000000),
 			Gas:             newBigInt(21000),
 			GasPrice:        newBigInt(10000000),
@@ -89,9 +90,10 @@ func TestTransactionsService_List(t *testing.T) {
 			Timestamp:       "1719434741918",
 			Nonce:           newBigInt(1),
 			Receipt: TransactionReceipt{
-				GasRefunded: 0,
-				GasUsed:     21000,
-				Success:     true,
+				CumulativeGasUsed: 21000,
+				GasRefunded:       0,
+				GasUsed:           21000,
+				Status:            1,
 			},
 		}},
 	})
@@ -146,7 +148,7 @@ func TestTransactionsService_Get(t *testing.T) {
 			`{
 			  "data": {
 			    "hash": "dummy",
-			    "blockNumber": "dummy",
+			    "blockHash": "dummy",
 			    "value": "10000000",
 			    "gas": "21000",
 			    "gasPrice": "10000000",
@@ -159,9 +161,10 @@ func TestTransactionsService_Get(t *testing.T) {
 			    "timestamp": "1719434741918",
 			    "nonce": "1",
 			    "receipt": {
+			      "cumulativeGasUsed": 21000,
 			      "gasRefunded": 0,
 			      "gasUsed": 21000,
-			      "success": true
+			      "status": 1
 			    }
 			  }
 			}`)
@@ -173,7 +176,7 @@ func TestTransactionsService_Get(t *testing.T) {
 	testResponseStruct(t, "Transactions.Get", responseStruct, &GetTransaction{
 		Data: Transaction{
 			Hash:            "dummy",
-			BlockNumber:     "dummy",
+			BlockHash:       "dummy",
 			Value:           newBigInt(10000000),
 			Gas:             newBigInt(21000),
 			GasPrice:        newBigInt(10000000),
@@ -186,9 +189,10 @@ func TestTransactionsService_Get(t *testing.T) {
 			Timestamp:       "1719434741918",
 			Nonce:           newBigInt(1),
 			Receipt: TransactionReceipt{
-				GasRefunded: 0,
-				GasUsed:     21000,
-				Success:     true,
+				CumulativeGasUsed: 21000,
+				GasRefunded:       0,
+				GasUsed:           21000,
+				Status:            1,
 			},
 		},
 	})
@@ -216,7 +220,7 @@ func TestTransactionsService_ListUnconfirmed(t *testing.T) {
 			  "data": [
 			    {
 			      "hash": "dummy",
-			      "blockNumber": "dummy",
+			      "blockHash": "dummy",
 			      "value": "10000000",
 			      "gas": "21000",
 			      "gasPrice": "10000000",
@@ -229,9 +233,10 @@ func TestTransactionsService_ListUnconfirmed(t *testing.T) {
 			      "timestamp": "1719434741918",
 			      "nonce": "1",
 			      "receipt": {
+			        "cumulativeGasUsed": 21000,
 			        "gasRefunded": 0,
 			        "gasUsed": 21000,
-			        "success": true
+			        "status": 1
 			      }
 			    }
 			  ]
@@ -255,7 +260,7 @@ func TestTransactionsService_ListUnconfirmed(t *testing.T) {
 		},
 		Data: []Transaction{{
 			Hash:            "dummy",
-			BlockNumber:     "dummy",
+			BlockHash:       "dummy",
 			Value:           newBigInt(10000000),
 			Gas:             newBigInt(21000),
 			GasPrice:        newBigInt(10000000),
@@ -268,9 +273,10 @@ func TestTransactionsService_ListUnconfirmed(t *testing.T) {
 			Timestamp:       "1719434741918",
 			Nonce:           newBigInt(1),
 			Receipt: TransactionReceipt{
-				GasRefunded: 0,
-				GasUsed:     21000,
-				Success:     true,
+				CumulativeGasUsed: 21000,
+				GasRefunded:       0,
+				GasUsed:           21000,
+				Status:            1,
 			},
 		}},
 	})
@@ -287,7 +293,7 @@ func TestTransactionsService_GetUnconfirmed(t *testing.T) {
 			`{
 			  "data": {
 			    "hash": "dummy",
-			    "blockNumber": "dummy",
+			    "blockHash": "dummy",
 			    "value": "10000000",
 			    "gas": "21000",
 			    "gasPrice": "10000000",
@@ -300,9 +306,10 @@ func TestTransactionsService_GetUnconfirmed(t *testing.T) {
 			    "timestamp": "1719434741918",
 			    "nonce": "1",
 			    "receipt": {
+			      "cumulativeGasUsed": 21000,
 			      "gasRefunded": 0,
 			      "gasUsed": 21000,
-			      "success": true
+			      "status": 1
 			    }
 			  }
 			}`)
@@ -314,7 +321,7 @@ func TestTransactionsService_GetUnconfirmed(t *testing.T) {
 	testResponseStruct(t, "Transactions.GetUnconfirmed", responseStruct, &GetTransaction{
 		Data: Transaction{
 			Hash:            "dummy",
-			BlockNumber:     "dummy",
+			BlockHash:       "dummy",
 			Value:           newBigInt(10000000),
 			Gas:             newBigInt(21000),
 			GasPrice:        newBigInt(10000000),
@@ -327,9 +334,10 @@ func TestTransactionsService_GetUnconfirmed(t *testing.T) {
 			Timestamp:       "1719434741918",
 			Nonce:           newBigInt(1),
 			Receipt: TransactionReceipt{
-				GasRefunded: 0,
-				GasUsed:     21000,
-				Success:     true,
+				CumulativeGasUsed: 21000,
+				GasRefunded:       0,
+				GasUsed:           21000,
+				Status:            1,
 			},
 		},
 	})

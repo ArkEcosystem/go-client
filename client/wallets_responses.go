@@ -8,14 +8,17 @@
 package client
 
 type ValidatorLastBlock struct {
-	Id        string `json:"id,omitempty"`
-	Height    int64  `json:"height,omitempty"`
+	Hash      string `json:"hash,omitempty"`
+	Number    int64  `json:"number,omitempty"`
 	Timestamp int64  `json:"timestamp,omitempty"`
 }
 
 type WalletAttributes struct {
 	Username                string              `json:"username,omitempty"`
 	Vote                    string              `json:"vote,omitempty"`
+	IsLegacy                bool                `json:"isLegacy,omitempty"`
+	LegacyNonce             string              `json:"legacyNonce,omitempty"`
+	ValidatorFee            BigInt              `json:"validatorFee,omitempty"`
 	ValidatorRank           byte                `json:"validatorRank,omitempty"`
 	ValidatorApproval       float64             `json:"validatorApproval,omitempty"`
 	ValidatorResigned       bool                `json:"validatorResigned,omitempty"`

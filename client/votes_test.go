@@ -36,7 +36,7 @@ func TestVotesService_List(t *testing.T) {
 			  "data": [
 			    {
 			      "hash": "dummy",
-			      "blockNumber": "dummy",
+			      "blockHash": "dummy",
 			      "value": "0",
 			      "gas": "100000",
 			      "gasPrice": "10000000",
@@ -49,9 +49,10 @@ func TestVotesService_List(t *testing.T) {
 			      "timestamp": "1719434741918",
 			      "nonce": "1",
 			      "receipt": {
+			        "cumulativeGasUsed": 100000,
 			        "gasRefunded": 0,
 			        "gasUsed": 100000,
-			        "success": true
+			        "status": 1
 			      }
 			    }
 			  ]
@@ -75,7 +76,7 @@ func TestVotesService_List(t *testing.T) {
 		},
 		Data: []Transaction{{
 			Hash:            "dummy",
-			BlockNumber:     "dummy",
+			BlockHash:       "dummy",
 			Value:           newBigInt(0),
 			Gas:             newBigInt(100000),
 			GasPrice:        newBigInt(10000000),
@@ -88,9 +89,10 @@ func TestVotesService_List(t *testing.T) {
 			Timestamp:       "1719434741918",
 			Nonce:           newBigInt(1),
 			Receipt: TransactionReceipt{
-				GasRefunded: 0,
-				GasUsed:     100000,
-				Success:     true,
+				CumulativeGasUsed: 100000,
+				GasRefunded:       0,
+				GasUsed:           100000,
+				Status:            1,
 			},
 		}},
 	})
@@ -107,7 +109,7 @@ func TestVotesService_Get(t *testing.T) {
 			`{
 			  "data": {
 			    "hash": "dummy",
-			    "blockNumber": "dummy",
+			    "blockHash": "dummy",
 			    "value": "0",
 			    "gas": "100000",
 			    "gasPrice": "10000000",
@@ -120,9 +122,10 @@ func TestVotesService_Get(t *testing.T) {
 			    "timestamp": "1719434741918",
 			    "nonce": "1",
 			    "receipt": {
+			      "cumulativeGasUsed": 100000,
 			      "gasRefunded": 0,
 			      "gasUsed": 100000,
-			      "success": true
+			      "status": 1
 			    }
 			  }
 			}`)
@@ -134,7 +137,7 @@ func TestVotesService_Get(t *testing.T) {
 	testResponseStruct(t, "Votes.Get", responseStruct, &GetTransaction{
 		Data: Transaction{
 			Hash:            "dummy",
-			BlockNumber:     "dummy",
+			BlockHash:       "dummy",
 			Value:           newBigInt(0),
 			Gas:             newBigInt(100000),
 			GasPrice:        newBigInt(10000000),
@@ -147,9 +150,10 @@ func TestVotesService_Get(t *testing.T) {
 			Timestamp:       "1719434741918",
 			Nonce:           newBigInt(1),
 			Receipt: TransactionReceipt{
-				GasRefunded: 0,
-				GasUsed:     100000,
-				Success:     true,
+				CumulativeGasUsed: 100000,
+				GasRefunded:       0,
+				GasUsed:           100000,
+				Status:            1,
 			},
 		},
 	})

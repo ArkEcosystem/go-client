@@ -86,40 +86,29 @@ func TestNodeService_Configuration(t *testing.T) {
 		fmt.Fprint(writer,
 			`{
 			  "data": {
-			    "nethash": "578e820911f24e039733b45e4882b73e301f813a0d2c31330dafda84534ffa23",
-			    "token": "DARK",
-			    "symbol": "DѦ",
-			    "explorer": "https://dwallets.ark.io/api/",
-			    "version": 30,
-			    "wif": 170,
-			    "slip44": 111,
-			    "ports": {
-			      "@arkecosystem/core-p2p": 4002,
-			      "@arkecosystem/core-api": 4003
-			    },
-			    "core": {
-			      "version": "4.0.0"
-			    },
 			    "constants": {
-			      "height": 75600,
-			      "reward": "200000000",
-			      "activeValidators": 51,
-			      "multiPaymentLimit": 128,
-			      "vendorFieldLength": 255,
-			      "epoch": "2017-03-21T13:00:00.000Z",
-			      "evmSpec": "shanghai",
+			      "gas": {
+			        "maximumGasLimit": 5000000,
+			        "maximumGasPrice": 10000000000000,
+			        "minimumGasLimit": 21000,
+			        "minimumGasPrice": 5000000000
+			      },
 			      "block": {
-			        "version": 0,
+			        "version": 1,
 			        "maxPayload": 2097152,
-			        "maxGasLimit": 30000000,
-			        "maxTransactions": 50
+			        "maxGasLimit": 10000000
 			      },
-			      "address": {
-			        "keccak256": true
-			      },
+			      "epoch": "2026-06-02T00:00:00.000Z",
+			      "height": 22839038,
+			      "reward": "2000000000000000000",
+			      "evmSpec": "Shanghai",
 			      "satoshi": {
 			        "decimals": 18,
 			        "denomination": 1000000000000000000
+			      },
+			      "snapshot": {
+			        "snapshotHash": "002d1b892ca9c970c53c8576907971593cd576749b4b26ea8ec7f3f52688aed7",
+			        "previousGenesisBlockHash": "c37ec049e0317eb8f03db8bcfc5911551f89ba132042ce8a583b1ef0590806f7"
 			      },
 			      "timeouts": {
 			        "blockTime": 8000,
@@ -128,40 +117,21 @@ func TestNodeService_Configuration(t *testing.T) {
 			        "blockPrepareTime": 4000,
 			        "stageTimeoutIncrease": 2000
 			      },
-			      "gas": {
-			        "minimumGasFee": 10,
-			        "maximumGasLimit": 30000000,
-			        "minimumGasLimit": 21000,
-			        "nativeFeeMultiplier": 1,
-			        "nativeGasLimits": {
-			          "vote": 100000,
-			          "transfer": 21000,
-			          "multiPayment": 50000,
-			          "multiSignature": 60000,
-			          "usernameResignation": 40000,
-			          "usernameRegistration": 40000,
-			          "validatorResignation": 40000,
-			          "validatorRegistration": 60000
-			        }
-			      },
-			      "fees": {
-			        "staticFees": {
-			          "vote": 100000000,
-			          "transfer": 10000000,
-			          "multiPayment": 10000000,
-			          "multiSignature": 500000000,
-			          "usernameResignation": 2500000000,
-			          "usernameRegistration": 2500000000,
-			          "validatorResignation": 2500000000,
-			          "validatorRegistration": 2500000000
-			        }
-			      }
+			      "roundValidators": 53,
+			      "validatorRegistrationFee": "250000000000000000000"
 			    },
-			    "transactionPool": {
-			      "dynamicFees": {
-			        "enabled": true
-			      }
-			    }
+			    "core": {
+			      "version": "0.0.1-evm.53"
+			    },
+			    "explorer": "",
+			    "nethash": "560f869ed6713745a12328e7214cb65077e645bb5e57b1e5b323bb915a51f114",
+			    "ports": {
+			      "@mainsail/api-database": null
+			    },
+			    "symbol": "TѦ",
+			    "token": "ARK",
+			    "version": 30,
+			    "wif": 186
 			  }
 			}`)
 	})
@@ -171,40 +141,41 @@ func TestNodeService_Configuration(t *testing.T) {
 	testResponseUrl(t, "Node.Configuration", response, "/api/node/configuration")
 	testResponseStruct(t, "Node.Configuration", responseStruct, &GetNodeConfiguration{
 		Data: NodeConfiguration{
-			Nethash:  "578e820911f24e039733b45e4882b73e301f813a0d2c31330dafda84534ffa23",
-			Token:    "DARK",
-			Symbol:   "DѦ",
-			Explorer: "https://dwallets.ark.io/api/",
+			Nethash:  "560f869ed6713745a12328e7214cb65077e645bb5e57b1e5b323bb915a51f114",
+			Token:    "ARK",
+			Symbol:   "TѦ",
+			Explorer: "",
 			Version:  30,
-			Wif:      170,
-			Slip44:   111,
+			Wif:      186,
 			Ports: map[string]int16{
-				"@arkecosystem/core-p2p": 4002,
-				"@arkecosystem/core-api": 4003,
+				"@mainsail/api-database": 0,
 			},
 			Core: NodeCore{
-				Version: "4.0.0",
+				Version: "0.0.1-evm.53",
 			},
 			Constants: NodeConstants{
-				Height:            75600,
-				Reward:            newBigInt(200000000),
-				ActiveValidators:  51,
-				MultiPaymentLimit: 128,
-				VendorFieldLength: 255,
-				Epoch:             "2017-03-21T13:00:00.000Z",
-				EvmSpec:           "shanghai",
+				Gas: NodeConstantsGas{
+					MaximumGasLimit: 5000000,
+					MaximumGasPrice: 10000000000000,
+					MinimumGasLimit: 21000,
+					MinimumGasPrice: 5000000000,
+				},
 				Block: NodeConstantsBlock{
-					Version:         0,
-					MaxPayload:      2097152,
-					MaxGasLimit:     30000000,
-					MaxTransactions: 50,
+					Version:     1,
+					MaxPayload:  2097152,
+					MaxGasLimit: 10000000,
 				},
-				Address: NodeConstantsAddress{
-					Keccak256: true,
-				},
+				Epoch:   "2026-06-02T00:00:00.000Z",
+				Height:  22839038,
+				Reward:  newBigInt(2000000000000000000),
+				EvmSpec: "Shanghai",
 				Satoshi: NodeConstantsSatoshi{
 					Decimals:     18,
 					Denomination: 1000000000000000000,
+				},
+				Snapshot: NodeConstantsSnapshot{
+					SnapshotHash:             "002d1b892ca9c970c53c8576907971593cd576749b4b26ea8ec7f3f52688aed7",
+					PreviousGenesisBlockHash: "c37ec049e0317eb8f03db8bcfc5911551f89ba132042ce8a583b1ef0590806f7",
 				},
 				Timeouts: NodeConstantsTimeouts{
 					BlockTime:            8000,
@@ -213,39 +184,8 @@ func TestNodeService_Configuration(t *testing.T) {
 					BlockPrepareTime:     4000,
 					StageTimeoutIncrease: 2000,
 				},
-				Gas: NodeConstantsGas{
-					MinimumGasFee:       10,
-					MaximumGasLimit:     30000000,
-					MinimumGasLimit:     21000,
-					NativeFeeMultiplier: 1,
-					NativeGasLimits: NodeConstantsGasLimits{
-						Vote:                  100000,
-						Transfer:              21000,
-						MultiPayment:          50000,
-						MultiSignature:        60000,
-						UsernameResignation:   40000,
-						UsernameRegistration:  40000,
-						ValidatorResignation:  40000,
-						ValidatorRegistration: 60000,
-					},
-				},
-				Fees: NodeConstantsFees{
-					StaticFees: NodeConstantsStaticFees{
-						Vote:                  100000000,
-						Transfer:              10000000,
-						MultiPayment:          10000000,
-						MultiSignature:        500000000,
-						UsernameResignation:   2500000000,
-						UsernameRegistration:  2500000000,
-						ValidatorResignation:  2500000000,
-						ValidatorRegistration: 2500000000,
-					},
-				},
-			},
-			TransactionPool: NodeTransactionPool{
-				DynamicFees: NodeDynamicFees{
-					Enabled: true,
-				},
+				RoundValidators:          53,
+				ValidatorRegistrationFee: newBigIntFromString("250000000000000000000"),
 			},
 		},
 	})
@@ -261,23 +201,11 @@ func TestNodeService_Fees(t *testing.T) {
 		fmt.Fprint(writer,
 			`{
 			  "data": {
-			    "transfer": {
-			      "min": "10000000",
-			      "max": "10000000",
-			      "avg": "10000000",
-			      "sum": "10000000"
-			    },
-			    "multiSignature": {
-			      "min": "500000000",
-			      "max": "500000000",
-			      "avg": "500000000",
-			      "sum": "500000000"
-			    },
-			    "vote": {
-			      "min": "100000000",
-			      "max": "100000000",
-			      "avg": "100000000",
-			      "sum": "100000000"
+			    "evmCall": {
+			      "avg": "8480594889",
+			      "max": "8888977300",
+			      "min": "5000000000",
+			      "sum": "169611897796"
 			    }
 			  }
 			}`)
@@ -288,23 +216,11 @@ func TestNodeService_Fees(t *testing.T) {
 	testResponseUrl(t, "Node.Fees", response, "/api/node/fees?days=7")
 	testResponseStruct(t, "Node.Fees", responseStruct, &GetNodeFees{
 		Data: NodeFeesResponse{
-			"transfer": {
-				Min: newBigInt(10000000),
-				Max: newBigInt(10000000),
-				Avg: newBigInt(10000000),
-				Sum: newBigInt(10000000),
-			},
-			"multiSignature": {
-				Min: newBigInt(500000000),
-				Max: newBigInt(500000000),
-				Avg: newBigInt(500000000),
-				Sum: newBigInt(500000000),
-			},
-			"vote": {
-				Min: newBigInt(100000000),
-				Max: newBigInt(100000000),
-				Avg: newBigInt(100000000),
-				Sum: newBigInt(100000000),
+			"evmCall": {
+				Avg: newBigInt(8480594889),
+				Max: newBigInt(8888977300),
+				Min: newBigInt(5000000000),
+				Sum: newBigInt(169611897796),
 			},
 		},
 	})

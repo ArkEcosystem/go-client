@@ -8,15 +8,16 @@
 package client
 
 type TransactionReceipt struct {
-	GasRefunded uint32 `json:"gasRefunded,omitempty"`
-	GasUsed     uint32 `json:"gasUsed,omitempty"`
-	Success     bool   `json:"success,omitempty"`
+	CumulativeGasUsed uint32 `json:"cumulativeGasUsed,omitempty"`
+	GasRefunded       uint32 `json:"gasRefunded,omitempty"`
+	GasUsed           uint32 `json:"gasUsed,omitempty"`
+	Status            int    `json:"status,omitempty"`
 }
 
 type Transaction struct {
 	Hash            string             `json:"hash,omitempty"`
 	Value           BigInt             `json:"value,omitempty"`
-	BlockNumber     string             `json:"blockNumber,omitempty"`
+	BlockHash       string             `json:"blockHash,omitempty"`
 	Confirmations   uint32             `json:"confirmations,omitempty"`
 	Data            string             `json:"data,omitempty"`
 	Gas             BigInt             `json:"gas,omitempty"`

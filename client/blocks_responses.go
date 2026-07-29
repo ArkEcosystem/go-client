@@ -10,14 +10,17 @@ package client
 type Block struct {
 	Hash              string `json:"hash,omitempty"`
 	Number            int64  `json:"number,omitempty"`
+	Round             int64  `json:"round,omitempty"`
 	Confirmations     uint32 `json:"confirmations,omitempty"`
 	Amount            BigInt `json:"amount,omitempty"`
 	Fee               BigInt `json:"fee,omitempty"`
+	GasUsed           int64  `json:"gasUsed,omitempty"`
 	Reward            BigInt `json:"reward,omitempty"`
 	Total             BigInt `json:"total,omitempty"`
 	Proposer          string `json:"proposer,omitempty"`
 	PublicKey         string `json:"publicKey,omitempty"`
 	Username          string `json:"username,omitempty"`
+	ValidatorSet      string `json:"validatorSet,omitempty"`
 	TransactionsRoot  string `json:"transactionsRoot,omitempty"`
 	PayloadSize       int64  `json:"payloadSize,omitempty"`
 	ParentHash        string `json:"parentHash,omitempty"`

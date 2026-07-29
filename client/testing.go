@@ -23,6 +23,17 @@ func newBigInt(x int64) BigInt {
 	return BigInt{big.NewInt(x)}
 }
 
+// newBigIntFromString builds a BigInt from a decimal string, for test values
+// that exceed int64's range (e.g. wei-scale amounts beyond ~9.2e18).
+func newBigIntFromString(s string) BigInt {
+	i, ok := new(big.Int).SetString(s, 10)
+	if !ok {
+		panic(fmt.Sprintf("newBigIntFromString: invalid decimal string %q", s))
+	}
+
+	return BigInt{i}
+}
+
 const (
 	// baseURLPath is a non-empty Client.BaseURL path to use during tests,
 	// to ensure relative URLs are used for all endpoints. See issue #752.

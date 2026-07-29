@@ -285,7 +285,7 @@ func TestBlocksService_Transactions(t *testing.T) {
 			  "data": [
 			    {
 					"hash": "b375b16677617ae903372040e6e794e239a043ac2017e2f944886cc7aaa9f3e9",
-					"blockNumber": "478ccd06f1f93b74e6ec5fc626ffe8d3c2421b3e074d070caa3c0ab4e8a6ad95",
+					"blockHash": "478ccd06f1f93b74e6ec5fc626ffe8d3c2421b3e074d070caa3c0ab4e8a6ad95",
 					"value": "10000",
 					"gas": "21000",
 					"gasPrice": "10000000",
@@ -298,9 +298,10 @@ func TestBlocksService_Transactions(t *testing.T) {
 					"timestamp": "1719391504872",
 					"nonce": "4",
 					"receipt": {
+						"cumulativeGasUsed": 21000,
 						"gasRefunded": 0,
 						"gasUsed": 21000,
-						"success": true
+						"status": 1
 					}
 			    }
 			  ]
@@ -324,7 +325,7 @@ func TestBlocksService_Transactions(t *testing.T) {
 		},
 		Data: []Transaction{{
 			Hash:            "b375b16677617ae903372040e6e794e239a043ac2017e2f944886cc7aaa9f3e9",
-			BlockNumber:     "478ccd06f1f93b74e6ec5fc626ffe8d3c2421b3e074d070caa3c0ab4e8a6ad95",
+			BlockHash:       "478ccd06f1f93b74e6ec5fc626ffe8d3c2421b3e074d070caa3c0ab4e8a6ad95",
 			Value:           newBigInt(10000),
 			Gas:             newBigInt(21000),
 			GasPrice:        newBigInt(10000000),
@@ -337,9 +338,10 @@ func TestBlocksService_Transactions(t *testing.T) {
 			Timestamp:       "1719391504872",
 			Nonce:           newBigInt(4),
 			Receipt: TransactionReceipt{
-				GasRefunded: 0,
-				GasUsed:     21000,
-				Success:     true,
+				CumulativeGasUsed: 21000,
+				GasRefunded:       0,
+				GasUsed:           21000,
+				Status:            1,
 			},
 		}},
 	})
