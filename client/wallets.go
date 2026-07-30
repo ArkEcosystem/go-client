@@ -18,7 +18,7 @@ import (
 type WalletsService Service
 
 // Get all wallets.
-func (s *WalletsService) List(ctx context.Context, query *Pagination) (*Wallets, *http.Response, error) {
+func (s *WalletsService) List(ctx context.Context, query *WalletsQuery) (*Wallets, *http.Response, error) {
 	var responseStruct *Wallets
 	resp, err := s.client.SendRequest(ctx, "GET", "wallets", query, nil, &responseStruct, "api")
 
@@ -30,7 +30,7 @@ func (s *WalletsService) List(ctx context.Context, query *Pagination) (*Wallets,
 }
 
 // Get all wallets sorted by balance in descending order.
-func (s *WalletsService) Top(ctx context.Context, query *Pagination) (*Wallets, *http.Response, error) {
+func (s *WalletsService) Top(ctx context.Context, query *WalletsQuery) (*Wallets, *http.Response, error) {
 	var responseStruct *Wallets
 	resp, err := s.client.SendRequest(ctx, "GET", "wallets/top", query, nil, &responseStruct, "api")
 
@@ -56,7 +56,7 @@ func (s *WalletsService) Get(ctx context.Context, id string) (*GetWallet, *http.
 }
 
 // Get all transactions for the given wallet.
-func (s *WalletsService) Transactions(ctx context.Context, id string, query *Pagination) (*Transactions, *http.Response, error) {
+func (s *WalletsService) Transactions(ctx context.Context, id string, query *TransactionsQuery) (*Transactions, *http.Response, error) {
 	uri := fmt.Sprintf("wallets/%v/transactions", id)
 
 	var responseStruct *Transactions
@@ -70,7 +70,7 @@ func (s *WalletsService) Transactions(ctx context.Context, id string, query *Pag
 }
 
 // Get all transactions sent by the given wallet.
-func (s *WalletsService) SentTransactions(ctx context.Context, id string, query *Pagination) (*Transactions, *http.Response, error) {
+func (s *WalletsService) SentTransactions(ctx context.Context, id string, query *TransactionsQuery) (*Transactions, *http.Response, error) {
 	uri := fmt.Sprintf("wallets/%v/transactions/sent", id)
 
 	var responseStruct *Transactions
@@ -84,7 +84,7 @@ func (s *WalletsService) SentTransactions(ctx context.Context, id string, query 
 }
 
 // Get all transactions received by the given wallet.
-func (s *WalletsService) ReceivedTransactions(ctx context.Context, id string, query *Pagination) (*Transactions, *http.Response, error) {
+func (s *WalletsService) ReceivedTransactions(ctx context.Context, id string, query *TransactionsQuery) (*Transactions, *http.Response, error) {
 	uri := fmt.Sprintf("wallets/%v/transactions/received", id)
 
 	var responseStruct *Transactions
@@ -98,7 +98,7 @@ func (s *WalletsService) ReceivedTransactions(ctx context.Context, id string, qu
 }
 
 // Get all votes by the given wallet.
-func (s *WalletsService) Votes(ctx context.Context, id string, query *Pagination) (*Transactions, *http.Response, error) {
+func (s *WalletsService) Votes(ctx context.Context, id string, query *TransactionsQuery) (*Transactions, *http.Response, error) {
 	uri := fmt.Sprintf("wallets/%v/votes", id)
 
 	var responseStruct *Transactions
@@ -112,7 +112,7 @@ func (s *WalletsService) Votes(ctx context.Context, id string, query *Pagination
 }
 
 // Get all tokens held by the given wallet address.
-func (s *WalletsService) TokensFor(ctx context.Context, address string, query *Pagination) (*WalletTokens, *http.Response, error) {
+func (s *WalletsService) TokensFor(ctx context.Context, address string, query *WalletTokensForQuery) (*WalletTokens, *http.Response, error) {
 	uri := fmt.Sprintf("wallets/%v/tokens", address)
 
 	var responseStruct *WalletTokens

@@ -15,6 +15,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"reflect"
 	"strings"
 
 	"github.com/google/go-querystring/query"
@@ -125,10 +126,9 @@ func (c *Client) SendRequest(ctx context.Context, method string, endpoint string
 	}
 
 	if queryString != nil {
-		switch v := queryString.(type) {
-		case *Pagination:
-			if v != nil && v.Page == 0 {
-				v.Page = 1
+		if p, ok := queryString.(paginator); ok {
+			if rv := reflect.ValueOf(queryString); rv.Kind() != reflect.Ptr || !rv.IsNil() {
+				p.applyDefaults()
 			}
 		}
 

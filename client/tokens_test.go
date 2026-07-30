@@ -39,7 +39,7 @@ func TestTokensService_All(t *testing.T) {
 			}`)
 	})
 
-	query := &Pagination{Limit: 1}
+	query := &TokensQuery{Pagination: Pagination{Limit: 1}}
 	responseStruct, response, err := client.Tokens.All(context.Background(), query)
 	testGeneralError(t, "Tokens.All", err)
 	testResponseUrl(t, "Tokens.All", response, "/api/tokens")
@@ -137,7 +137,7 @@ func TestTokensService_Transfers(t *testing.T) {
 			}`)
 	})
 
-	query := &Pagination{Limit: 1}
+	query := &TokenTransfersQuery{TokenLookupQuery: TokenLookupQuery{Pagination: Pagination{Limit: 1}}}
 	responseStruct, response, err := client.Tokens.Transfers(context.Background(), query)
 	testGeneralError(t, "Tokens.Transfers", err)
 	testResponseUrl(t, "Tokens.Transfers", response, "/api/tokens/transfers")
@@ -208,7 +208,7 @@ func TestTokensService_Approvals(t *testing.T) {
 			}`)
 	})
 
-	query := &Pagination{Limit: 1}
+	query := &TokenApprovalsQuery{TokenLookupQuery: TokenLookupQuery{Pagination: Pagination{Limit: 1}}}
 	responseStruct, response, err := client.Tokens.Approvals(context.Background(), query)
 	testGeneralError(t, "Tokens.Approvals", err)
 	testResponseUrl(t, "Tokens.Approvals", response, "/api/tokens/approvals")
@@ -324,7 +324,7 @@ func TestTokensService_TransfersFor(t *testing.T) {
 			}`)
 	})
 
-	query := &Pagination{Limit: 1}
+	query := &TokenLookupQuery{Pagination: Pagination{Limit: 1}}
 	responseStruct, response, err := client.Tokens.TransfersFor(context.Background(), "0x180a864a755fed0144c622df49b83db577befefb", query)
 	testGeneralError(t, "Tokens.TransfersFor", err)
 	testResponseUrl(t, "Tokens.TransfersFor", response, "/api/tokens/0x180a864a755fed0144c622df49b83db577befefb/transfers")
@@ -383,7 +383,7 @@ func TestTokensService_ApprovalsFor(t *testing.T) {
 			}`)
 	})
 
-	query := &Pagination{Limit: 1}
+	query := &TokenLookupQuery{Pagination: Pagination{Limit: 1}}
 	responseStruct, response, err := client.Tokens.ApprovalsFor(context.Background(), "0x180a864a755fed0144c622df49b83db577befefb", query)
 	testGeneralError(t, "Tokens.ApprovalsFor", err)
 	testResponseUrl(t, "Tokens.ApprovalsFor", response, "/api/tokens/0x180a864a755fed0144c622df49b83db577befefb/approvals")

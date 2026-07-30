@@ -1,10 +1,3 @@
-// This file is part of Ark Go Client.
-//
-// (c) Ark Ecosystem <info@ark.io>
-//
-// For the full copyright and license information, please view the LICENSE
-// file that was distributed with this source code.
-
 package client
 
 import (
@@ -18,7 +11,7 @@ import (
 type ValidatorsService Service
 
 // Get all validators.
-func (s *ValidatorsService) List(ctx context.Context, query *Pagination) (*Wallets, *http.Response, error) {
+func (s *ValidatorsService) List(ctx context.Context, query *ValidatorsQuery) (*Wallets, *http.Response, error) {
 	var responseStruct *Wallets
 	resp, err := s.client.SendRequest(ctx, "GET", "validators", query, nil, &responseStruct, "api")
 
@@ -44,7 +37,7 @@ func (s *ValidatorsService) Get(ctx context.Context, id string) (*GetWallet, *ht
 }
 
 // Get all blocks for the given validator.
-func (s *ValidatorsService) Blocks(ctx context.Context, id string, query *Pagination) (*Blocks, *http.Response, error) {
+func (s *ValidatorsService) Blocks(ctx context.Context, id string, query *BlocksQuery) (*Blocks, *http.Response, error) {
 	uri := fmt.Sprintf("validators/%v/blocks", id)
 
 	var responseStruct *Blocks
@@ -58,7 +51,7 @@ func (s *ValidatorsService) Blocks(ctx context.Context, id string, query *Pagina
 }
 
 // Get all voters for the given validator.
-func (s *ValidatorsService) Voters(ctx context.Context, id string, query *Pagination) (*Wallets, *http.Response, error) {
+func (s *ValidatorsService) Voters(ctx context.Context, id string, query *WalletsQuery) (*Wallets, *http.Response, error) {
 	uri := fmt.Sprintf("validators/%v/voters", id)
 
 	var responseStruct *Wallets

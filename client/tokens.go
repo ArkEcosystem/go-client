@@ -8,7 +8,7 @@ import (
 
 type TokensService Service
 
-func (s *TokensService) All(ctx context.Context, query *Pagination) (*Tokens, *http.Response, error) {
+func (s *TokensService) All(ctx context.Context, query *TokensQuery) (*Tokens, *http.Response, error) {
 	var responseStruct *Tokens
 	resp, err := s.client.SendRequest(ctx, "GET", "tokens", query, nil, &responseStruct, "api")
 
@@ -19,7 +19,7 @@ func (s *TokensService) All(ctx context.Context, query *Pagination) (*Tokens, *h
 	return responseStruct, resp, err
 }
 
-func (s *TokensService) Transfers(ctx context.Context, query *Pagination) (*TokenActions, *http.Response, error) {
+func (s *TokensService) Transfers(ctx context.Context, query *TokenTransfersQuery) (*TokenActions, *http.Response, error) {
 	var responseStruct *TokenActions
 	resp, err := s.client.SendRequest(ctx, "GET", "tokens/transfers", query, nil, &responseStruct, "api")
 
@@ -30,7 +30,7 @@ func (s *TokensService) Transfers(ctx context.Context, query *Pagination) (*Toke
 	return responseStruct, resp, err
 }
 
-func (s *TokensService) Approvals(ctx context.Context, query *Pagination) (*TokenActions, *http.Response, error) {
+func (s *TokensService) Approvals(ctx context.Context, query *TokenApprovalsQuery) (*TokenActions, *http.Response, error) {
 	var responseStruct *TokenActions
 	resp, err := s.client.SendRequest(ctx, "GET", "tokens/approvals", query, nil, &responseStruct, "api")
 
@@ -65,7 +65,7 @@ func (s *TokensService) Get(ctx context.Context, contractAddress string) (*GetTo
 	return responseStruct, resp, err
 }
 
-func (s *TokensService) TransfersFor(ctx context.Context, contractAddress string, query *Pagination) (*TokenActionsResults, *http.Response, error) {
+func (s *TokensService) TransfersFor(ctx context.Context, contractAddress string, query *TokenLookupQuery) (*TokenActionsResults, *http.Response, error) {
 	uri := fmt.Sprintf("tokens/%v/transfers", contractAddress)
 
 	var responseStruct *TokenActionsResults
@@ -78,7 +78,7 @@ func (s *TokensService) TransfersFor(ctx context.Context, contractAddress string
 	return responseStruct, resp, err
 }
 
-func (s *TokensService) ApprovalsFor(ctx context.Context, contractAddress string, query *Pagination) (*TokenActionsResults, *http.Response, error) {
+func (s *TokensService) ApprovalsFor(ctx context.Context, contractAddress string, query *TokenLookupQuery) (*TokenActionsResults, *http.Response, error) {
 	uri := fmt.Sprintf("tokens/%v/approvals", contractAddress)
 
 	var responseStruct *TokenActionsResults

@@ -44,7 +44,7 @@ func TestApiNodesService_All(t *testing.T) {
 			}`)
 	})
 
-	query := &Pagination{Limit: 1}
+	query := &ApiNodesQuery{Pagination: Pagination{Limit: 1}}
 	responseStruct, response, err := client.ApiNodes.All(context.Background(), query)
 	testGeneralError(t, "ApiNodes.All", err)
 	testResponseUrl(t, "ApiNodes.All", response, "/api-nodes")

@@ -39,7 +39,7 @@ func TestReceiptsService_All(t *testing.T) {
 			}`)
 	})
 
-	query := &Pagination{Limit: 1}
+	query := &ReceiptsQuery{Pagination: Pagination{Limit: 1}}
 	responseStruct, response, err := client.Receipts.All(context.Background(), query)
 	testGeneralError(t, "Receipts.All", err)
 	testResponseUrl(t, "Receipts.All", response, "/api/receipts")
@@ -86,7 +86,7 @@ func TestReceiptsService_Get(t *testing.T) {
 			}`)
 	})
 
-	responseStruct, response, err := client.Receipts.Get(context.Background(), "178df6719bd55a792c0c935bc5cffcabb8a49532cf16ea97490a17114eb39a3c")
+	responseStruct, response, err := client.Receipts.Get(context.Background(), "178df6719bd55a792c0c935bc5cffcabb8a49532cf16ea97490a17114eb39a3c", nil)
 	testGeneralError(t, "Receipts.Get", err)
 	testResponseUrl(t, "Receipts.Get", response, "/api/receipts/178df6719bd55a792c0c935bc5cffcabb8a49532cf16ea97490a17114eb39a3c")
 	testResponseStruct(t, "Receipts.Get", responseStruct, &GetReceipt{
@@ -132,7 +132,7 @@ func TestReceiptsService_Contracts(t *testing.T) {
 			}`)
 	})
 
-	query := &Pagination{Limit: 1}
+	query := &ReceiptContractsQuery{Pagination: Pagination{Limit: 1}}
 	responseStruct, response, err := client.Receipts.Contracts(context.Background(), query)
 	testGeneralError(t, "Receipts.Contracts", err)
 	testResponseUrl(t, "Receipts.Contracts", response, "/api/receipts/contracts")

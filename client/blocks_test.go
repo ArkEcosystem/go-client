@@ -57,7 +57,7 @@ func TestBlocksService_List(t *testing.T) {
 			}`)
 	})
 
-	query := &Pagination{Limit: 1}
+	query := &BlocksQuery{Pagination: Pagination{Limit: 1}}
 	responseStruct, response, err := client.Blocks.List(context.Background(), query)
 	testGeneralError(t, "Blocks.List", err)
 	testResponseUrl(t, "Blocks.List", response, "/api/blocks")
@@ -308,7 +308,7 @@ func TestBlocksService_Transactions(t *testing.T) {
 			}`)
 	})
 
-	query := &Pagination{Limit: 1}
+	query := &BlockTransactionsQuery{Pagination: Pagination{Limit: 1}}
 	responseStruct, response, err := client.Blocks.Transactions(context.Background(), "478ccd06f1f93b74e6ec5fc626ffe8d3c2421b3e074d070caa3c0ab4e8a6ad95", query)
 	testGeneralError(t, "Blocks.Transactions", err)
 	testResponseUrl(t, "Blocks.Transactions", response, "/api/blocks/478ccd06f1f93b74e6ec5fc626ffe8d3c2421b3e074d070caa3c0ab4e8a6ad95/transactions")

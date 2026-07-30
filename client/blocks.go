@@ -18,7 +18,7 @@ import (
 type BlocksService Service
 
 // Get all blocks.
-func (s *BlocksService) List(ctx context.Context, query *Pagination) (*Blocks, *http.Response, error) {
+func (s *BlocksService) List(ctx context.Context, query *BlocksQuery) (*Blocks, *http.Response, error) {
 	var responseStruct *Blocks
 	resp, err := s.client.SendRequest(ctx, "GET", "blocks", query, nil, &responseStruct, "api")
 
@@ -68,7 +68,7 @@ func (s *BlocksService) Last(ctx context.Context) (*GetBlock, *http.Response, er
 }
 
 // Get all transactions by the given block.
-func (s *BlocksService) Transactions(ctx context.Context, hash string, query *Pagination) (*GetBlockTransactions, *http.Response, error) {
+func (s *BlocksService) Transactions(ctx context.Context, hash string, query *BlockTransactionsQuery) (*GetBlockTransactions, *http.Response, error) {
 	uri := fmt.Sprintf("blocks/%v/transactions", hash)
 
 	var responseStruct *GetBlockTransactions

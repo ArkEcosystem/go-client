@@ -13,8 +13,27 @@ import (
 )
 
 type Pagination struct {
-	Page  int `url:"page"`
-	Limit int `url:"limit"`
+	Page   int `url:"page"`
+	Limit  int `url:"limit"`
+	Offset int `url:"offset,omitempty"`
+}
+
+// paginator is implemented by *Pagination and by any query type that embeds
+// Pagination (method promotion carries the implementation through). This
+// lets SendRequest apply the "default page to 1" behavior uniformly, since
+// a plain type switch on *Pagination wouldn't match embedding types.
+type paginator interface {
+	applyDefaults()
+}
+
+func (p *Pagination) applyDefaults() {
+	if p == nil {
+		return
+	}
+
+	if p.Page == 0 {
+		p.Page = 1
+	}
 }
 
 // CommaSeparated encodes a slice of strings as a single comma-joined query
