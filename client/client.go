@@ -127,7 +127,7 @@ func (c *Client) SendRequest(ctx context.Context, method string, endpoint string
 	if queryString != nil {
 		switch v := queryString.(type) {
 		case *Pagination:
-			if v.Page == 0 {
+			if v != nil && v.Page == 0 {
 				v.Page = 1
 			}
 		}

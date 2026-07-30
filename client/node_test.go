@@ -147,7 +147,7 @@ func TestNodeService_Configuration(t *testing.T) {
 			Explorer: "",
 			Version:  30,
 			Wif:      186,
-			Ports: map[string]int16{
+			Ports: map[string]int64{
 				"@mainsail/api-database": 0,
 			},
 			Core: NodeCore{

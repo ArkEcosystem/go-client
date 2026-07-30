@@ -48,7 +48,7 @@ type NodeConfiguration struct {
 	Explorer  string           `json:"explorer,omitempty"`
 	Version   int16            `json:"version,omitempty"`
 	Wif       int16            `json:"wif,omitempty"`
-	Ports     map[string]int16 `json:"ports,omitempty"`
+	Ports     map[string]int64 `json:"ports,omitempty"`
 	Constants NodeConstants    `json:"constants,omitempty"`
 	Core      NodeCore         `json:"core,omitempty"`
 }
