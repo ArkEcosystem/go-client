@@ -11,10 +11,15 @@ type CreateTransactionRequest struct {
 	Transactions []string `json:"transactions,omitempty"`
 }
 
+// TransactionsQuery is the query for Transactions.List and is also reused by
+// Wallets.Transactions/SentTransactions/ReceivedTransactions/Votes.
+// typescript-client also declares an "asset" field here, but live-server
+// testing showed it's typed wrong there (declared as a string, but the API
+// requires an object/array and 422s on any string value) - omitted here
+// rather than shipping a field that can never work.
 type TransactionsQuery struct {
 	Pagination
 	Address          string `url:"address,omitempty"`
-	Asset            string `url:"asset,omitempty"`
 	BlockHash        string `url:"blockHash,omitempty"`
 	From             string `url:"from,omitempty"`
 	GasPrice         string `url:"gasPrice,omitempty"`
