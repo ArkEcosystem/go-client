@@ -44,25 +44,10 @@ type GetCreateTransaction struct {
 	Data CreateTransaction `json:"data,omitempty"`
 }
 
-type TypeGroupTypes map[string]byte
-
-type TransactionTypes struct {
-	Data map[string]TypeGroupTypes `json:"data,omitempty"`
-}
-
-type TransactionFees struct {
-	Data map[string]uint32 `json:"data,omitempty"`
-}
-
 type CreateTransaction struct {
 	Accept  []string `json:"accept,omitempty"`
 	Excess  []string `json:"excess,omitempty"`
 	Invalid []string `json:"invalid,omitempty"`
-}
-
-// TransactionSchemas represents the response from the /transactions/schemas endpoint.
-type TransactionSchemas struct {
-	Data interface{} `json:"data"`
 }
 
 type TransactionConfigurationPool struct {
