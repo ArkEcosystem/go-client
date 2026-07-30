@@ -52,6 +52,18 @@ func (s *NodeService) Configuration(ctx context.Context) (*GetNodeConfiguration,
 	return responseStruct, resp, err
 }
 
+// Get the node's crypto configuration (network, milestones, genesis block).
+func (s *NodeService) Crypto(ctx context.Context) (*GetNodeCrypto, *http.Response, error) {
+	var responseStruct *GetNodeCrypto
+	resp, err := s.client.SendRequest(ctx, "GET", "node/configuration/crypto", nil, nil, &responseStruct, "api")
+
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return responseStruct, resp, err
+}
+
 // Get the node fee statistics.
 func (s *NodeService) Fees(ctx context.Context, days int) (*GetNodeFees, *http.Response, error) {
 	var responseStruct *GetNodeFees

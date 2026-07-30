@@ -101,6 +101,67 @@ type NodeConstants struct {
 	ValidatorRegistrationFee BigInt                `json:"validatorRegistrationFee,omitempty"`
 }
 
+type GetNodeCrypto struct {
+	Data NodeCrypto `json:"data,omitempty"`
+}
+
+type NetworkClient struct {
+	Token    string `json:"token,omitempty"`
+	Symbol   string `json:"symbol,omitempty"`
+	Explorer string `json:"explorer,omitempty"`
+}
+
+type Network struct {
+	Wif        int16         `json:"wif,omitempty"`
+	Name       string        `json:"name,omitempty"`
+	Client     NetworkClient `json:"client,omitempty"`
+	ChainId    int64         `json:"chainId,omitempty"`
+	Nethash    string        `json:"nethash,omitempty"`
+	PubKeyHash int16         `json:"pubKeyHash,omitempty"`
+}
+
+// GenesisBlock represents the genesis block as returned by
+// node/configuration/crypto. It intentionally does not reuse Block: several
+// fields differ (e.g. Timestamp is a raw number here, a string on Block),
+// and it carries fields Block doesn't (logsBloom, serialized).
+type GenesisBlock struct {
+	Fee               BigInt        `json:"fee,omitempty"`
+	Hash              string        `json:"hash,omitempty"`
+	Round             int64         `json:"round,omitempty"`
+	Number            int64         `json:"number,omitempty"`
+	Reward            BigInt        `json:"reward,omitempty"`
+	GasUsed           int64         `json:"gasUsed,omitempty"`
+	Version           byte          `json:"version,omitempty"`
+	Proposer          string        `json:"proposer,omitempty"`
+	LogsBloom         string        `json:"logsBloom,omitempty"`
+	StateRoot         string        `json:"stateRoot,omitempty"`
+	Timestamp         int64         `json:"timestamp,omitempty"`
+	ParentHash        string        `json:"parentHash,omitempty"`
+	Serialized        string        `json:"serialized,omitempty"`
+	PayloadSize       int64         `json:"payloadSize,omitempty"`
+	Transactions      []interface{} `json:"transactions,omitempty"`
+	TransactionsRoot  string        `json:"transactionsRoot,omitempty"`
+	TransactionsCount int64         `json:"transactionsCount,omitempty"`
+}
+
+type GenesisBlockProof struct {
+	Round      int64    `json:"round,omitempty"`
+	Signature  string   `json:"signature,omitempty"`
+	Validators []string `json:"validators,omitempty"`
+}
+
+type NodeCryptoGenesisBlock struct {
+	Block      GenesisBlock      `json:"block,omitempty"`
+	Proof      GenesisBlockProof `json:"proof,omitempty"`
+	Serialized string            `json:"serialized,omitempty"`
+}
+
+type NodeCrypto struct {
+	Network      Network                `json:"network,omitempty"`
+	Milestones   []NodeConstants        `json:"milestones,omitempty"`
+	GenesisBlock NodeCryptoGenesisBlock `json:"genesisBlock,omitempty"`
+}
+
 // TransactionTypeFee represents the fee statistics for a single transaction type.
 type TransactionTypeFee struct {
 	Avg BigInt `json:"avg,omitempty"`
