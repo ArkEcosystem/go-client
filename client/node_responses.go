@@ -84,9 +84,6 @@ type NodeConstantsTimeouts struct {
 	StageTimeoutIncrease int64 `json:"stageTimeoutIncrease,omitempty"`
 }
 
-// NodeConstants represents a single milestone's constants, as returned both
-// by node/configuration (the currently active milestone) and as an entry in
-// node/configuration/crypto's milestones list.
 type NodeConstants struct {
 	Gas                      NodeConstantsGas      `json:"gas,omitempty"`
 	Block                    NodeConstantsBlock    `json:"block,omitempty"`
@@ -101,7 +98,6 @@ type NodeConstants struct {
 	ValidatorRegistrationFee BigInt                `json:"validatorRegistrationFee,omitempty"`
 }
 
-// TransactionTypeFee represents the fee statistics for a single transaction type.
 type TransactionTypeFee struct {
 	Avg BigInt `json:"avg,omitempty"`
 	Max BigInt `json:"max,omitempty"`
@@ -109,5 +105,4 @@ type TransactionTypeFee struct {
 	Sum BigInt `json:"sum,omitempty"`
 }
 
-// NodeFeesResponse represents the response from the /node/fees endpoint, keyed by transaction type.
 type NodeFeesResponse map[string]TransactionTypeFee
