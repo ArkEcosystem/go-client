@@ -7,7 +7,24 @@
 
 package client
 
+import (
+	"net/url"
+	"strings"
+)
+
 type Pagination struct {
 	Page  int `url:"page"`
 	Limit int `url:"limit"`
+}
+
+type CommaSeparated []string
+
+func (c CommaSeparated) EncodeValues(key string, v *url.Values) error {
+	if len(c) == 0 {
+		return nil
+	}
+
+	v.Set(key, strings.Join(c, ","))
+
+	return nil
 }

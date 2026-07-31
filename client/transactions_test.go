@@ -99,6 +99,51 @@ func TestTransactionsService_List(t *testing.T) {
 	})
 }
 
+// Get the transactions host's pool configuration.
+func TestTransactionsService_Configuration(t *testing.T) {
+	client, mux, _, teardown := setupTest()
+	defer teardown()
+
+	mux.HandleFunc("/configuration", func(writer http.ResponseWriter, request *http.Request) {
+		testMethod(t, request, "GET")
+		fmt.Fprint(writer,
+			`{
+			  "data": {
+			    "blockNumber": 23197739,
+			    "core": {
+			      "version": "0.0.1-evm.53"
+			    },
+			    "transactionPool": {
+			      "maxTransactionAge": 2700,
+			      "maxTransactionBytes": 128000,
+			      "maxTransactionsInPool": 15000,
+			      "maxTransactionsPerRequest": 40,
+			      "maxTransactionsPerSender": 150
+			    }
+			  }
+			}`)
+	})
+
+	responseStruct, response, err := client.Transactions.Configuration(context.Background())
+	testGeneralError(t, "Transactions.Configuration", err)
+	testResponseUrl(t, "Transactions.Configuration", response, "/tx/api/configuration")
+	testResponseStruct(t, "Transactions.Configuration", responseStruct, &GetTransactionConfiguration{
+		Data: TransactionConfiguration{
+			Core: NodeCore{
+				Version: "0.0.1-evm.53",
+			},
+			BlockNumber: 23197739,
+			TransactionPool: TransactionConfigurationPool{
+				MaxTransactionAge:         2700,
+				MaxTransactionBytes:       128000,
+				MaxTransactionsInPool:     15000,
+				MaxTransactionsPerRequest: 40,
+				MaxTransactionsPerSender:  150,
+			},
+		},
+	})
+}
+
 // Create a new transaction.
 func TestTransactionsService_Create(t *testing.T) {
 	t.Skip("test not ready")

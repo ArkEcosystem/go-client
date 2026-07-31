@@ -110,3 +110,27 @@ func (s *WalletsService) Votes(ctx context.Context, id string, query *Pagination
 
 	return responseStruct, resp, err
 }
+
+func (s *WalletsService) TokensFor(ctx context.Context, address string, query *Pagination) (*WalletTokens, *http.Response, error) {
+	uri := fmt.Sprintf("wallets/%v/tokens", address)
+
+	var responseStruct *WalletTokens
+	resp, err := s.client.SendRequest(ctx, "GET", uri, query, nil, &responseStruct, "api")
+
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return responseStruct, resp, err
+}
+
+func (s *WalletsService) Tokens(ctx context.Context, query *WalletTokensQuery) (*WalletTokenAddressesResponse, *http.Response, error) {
+	var responseStruct *WalletTokenAddressesResponse
+	resp, err := s.client.SendRequest(ctx, "GET", "wallets/tokens", query, nil, &responseStruct, "api")
+
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return responseStruct, resp, err
+}

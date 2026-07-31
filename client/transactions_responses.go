@@ -64,3 +64,21 @@ type CreateTransaction struct {
 type TransactionSchemas struct {
 	Data interface{} `json:"data"`
 }
+
+type TransactionConfigurationPool struct {
+	MaxTransactionAge         int64 `json:"maxTransactionAge,omitempty"`
+	MaxTransactionBytes       int64 `json:"maxTransactionBytes,omitempty"`
+	MaxTransactionsInPool     int64 `json:"maxTransactionsInPool,omitempty"`
+	MaxTransactionsPerRequest int64 `json:"maxTransactionsPerRequest,omitempty"`
+	MaxTransactionsPerSender  int64 `json:"maxTransactionsPerSender,omitempty"`
+}
+
+type TransactionConfiguration struct {
+	Core            NodeCore                     `json:"core,omitempty"`
+	BlockNumber     int64                        `json:"blockNumber,omitempty"`
+	TransactionPool TransactionConfigurationPool `json:"transactionPool,omitempty"`
+}
+
+type GetTransactionConfiguration struct {
+	Data TransactionConfiguration `json:"data,omitempty"`
+}

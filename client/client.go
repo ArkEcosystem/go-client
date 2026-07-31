@@ -36,10 +36,15 @@ type Client struct {
 	Blocks       *BlocksService
 	Blockchain   *BlockchainService
 	Commits      *CommitsService
+	Contracts    *ContractsService
+	EVM          *EVMService
+	Legacy       *LegacyService
 	Validators   *ValidatorsService
 	Node         *NodeService
 	Peers        *PeersService
+	Receipts     *ReceiptsService
 	Rounds       *RoundsService
+	Tokens       *TokensService
 	Transactions *TransactionsService
 	Votes        *VotesService
 	Wallets      *WalletsService
@@ -64,10 +69,15 @@ func NewClient(httpClient *http.Client, hosts Hosts) *Client {
 	c.Blocks = (*BlocksService)(&c.common)
 	c.Blockchain = (*BlockchainService)(&c.common)
 	c.Commits = (*CommitsService)(&c.common)
+	c.Contracts = (*ContractsService)(&c.common)
+	c.EVM = (*EVMService)(&c.common)
+	c.Legacy = (*LegacyService)(&c.common)
 	c.Validators = (*ValidatorsService)(&c.common)
 	c.Node = (*NodeService)(&c.common)
 	c.Peers = (*PeersService)(&c.common)
+	c.Receipts = (*ReceiptsService)(&c.common)
 	c.Rounds = (*RoundsService)(&c.common)
+	c.Tokens = (*TokensService)(&c.common)
 	c.Transactions = (*TransactionsService)(&c.common)
 	c.Votes = (*VotesService)(&c.common)
 	c.Wallets = (*WalletsService)(&c.common)
@@ -117,7 +127,7 @@ func (c *Client) SendRequest(ctx context.Context, method string, endpoint string
 	if queryString != nil {
 		switch v := queryString.(type) {
 		case *Pagination:
-			if v.Page == 0 {
+			if v != nil && v.Page == 0 {
 				v.Page = 1
 			}
 		}

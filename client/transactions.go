@@ -81,6 +81,17 @@ func (s *TransactionsService) GetUnconfirmed(ctx context.Context, id string) (*G
 	return responseStruct, resp, err
 }
 
+func (s *TransactionsService) Configuration(ctx context.Context) (*GetTransactionConfiguration, *http.Response, error) {
+	var responseStruct *GetTransactionConfiguration
+	resp, err := s.client.SendRequest(ctx, "GET", "configuration", nil, nil, &responseStruct, "transactions")
+
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return responseStruct, resp, err
+}
+
 // Get a list of valid transaction types.
 func (s *TransactionsService) Types(ctx context.Context) (*TransactionTypes, *http.Response, error) {
 	var responseStruct *TransactionTypes

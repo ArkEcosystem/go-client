@@ -11,7 +11,7 @@ type ApiNode struct {
 	Url     string `json:"url,omitempty"`
 	Version string `json:"version,omitempty"`
 	Height  int64  `json:"height,omitempty"`
-	Latency byte   `json:"latency,omitempty"`
+	Latency int64  `json:"latency,omitempty"`
 	Status  string `json:"status,omitempty"`
 }
 

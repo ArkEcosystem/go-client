@@ -48,7 +48,7 @@ type NodeConfiguration struct {
 	Explorer  string           `json:"explorer,omitempty"`
 	Version   int16            `json:"version,omitempty"`
 	Wif       int16            `json:"wif,omitempty"`
-	Ports     map[string]int16 `json:"ports,omitempty"`
+	Ports     map[string]int64 `json:"ports,omitempty"`
 	Constants NodeConstants    `json:"constants,omitempty"`
 	Core      NodeCore         `json:"core,omitempty"`
 }
@@ -96,6 +96,63 @@ type NodeConstants struct {
 	Timeouts                 NodeConstantsTimeouts `json:"timeouts,omitempty"`
 	RoundValidators          int64                 `json:"roundValidators,omitempty"`
 	ValidatorRegistrationFee BigInt                `json:"validatorRegistrationFee,omitempty"`
+}
+
+type GetNodeCrypto struct {
+	Data NodeCrypto `json:"data,omitempty"`
+}
+
+type NetworkClient struct {
+	Token    string `json:"token,omitempty"`
+	Symbol   string `json:"symbol,omitempty"`
+	Explorer string `json:"explorer,omitempty"`
+}
+
+type Network struct {
+	Wif        int16         `json:"wif,omitempty"`
+	Name       string        `json:"name,omitempty"`
+	Client     NetworkClient `json:"client,omitempty"`
+	ChainId    int64         `json:"chainId,omitempty"`
+	Nethash    string        `json:"nethash,omitempty"`
+	PubKeyHash int16         `json:"pubKeyHash,omitempty"`
+}
+
+type GenesisBlock struct {
+	Fee               BigInt        `json:"fee,omitempty"`
+	Hash              string        `json:"hash,omitempty"`
+	Round             int64         `json:"round,omitempty"`
+	Number            int64         `json:"number,omitempty"`
+	Reward            BigInt        `json:"reward,omitempty"`
+	GasUsed           int64         `json:"gasUsed,omitempty"`
+	Version           byte          `json:"version,omitempty"`
+	Proposer          string        `json:"proposer,omitempty"`
+	LogsBloom         string        `json:"logsBloom,omitempty"`
+	StateRoot         string        `json:"stateRoot,omitempty"`
+	Timestamp         int64         `json:"timestamp,omitempty"`
+	ParentHash        string        `json:"parentHash,omitempty"`
+	Serialized        string        `json:"serialized,omitempty"`
+	PayloadSize       int64         `json:"payloadSize,omitempty"`
+	Transactions      []interface{} `json:"transactions,omitempty"`
+	TransactionsRoot  string        `json:"transactionsRoot,omitempty"`
+	TransactionsCount int64         `json:"transactionsCount,omitempty"`
+}
+
+type GenesisBlockProof struct {
+	Round      int64    `json:"round,omitempty"`
+	Signature  string   `json:"signature,omitempty"`
+	Validators []string `json:"validators,omitempty"`
+}
+
+type NodeCryptoGenesisBlock struct {
+	Block      GenesisBlock      `json:"block,omitempty"`
+	Proof      GenesisBlockProof `json:"proof,omitempty"`
+	Serialized string            `json:"serialized,omitempty"`
+}
+
+type NodeCrypto struct {
+	Network      Network                `json:"network,omitempty"`
+	Milestones   []NodeConstants        `json:"milestones,omitempty"`
+	GenesisBlock NodeCryptoGenesisBlock `json:"genesisBlock,omitempty"`
 }
 
 type TransactionTypeFee struct {
