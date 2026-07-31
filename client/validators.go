@@ -6,8 +6,6 @@ import (
 	"net/http"
 )
 
-// ValidatorsService handles communication with the validators related
-// methods of the Ark Core API - Version 2.
 type ValidatorsService Service
 
 // Get all validators.
