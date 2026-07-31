@@ -14,12 +14,12 @@ import (
 	"testing"
 )
 
-// Get the forging delegates of a round by the given id.
-func TestRoundsService_Delegates(t *testing.T) {
+// Get the forging validators of a round by the given id.
+func TestRoundsService_Validators(t *testing.T) {
 	client, mux, _, teardown := setupTest()
 	defer teardown()
 
-	mux.HandleFunc("/rounds/12345/delegates", func(writer http.ResponseWriter, request *http.Request) {
+	mux.HandleFunc("/rounds/12345/validators", func(writer http.ResponseWriter, request *http.Request) {
 		testMethod(t, request, "GET")
 		fmt.Fprint(writer,
 			`{
@@ -32,18 +32,16 @@ func TestRoundsService_Delegates(t *testing.T) {
 			}`)
 	})
 
-	responseStruct, response, err := client.Rounds.Delegates(context.Background(), 12345)
-	testGeneralError(t, "Rounds.Delegates", err)
-	testResponseUrl(t, "Rounds.Delegates", response, "/rounds/12345/delegates")
-	testResponseStruct(t, "Rounds.Delegates", responseStruct, &GetDelegates{
-		Data: []RoundDelegate{{
+	responseStruct, response, err := client.Rounds.Validators(context.Background(), 12345)
+	testGeneralError(t, "Rounds.Validators", err)
+	testResponseUrl(t, "Rounds.Validators", response, "/rounds/12345/validators")
+	testResponseStruct(t, "Rounds.Validators", responseStruct, &GetValidators{
+		Data: []RoundValidator{{
 			PublicKey: "03ffc17c5528d490b045a9b710c754e00a536d05d9b0b78a9baa0533a246dcd98c",
 			Votes:     "156947252547993",
 		}},
 	})
 }
-
-
 
 // TestRoundsService_All tests the All method.
 func TestRoundsService_All(t *testing.T) {
@@ -92,7 +90,7 @@ func TestRoundsService_All(t *testing.T) {
 			Count:                100,
 			First:                "/rounds?limit=100&page=1",
 			Last:                 "/rounds?limit=100&page=230",
-			Next:       nil,
+			Next:                 nil,
 			PageCount:            230,
 			Previous:             nil,
 			Self:                 "/rounds?limit=100&page=1",
@@ -154,4 +152,3 @@ func TestRoundsService_Show(t *testing.T) {
 		},
 	})
 }
-

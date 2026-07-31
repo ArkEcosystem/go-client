@@ -15,11 +15,11 @@ import (
 )
 
 // Get all accounts.
-func TestDelegatesService_List(t *testing.T) {
+func TestValidatorsService_List(t *testing.T) {
 	client, mux, _, teardown := setupTest()
 	defer teardown()
 
-	mux.HandleFunc("/delegates", func(writer http.ResponseWriter, request *http.Request) {
+	mux.HandleFunc("/validators", func(writer http.ResponseWriter, request *http.Request) {
 		testMethod(t, request, "GET")
 		fmt.Fprint(writer,
 			`{
@@ -29,9 +29,9 @@ func TestDelegatesService_List(t *testing.T) {
 			    "totalCount": 1,
 			    "next": null,
 			    "previous": null,
-			    "self": "/api/delegates?page=1&limit=1",
-			    "first": "/api/delegates?page=1&limit=1",
-			    "last": "/api/delegates?page=1&limit=1"
+			    "self": "/api/validators?page=1&limit=1",
+			    "first": "/api/validators?page=1&limit=1",
+			    "last": "/api/validators?page=1&limit=1"
 			  },
 			  "data": [
 			    {
@@ -62,27 +62,27 @@ func TestDelegatesService_List(t *testing.T) {
 	})
 
 	query := &Pagination{Limit: 1}
-	responseStruct, response, err := client.Delegates.List(context.Background(), query)
-	testGeneralError(t, "Delegates.List", err)
-	testResponseUrl(t, "Delegates.List", response, "/api/delegates")
-	testResponseStruct(t, "Delegates.List", responseStruct, &Delegates{
+	responseStruct, response, err := client.Validators.List(context.Background(), query)
+	testGeneralError(t, "Validators.List", err)
+	testResponseUrl(t, "Validators.List", response, "/api/validators")
+	testResponseStruct(t, "Validators.List", responseStruct, &Validators{
 		Meta: Meta{
 			Count:      1,
 			PageCount:  1,
 			TotalCount: 1,
 			Next:       nil,
 			Previous:   nil,
-			Self:       "/api/delegates?page=1&limit=1",
-			First:      "/api/delegates?page=1&limit=1",
-			Last:       "/api/delegates?page=1&limit=1",
+			Self:       "/api/validators?page=1&limit=1",
+			First:      "/api/validators?page=1&limit=1",
+			Last:       "/api/validators?page=1&limit=1",
 		},
-		Data: []Delegate{{
+		Data: []Validator{{
 			Username:  "dummy",
 			Address:   "dummy",
 			PublicKey: "dummy",
 			Votes:     1000,
 			Rank:      1,
-			Blocks: DelegateBlocks{
+			Blocks: ValidatorBlocks{
 				Produced: 119,
 				Missed:   56,
 				Last: Block{
@@ -90,10 +90,10 @@ func TestDelegatesService_List(t *testing.T) {
 					Timestamp: 1719434741918,
 				},
 			},
-			Production: DelegateProduction{
+			Production: ValidatorProduction{
 				Approval: 0.01,
 			},
-			Forged: DelegateForged{
+			Forged: ValidatorForged{
 				Fees:    468407250508,
 				Rewards: 13589400000000,
 				Total:   14057807250508,
@@ -102,12 +102,12 @@ func TestDelegatesService_List(t *testing.T) {
 	})
 }
 
-// Get a delegate by the given ID (address, publicKey and username are valid)
-func TestDelegatesService_Get(t *testing.T) {
+// Get a validator by the given ID (address, publicKey and username are valid)
+func TestValidatorsService_Get(t *testing.T) {
 	client, mux, _, teardown := setupTest()
 	defer teardown()
 
-	mux.HandleFunc("/delegates/dummy", func(writer http.ResponseWriter, request *http.Request) {
+	mux.HandleFunc("/validators/dummy", func(writer http.ResponseWriter, request *http.Request) {
 		testMethod(t, request, "GET")
 		fmt.Fprint(writer,
 			`{
@@ -117,9 +117,9 @@ func TestDelegatesService_Get(t *testing.T) {
 			    "totalCount": 1,
 			    "next": null,
 			    "previous": null,
-			    "self": "/api/delegates/dummy?page=1&limit=1",
-			    "first": "/api/delegates/dummy?page=1&limit=1",
-			    "last": "/api/delegates/dummy?page=1&limit=1"
+			    "self": "/api/validators/dummy?page=1&limit=1",
+			    "first": "/api/validators/dummy?page=1&limit=1",
+			    "last": "/api/validators/dummy?page=1&limit=1"
 			  },
 			  "data": {
 			    "username": "dummy",
@@ -147,27 +147,27 @@ func TestDelegatesService_Get(t *testing.T) {
 			}`)
 	})
 
-	responseStruct, response, err := client.Delegates.Get(context.Background(), "dummy")
-	testGeneralError(t, "Delegates.Get", err)
-	testResponseUrl(t, "Delegates.Get", response, "/api/delegates/dummy")
-	testResponseStruct(t, "Delegates.Get", responseStruct, &GetDelegate{
+	responseStruct, response, err := client.Validators.Get(context.Background(), "dummy")
+	testGeneralError(t, "Validators.Get", err)
+	testResponseUrl(t, "Validators.Get", response, "/api/validators/dummy")
+	testResponseStruct(t, "Validators.Get", responseStruct, &GetValidator{
 		Meta: Meta{
 			Count:      1,
 			PageCount:  1,
 			TotalCount: 1,
 			Next:       nil,
 			Previous:   nil,
-			Self:       "/api/delegates/dummy?page=1&limit=1",
-			First:      "/api/delegates/dummy?page=1&limit=1",
-			Last:       "/api/delegates/dummy?page=1&limit=1",
+			Self:       "/api/validators/dummy?page=1&limit=1",
+			First:      "/api/validators/dummy?page=1&limit=1",
+			Last:       "/api/validators/dummy?page=1&limit=1",
 		},
-		Data: Delegate{
+		Data: Validator{
 			Username:  "dummy",
 			Address:   "dummy",
 			PublicKey: "dummy",
 			Votes:     1000,
 			Rank:      1,
-			Blocks: DelegateBlocks{
+			Blocks: ValidatorBlocks{
 				Produced: 119,
 				Missed:   56,
 				Last: Block{
@@ -175,10 +175,10 @@ func TestDelegatesService_Get(t *testing.T) {
 					Timestamp: 1719434741918,
 				},
 			},
-			Production: DelegateProduction{
+			Production: ValidatorProduction{
 				Approval: 0.01,
 			},
-			Forged: DelegateForged{
+			Forged: ValidatorForged{
 				Fees:    468407250508,
 				Rewards: 13589400000000,
 				Total:   14057807250508,
@@ -187,12 +187,12 @@ func TestDelegatesService_Get(t *testing.T) {
 	})
 }
 
-// Get all blocks for the given delegate.
-func TestDelegatesService_Blocks(t *testing.T) {
+// Get all blocks for the given validator.
+func TestValidatorsService_Blocks(t *testing.T) {
 	client, mux, _, teardown := setupTest()
 	defer teardown()
 
-	mux.HandleFunc("/delegates/dummy/blocks", func(writer http.ResponseWriter, request *http.Request) {
+	mux.HandleFunc("/validators/dummy/blocks", func(writer http.ResponseWriter, request *http.Request) {
 		testMethod(t, request, "GET")
 		fmt.Fprint(writer,
 			`{
@@ -202,9 +202,9 @@ func TestDelegatesService_Blocks(t *testing.T) {
 			    "totalCount": 1,
 			    "next": null,
 			    "previous": null,
-			    "self": "/api/delegates/dummy/blocks?page=1&limit=1",
-			    "first": "/api/delegates/dummy/blocks?page=1&limit=1",
-			    "last": "/api/delegates/dummy/blocks?page=1&limit=1"
+			    "self": "/api/validators/dummy/blocks?page=1&limit=1",
+			    "first": "/api/validators/dummy/blocks?page=1&limit=1",
+			    "last": "/api/validators/dummy/blocks?page=1&limit=1"
 			  },
 			  "data": [
 			    {
@@ -236,19 +236,19 @@ func TestDelegatesService_Blocks(t *testing.T) {
 	})
 
 	query := &Pagination{Limit: 1}
-	responseStruct, response, err := client.Delegates.Blocks(context.Background(), "dummy", query)
-	testGeneralError(t, "Delegates.Blocks", err)
-	testResponseUrl(t, "Delegates.Blocks", response, "/api/delegates/dummy/blocks")
-	testResponseStruct(t, "Delegates.Blocks", responseStruct, &GetDelegateBlocks{
+	responseStruct, response, err := client.Validators.Blocks(context.Background(), "dummy", query)
+	testGeneralError(t, "Validators.Blocks", err)
+	testResponseUrl(t, "Validators.Blocks", response, "/api/validators/dummy/blocks")
+	testResponseStruct(t, "Validators.Blocks", responseStruct, &GetValidatorBlocks{
 		Meta: Meta{
 			Count:      1,
 			PageCount:  1,
 			TotalCount: 1,
 			Next:       nil,
 			Previous:   nil,
-			Self:       "/api/delegates/dummy/blocks?page=1&limit=1",
-			First:      "/api/delegates/dummy/blocks?page=1&limit=1",
-			Last:       "/api/delegates/dummy/blocks?page=1&limit=1",
+			Self:       "/api/validators/dummy/blocks?page=1&limit=1",
+			First:      "/api/validators/dummy/blocks?page=1&limit=1",
+			Last:       "/api/validators/dummy/blocks?page=1&limit=1",
 		},
 		Data: []Block{{
 			Id:       "dummy",
@@ -277,12 +277,12 @@ func TestDelegatesService_Blocks(t *testing.T) {
 	})
 }
 
-// Get all voters for the given delegate.
-func TestDelegatesService_Voters(t *testing.T) {
+// Get all voters for the given validator.
+func TestValidatorsService_Voters(t *testing.T) {
 	client, mux, _, teardown := setupTest()
 	defer teardown()
 
-	mux.HandleFunc("/delegates/dummy/voters", func(writer http.ResponseWriter, request *http.Request) {
+	mux.HandleFunc("/validators/dummy/voters", func(writer http.ResponseWriter, request *http.Request) {
 		testMethod(t, request, "GET")
 		fmt.Fprint(writer,
 			`{
@@ -292,9 +292,9 @@ func TestDelegatesService_Voters(t *testing.T) {
 			    "totalCount": 1,
 			    "next": null,
 			    "previous": null,
-			    "self": "/api/delegates/dummy/voters?page=1&limit=1",
-			    "first": "/api/delegates/dummy/voters?page=1&limit=1",
-			    "last": "/api/delegates/dummy/voters?page=1&limit=1"
+			    "self": "/api/validators/dummy/voters?page=1&limit=1",
+			    "first": "/api/validators/dummy/voters?page=1&limit=1",
+			    "last": "/api/validators/dummy/voters?page=1&limit=1"
 			  },
 			  "data": [
 			    {
@@ -309,19 +309,19 @@ func TestDelegatesService_Voters(t *testing.T) {
 	})
 
 	query := &Pagination{Limit: 1}
-	responseStruct, response, err := client.Delegates.Voters(context.Background(), "dummy", query)
-	testGeneralError(t, "Delegates.Voters", err)
-	testResponseUrl(t, "Delegates.Voters", response, "/api/delegates/dummy/voters")
-	testResponseStruct(t, "Delegates.Voters", responseStruct, &GetDelegateVoters{
+	responseStruct, response, err := client.Validators.Voters(context.Background(), "dummy", query)
+	testGeneralError(t, "Validators.Voters", err)
+	testResponseUrl(t, "Validators.Voters", response, "/api/validators/dummy/voters")
+	testResponseStruct(t, "Validators.Voters", responseStruct, &GetValidatorVoters{
 		Meta: Meta{
 			Count:      1,
 			PageCount:  1,
 			TotalCount: 1,
 			Next:       nil,
 			Previous:   nil,
-			Self:       "/api/delegates/dummy/voters?page=1&limit=1",
-			First:      "/api/delegates/dummy/voters?page=1&limit=1",
-			Last:       "/api/delegates/dummy/voters?page=1&limit=1",
+			Self:       "/api/validators/dummy/voters?page=1&limit=1",
+			First:      "/api/validators/dummy/voters?page=1&limit=1",
+			Last:       "/api/validators/dummy/voters?page=1&limit=1",
 		},
 		Data: []Wallet{{
 			Address:    "dummy",
