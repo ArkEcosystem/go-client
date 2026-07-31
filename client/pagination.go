@@ -43,15 +43,3 @@ func (c CommaSeparated) EncodeValues(key string, v *url.Values) error {
 
 	return nil
 }
-
-type CommaSeparated []string
-
-func (c CommaSeparated) EncodeValues(key string, v *url.Values) error {
-	if len(c) == 0 {
-		return nil
-	}
-
-	v.Set(key, strings.Join(c, ","))
-
-	return nil
-}
