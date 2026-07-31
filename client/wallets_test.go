@@ -584,7 +584,6 @@ func TestWalletsService_TokensFor(t *testing.T) {
 	})
 }
 
-// Get token holdings across the given wallet addresses.
 func TestWalletsService_Tokens(t *testing.T) {
 	client, mux, _, teardown := setupTest()
 	defer teardown()

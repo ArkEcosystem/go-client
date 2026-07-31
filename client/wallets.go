@@ -125,7 +125,6 @@ func (s *WalletsService) TokensFor(ctx context.Context, address string, query *W
 	return responseStruct, resp, err
 }
 
-// Get token holdings across the given wallet addresses.
 func (s *WalletsService) Tokens(ctx context.Context, query *WalletTokensQuery) (*WalletTokenAddressesResponse, *http.Response, error) {
 	var responseStruct *WalletTokenAddressesResponse
 	resp, err := s.client.SendRequest(ctx, "GET", "wallets/tokens", query, nil, &responseStruct, "api")
