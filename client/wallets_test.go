@@ -524,7 +524,6 @@ func TestWalletsService_Votes(t *testing.T) {
 	})
 }
 
-// Get all tokens held by the given wallet address.
 func TestWalletsService_TokensFor(t *testing.T) {
 	client, mux, _, teardown := setupTest()
 	defer teardown()
@@ -584,7 +583,6 @@ func TestWalletsService_TokensFor(t *testing.T) {
 	})
 }
 
-// Get token holdings across the given wallet addresses.
 func TestWalletsService_Tokens(t *testing.T) {
 	client, mux, _, teardown := setupTest()
 	defer teardown()

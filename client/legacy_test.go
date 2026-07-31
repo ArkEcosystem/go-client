@@ -7,7 +7,6 @@ import (
 	"testing"
 )
 
-// Get all legacy cold wallets.
 func TestLegacyService_ColdWallets(t *testing.T) {
 	client, mux, _, teardown := setupTest()
 	defer teardown()

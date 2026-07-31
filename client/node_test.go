@@ -191,7 +191,6 @@ func TestNodeService_Configuration(t *testing.T) {
 	})
 }
 
-// Get the node's crypto configuration.
 func TestNodeService_Crypto(t *testing.T) {
 	client, mux, _, teardown := setupTest()
 	defer teardown()

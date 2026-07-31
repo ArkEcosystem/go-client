@@ -7,7 +7,6 @@ import (
 	"testing"
 )
 
-// Get all contracts.
 func TestContractsService_All(t *testing.T) {
 	client, mux, _, teardown := setupTest()
 	defer teardown()
@@ -42,7 +41,6 @@ func TestContractsService_All(t *testing.T) {
 	})
 }
 
-// Get the ABI for a contract implementation.
 func TestContractsService_Abi(t *testing.T) {
 	client, mux, _, teardown := setupTest()
 	defer teardown()
