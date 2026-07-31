@@ -18,7 +18,7 @@ import (
 type PeersService Service
 
 // Get all peers.
-func (s *PeersService) List(ctx context.Context, query *Pagination) (*Peers, *http.Response, error) {
+func (s *PeersService) List(ctx context.Context, query *PeersQuery) (*Peers, *http.Response, error) {
 	var responseStruct *Peers
 	resp, err := s.client.SendRequest(ctx, "GET", "peers", query, nil, &responseStruct, "api")
 

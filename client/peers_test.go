@@ -62,7 +62,7 @@ func TestPeersService_List(t *testing.T) {
 			}`)
 	})
 
-	query := &Pagination{Limit: 1}
+	query := &PeersQuery{Pagination: Pagination{Limit: 1}}
 	responseStruct, response, err := client.Peers.List(context.Background(), query)
 	testGeneralError(t, "Peers.List", err)
 	testResponseUrl(t, "Peers.List", response, "/api/peers")

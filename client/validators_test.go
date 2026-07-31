@@ -1,10 +1,3 @@
-// This file is part of Ark Go Client.
-//
-// (c) Ark Ecosystem <info@ark.io>
-//
-// For the full copyright and license information, please view the LICENSE
-// file that was distributed with this source code.
-
 package client
 
 import (
@@ -67,7 +60,7 @@ func TestValidatorsService_List(t *testing.T) {
 			}`)
 	})
 
-	query := &Pagination{Limit: 1}
+	query := &ValidatorsQuery{Pagination: Pagination{Limit: 1}}
 	responseStruct, response, err := client.Validators.List(context.Background(), query)
 	testGeneralError(t, "Validators.List", err)
 	testResponseUrl(t, "Validators.List", response, "/api/validators")
@@ -204,7 +197,7 @@ func TestValidatorsService_Blocks(t *testing.T) {
 			}`)
 	})
 
-	query := &Pagination{Limit: 1}
+	query := &BlocksQuery{Pagination: Pagination{Limit: 1}}
 	responseStruct, response, err := client.Validators.Blocks(context.Background(), "dummy", query)
 	testGeneralError(t, "Validators.Blocks", err)
 	testResponseUrl(t, "Validators.Blocks", response, "/api/validators/dummy/blocks")
@@ -271,7 +264,7 @@ func TestValidatorsService_Voters(t *testing.T) {
 			}`)
 	})
 
-	query := &Pagination{Limit: 1}
+	query := &WalletsQuery{Pagination: Pagination{Limit: 1}}
 	responseStruct, response, err := client.Validators.Voters(context.Background(), "dummy", query)
 	testGeneralError(t, "Validators.Voters", err)
 	testResponseUrl(t, "Validators.Voters", response, "/api/validators/dummy/voters")

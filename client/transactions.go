@@ -18,7 +18,7 @@ import (
 type TransactionsService Service
 
 // Get all transactions.
-func (s *TransactionsService) List(ctx context.Context, query *Pagination) (*Transactions, *http.Response, error) {
+func (s *TransactionsService) List(ctx context.Context, query *TransactionsQuery) (*Transactions, *http.Response, error) {
 	var responseStruct *Transactions
 	resp, err := s.client.SendRequest(ctx, "GET", "transactions", query, nil, &responseStruct, "api")
 
@@ -42,11 +42,11 @@ func (s *TransactionsService) Create(ctx context.Context, body *CreateTransactio
 }
 
 // Get a transaction by the given id.
-func (s *TransactionsService) Get(ctx context.Context, id string) (*GetTransaction, *http.Response, error) {
+func (s *TransactionsService) Get(ctx context.Context, id string, query *TransactionGetQuery) (*GetTransaction, *http.Response, error) {
 	uri := fmt.Sprintf("transactions/%v", id)
 
 	var responseStruct *GetTransaction
-	resp, err := s.client.SendRequest(ctx, "GET", uri, nil, nil, &responseStruct, "api")
+	resp, err := s.client.SendRequest(ctx, "GET", uri, query, nil, &responseStruct, "api")
 
 	if err != nil {
 		return nil, resp, err
@@ -56,7 +56,7 @@ func (s *TransactionsService) Get(ctx context.Context, id string) (*GetTransacti
 }
 
 // Get all unconfirmed transactions.
-func (s *TransactionsService) ListUnconfirmed(ctx context.Context, query *Pagination) (*Transactions, *http.Response, error) {
+func (s *TransactionsService) ListUnconfirmed(ctx context.Context, query *UnconfirmedTransactionsQuery) (*Transactions, *http.Response, error) {
 	var responseStruct *Transactions
 	resp, err := s.client.SendRequest(ctx, "GET", "transactions/unconfirmed", query, nil, &responseStruct, "transactions")
 

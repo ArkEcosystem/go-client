@@ -59,7 +59,7 @@ func TestVotesService_List(t *testing.T) {
 			}`)
 	})
 
-	query := &Pagination{Limit: 1}
+	query := &VotesQuery{Pagination: Pagination{Limit: 1}}
 	responseStruct, response, err := client.Votes.List(context.Background(), query)
 	testGeneralError(t, "Votes.List", err)
 	testResponseUrl(t, "Votes.List", response, "/api/votes")
@@ -131,7 +131,7 @@ func TestVotesService_Get(t *testing.T) {
 			}`)
 	})
 
-	responseStruct, response, err := client.Votes.Get(context.Background(), "dummy")
+	responseStruct, response, err := client.Votes.Get(context.Background(), "dummy", nil)
 	testGeneralError(t, "Votes.Get", err)
 	testResponseUrl(t, "Votes.Get", response, "/api/votes/dummy")
 	testResponseStruct(t, "Votes.Get", responseStruct, &GetTransaction{

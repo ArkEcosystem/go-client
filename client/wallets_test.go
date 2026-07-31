@@ -47,7 +47,7 @@ func TestWalletsService_List(t *testing.T) {
 			}`)
 	})
 
-	query := &Pagination{Limit: 1}
+	query := &WalletsQuery{Pagination: Pagination{Limit: 1}}
 	responseStruct, response, err := client.Wallets.List(context.Background(), query)
 	testGeneralError(t, "Wallets.List", err)
 	testResponseUrl(t, "Wallets.List", response, "/api/wallets")
@@ -101,7 +101,7 @@ func TestWalletsService_Top(t *testing.T) {
 			}`)
 	})
 
-	query := &Pagination{Limit: 1}
+	query := &WalletsQuery{Pagination: Pagination{Limit: 1}}
 	responseStruct, response, err := client.Wallets.Top(context.Background(), query)
 	testGeneralError(t, "Wallets.Top", err)
 	testResponseUrl(t, "Wallets.Top", response, "/api/wallets/top")
@@ -233,7 +233,7 @@ func TestWalletsService_Transactions(t *testing.T) {
 			}`)
 	})
 
-	query := &Pagination{Limit: 1}
+	query := &TransactionsQuery{Pagination: Pagination{Limit: 1}}
 	responseStruct, response, err := client.Wallets.Transactions(context.Background(), "dummy", query)
 	testGeneralError(t, "Wallets.Transactions", err)
 	testResponseUrl(t, "Wallets.Transactions", response, "/api/wallets/dummy/transactions")
@@ -317,7 +317,7 @@ func TestWalletsService_SentTransactions(t *testing.T) {
 			}`)
 	})
 
-	query := &Pagination{Limit: 1}
+	query := &TransactionsQuery{Pagination: Pagination{Limit: 1}}
 	responseStruct, response, err := client.Wallets.SentTransactions(context.Background(), "dummy", query)
 	testGeneralError(t, "Wallets.Transactions", err)
 	testResponseUrl(t, "Wallets.Transactions", response, "/api/wallets/dummy/transactions/sent")
@@ -401,7 +401,7 @@ func TestWalletsService_ReceivedTransaction(t *testing.T) {
 			}`)
 	})
 
-	query := &Pagination{Limit: 1}
+	query := &TransactionsQuery{Pagination: Pagination{Limit: 1}}
 	responseStruct, response, err := client.Wallets.ReceivedTransactions(context.Background(), "dummy", query)
 	testGeneralError(t, "Wallets.Transactions", err)
 	testResponseUrl(t, "Wallets.Transactions", response, "/api/wallets/dummy/transactions/received")
@@ -485,7 +485,7 @@ func TestWalletsService_Votes(t *testing.T) {
 			}`)
 	})
 
-	query := &Pagination{Limit: 1}
+	query := &TransactionsQuery{Pagination: Pagination{Limit: 1}}
 	responseStruct, response, err := client.Wallets.Votes(context.Background(), "dummy", query)
 	testGeneralError(t, "Wallets.Votes", err)
 	testResponseUrl(t, "Wallets.Votes", response, "/api/wallets/dummy/votes")
@@ -556,7 +556,7 @@ func TestWalletsService_TokensFor(t *testing.T) {
 			}`)
 	})
 
-	query := &Pagination{Limit: 1}
+	query := &WalletTokensForQuery{Pagination: Pagination{Limit: 1}}
 	responseStruct, response, err := client.Wallets.TokensFor(context.Background(), "0x29C73Db411118fa1Bf029390B097E0b23f64A496", query)
 	testGeneralError(t, "Wallets.TokensFor", err)
 	testResponseUrl(t, "Wallets.TokensFor", response, "/api/wallets/0x29C73Db411118fa1Bf029390B097E0b23f64A496/tokens")
@@ -617,8 +617,8 @@ func TestWalletsService_Tokens(t *testing.T) {
 	})
 
 	query := &WalletTokensQuery{
-		Addresses: CommaSeparated{"0x29C73Db411118fa1Bf029390B097E0b23f64A496"},
-		Limit:     1,
+		Pagination: Pagination{Limit: 1},
+		Addresses:  CommaSeparated{"0x29C73Db411118fa1Bf029390B097E0b23f64A496"},
 	}
 	responseStruct, response, err := client.Wallets.Tokens(context.Background(), query)
 	testGeneralError(t, "Wallets.Tokens", err)

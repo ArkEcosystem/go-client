@@ -59,7 +59,7 @@ func TestTransactionsService_List(t *testing.T) {
 			}`)
 	})
 
-	query := &Pagination{Limit: 1}
+	query := &TransactionsQuery{Pagination: Pagination{Limit: 1}}
 	responseStruct, response, err := client.Transactions.List(context.Background(), query)
 	testGeneralError(t, "Transactions.List", err)
 	testResponseUrl(t, "Transactions.List", response, "/api/transactions")
@@ -214,7 +214,7 @@ func TestTransactionsService_Get(t *testing.T) {
 			}`)
 	})
 
-	responseStruct, response, err := client.Transactions.Get(context.Background(), "dummy")
+	responseStruct, response, err := client.Transactions.Get(context.Background(), "dummy", nil)
 	testGeneralError(t, "Transactions.Get", err)
 	testResponseUrl(t, "Transactions.Get", response, "/api/transactions/dummy")
 	testResponseStruct(t, "Transactions.Get", responseStruct, &GetTransaction{
@@ -287,7 +287,7 @@ func TestTransactionsService_ListUnconfirmed(t *testing.T) {
 			}`)
 	})
 
-	query := &Pagination{Limit: 1}
+	query := &UnconfirmedTransactionsQuery{Pagination: Pagination{Limit: 1}}
 	responseStruct, response, err := client.Transactions.ListUnconfirmed(context.Background(), query)
 	testGeneralError(t, "Transactions.ListUnconfirmed", err)
 	testResponseUrl(t, "Transactions.ListUnconfirmed", response, "/api/transactions/unconfirmed")
