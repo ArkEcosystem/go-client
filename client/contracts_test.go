@@ -7,7 +7,6 @@ import (
 	"testing"
 )
 
-// Get all contracts.
 func TestContractsService_All(t *testing.T) {
 	client, mux, _, teardown := setupTest()
 	defer teardown()
