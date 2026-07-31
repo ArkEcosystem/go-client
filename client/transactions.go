@@ -91,39 +91,3 @@ func (s *TransactionsService) Configuration(ctx context.Context) (*GetTransactio
 
 	return responseStruct, resp, err
 }
-
-// Get a list of valid transaction types.
-func (s *TransactionsService) Types(ctx context.Context) (*TransactionTypes, *http.Response, error) {
-	var responseStruct *TransactionTypes
-	resp, err := s.client.SendRequest(ctx, "GET", "transactions/types", nil, nil, &responseStruct, "api")
-
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return responseStruct, resp, err
-}
-
-// Get a list of static transaction fees.
-func (s *TransactionsService) Fees(ctx context.Context) (*TransactionFees, *http.Response, error) {
-	var responseStruct *TransactionFees
-	resp, err := s.client.SendRequest(ctx, "GET", "transactions/fees", nil, nil, &responseStruct, "api")
-
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return responseStruct, resp, err
-}
-
-// Get the list of transaction schemas.
-func (s *TransactionsService) Schemas(ctx context.Context) (*TransactionSchemas, *http.Response, error) {
-	var responseStruct *TransactionSchemas
-	resp, err := s.client.SendRequest(ctx, "GET", "transactions/schemas", nil, nil, &responseStruct, "api")
-
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return responseStruct, resp, err
-}
