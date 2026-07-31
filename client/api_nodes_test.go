@@ -35,13 +35,11 @@ func TestApiNodesService_All(t *testing.T) {
 			    "totalCount": 1
 			  },
 			  "data": [{
-			      "ip": "1.2.3.4",
-			      "port": 4002,
-			      "ports": {
-			        "@arkecosystem/core-wallet-api": 4040
-			      },
+			      "url": "http://1.2.3.4:4003",
 			      "version": "2.0.0",
-			      "latency": 10
+			      "height": 1204291,
+			      "latency": 10,
+			      "status": "success"
 			  }]
 			}`)
 	})
@@ -62,14 +60,12 @@ func TestApiNodesService_All(t *testing.T) {
 			Self:                 "/api-nodes?transform=true&limit=100&page=1",
 			TotalCount:           1,
 		},
-		Data: []Peer{{
-			Ip:   "1.2.3.4",
-			Port: 4002,
-			Ports: PeerPorts{
-				"@arkecosystem/core-wallet-api": 4040,
-			},
+		Data: []ApiNode{{
+			Url:     "http://1.2.3.4:4003",
 			Version: "2.0.0",
+			Height:  1204291,
 			Latency: 10,
+			Status:  "success",
 		}},
 	})
 }

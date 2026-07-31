@@ -25,8 +25,8 @@ func TestBlockchainService_Info(t *testing.T) {
 			`{
 			  "data": {
 			    "block": {
-			      "height": 1213625,
-			      "id": "e7fd8d878860f4f41c1f53eef8ea75b585b22016b8d3aaf2d6742c1b59894016"
+			      "number": 1213625,
+			      "hash": "e7fd8d878860f4f41c1f53eef8ea75b585b22016b8d3aaf2d6742c1b59894016"
 			    },
 			    "supply": "12727605199999969"
 			  }
@@ -39,10 +39,10 @@ func TestBlockchainService_Info(t *testing.T) {
 	testResponseStruct(t, "Blockchain.Info", responseStruct, &BlockchainInfo{
 		Data: BlockchainData{
 			Block: BlockchainBlock{
-				Height: 1213625,
-				Id:     "e7fd8d878860f4f41c1f53eef8ea75b585b22016b8d3aaf2d6742c1b59894016",
+				Number: 1213625,
+				Hash:   "e7fd8d878860f4f41c1f53eef8ea75b585b22016b8d3aaf2d6742c1b59894016",
 			},
-			Supply: "12727605199999969",
+			Supply: newBigInt(12727605199999969),
 		},
 	})
 }

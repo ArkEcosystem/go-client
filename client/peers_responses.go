@@ -9,15 +9,22 @@ package client
 
 type PeerPorts map[string]int16
 
-type Peer struct {
-	Ip      string    `json:"ip,omitempty"`
-	Port    int16     `json:"port,omitempty"`
-	Ports   PeerPorts `json:"ports,omitempty"`
-	Version string    `json:"version,omitempty"`
-	Height  int64     `json:"height,omitempty"`
-	Latency byte      `json:"latency,omitempty"`
+type PeerPlugin struct {
+	Enabled            bool  `json:"enabled,omitempty"`
+	EstimateTotalCount bool  `json:"estimateTotalCount,omitempty"`
+	Port               int16 `json:"port,omitempty"`
 }
-	
+
+type Peer struct {
+	BlockNumber int64                 `json:"blockNumber,omitempty"`
+	Ip          string                `json:"ip,omitempty"`
+	Latency     byte                  `json:"latency,omitempty"`
+	Plugins     map[string]PeerPlugin `json:"plugins,omitempty"`
+	Port        int16                 `json:"port,omitempty"`
+	Ports       PeerPorts             `json:"ports,omitempty"`
+	Version     string                `json:"version,omitempty"`
+}
+
 type Peers struct {
 	Meta Meta   `json:"meta,omitempty"`
 	Data []Peer `json:"data,omitempty"`

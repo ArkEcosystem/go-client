@@ -24,24 +24,39 @@ func TestPeersService_List(t *testing.T) {
 		fmt.Fprint(writer,
 			`{
 			  "meta": {
+			    "totalCountIsEstimate": false,
 			    "count": 1,
-			    "pageCount": 1,
-			    "totalCount": 1,
-			    "next": null,
+			    "first": "/peers?limit=1&page=1",
+			    "last": "/peers?limit=1&page=12",
+			    "next": "/peers?limit=1&page=2",
+			    "pageCount": 12,
 			    "previous": null,
-			    "self": "/api/peers?page=1&limit=1",
-			    "first": "/api/peers?page=1&limit=1",
-			    "last": "/api/peers?page=1&limit=1"
+			    "self": "/peers?limit=1&page=1",
+			    "totalCount": 12
 			  },
 			  "data": [
 			    {
-			      "ip": "1.2.3.4",
-			      "port": 4002,
-			      "ports": {
-			        "@arkecosystem/core-wallet-api": 4040
+			      "blockNumber": 23189863,
+			      "ip": "128.140.81.247",
+			      "latency": 3,
+			      "plugins": {
+			        "@mainsail/webhooks": {
+			          "port": 4004,
+			          "enabled": false,
+			          "estimateTotalCount": false
+			        },
+			        "@mainsail/api-development": {
+			          "port": 4006,
+			          "enabled": true,
+			          "estimateTotalCount": false
+			        }
 			      },
-			      "version": "2.0.0",
-			      "latency": 10
+			      "port": 4000,
+			      "ports": {
+			        "@mainsail/webhooks": -1,
+			        "@mainsail/api-development": 4006
+			      },
+			      "version": "0.0.1-evm.53"
 			    }
 			  ]
 			}`)
@@ -53,23 +68,38 @@ func TestPeersService_List(t *testing.T) {
 	testResponseUrl(t, "Peers.List", response, "/api/peers")
 	testResponseStruct(t, "Peers.List", responseStruct, &Peers{
 		Meta: Meta{
-			Count:      1,
-			PageCount:  1,
-			TotalCount: 1,
-			Next:       nil,
-			Previous:   nil,
-			Self:       "/api/peers?page=1&limit=1",
-			First:      "/api/peers?page=1&limit=1",
-			Last:       "/api/peers?page=1&limit=1",
+			TotalCountIsEstimate: false,
+			Count:                1,
+			First:                "/peers?limit=1&page=1",
+			Last:                 "/peers?limit=1&page=12",
+			Next:                 strPtr("/peers?limit=1&page=2"),
+			PageCount:            12,
+			Previous:             nil,
+			Self:                 "/peers?limit=1&page=1",
+			TotalCount:           12,
 		},
 		Data: []Peer{{
-			Ip:   "1.2.3.4",
-			Port: 4002,
-			Ports: PeerPorts{
-				"@arkecosystem/core-wallet-api": 4040,
+			BlockNumber: 23189863,
+			Ip:          "128.140.81.247",
+			Latency:     3,
+			Plugins: map[string]PeerPlugin{
+				"@mainsail/webhooks": {
+					Port:               4004,
+					Enabled:            false,
+					EstimateTotalCount: false,
+				},
+				"@mainsail/api-development": {
+					Port:               4006,
+					Enabled:            true,
+					EstimateTotalCount: false,
+				},
 			},
-			Version: "2.0.0",
-			Latency: 10,
+			Port: 4000,
+			Ports: PeerPorts{
+				"@mainsail/webhooks":        -1,
+				"@mainsail/api-development": 4006,
+			},
+			Version: "0.0.1-evm.53",
 		}},
 	})
 }
@@ -79,54 +109,66 @@ func TestPeersService_Get(t *testing.T) {
 	client, mux, _, teardown := setupTest()
 	defer teardown()
 
-	mux.HandleFunc("/peers/1.2.3.4", func(writer http.ResponseWriter, request *http.Request) {
+	mux.HandleFunc("/peers/128.140.81.247", func(writer http.ResponseWriter, request *http.Request) {
 		testMethod(t, request, "GET")
 		fmt.Fprint(writer,
 			`{
-			  "meta": {
-			    "count": 1,
-			    "pageCount": 1,
-			    "totalCount": 1,
-			    "next": null,
-			    "previous": null,
-			    "self": "/api/peers?page=1&limit=1",
-			    "first": "/api/peers?page=1&limit=1",
-			    "last": "/api/peers?page=1&limit=1"
-			  },
 			  "data": {
-			    "ip": "1.2.3.4",
-			    "port": 4002,
-			    "ports": {
-			      "@arkecosystem/core-wallet-api": 4040
+			    "blockNumber": 23189864,
+			    "ip": "128.140.81.247",
+			    "latency": 67,
+			    "plugins": {
+			      "@mainsail/webhooks": {
+			        "port": 4004,
+			        "enabled": false,
+			        "estimateTotalCount": false
+			      },
+			      "@mainsail/api-development": {
+			        "port": 4006,
+			        "enabled": true,
+			        "estimateTotalCount": false
+			      }
 			    },
-			    "version": "2.0.0",
-			    "latency": 10
+			    "port": 4000,
+			    "ports": {
+			      "@mainsail/webhooks": -1,
+			      "@mainsail/api-development": 4006
+			    },
+			    "version": "0.0.1-evm.53"
 			  }
 			}`)
 	})
 
-	responseStruct, response, err := client.Peers.Get(context.Background(), "1.2.3.4")
+	responseStruct, response, err := client.Peers.Get(context.Background(), "128.140.81.247")
 	testGeneralError(t, "Peers.Get", err)
-	testResponseUrl(t, "Peers.Get", response, "/api/peers/1.2.3.4")
+	testResponseUrl(t, "Peers.Get", response, "/api/peers/128.140.81.247")
 	testResponseStruct(t, "Peers.Get", responseStruct, &GetPeer{
-		Meta: Meta{
-			Count:      1,
-			PageCount:  1,
-			TotalCount: 1,
-			Next:       nil,
-			Previous:   nil,
-			Self:       "/api/peers?page=1&limit=1",
-			First:      "/api/peers?page=1&limit=1",
-			Last:       "/api/peers?page=1&limit=1",
-		},
 		Data: Peer{
-			Ip:   "1.2.3.4",
-			Port: 4002,
-			Ports: PeerPorts{
-				"@arkecosystem/core-wallet-api": 4040,
+			BlockNumber: 23189864,
+			Ip:          "128.140.81.247",
+			Latency:     67,
+			Plugins: map[string]PeerPlugin{
+				"@mainsail/webhooks": {
+					Port:               4004,
+					Enabled:            false,
+					EstimateTotalCount: false,
+				},
+				"@mainsail/api-development": {
+					Port:               4006,
+					Enabled:            true,
+					EstimateTotalCount: false,
+				},
 			},
-			Version: "2.0.0",
-			Latency: 10,
+			Port: 4000,
+			Ports: PeerPorts{
+				"@mainsail/webhooks":        -1,
+				"@mainsail/api-development": 4006,
+			},
+			Version: "0.0.1-evm.53",
 		},
 	})
+}
+
+func strPtr(s string) *string {
+	return &s
 }

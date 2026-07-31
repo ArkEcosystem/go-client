@@ -10,6 +10,7 @@ package client
 import (
 	"encoding/json"
 	"fmt"
+	"math/big"
 	"net/http"
 	"net/http/httptest"
 	"os"
@@ -18,10 +19,27 @@ import (
 	"testing"
 )
 
+func newBigInt(x int64) BigInt {
+	return BigInt{big.NewInt(x)}
+}
+
+// newBigIntFromString builds a BigInt from a decimal string, for test values
+// that exceed int64's range (e.g. wei-scale amounts beyond ~9.2e18).
+func newBigIntFromString(s string) BigInt {
+	i, ok := new(big.Int).SetString(s, 10)
+	if !ok {
+		panic(fmt.Sprintf("newBigIntFromString: invalid decimal string %q", s))
+	}
+
+	return BigInt{i}
+}
+
 const (
 	// baseURLPath is a non-empty Client.BaseURL path to use during tests,
 	// to ensure relative URLs are used for all endpoints. See issue #752.
 	baseURLPath = "/api"
+	txURLPath   = "/tx/api"
+	evmURLPath  = "/evm/api"
 )
 
 func setupTest() (client *Client, mux *http.ServeMux, serverURL string, teardown func()) {
@@ -33,6 +51,8 @@ func setupTest() (client *Client, mux *http.ServeMux, serverURL string, teardown
 	// when there's a non-empty base URL path. So, use that. See issue #752.
 	apiHandler := http.NewServeMux()
 	apiHandler.Handle(baseURLPath+"/", http.StripPrefix(baseURLPath, mux))
+	apiHandler.Handle(txURLPath+"/", http.StripPrefix(txURLPath, mux))
+	apiHandler.Handle(evmURLPath+"/", http.StripPrefix(evmURLPath, mux))
 	apiHandler.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
 		fmt.Fprintln(os.Stderr, "FAIL: Client.BaseURL path prefix is not preserved in the request URL:")
 		fmt.Fprintln(os.Stderr)
@@ -46,10 +66,9 @@ func setupTest() (client *Client, mux *http.ServeMux, serverURL string, teardown
 
 	hosts := Hosts{
 		API:          server.URL + baseURLPath + "/",
-		Transactions: server.URL + "/tx/api/",
-		EVM:          server.URL + "/evm/api/",
+		Transactions: server.URL + txURLPath + "/",
+		EVM:          server.URL + evmURLPath + "/",
 	}
-
 
 	// client is the Ark client being tested and is
 	// configured to use test server.

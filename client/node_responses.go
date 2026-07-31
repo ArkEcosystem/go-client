@@ -20,7 +20,7 @@ type GetNodeConfiguration struct {
 }
 
 type GetNodeFees struct {
-	Data NodeFees `json:"data,omitempty"`
+	Data NodeFeesResponse `json:"data,omitempty"`
 }
 
 type NodeStatus struct {
@@ -31,71 +31,78 @@ type NodeStatus struct {
 }
 
 type NodeSyncing struct {
-	Syncing bool   `json:"syncing,omitempty"`
-	Blocks  int64  `json:"blocks,omitempty"`
-	Height  int64  `json:"height,omitempty"`
-	Id      int    `json:"id,omitempty"`
+	Syncing     bool  `json:"syncing,omitempty"`
+	Blocks      int64 `json:"blocks,omitempty"`
+	BlockNumber int64 `json:"blockNumber,omitempty"`
+	Id          int   `json:"id,omitempty"`
+}
+
+type NodeCore struct {
+	Version string `json:"version,omitempty"`
 }
 
 type NodeConfiguration struct {
-	Nethash         string              `json:"nethash,omitempty"`
-	Token           string              `json:"token,omitempty"`
-	Symbol          string              `json:"symbol,omitempty"`
-	Explorer        string              `json:"explorer,omitempty"`
-	Version         int16               `json:"version,omitempty"`
-	Ports           map[string]int16    `json:"ports,omitempty"`
-	Constants       NodeConstants       `json:"constants,omitempty"`
-	TransactionPool NodeTransactionPool `json:"transactionPool,omitempty"`
+	Nethash   string           `json:"nethash,omitempty"`
+	Token     string           `json:"token,omitempty"`
+	Symbol    string           `json:"symbol,omitempty"`
+	Explorer  string           `json:"explorer,omitempty"`
+	Version   int16            `json:"version,omitempty"`
+	Wif       int16            `json:"wif,omitempty"`
+	Ports     map[string]int16 `json:"ports,omitempty"`
+	Constants NodeConstants    `json:"constants,omitempty"`
+	Core      NodeCore         `json:"core,omitempty"`
 }
 
-type NodeFees []FeeStatistic
+type NodeConstantsGas struct {
+	MaximumGasLimit int64 `json:"maximumGasLimit,omitempty"`
+	MaximumGasPrice int64 `json:"maximumGasPrice,omitempty"`
+	MinimumGasLimit int64 `json:"minimumGasLimit,omitempty"`
+	MinimumGasPrice int64 `json:"minimumGasPrice,omitempty"`
+}
 
 type NodeConstantsBlock struct {
-	Version         byte  `json:"version,omitempty"`
-	MaxTransactions byte  `json:"maxTransactions,omitempty"`
-	MaxPayload      int64 `json:"maxPayload,omitempty"`
+	Version     byte  `json:"version,omitempty"`
+	MaxPayload  int64 `json:"maxPayload,omitempty"`
+	MaxGasLimit int64 `json:"maxGasLimit,omitempty"`
+}
+
+type NodeConstantsSatoshi struct {
+	Decimals     int16 `json:"decimals,omitempty"`
+	Denomination int64 `json:"denomination,omitempty"`
+}
+
+type NodeConstantsSnapshot struct {
+	SnapshotHash             string `json:"snapshotHash,omitempty"`
+	PreviousGenesisBlockHash string `json:"previousGenesisBlockHash,omitempty"`
+}
+
+type NodeConstantsTimeouts struct {
+	BlockTime            int64 `json:"blockTime,omitempty"`
+	Tolerance            int64 `json:"tolerance,omitempty"`
+	StageTimeout         int64 `json:"stageTimeout,omitempty"`
+	BlockPrepareTime     int64 `json:"blockPrepareTime,omitempty"`
+	StageTimeoutIncrease int64 `json:"stageTimeoutIncrease,omitempty"`
 }
 
 type NodeConstants struct {
-	Height          int64               `json:"height,omitempty"`
-	Reward          int64               `json:"reward,omitempty"`
-	ActiveDelegates byte                `json:"activeDelegates,omitempty"`
-	BlockTime       byte                `json:"blocktime,omitempty"`
-	Block           NodeConstantsBlock  `json:"block,omitempty"`
-	Epoch           string              `json:"epoch,omitempty"`
-	Fees            map[string]FeeTypes `json:"fees,omitempty"`
+	Gas                      NodeConstantsGas      `json:"gas,omitempty"`
+	Block                    NodeConstantsBlock    `json:"block,omitempty"`
+	Epoch                    string                `json:"epoch,omitempty"`
+	Height                   int64                 `json:"height,omitempty"`
+	Reward                   BigInt                `json:"reward,omitempty"`
+	EvmSpec                  string                `json:"evmSpec,omitempty"`
+	Satoshi                  NodeConstantsSatoshi  `json:"satoshi,omitempty"`
+	Snapshot                 NodeConstantsSnapshot `json:"snapshot,omitempty"`
+	Timeouts                 NodeConstantsTimeouts `json:"timeouts,omitempty"`
+	RoundValidators          int64                 `json:"roundValidators,omitempty"`
+	ValidatorRegistrationFee BigInt                `json:"validatorRegistrationFee,omitempty"`
 }
 
-type DynamicFees struct {
-	Enabled         bool     `json:"enabled,omitempty"`
-	MinFeePool      int16    `json:"minFeePool,omitempty"`
-	MinFeeBroadcast int16    `json:"minFeeBroadcast,omitempty"`
-	AddonBytes      FeeTypes `json:"addonBytes,omitempty"`
+type TransactionTypeFee struct {
+	Avg BigInt `json:"avg,omitempty"`
+	Max BigInt `json:"max,omitempty"`
+	Min BigInt `json:"min,omitempty"`
+	Sum BigInt `json:"sum,omitempty"`
 }
 
-type NodeTransactionPool struct {
-	DynamicFees DynamicFees `json:"dynamicFees,omitempty"`
-}
-
-type FeeStatistic struct {
-	Type   int16  `json:"type,omitempty"`
-	MinFee uint32 `json:"min,omitempty,string"`
-	MaxFee uint32 `json:"max,omitempty,string"`
-	AvgFee uint32 `json:"avg,omitempty,string"`
-	SumFee uint32 `json:"sum,omitempty,string"`
-	MdnFee uint32 `json:"median,omitempty,string"`
-}
-
-type FeeTypes struct {
-	Transfer             uint32 `json:"transfer,omitempty"`
-	SecondSignature      uint32 `json:"secondSignature,omitempty"`
-	DelegateRegistration uint32 `json:"delegateRegistration,omitempty"`
-	Vote                 uint32 `json:"vote,omitempty"`
-	MultiSignature       uint32 `json:"multiSignature,omitempty"`
-	Ipfs                 uint32 `json:"ipfs,omitempty"`
-	MultiPayment         uint32 `json:"multiPayment,omitempty"`
-	DelegateResignation  uint32 `json:"delegateResignation,omitempty"`
-	HtlcLock             uint32 `json:"htlcLock,omitempty"`
-	HtlcClaim            uint32 `json:"htlcClaim,omitempty"`
-	HtlcRefund           uint32 `json:"htlcRefund,omitempty"`
-}
+type NodeFeesResponse map[string]TransactionTypeFee

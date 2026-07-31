@@ -25,20 +25,30 @@ func TestRoundsService_Validators(t *testing.T) {
 			`{
 			  "data": [
 			    {
+			      "address": "dummy",
 			      "publicKey": "03ffc17c5528d490b045a9b710c754e00a536d05d9b0b78a9baa0533a246dcd98c",
-			      "votes": "156947252547993"
+			      "balance": "100000000",
+			      "nonce": "1",
+			      "attributes": {
+			        "validatorVoteBalance": "156947252547993"
+			      }
 			    }
 			  ]
 			}`)
 	})
 
-	responseStruct, response, err := client.Rounds.Validators(context.Background(), 12345)
+	responseStruct, response, err := client.Rounds.Validators(context.Background(), "12345")
 	testGeneralError(t, "Rounds.Validators", err)
 	testResponseUrl(t, "Rounds.Validators", response, "/rounds/12345/validators")
-	testResponseStruct(t, "Rounds.Validators", responseStruct, &GetValidators{
-		Data: []RoundValidator{{
+	testResponseStruct(t, "Rounds.Validators", responseStruct, &Wallets{
+		Data: []Wallet{{
+			Address:   "dummy",
 			PublicKey: "03ffc17c5528d490b045a9b710c754e00a536d05d9b0b78a9baa0533a246dcd98c",
-			Votes:     "156947252547993",
+			Balance:   newBigInt(100000000),
+			Nonce:     newBigInt(1),
+			Attributes: WalletAttributes{
+				ValidatorVoteBalance: newBigInt(156947252547993),
+			},
 		}},
 	})
 }
@@ -134,7 +144,7 @@ func TestRoundsService_Show(t *testing.T) {
 		}`)
 	})
 
-	responseStruct, response, err := client.Rounds.Show(context.Background(), 12345)
+	responseStruct, response, err := client.Rounds.Show(context.Background(), "12345")
 	testGeneralError(t, "Rounds.Show", err)
 	testResponseUrl(t, "Rounds.Show", response, "/rounds/12345")
 	testResponseStruct(t, "Rounds.Show", responseStruct, &GetRound{

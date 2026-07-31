@@ -15,11 +15,11 @@ type BlockchainInfo struct {
 // BlockchainData represents the data field in the BlockchainInfo response.
 type BlockchainData struct {
 	Block  BlockchainBlock `json:"block"`
-	Supply string          `json:"supply"`
+	Supply BigInt          `json:"supply"`
 }
 
 // BlockchainBlock represents a block in the blockchain.
 type BlockchainBlock struct {
-	Height int    `json:"height"`
-	Id     string `json:"id"`
+	Hash   string `json:"hash"`
+	Number int64  `json:"number"`
 }

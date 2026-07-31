@@ -7,24 +7,28 @@
 
 package client
 
+type TransactionReceipt struct {
+	CumulativeGasUsed uint32 `json:"cumulativeGasUsed,omitempty"`
+	GasRefunded       uint32 `json:"gasRefunded,omitempty"`
+	GasUsed           uint32 `json:"gasUsed,omitempty"`
+	Status            int    `json:"status,omitempty"`
+}
+
 type Transaction struct {
-	Id              string            `json:"id,omitempty"`
-	BlockId         string            `json:"blockId,omitempty"`
-	Version         byte              `json:"version,omitempty"`
-	Type            byte              `json:"type,omitempty"`
-	TypeGroup       uint16            `json:"typeGroup,omitempty"`
-	Amount          uint64            `json:"amount,omitempty,string"`
-	Fee             uint64            `json:"fee,omitempty,string"`
-	Sender          string            `json:"sender,omitempty"`
-	SenderPublicKey string            `json:"senderPublicKey,omitempty"`
-	Recipient       string            `json:"recipient,omitempty"`
-	Signature       string            `json:"signature,omitempty"`
-	Asset           *TransactionAsset `json:"asset,omitempty"`
-	VendorField     string            `json:"vendorField,omitempty"`
-	Confirmations   uint32            `json:"confirmations,omitempty"`
-	Timestamp       int64             `json:"timestamp,omitempty"`
-	Nonce           uint64            `json:"nonce,omitempty,string"`
-	Signatures      []string          `json:"signatures,omitempty"`
+	Hash            string             `json:"hash,omitempty"`
+	Value           BigInt             `json:"value,omitempty"`
+	BlockHash       string             `json:"blockHash,omitempty"`
+	Confirmations   uint32             `json:"confirmations,omitempty"`
+	Data            string             `json:"data,omitempty"`
+	Gas             BigInt             `json:"gas,omitempty"`
+	GasPrice        BigInt             `json:"gasPrice,omitempty"`
+	Nonce           BigInt             `json:"nonce,omitempty"`
+	To              string             `json:"to,omitempty"`
+	From            string             `json:"from,omitempty"`
+	SenderPublicKey string             `json:"senderPublicKey,omitempty"`
+	Signature       string             `json:"signature,omitempty"`
+	Timestamp       string             `json:"timestamp,omitempty"`
+	Receipt         TransactionReceipt `json:"receipt,omitempty"`
 }
 
 type Transactions struct {
@@ -55,50 +59,6 @@ type CreateTransaction struct {
 	Excess  []string `json:"excess,omitempty"`
 	Invalid []string `json:"invalid,omitempty"`
 }
-
-////////////////////////////////////////////////////////////////////////////////
-// TRANSACTION ASSETS //////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-
-type TransactionAsset struct {
-	Votes          []string                          `json:"votes,omitempty"`
-	Unvotes        []string                          `json:"unvotes,omitempty"`
-	Signature      *SecondSignatureRegistrationAsset `json:"signature,omitempty"`
-	Delegate       *DelegateAsset                    `json:"delegate,omitempty"`
-	MultiSignature *MultiSignatureRegistrationAsset  `json:"multiSignature,omitempty"`
-	Ipfs           *IpfsAsset                        `json:"ipfs,omitempty"`
-	Payments       []*MultiPaymentAsset              `json:"payments,omitempty"`
-	Claim          *ClaimAsset                       `json:"claim,omitempty"`
-}
-
-type SecondSignatureRegistrationAsset struct {
-	PublicKey string `json:"publicKey,omitempty"`
-}
-
-type DelegateAsset struct {
-	Username string `json:"username,omitempty"`
-}
-
-type MultiSignatureRegistrationAsset struct {
-	Min       byte     `json:"min,omitempty"`
-	Keysgroup []string `json:"keysgroup,omitempty"`
-	Lifetime  byte     `json:"lifetime,omitempty"`
-}
-
-type IpfsAsset struct {
-	Dag string `json:"dag,omitempty"`
-}
-
-type MultiPaymentAsset struct {
-	Amount      uint64 `json:"amount,omitempty,string"`
-	RecipientId string `json:"recipientId,omitempty"`
-}
-
-type ClaimAsset struct {
-	LockTransactionId string `json:"lockTransactionId,omitempty"`
-	UnlockSecret      string `json:"unlockSecret,omitempty"`
-}
-
 
 // TransactionSchemas represents the response from the /transactions/schemas endpoint.
 type TransactionSchemas struct {

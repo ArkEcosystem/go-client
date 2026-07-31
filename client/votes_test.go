@@ -35,24 +35,25 @@ func TestVotesService_List(t *testing.T) {
 			  },
 			  "data": [
 			    {
-			      "id": "dummy",
-			      "blockId": "dummy",
-			      "type": 3,
-			      "typeGroup": 1,
-			      "amount": "0",
-			      "fee": "100000000",
-			      "sender": "dummy",
+			      "hash": "dummy",
+			      "blockHash": "dummy",
+			      "value": "0",
+			      "gas": "100000",
+			      "gasPrice": "10000000",
 			      "senderPublicKey": "dummy",
-			      "recipient": "dummy",
+			      "to": "dummy",
+			      "from": "dummy",
+			      "data": "0x",
 			      "signature": "dummy",
-			      "asset": {
-			        "votes": [
-			          "+dummy"
-			        ]
-			      },
 			      "confirmations": 10,
-			      "timestamp": 1719434741918,
-			      "nonce": "1"
+			      "timestamp": "1719434741918",
+			      "nonce": "1",
+			      "receipt": {
+			        "cumulativeGasUsed": 100000,
+			        "gasRefunded": 0,
+			        "gasUsed": 100000,
+			        "status": 1
+			      }
 			    }
 			  ]
 			}`)
@@ -74,24 +75,25 @@ func TestVotesService_List(t *testing.T) {
 			Last:       "/api/votes?page=1&limit=1",
 		},
 		Data: []Transaction{{
-			Id:              "dummy",
-			BlockId:         "dummy",
-			Type:            3,
-			TypeGroup:       1,
-			Amount:          0,
-			Fee:             100000000,
-			Sender:          "dummy",
+			Hash:            "dummy",
+			BlockHash:       "dummy",
+			Value:           newBigInt(0),
+			Gas:             newBigInt(100000),
+			GasPrice:        newBigInt(10000000),
 			SenderPublicKey: "dummy",
-			Recipient:       "dummy",
+			To:              "dummy",
+			From:            "dummy",
+			Data:            "0x",
 			Signature:       "dummy",
-			Asset: &TransactionAsset{
-				Votes: []string{
-					"+dummy",
-				},
+			Confirmations:   10,
+			Timestamp:       "1719434741918",
+			Nonce:           newBigInt(1),
+			Receipt: TransactionReceipt{
+				CumulativeGasUsed: 100000,
+				GasRefunded:       0,
+				GasUsed:           100000,
+				Status:            1,
 			},
-			Confirmations: 10,
-			Timestamp: 1719434741918,
-			Nonce: 1,
 		}},
 	})
 }
@@ -106,24 +108,25 @@ func TestVotesService_Get(t *testing.T) {
 		fmt.Fprint(writer,
 			`{
 			  "data": {
-			    "id": "dummy",
-			    "blockId": "dummy",
-			    "type": 3,
-			    "typeGroup": 1,
-			    "amount": "0",
-			    "fee": "100000000",
-			    "sender": "dummy",
+			    "hash": "dummy",
+			    "blockHash": "dummy",
+			    "value": "0",
+			    "gas": "100000",
+			    "gasPrice": "10000000",
 			    "senderPublicKey": "dummy",
-			    "recipient": "dummy",
+			    "to": "dummy",
+			    "from": "dummy",
+			    "data": "0x",
 			    "signature": "dummy",
-			    "asset": {
-			      "votes": [
-			        "+dummy"
-			      ]
-			    },
 			    "confirmations": 10,
-			    "timestamp": 1719434741918,
-			    "nonce": "1"
+			    "timestamp": "1719434741918",
+			    "nonce": "1",
+			    "receipt": {
+			      "cumulativeGasUsed": 100000,
+			      "gasRefunded": 0,
+			      "gasUsed": 100000,
+			      "status": 1
+			    }
 			  }
 			}`)
 	})
@@ -133,24 +136,25 @@ func TestVotesService_Get(t *testing.T) {
 	testResponseUrl(t, "Votes.Get", response, "/api/votes/dummy")
 	testResponseStruct(t, "Votes.Get", responseStruct, &GetTransaction{
 		Data: Transaction{
-			Id:              "dummy",
-			BlockId:         "dummy",
-			Type:            3,
-			TypeGroup:       1,
-			Amount:          0,
-			Fee:             100000000,
-			Sender:          "dummy",
+			Hash:            "dummy",
+			BlockHash:       "dummy",
+			Value:           newBigInt(0),
+			Gas:             newBigInt(100000),
+			GasPrice:        newBigInt(10000000),
 			SenderPublicKey: "dummy",
-			Recipient:       "dummy",
+			To:              "dummy",
+			From:            "dummy",
+			Data:            "0x",
 			Signature:       "dummy",
-			Asset: &TransactionAsset{
-				Votes: []string{
-					"+dummy",
-				},
+			Confirmations:   10,
+			Timestamp:       "1719434741918",
+			Nonce:           newBigInt(1),
+			Receipt: TransactionReceipt{
+				CumulativeGasUsed: 100000,
+				GasRefunded:       0,
+				GasUsed:           100000,
+				Status:            1,
 			},
-			Confirmations: 10,
-			Timestamp: 1719434741918,
-			Nonce: 1,
 		},
 	})
 }

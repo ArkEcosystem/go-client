@@ -9,9 +9,9 @@ package client
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"net/http"
-	"encoding/json"
 	"testing"
 )
 
@@ -36,20 +36,25 @@ func TestTransactionsService_List(t *testing.T) {
 			  },
 			  "data": [
 			    {
-			      "id": "dummy",
-			      "blockId": "dummy",
-			      "type": 0,
-			      "typeGroup": 1,
-			      "amount": "10000000",
-			      "fee": "10000000",
-			      "sender": "dummy",
+			      "hash": "dummy",
+			      "blockHash": "dummy",
+			      "value": "10000000",
+			      "gas": "21000",
+			      "gasPrice": "10000000",
 			      "senderPublicKey": "dummy",
-			      "recipient": "dummy",
+			      "to": "dummy",
+			      "from": "dummy",
+			      "data": "0x",
 			      "signature": "dummy",
-			      "vendorField": "dummy",
 			      "confirmations": 10,
-			      "timestamp": 1719434741918,
-			      "nonce": "1"
+			      "timestamp": "1719434741918",
+			      "nonce": "1",
+			      "receipt": {
+			        "cumulativeGasUsed": 21000,
+			        "gasRefunded": 0,
+			        "gasUsed": 21000,
+			        "status": 1
+			      }
 			    }
 			  ]
 			}`)
@@ -71,20 +76,25 @@ func TestTransactionsService_List(t *testing.T) {
 			Last:       "/api/transactions?page=1&limit=1",
 		},
 		Data: []Transaction{{
-			Id:              "dummy",
-			BlockId:         "dummy",
-			Type:            0,
-			TypeGroup:       1,
-			Amount:          10000000,
-			Fee:             10000000,
-			Sender:          "dummy",
+			Hash:            "dummy",
+			BlockHash:       "dummy",
+			Value:           newBigInt(10000000),
+			Gas:             newBigInt(21000),
+			GasPrice:        newBigInt(10000000),
 			SenderPublicKey: "dummy",
-			Recipient:       "dummy",
+			To:              "dummy",
+			From:            "dummy",
+			Data:            "0x",
 			Signature:       "dummy",
-			VendorField:     "dummy",
 			Confirmations:   10,
-			Timestamp: 1719434741918,
-			Nonce: 1,
+			Timestamp:       "1719434741918",
+			Nonce:           newBigInt(1),
+			Receipt: TransactionReceipt{
+				CumulativeGasUsed: 21000,
+				GasRefunded:       0,
+				GasUsed:           21000,
+				Status:            1,
+			},
 		}},
 	})
 }
@@ -137,20 +147,25 @@ func TestTransactionsService_Get(t *testing.T) {
 		fmt.Fprint(writer,
 			`{
 			  "data": {
-			    "id": "dummy",
-			    "blockId": "dummy",
-			    "type": 0,
-			    "typeGroup": 1,
-			    "amount": "10000000",
-			    "fee": "10000000",
-			    "sender": "dummy",
+			    "hash": "dummy",
+			    "blockHash": "dummy",
+			    "value": "10000000",
+			    "gas": "21000",
+			    "gasPrice": "10000000",
 			    "senderPublicKey": "dummy",
-			    "recipient": "dummy",
+			    "to": "dummy",
+			    "from": "dummy",
+			    "data": "0x",
 			    "signature": "dummy",
-			    "vendorField": "dummy",
 			    "confirmations": 10,
-			    "timestamp": 1719434741918,
-			    "nonce": "1"
+			    "timestamp": "1719434741918",
+			    "nonce": "1",
+			    "receipt": {
+			      "cumulativeGasUsed": 21000,
+			      "gasRefunded": 0,
+			      "gasUsed": 21000,
+			      "status": 1
+			    }
 			  }
 			}`)
 	})
@@ -160,20 +175,25 @@ func TestTransactionsService_Get(t *testing.T) {
 	testResponseUrl(t, "Transactions.Get", response, "/api/transactions/dummy")
 	testResponseStruct(t, "Transactions.Get", responseStruct, &GetTransaction{
 		Data: Transaction{
-			Id:              "dummy",
-			BlockId:         "dummy",
-			Type:            0,
-			TypeGroup:       1,
-			Amount:          10000000,
-			Fee:             10000000,
-			Sender:          "dummy",
+			Hash:            "dummy",
+			BlockHash:       "dummy",
+			Value:           newBigInt(10000000),
+			Gas:             newBigInt(21000),
+			GasPrice:        newBigInt(10000000),
 			SenderPublicKey: "dummy",
-			Recipient:       "dummy",
+			To:              "dummy",
+			From:            "dummy",
+			Data:            "0x",
 			Signature:       "dummy",
-			VendorField:     "dummy",
 			Confirmations:   10,
-			Timestamp: 1719434741918,
-			Nonce: 1,
+			Timestamp:       "1719434741918",
+			Nonce:           newBigInt(1),
+			Receipt: TransactionReceipt{
+				CumulativeGasUsed: 21000,
+				GasRefunded:       0,
+				GasUsed:           21000,
+				Status:            1,
+			},
 		},
 	})
 }
@@ -199,20 +219,25 @@ func TestTransactionsService_ListUnconfirmed(t *testing.T) {
 			  },
 			  "data": [
 			    {
-			      "id": "dummy",
-			      "blockId": "dummy",
-			      "type": 0,
-			      "typeGroup": 1,
-			      "amount": "10000000",
-			      "fee": "10000000",
-			      "sender": "dummy",
+			      "hash": "dummy",
+			      "blockHash": "dummy",
+			      "value": "10000000",
+			      "gas": "21000",
+			      "gasPrice": "10000000",
 			      "senderPublicKey": "dummy",
-			      "recipient": "dummy",
+			      "to": "dummy",
+			      "from": "dummy",
+			      "data": "0x",
 			      "signature": "dummy",
-			      "vendorField": "dummy",
 			      "confirmations": 10,
-			      "timestamp": 1719434741918,
-			      "nonce": "1"
+			      "timestamp": "1719434741918",
+			      "nonce": "1",
+			      "receipt": {
+			        "cumulativeGasUsed": 21000,
+			        "gasRefunded": 0,
+			        "gasUsed": 21000,
+			        "status": 1
+			      }
 			    }
 			  ]
 			}`)
@@ -234,20 +259,25 @@ func TestTransactionsService_ListUnconfirmed(t *testing.T) {
 			Last:       "/api/transactions/unconfirmed?page=1&limit=1",
 		},
 		Data: []Transaction{{
-			Id:              "dummy",
-			BlockId:         "dummy",
-			Type:            0,
-			TypeGroup:       1,
-			Amount:          10000000,
-			Fee:             10000000,
-			Sender:          "dummy",
+			Hash:            "dummy",
+			BlockHash:       "dummy",
+			Value:           newBigInt(10000000),
+			Gas:             newBigInt(21000),
+			GasPrice:        newBigInt(10000000),
 			SenderPublicKey: "dummy",
-			Recipient:       "dummy",
+			To:              "dummy",
+			From:            "dummy",
+			Data:            "0x",
 			Signature:       "dummy",
-			VendorField:     "dummy",
 			Confirmations:   10,
-			Timestamp: 1719434741918,
-			Nonce: 1,
+			Timestamp:       "1719434741918",
+			Nonce:           newBigInt(1),
+			Receipt: TransactionReceipt{
+				CumulativeGasUsed: 21000,
+				GasRefunded:       0,
+				GasUsed:           21000,
+				Status:            1,
+			},
 		}},
 	})
 }
@@ -262,20 +292,25 @@ func TestTransactionsService_GetUnconfirmed(t *testing.T) {
 		fmt.Fprint(writer,
 			`{
 			  "data": {
-			    "id": "dummy",
-			    "blockId": "dummy",
-			    "type": 0,
-			    "typeGroup": 1,
-			    "amount": "10000000",
-			    "fee": "10000000",
-			    "sender": "dummy",
+			    "hash": "dummy",
+			    "blockHash": "dummy",
+			    "value": "10000000",
+			    "gas": "21000",
+			    "gasPrice": "10000000",
 			    "senderPublicKey": "dummy",
-			    "recipient": "dummy",
+			    "to": "dummy",
+			    "from": "dummy",
+			    "data": "0x",
 			    "signature": "dummy",
-			    "vendorField": "dummy",
 			    "confirmations": 10,
-			    "timestamp": 1719434741918,
-			    "nonce": "1"
+			    "timestamp": "1719434741918",
+			    "nonce": "1",
+			    "receipt": {
+			      "cumulativeGasUsed": 21000,
+			      "gasRefunded": 0,
+			      "gasUsed": 21000,
+			      "status": 1
+			    }
 			  }
 			}`)
 	})
@@ -285,20 +320,25 @@ func TestTransactionsService_GetUnconfirmed(t *testing.T) {
 	testResponseUrl(t, "Transactions.GetUnconfirmed", response, "/api/transactions/unconfirmed/dummy")
 	testResponseStruct(t, "Transactions.GetUnconfirmed", responseStruct, &GetTransaction{
 		Data: Transaction{
-			Id:              "dummy",
-			BlockId:         "dummy",
-			Type:            0,
-			TypeGroup:       1,
-			Amount:          10000000,
-			Fee:             10000000,
-			Sender:          "dummy",
+			Hash:            "dummy",
+			BlockHash:       "dummy",
+			Value:           newBigInt(10000000),
+			Gas:             newBigInt(21000),
+			GasPrice:        newBigInt(10000000),
 			SenderPublicKey: "dummy",
-			Recipient:       "dummy",
+			To:              "dummy",
+			From:            "dummy",
+			Data:            "0x",
 			Signature:       "dummy",
-			VendorField:     "dummy",
 			Confirmations:   10,
-			Timestamp: 1719434741918,
-			Nonce: 1,
+			Timestamp:       "1719434741918",
+			Nonce:           newBigInt(1),
+			Receipt: TransactionReceipt{
+				CumulativeGasUsed: 21000,
+				GasRefunded:       0,
+				GasUsed:           21000,
+				Status:            1,
+			},
 		},
 	})
 }
@@ -543,10 +583,10 @@ func TestTransactionsService_Schemas(t *testing.T) {
 				"signatures": map[string]interface{}{
 					"type": "array",
 					"items": map[string]interface{}{
-						"type":     "string",
+						"type":      "string",
 						"maxLength": 130,
 						"minLength": 130,
-						"$ref":    "alphanumeric",
+						"$ref":      "alphanumeric",
 					},
 					"maxItems":    16,
 					"minItems":    1,
@@ -587,4 +627,3 @@ func TestTransactionsService_Schemas(t *testing.T) {
 		t.Errorf("[Transactions.Schemas][Response] got %v, want %v", string(actualJSON), string(expectedJSON))
 	}
 }
-
