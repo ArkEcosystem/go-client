@@ -111,7 +111,6 @@ func (s *WalletsService) Votes(ctx context.Context, id string, query *Transactio
 	return responseStruct, resp, err
 }
 
-// Get all tokens held by the given wallet address.
 func (s *WalletsService) TokensFor(ctx context.Context, address string, query *WalletTokensForQuery) (*WalletTokens, *http.Response, error) {
 	uri := fmt.Sprintf("wallets/%v/tokens", address)
 
