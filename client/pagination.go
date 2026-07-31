@@ -17,9 +17,6 @@ type Pagination struct {
 	Limit int `url:"limit"`
 }
 
-// CommaSeparated encodes a slice of strings as a single comma-joined query
-// value (e.g. addresses=a,b,c) instead of go-querystring's default of
-// repeating the key for each value.
 type CommaSeparated []string
 
 func (c CommaSeparated) EncodeValues(key string, v *url.Values) error {
