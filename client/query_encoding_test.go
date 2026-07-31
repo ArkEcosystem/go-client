@@ -1,10 +1,3 @@
-// This file is part of Ark Go Client.
-//
-// (c) Ark Ecosystem <info@ark.io>
-//
-// For the full copyright and license information, please view the LICENSE
-// file that was distributed with this source code.
-
 package client
 
 import (
@@ -15,7 +8,6 @@ import (
 	"testing"
 )
 
-// testQueryParam asserts a single query parameter on the captured request.
 func testQueryParam(t *testing.T, got url.Values, key string, want string) {
 	t.Helper()
 
@@ -24,7 +16,6 @@ func testQueryParam(t *testing.T, got url.Values, key string, want string) {
 	}
 }
 
-// testQueryParamAbsent asserts a query parameter was NOT sent.
 func testQueryParamAbsent(t *testing.T, got url.Values, key string) {
 	t.Helper()
 
@@ -33,11 +24,6 @@ func testQueryParamAbsent(t *testing.T, got url.Values, key string) {
 	}
 }
 
-// Locks in the height->number and id->hash field renames: typescript-client
-// declares "height"/"height.from"/"height.to"/"id" for blocks filtering, but
-// live-server testing showed the real API hard-rejects all of them with a
-// 422 ("<field> is not allowed") and expects "number"/"number.from"/
-// "number.to"/"hash" instead.
 func TestQueryEncoding_BlocksQuery(t *testing.T) {
 	client, mux, _, teardown := setupTest()
 	defer teardown()
@@ -67,9 +53,6 @@ func TestQueryEncoding_BlocksQuery(t *testing.T) {
 	testQueryParamAbsent(t, got, "id")
 }
 
-// Locks in the "default page to 1 when zero" behavior working through struct
-// embedding (not just for a bare *Pagination), including two levels of
-// embedding (TokenTransfersQuery -> TokenLookupQuery -> Pagination).
 func TestQueryEncoding_PaginationDefaults(t *testing.T) {
 	client, mux, _, teardown := setupTest()
 	defer teardown()
@@ -95,9 +78,6 @@ func TestQueryEncoding_PaginationDefaults(t *testing.T) {
 	testQueryParam(t, gotNested, "page", "1")
 }
 
-// Locks in CommaSeparated joining multiple values into a single comma
-// delimited query value, instead of go-querystring's default of repeating
-// the key once per value.
 func TestQueryEncoding_CommaSeparated(t *testing.T) {
 	client, mux, _, teardown := setupTest()
 	defer teardown()
@@ -122,9 +102,6 @@ func TestQueryEncoding_CommaSeparated(t *testing.T) {
 	}
 }
 
-// Locks in that wei-scale filter fields (Balance, Value, ForgedFees, etc.)
-// are plain strings, so values far beyond int64's range pass through the
-// query string unmangled. This is what the int64->string fix protects.
 func TestQueryEncoding_WeiScaleStringFields(t *testing.T) {
 	client, mux, _, teardown := setupTest()
 	defer teardown()
