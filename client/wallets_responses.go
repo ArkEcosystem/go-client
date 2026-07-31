@@ -19,7 +19,7 @@ type WalletAttributes struct {
 	IsLegacy                bool                `json:"isLegacy,omitempty"`
 	LegacyNonce             string              `json:"legacyNonce,omitempty"`
 	ValidatorFee            BigInt              `json:"validatorFee,omitempty"`
-	ValidatorRank           byte                `json:"validatorRank,omitempty"`
+	ValidatorRank           int64               `json:"validatorRank,omitempty"`
 	ValidatorApproval       float64             `json:"validatorApproval,omitempty"`
 	ValidatorResigned       bool                `json:"validatorResigned,omitempty"`
 	ValidatorLastBlock      *ValidatorLastBlock `json:"validatorLastBlock,omitempty"`
