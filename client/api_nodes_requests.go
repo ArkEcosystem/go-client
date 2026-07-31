@@ -1,6 +1,5 @@
 package client
 
-// ApiNodesQuery is the query for ApiNodes.All.
 type ApiNodesQuery struct {
 	Pagination
 	Ip      string `url:"ip,omitempty"`

@@ -14,7 +14,6 @@ type WalletsQuery struct {
 	OrderBy     string `url:"orderBy,omitempty"`
 }
 
-// WalletTokensForQuery is the query for Wallets.TokensFor.
 type WalletTokensForQuery struct {
 	Pagination
 	IgnoreWhitelist bool           `url:"ignoreWhitelist,omitempty"`
@@ -23,7 +22,6 @@ type WalletTokensForQuery struct {
 	Whitelist       CommaSeparated `url:"whitelist,omitempty"`
 }
 
-// WalletTokensQuery is the query for Wallets.Tokens.
 type WalletTokensQuery struct {
 	Pagination
 	Addresses       CommaSeparated `url:"addresses,omitempty"`
