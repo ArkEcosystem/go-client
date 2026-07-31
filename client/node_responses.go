@@ -84,9 +84,6 @@ type NodeConstantsTimeouts struct {
 	StageTimeoutIncrease int64 `json:"stageTimeoutIncrease,omitempty"`
 }
 
-// NodeConstants represents a single milestone's constants, as returned both
-// by node/configuration (the currently active milestone) and as an entry in
-// node/configuration/crypto's milestones list.
 type NodeConstants struct {
 	Gas                      NodeConstantsGas      `json:"gas,omitempty"`
 	Block                    NodeConstantsBlock    `json:"block,omitempty"`
@@ -120,10 +117,6 @@ type Network struct {
 	PubKeyHash int16         `json:"pubKeyHash,omitempty"`
 }
 
-// GenesisBlock represents the genesis block as returned by
-// node/configuration/crypto. It intentionally does not reuse Block: several
-// fields differ (e.g. Timestamp is a raw number here, a string on Block),
-// and it carries fields Block doesn't (logsBloom, serialized).
 type GenesisBlock struct {
 	Fee               BigInt        `json:"fee,omitempty"`
 	Hash              string        `json:"hash,omitempty"`
@@ -162,7 +155,6 @@ type NodeCrypto struct {
 	GenesisBlock NodeCryptoGenesisBlock `json:"genesisBlock,omitempty"`
 }
 
-// TransactionTypeFee represents the fee statistics for a single transaction type.
 type TransactionTypeFee struct {
 	Avg BigInt `json:"avg,omitempty"`
 	Max BigInt `json:"max,omitempty"`
@@ -170,5 +162,4 @@ type TransactionTypeFee struct {
 	Sum BigInt `json:"sum,omitempty"`
 }
 
-// NodeFeesResponse represents the response from the /node/fees endpoint, keyed by transaction type.
 type NodeFeesResponse map[string]TransactionTypeFee
